@@ -1,0 +1,12 @@
+[{
+    "id": 1,
+    "line": "Picadilly",
+    "background_colour": "blue",
+    "text_colour": "white"
+},
+{
+    "id": 2,
+    "line": "Other",
+    "background_colour": "lightgray",
+    "text_colour": "black"
+}]

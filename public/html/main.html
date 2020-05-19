@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+             <link rel='stylesheet' href='css/cim.css'>
+
+        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.6.3/css/all.css' integrity='sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/' crossorigin='anonymous'>
+             
+        <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+        
+        <title>CIMS</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(() => {
+                $.getJSON('http://localhost:3300/disruption_data.json',(disruptionData)=>{
+                    if(disruptionData){
+                        $.each(disruptionData, (key, value)=>{
+                            var str = value.button_text;
+
+                            if (str.length > 0)
+                            {
+                                var splitstr = str.split(' ');
+
+                                if (splitstr.length > 1)
+                                {
+                                    $('#disruptionList')
+                                        .append(`<button type="button" class="disruption" id="disruptionClick" value="${str}">${splitstr[0]}<br>${splitstr[1]}</button>`);
+                                }
+                                else
+                                {
+                                    $('#disruptionList')
+                                        .append(`<button type="button" class="disruption" id="disruptionClick" value="${str}">${splitstr[0]}<br><br></button>`);
+                                }
+                            }
+                            
+                        })
+                    }
+                });
+
+                $.getJSON('http://localhost:3300/line_data.json',(lineData)=>{
+                    if(lineData){
+                        $.each(lineData, (key, value)=>{
+                            var str = value.line;
+
+                            $('#lineList')
+                                        .append(`<button type="button" class="line" 
+                                        style="background-color: ${value.background_colour}; color: ${value.text_colour}">${str}</button>`);
+                            
+                        })
+                    }
+                });
+
+                $(document).on('click', '#disruptionClick', (evt)=>{
+                    var butVal = $(event.target).attr('value');
+    
+                    $.getJSON('http://localhost:3300/disruption_data.json',(disruptionData)=>{
+                        if(disruptionData){
+                            $.each(disruptionData, (key, value)=>{
+                                if (butVal == value.button_text)
+                                {
+                                    $('#messageAssembly')
+                                        .html(`<span class="ctrl_font">${value.message}</span>`);
+                                }
+                            })
+                        }
+                    })
+                })
+            })
+        </script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#"></a>
+            <img src="/img/tfl.png" alt="TfL Logo" width="150">
+            <p class="navbar-text project-name text-dark">| RTDM |
+            <span class="project-logo">Real Time Disruption Messaging</span><p>
+        </nav>
+        <div class="main_panel"> 
+            <div class="message_builder_panel">
+                <div class="title_panel">
+                    <label class="title_font">1) Message Builder</label>
+                </div>
+                <br>
+                <div class="line_panel">
+                    <label class="heading_font">Line</label>
+                    <div class="line_btn-group" id="lineList"></div>
+                </div>  
+                <div class="disruption_panel">
+                    <label class="heading_font">Disruption</label>
+                    <div class="disruption_btn-group" id="disruptionList"></div>
+                </div>
+            </div>
+            <div class="message_assembly_panel">
+                <div class="title_panel">
+                    <label class="title_font">2) Message Assembler</label>
+                </div>
+                <input id="messageText" class="ident10 v_spcr_5 message_input_text"></input><br>
+                <label for="fragmentArea" class="heading_font ident10 v_spcr_5">Fragments</label>
+                <textarea id="fragmentArea" rows="15" class="ident10 message_assembler_text"></textarea><br>
+                <label class="heading_font ident10">Complete Message</label>
+                <div class="complete_message_panel ident10 message_assembler_text">
+                    <div id="messageAssembly"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,1106 @@
+[
+  {
+    "message_id": 1,
+    "detail": "Customer Service Update, there is a good service operating on all London Underground Lines",
+    "vid_text": "There is a good service operating on all London Underground lines",
+    "gender": "F"
+  },
+  {
+    "message_id": 2,
+    "detail": "Customer Service Update, there is a good service operating on all other London Underground lines",
+    "vid_text": "There is a good service operating on all other London Underground lines",
+    "gender": "F"
+  },
+  {
+    "message_id": 3,
+    "detail": "Customer Service Update, there is a good service operating on the Bakerloo Line",
+    "vid_text": "There is a good service operating on the Bakerloo line",
+    "gender": "F"
+  },
+  {
+    "message_id": 4,
+    "detail": "Customer Service Update, there is a good service operating on the Central Line",
+    "vid_text": "There is a good service operating on the Central line",
+    "gender": "F"
+  },
+  {
+    "message_id": 5,
+    "detail": "Customer Service Update, there is a good service operating on the Circle Line",
+    "vid_text": "There is a good service operating on the Circle line",
+    "gender": "F"
+  },
+  {
+    "message_id": 6,
+    "detail": "Customer Service Update, there is a good service operating on the District Line",
+    "vid_text": "There is a good service operating on the District line",
+    "gender": "F"
+  },
+  {
+    "message_id": 7,
+    "detail": "Customer Service Update, there is a good service operating on the DLR",
+    "vid_text": "There is a good service operating on the DLR",
+    "gender": "F"
+  },
+  {
+    "message_id": 8,
+    "detail": "Customer Service Update, there is a good service operating on the East London Line",
+    "vid_text": "There is a good service operating on the East London line",
+    "gender": "F"
+  },
+  {
+    "message_id": 9,
+    "detail": "Customer Service Update, there is a good service operating on the Hammersmith & City Line",
+    "vid_text": "There is a good service operating on the Hammersmith & City line",
+    "gender": "F"
+  },
+  {
+    "message_id": 10,
+    "detail": "Customer Service Update, there is a good service operating on the Jubilee Line",
+    "vid_text": "There is a good service operating on the Jubilee line",
+    "gender": "F"
+  },
+  {
+    "message_id": 11,
+    "detail": "Customer Service Update, there is a good service operating on the Metropolitan Line",
+    "vid_text": "There is a good service operating on the Metropolitan line",
+    "gender": "F"
+  },
+  {
+    "message_id": 12,
+    "detail": "Customer Service Update, there is a good service operating on the Northern Line",
+    "vid_text": "There is a good service operating on the Northern line",
+    "gender": "F"
+  },
+  {
+    "message_id": 13,
+    "detail": "Customer Service Update, there is a good service operating on the Piccadilly  Line",
+    "vid_text": "There is a good service operating on the Piccadilly  line",
+    "gender": "F"
+  },
+  {
+    "message_id": 14,
+    "detail": "Customer Service Update, there is a good service operating on the Victoria Line.",
+    "vid_text": "There is a good service operating on the Victoria line",
+    "gender": "F"
+  },
+  {
+    "message_id": 15,
+    "detail": "Customer Service Update, there is a good service operating on the Waterloo & City Line",
+    "vid_text": "There is a good service operating on the Waterloo & City line",
+    "gender": "F"
+  },
+  {
+    "message_id": 16,
+    "detail": "Customer Service Update, through services have been restored to all destinations.",
+    "vid_text": "Through services have been restored to all destinations",
+    "gender": "F"
+  },
+  {
+    "message_id": 17,
+    "detail": "There is a Good Service on the Elizabeth Line",
+    "vid_text": "There is a Good Service on the Elizabeth Line",
+    "gender": "M"
+  },
+  {
+    "message_id": 18,
+    "detail": "There are Severe Delays on the Elizabeth Line",
+    "vid_text": "There are Severe Delays on the Elizabeth Line",
+    "gender": "M"
+  },
+  {
+    "message_id": 19,
+    "detail": "There are Minor Delays on the Elizabeth Line",
+    "vid_text": "There are Minor Delays on the Elizabeth Line",
+    "gender": "M"
+  },
+  {
+    "message_id": 20,
+    "detail": "The Elizabeth Line is Suspended",
+    "vid_text": "The Elizabeth Line is Suspended",
+    "gender": "M"
+  },
+  {
+    "message_id": 21,
+    "detail": "There is a special service operating on the Elizabeth Line",
+    "vid_text": "There is a special service operating on the Elizabeth Line",
+    "gender": "M"
+  },
+  {
+    "message_id": 22,
+    "detail": "Casualty on the track",
+    "vid_text": "Customer Information Announcement. Due to emergency services dealing with a casualty on the track",
+    "gender": "M"
+  },
+  {
+    "message_id": 31,
+    "detail": "Customer Service Update, due to a points failure the eastbound service is suspended.",
+    "vid_text": "Due to a points failure the eastbound service is suspended",
+    "gender": "F"
+  },
+  {
+    "message_id": 32,
+    "detail": "Customer Service Update, due to a points failure the northbound service is suspended.",
+    "vid_text": "Due to a points failure the northbound service is suspended",
+    "gender": "F"
+  },
+  {
+    "message_id": 33,
+    "detail": "Customer Service Update, due to a points failure the southbound service is suspended.",
+    "vid_text": "Due to a points failure the southbound service is suspended",
+    "gender": "F"
+  },
+  {
+    "message_id": 34,
+    "detail": "Customer Service Update, due to a points failure the westbound service is suspended.",
+    "vid_text": "Due to a points failure the westbound service is suspended",
+    "gender": "F"
+  },
+  {
+    "message_id": 35,
+    "detail": "Customer Service Update, due to a signal failure the eastbound service is suspended.",
+    "vid_text": "Due to a signal failure the eastbound service is suspended",
+    "gender": "F"
+  },
+  {
+    "message_id": 36,
+    "detail": "Customer Service Update, due to a signal failure the northbound service is suspended.",
+    "vid_text": "Due to a signal failure the northbound service is suspended",
+    "gender": "F"
+  },
+  {
+    "message_id": 37,
+    "detail": "Customer Service Update, due to a signal failure the southbound service is suspended.",
+    "vid_text": "Due to a signal failure the southbound service is suspended",
+    "gender": "F"
+  },
+  {
+    "message_id": 38,
+    "detail": "Customer Service Update, due to a signal failure the westbound service is suspended.",
+    "vid_text": "Due to a signal failure the westbound service is suspended",
+    "gender": "F"
+  },
+  {
+    "message_id": 39,
+    "detail": "Customer Service Update, due to an earlier incident, severe delays may be experienced.  Please take the first available train and change where necessary.",
+    "vid_text": "Due to an earlier incident severe delays may be experienced.  Please take the first available train and change where necessary",
+    "gender": "F"
+  },
+  {
+    "message_id": 40,
+    "detail": "Customer Service Update, due to industrial action, there are intermittent services on all London Underground Lines.",
+    "vid_text": "Due to industrial action there are intermittent services on all London Underground lines",
+    "gender": "F"
+  },
+  {
+    "message_id": 41,
+    "detail": "Customer Service Update, due to unforeseen circumstances in Central London, there are severe delays to all transport.",
+    "vid_text": "Due to unforeseen circumstances in Central London there are severe delays to all transport",
+    "gender": "F"
+  },
+  {
+    "message_id": 42,
+    "detail": "Customer Service Update, services are currently disrupted. Revised arrival times will be advised as soon as possible.",
+    "vid_text": "Services are currently disrupted. Revised arrival times will be advised as soon as possible",
+    "gender": "F"
+  },
+  {
+    "message_id": 43,
+    "detail": "Customer Service Update, the DLR service from Bank is suspended. Please go to Tower Gateway.",
+    "vid_text": "The DLR service from Bank is suspended.  Please go to Tower Gateway",
+    "gender": "F"
+  },
+  {
+    "message_id": 44,
+    "detail": "Customer Service Update, due to the London Fire Brigade in attendance the DLR service is suspended .",
+    "vid_text": "Due to the London Fire Brigade in attendance the DLR service is suspended",
+    "gender": "F"
+  },
+  {
+    "message_id": 45,
+    "detail": "Customer Service Update,  due to a suspect parcel the Waterloo and City Line service is suspended",
+    "vid_text": "Due to a suspect parcel the Waterloo and City Line service is suspended",
+    "gender": "F"
+  },
+  {
+    "message_id": 46,
+    "detail": "Customer Service Update, the service is suspended both eastbound and westbound",
+    "vid_text": "The service is suspended both eastbound and westbound",
+    "gender": "F"
+  },
+  {
+    "message_id": 47,
+    "detail": "Customer Service Update, the service is suspended both northbound and southbound",
+    "vid_text": "The service is suspended both northbound and southbound",
+    "gender": "F"
+  },
+  {
+    "message_id": 48,
+    "detail": "Customer Service Update, the westbound Circle line service  via Embankment is suspended.",
+    "vid_text": "The westbound Circle line service via Embankment is suspended",
+    "gender": "F"
+  },
+  {
+    "message_id": 49,
+    "detail": "Customer Service Update:  There are delays on the DLR because of an earlier service disruption.",
+    "vid_text": "There are delays on the DLR because of an earlier service disruption",
+    "gender": "F"
+  },
+  {
+    "message_id": 50,
+    "detail": "Customer Service Update:There are minor delays on the Bakerloo Line because of an earlier service disruption.",
+    "vid_text": "There are minor delays on the Bakerloo line because of an earlier service disruption",
+    "gender": "F"
+  },
+  {
+    "message_id": 51,
+    "detail": "Customer Service Update:  There are minor delays on the Central Line because of an earlier service disruption.",
+    "vid_text": "There are minor delays on the Central line because of an earlier service disruption",
+    "gender": "F"
+  },
+  {
+    "message_id": 52,
+    "detail": "Customer Service Update:  There are minor delays on the Circle Line because of an earlier service disruption.",
+    "vid_text": "There are minor delays on the Circle line because of an earlier service disruption",
+    "gender": "F"
+  },
+  {
+    "message_id": 53,
+    "detail": "Customer Service Update:  There are minor delays on the East London Line because of an earlier service disruption.",
+    "vid_text": "There are minor delays on the East London line because of an earlier service disruption",
+    "gender": "F"
+  },
+  {
+    "message_id": 54,
+    "detail": "Customer Service Update:  There are minor delays on the Hammersmith and City Line because of an earlier service disruption.",
+    "vid_text": "There are minor delays on the Hammersmith & City line because of an earlier service disruption",
+    "gender": "F"
+  },
+  {
+    "message_id": 55,
+    "detail": "Customer Service Update:  There are minor delays on the Jubilee Line because of an earlier servcie disruption.",
+    "vid_text": "There are minor delays on the Jubilee line because of an earlier service disruption",
+    "gender": "F"
+  },
+  {
+    "message_id": 56,
+    "detail": "Customer Service Update:  There are minor delays on the Metropolitan Line because of an earlier service disruption.",
+    "vid_text": "There are minor delays on the Metropolitan line because of an earlier service disruption",
+    "gender": "F"
+  },
+  {
+    "message_id": 57,
+    "detail": "Customer Service Update:  There are minor delays on the Northern Line because of an earlier service disruption.",
+    "vid_text": "There are minor delays on the Northern line because of an earlier service disruption",
+    "gender": "F"
+  },
+  {
+    "message_id": 58,
+    "detail": "Customer Service Update:  There are minor delays on the Piccadilly Line because of an earlier service disruption.",
+    "vid_text": "There are minor delays on the Piccadilly line because of an earlier service disruption",
+    "gender": "F"
+  },
+  {
+    "message_id": 59,
+    "detail": "Customer Service Update:  There are minor delays on the Victoria Line because of an earlier service disruption.",
+    "vid_text": "There are minor delays on the Victoria line because of an earlier service disruption",
+    "gender": "F"
+  },
+  {
+    "message_id": 60,
+    "detail": "Customer Service Update:  There are minor delays on the Waterloo and City Line because of an earlier service disruption.",
+    "vid_text": "There are minor delays on the Waterloo & City line because of an earlier service disruption",
+    "gender": "F"
+  },
+  {
+    "message_id": 61,
+    "detail": "Customer Service Update:There are severe delays on the Bakerloo Line because of an earlier service disruption.",
+    "vid_text": "There are severe delays on the Bakerloo line because of an earlier service disruption",
+    "gender": "F"
+  },
+  {
+    "message_id": 62,
+    "detail": "Customer Service Update:  There are severe delays on the Central Line because of an earlier service disruption.",
+    "vid_text": "There are severe delays on the Central line because of an earlier service disruption",
+    "gender": "F"
+  },
+  {
+    "message_id": 63,
+    "detail": "Customer Service Update:  There are severe delays on the Circle Line because of an earlier service disruption.",
+    "vid_text": "There are severe delays on the Circle line because of an earlier service disruption",
+    "gender": "F"
+  },
+  {
+    "message_id": 64,
+    "detail": "Customer Service Update:  There are severe delays on the East London Line because of an earlier service disruption.",
+    "vid_text": "There are severe delays on the East London line because of an earlier service disruption",
+    "gender": "F"
+  },
+  {
+    "message_id": 65,
+    "detail": "Customer Service Update:  There are severe delays on the Hammersmith and City Line because of an earlier service disruption.",
+    "vid_text": "There are severe delays on the Hammersmith & City line because of an earlier service disruption",
+    "gender": "F"
+  },
+  {
+    "message_id": 66,
+    "detail": "Customer Service Update:  There are severe delays on the Jubilee Line because of an earlier servcie disruption.",
+    "vid_text": "There are severe delays on the Jubilee line because of an earlier service disruption",
+    "gender": "F"
+  },
+  {
+    "message_id": 67,
+    "detail": "Customer Service Update:  There are severe delays on the Metropolitan Line because of an earlier service disruption.",
+    "vid_text": "There are severe delays on the Metropolitan line because of an earlier service disruption",
+    "gender": "F"
+  },
+  {
+    "message_id": 68,
+    "detail": "Customer Service Update:  There are severe delays on the Northern Line because of an earlier service disruption.",
+    "vid_text": "There are severe delays on the Northern line because of an earlier service disruption",
+    "gender": "F"
+  },
+  {
+    "message_id": 69,
+    "detail": "Customer Service Update:  There are severe delays on the Piccadilly Line because of an earlier service disruption.",
+    "vid_text": "There are severe delays on the Piccadilly line because of an earlier service disruption",
+    "gender": "F"
+  },
+  {
+    "message_id": 70,
+    "detail": "Customer Service Update:  There are severe delays on the Victoria Line because of an earlier service disruption.",
+    "vid_text": "There are severe delays on the Victoria line because of an earlier service disruption",
+    "gender": "F"
+  },
+  {
+    "message_id": 71,
+    "detail": "Customer Service Update:  There are severe delays on the Waterloo and City Line because of an earlier service disruption.",
+    "vid_text": "There are severe delays on the Waterloo & City line because of an earlier service disruption",
+    "gender": "F"
+  },
+  {
+    "message_id": 72,
+    "detail": "Customer Service Update, there is no Eastbound service from this station.  Please continue your journey at street level.",
+    "vid_text": "There is no eastbound service from this station.  Please continue your journey at street level",
+    "gender": "F"
+  },
+  {
+    "message_id": 73,
+    "detail": "Customer Service Update, there is no Northbound service from this station.  Please continue your journey at street level.",
+    "vid_text": "There is no northbound service from this station.  Please continue your journey at street level",
+    "gender": "F"
+  },
+  {
+    "message_id": 74,
+    "detail": "Customer Service Update, there is no Southbound service from this station.  Please continue your journey at street level.",
+    "vid_text": "There is no southbound service from this station.  Please continue your journey at street level",
+    "gender": "F"
+  },
+  {
+    "message_id": 75,
+    "detail": "Customer Service Update, there is no Westbound service from this station.  Please continue your journey at street level.",
+    "vid_text": "There is no westbound service from this station.  Please continue your journey at street level",
+    "gender": "F"
+  },
+  {
+    "message_id": 76,
+    "detail": "This train will be held here for a short period.",
+    "vid_text": "This train will be held here for a short period",
+    "gender": "F"
+  },
+  {
+    "message_id": 77,
+    "detail": "At present there are delays on National Rail services from Blackfriars",
+    "vid_text": "At present there are delays on National Rail services from Blackfriars",
+    "gender": "F"
+  },
+  {
+    "message_id": 78,
+    "detail": "At present there are delays on National Rail services from Cannon Street.",
+    "vid_text": "At present there are delays on National Rail services from Cannon Street",
+    "gender": "F"
+  },
+  {
+    "message_id": 79,
+    "detail": "At present there are delays on National Rail services from Euston.",
+    "vid_text": "At present there are delays on National Rail services from Euston",
+    "gender": "F"
+  },
+  {
+    "message_id": 80,
+    "detail": "At present there are delays on National Rail services from Fenchurch Street.",
+    "vid_text": "At present there are delays on National Rail services from Fenchurch Street",
+    "gender": "F"
+  },
+  {
+    "message_id": 81,
+    "detail": "At present there are delays on National Rail services from Kings Cross.",
+    "vid_text": "At present there are delays on National Rail services from King's Cross",
+    "gender": "F"
+  },
+  {
+    "message_id": 82,
+    "detail": "At present there are delays on National Rail services from Liverpool Street",
+    "vid_text": "At present there are delays on National Rail services from Liverpool Street",
+    "gender": "F"
+  },
+  {
+    "message_id": 83,
+    "detail": "At present there are delays on National Rail services from London Bridge.",
+    "vid_text": "At present there are delays on National Rail services from London Bridge",
+    "gender": "F"
+  },
+  {
+    "message_id": 84,
+    "detail": "At present there are delays on National Rail services from Marylebone.",
+    "vid_text": "At present there are delays on National Rail services from Marylebone",
+    "gender": "F"
+  },
+  {
+    "message_id": 85,
+    "detail": "At present there are delays on National Rail services from Paddington.",
+    "vid_text": "At present there are delays on National Rail services from Paddington",
+    "gender": "F"
+  },
+  {
+    "message_id": 86,
+    "detail": "At present there are delays on National Rail services from St Pancras",
+    "vid_text": "At present there are delays on National Rail services from St Pancras",
+    "gender": "F"
+  },
+  {
+    "message_id": 87,
+    "detail": "At present there are delays on National Rail services from Victoria.",
+    "vid_text": "At present there are delays on National Rail services from Victoria",
+    "gender": "F"
+  },
+  {
+    "message_id": 88,
+    "detail": "At present there are delays on National Rail services from Waterloo.",
+    "vid_text": "At present there are delays on National Rail services from Waterloo",
+    "gender": "F"
+  },
+  {
+    "message_id": 89,
+    "detail": "Due to a planned event in Central London, there may be some disruptions to your journey today. Please see station advertisements for more details",
+    "vid_text": "Due to a planned event in Central London there may be some disruptions to your journey today",
+    "gender": "F"
+  },
+  {
+    "message_id": 90,
+    "detail": "Due to a planned event in Central London, there may be some disruptions to your journey tomorrow. Please see station advertisements for more details",
+    "vid_text": "Due to a planned event in Central London there may be some disruptions to your journey tomorrow",
+    "gender": "F"
+  },
+  {
+    "message_id": 91,
+    "detail": "Due to a planned event in Central London, there may be some disruptions to your journey this weekend. Please see station advertisements for more details",
+    "vid_text": "Due to a planned event in Central London there may be some disruptions to your journey this weekend",
+    "gender": "F"
+  },
+  {
+    "message_id": 92,
+    "detail": "Due to the London Marathon there may be disruptions to your journey today. Please see station posters for details.",
+    "vid_text": "Due to the London Marathon there may be disruptions to your journey today.  Please see station posters for details",
+    "gender": "F"
+  },
+  {
+    "message_id": 93,
+    "detail": "Due to the Lord Mayor's Show there may be disruptions to your journey today. Please see station posters for details.",
+    "vid_text": "Due to the Lord Mayor's Show there may be disruptions to your journey today.  Please see station posters for details",
+    "gender": "F"
+  },
+  {
+    "message_id": 94,
+    "detail": "Due to the Notting Hill Carnival there may be disruptions to your journey today. Please see station posters for details.",
+    "vid_text": "Due to the Notting Hill Carnival there may be disruptions to your journey today.  Please see station posters for details",
+    "gender": "F"
+  },
+  {
+    "message_id": 95,
+    "detail": "Due to the University Boat Race there may be disruptions to your journey today. Please see station posters for details.",
+    "vid_text": "Due to the University Boat Race there may be disruptions to your journey today.  Please see station posters for details",
+    "gender": "F"
+  },
+  {
+    "message_id": 96,
+    "detail": "There are severe delays on the London Overground because of an earlier service disruption.",
+    "vid_text": "There are severe delays on the London Overground because of an earlier service disruption.",
+    "gender": "F"
+  },
+  {
+    "message_id": 97,
+    "detail": "There are minor delays on the London Overground because of an earlier service disruption.",
+    "vid_text": "There are minor delays on the London Overground because of an earlier service disruption.",
+    "gender": "F"
+  },
+  {
+    "message_id": 98,
+    "detail": "There is a good service operating on the London Overground",
+    "vid_text": "There is a good service operating on the London Overground",
+    "gender": "F"
+  },
+  {
+    "message_id": 100,
+    "detail": "At present there are delays on National Rail services from this station",
+    "vid_text": "At present there are delays on National Rail services from this station",
+    "gender": "F"
+  },
+  {
+    "message_id": 101,
+    "detail": "At present there are delays on National Rail services from this station. Take the first available train and change where necessary",
+    "vid_text": "At present there are delays on National Rail services from this station. Take the first available train and change where necessary",
+    "gender": "F"
+  },
+  {
+    "message_id": 102,
+    "detail": "At present there are delays on National Rail services from Stratford",
+    "vid_text": "At present there are delays on National Rail services from Stratford",
+    "gender": "F"
+  },
+  {
+    "message_id": 121,
+    "detail": "Your attention please, due to a reported emergency would all passengers leave the station immediately.",
+    "vid_text": "Due to a reported emergency please leave the station immediately",
+    "gender": "M"
+  },
+  {
+    "message_id": 122,
+    "detail": "Your attention please. Due to a reported emergency this station is now closed. Please do not enter this station",
+    "vid_text": "Due to a reported emergency this station is now closed",
+    "gender": "M"
+  },
+  {
+    "message_id": 123,
+    "detail": "This station is being evacuated, please follow the nearest way out and emergency exit signs.",
+    "vid_text": "This station is being evacuated.  Please follow the nearest way out and emergency exit signs",
+    "gender": "F"
+  },
+  {
+    "message_id": 124,
+    "detail": "Inspector Sands",
+    "vid_text": "",
+    "gender": "M"
+  },
+  {
+    "message_id": 126,
+    "detail": "Good Service on the  DLR, TFL Rail , London Overground and all London Underground Lines",
+    "vid_text": "",
+    "gender": "F"
+  },
+  {
+    "message_id": 141,
+    "detail": "Because of a mechanical defect there is no down escalator service.  Please use the fixed staircase with care.",
+    "vid_text": "Due to a mechanical defect there is no down escalator service.  Please use the fixed staircase with care",
+    "gender": "F"
+  },
+  {
+    "message_id": 142,
+    "detail": "Because of a mechanical defect there is no down escalator service.  Please walk down the escalator with care",
+    "vid_text": "Because of a mechanical defect there is no down escalator service.  Please walk down the escalator with care",
+    "gender": "F"
+  },
+  {
+    "message_id": 143,
+    "detail": "Because of a mechanical defect there is no escalator service.  Please walk down the escalator with care",
+    "vid_text": "Because of a mechanical defect there is no escalator service.  Please walk down the escalator with care",
+    "gender": "F"
+  },
+  {
+    "message_id": 144,
+    "detail": "Because of a mechanical defect there is no up escalator service.  Please use the fixed staircase with care",
+    "vid_text": "Because of a mechanical defect there is no up escalator service.  Please use the fixed staircase with care",
+    "gender": "F"
+  },
+  {
+    "message_id": 145,
+    "detail": "Because of a mechanical defect there is no up escalator service.  Please walk down the escalator with care",
+    "vid_text": "Because of a mechanical defect there is no up escalator service.  Please walk down the escalator with care",
+    "gender": "F"
+  },
+  {
+    "message_id": 146,
+    "detail": "Because of a mechanical defect there is no escalator service.  Please use the fixed staircase with care",
+    "vid_text": "Because of a mechanical defect there is no escalator service.  Please use the fixed staircase with care",
+    "gender": "F"
+  },
+  {
+    "message_id": 147,
+    "detail": "Because of an electrical defect there is no down escalator service.  Please use the fixed staircase with care",
+    "vid_text": "Because of an electrical defect there is no down escalator service.  Please use the fixed staircase with care",
+    "gender": "F"
+  },
+  {
+    "message_id": 148,
+    "detail": "Because of an electrical defect, there is no down escalator service.  Please walk down the escalator with care",
+    "vid_text": "Because of an electrical defect, there is no down escalator service.  Please walk down the escalator with care",
+    "gender": "F"
+  },
+  {
+    "message_id": 149,
+    "detail": "Because of an electrical defect, there is no escalator service.  Please walk down the escalator with care",
+    "vid_text": "Because of an electrical defect, there is no escalator service.  Please walk down the escalator with care",
+    "gender": "F"
+  },
+  {
+    "message_id": 150,
+    "detail": "Because of an electrical defect there is no escalator service.  Please use the fixed staircase with care",
+    "vid_text": "Because of an electrical defect there is no escalator service.  Please use the fixed staircase with care",
+    "gender": "F"
+  },
+  {
+    "message_id": 151,
+    "detail": "Because of an electrical defect there is no up escalator service.  Please use the fixed staircase with care",
+    "vid_text": "Because of an electrical defect there is no up escalator service.  Please use the fixed staircase with care",
+    "gender": "F"
+  },
+  {
+    "message_id": 152,
+    "detail": "Because of an electrical defect, there is no up escalator service.  Please walk down the escalator with care",
+    "vid_text": "Because of an electrical defect, there is no up escalator service.  Please walk down the escalator with care",
+    "gender": "F"
+  },
+  {
+    "message_id": 153,
+    "detail": "If you do not  wish to walk up the stairs, please travel to the next station and continue your journey at street level.",
+    "vid_text": "If you do not wish to walk up the stairs please travel to the next station and continue your journey at street level",
+    "gender": "F"
+  },
+  {
+    "message_id": 154,
+    "detail": "There is no escalator service at this station.",
+    "vid_text": "There is no escalator service at this station",
+    "gender": "F"
+  },
+  {
+    "message_id": 155,
+    "detail": "Please stand to the right when using the escalators.",
+    "vid_text": "",
+    "gender": "M"
+  },
+  {
+    "message_id": 156,
+    "detail": "There is no escalator service at this station.  If you do not wish to walk up the stairs, please travel to the next station and continue your journey at street level.",
+    "vid_text": "",
+    "gender": "F"
+  },
+  {
+    "message_id": 157,
+    "detail": "There is no lift service at this station.",
+    "vid_text": "There is no lift service at this station",
+    "gender": "F"
+  },
+  {
+    "message_id": 158,
+    "detail": "There is no lift service at this station.  If you do not wish to walk up the stairs, please travel to the next station and continue your journey at street level.",
+    "vid_text": "",
+    "gender": "F"
+  },
+  {
+    "message_id": 159,
+    "detail": "We apologise for the fact that there is only one lift service at present. We would appreciate your patience at this time.  Please use the stairs where possible.",
+    "vid_text": "There is only one lift service at present.  Please use the stairs where possible",
+    "gender": "F"
+  },
+  {
+    "message_id": 171,
+    "detail": "Some exits at this station are closed, please follow the diversions in operation.",
+    "vid_text": "Some exits at this station are closed, please follow the diversions in operation",
+    "gender": "F"
+  },
+  {
+    "message_id": 172,
+    "detail": "The ticket office is now closed.  Please purchase tickets from the ticket machines.",
+    "vid_text": "The ticket office is now closed.  Please purchase tickets from the ticket machines",
+    "gender": "F"
+  },
+  {
+    "message_id": 173,
+    "detail": "This station has been closed. Please ask a member of our staff for advice on alternative route",
+    "vid_text": "This station has been closed. Please ask a member of our staff for advice on alternative route",
+    "gender": "F"
+  },
+  {
+    "message_id": 174,
+    "detail": "The last train has departed from this platform.",
+    "vid_text": "The last train has departed from this platform",
+    "gender": "F"
+  },
+  {
+    "message_id": 175,
+    "detail": "There are no more Eastbound services tonight.",
+    "vid_text": "There are no more eastbound services tonight",
+    "gender": "F"
+  },
+  {
+    "message_id": 176,
+    "detail": "There are no more Westbound servIces tonight.",
+    "vid_text": "There are no more westbound services tonight",
+    "gender": "F"
+  },
+  {
+    "message_id": 177,
+    "detail": "There are no more Northbound servIces tonight.",
+    "vid_text": "There are no more northbound services tonight",
+    "gender": "F"
+  },
+  {
+    "message_id": 178,
+    "detail": "There are no more Southbound servIces tonight.",
+    "vid_text": "There are no more southbound services tonight",
+    "gender": "F"
+  },
+  {
+    "message_id": 191,
+    "detail": "Because of overcrowding there is no down escalator service. Please use the fixed staircase with care",
+    "vid_text": "Because of overcrowding there is no down escalator service. Please use the fixed staircase with care",
+    "gender": "F"
+  },
+  {
+    "message_id": 192,
+    "detail": "Please pass along the platform and do not wait in the yellow boxed area to avoid congestion on the platform.",
+    "vid_text": "Please pass along the platform.  Do not wait in the yellow boxed area to avoid congestion on the platform",
+    "gender": "F"
+  },
+  {
+    "message_id": 193,
+    "detail": "To avoid congestion in the ticket hall, please leave the station and wait at street level.",
+    "vid_text": "To avoid congestion in the ticket hall, please leave the station and wait at street level",
+    "gender": "F"
+  },
+  {
+    "message_id": 194,
+    "detail": "To avoid overcrowding on platforms you are being held outside the station until it is safe to let you onto the platforms",
+    "vid_text": "To avoid overcrowding on platforms you are being held outside the station until it is safe to let you onto the platforms",
+    "gender": "F"
+  },
+  {
+    "message_id": 195,
+    "detail": "Would customers please use the full length of the platform to avoid congestion at the platform entrances.",
+    "vid_text": "Would customers please use the full length of the platform to avoid congestion at the platform entrances",
+    "gender": "F"
+  },
+  {
+    "message_id": 196,
+    "detail": "We are holding customers in the ticket hall as the platforms are crowded. You will be allowed through the gates as soon as the platforms become less congested.",
+    "vid_text": "We are holding customers in the ticket hall as the platforms are crowded",
+    "gender": "F"
+  },
+  {
+    "message_id": 197,
+    "detail": "We are holding you in the ticket hall as the top of the escalators are overcrowded.  You will be allowed through the gates as soon as the congestion eases.",
+    "vid_text": "We are holding you in the ticket hall as the top of the escalators is crowded",
+    "gender": "F"
+  },
+  {
+    "message_id": 198,
+    "detail": "Due to heavy congestion, customers for the Notting Hill Carnival should leave the train here and walk.",
+    "vid_text": "Due to heavy congestion passengers for the Notting Hill Carnival should leave the train here and walk",
+    "gender": "F"
+  },
+  {
+    "message_id": 211,
+    "detail": "A replacement bus service is in operation.  Customers will require a valid ticket to use this bus service.",
+    "vid_text": "A replacement bus service is in operation.  Customers will require a valid ticket to use this bus service.",
+    "gender": "F"
+  },
+  {
+    "message_id": 283,
+    "detail": "If your destination is not shown take any train and change at Earl's Court",
+    "vid_text": "If your destination is not shown take any train and change at Earl's Court",
+    "gender": "F"
+  },
+  {
+    "message_id": 284,
+    "detail": "There is a good service on London Tramlink",
+    "vid_text": "There is a good service on London Tramlink",
+    "gender": "F"
+  },
+  {
+    "message_id": 301,
+    "detail": "Begging on LUL trains and stations is illegal.  Customers are requested not to encourage this behaviour.",
+    "vid_text": "Begging on LUL trains and stations is illegal.  Customers are requested not to encourage this behaviour",
+    "gender": "F"
+  },
+  {
+    "message_id": 302,
+    "detail": "Llicensed buskers are permitted to operate on this station",
+    "vid_text": "Licensed buskers are permitted to operate on this station",
+    "gender": "F"
+  },
+  {
+    "message_id": 303,
+    "detail": "This station does not operate a licensed busker scheme and busking is therefore not permitted.  Customers are requested not to encourage busking on this station.",
+    "vid_text": "This station does not operate a licensed busker scheme.  Customers are requested not to encourage busking on this station",
+    "gender": "F"
+  },
+  {
+    "message_id": 304,
+    "detail": "Please do not hand your used tickets to the ticket touts. This is illegal and helps to finance drugs and other criminal activity in the area.",
+    "vid_text": "Please do not hand your used tickets to the ticket touts.  This is illegal and helps to finance drugs and other criminal activity",
+    "gender": "F"
+  },
+  {
+    "message_id": 305,
+    "detail": "If you with to renew your weekly ticket with a credit card, you may find it quicker to use the queue buster machine located near the ticket office.",
+    "vid_text": "If you wish to renew your weekly ticket with a credit card it may be quicker to use the machine located near the ticket office",
+    "gender": "F"
+  },
+  {
+    "message_id": 306,
+    "detail": "For the safety of all of our customers please remember that smoking is not allowed on any underground station.",
+    "vid_text": "No Smoking",
+    "gender": "M"
+  },
+  {
+    "message_id": 307,
+    "detail": "Please do not leave any baggage unattended as this causes delays.",
+    "vid_text": "Please do not leave any baggage unattended as this causes delays",
+    "gender": "F"
+  },
+  {
+    "message_id": 308,
+    "detail": "Please keep your belongings safe.  Pick-pockets operate at this station.",
+    "vid_text": "Please keep your belongings safe.  Pick-pockets operate at this station",
+    "gender": "M"
+  },
+  {
+    "message_id": 309,
+    "detail": "Please keep your belongings with you at all times.  Report any unattended item or suspicious behaviour to a member of staff or a police officer",
+    "vid_text": "Please report any unattended articles or suspicious behaviour to a member of staff or a police officer",
+    "gender": "F"
+  },
+  {
+    "message_id": 310,
+    "detail": "Please report any unattended articles to a member of staff.",
+    "vid_text": "Please report any unattended articles to a member of staff",
+    "gender": "M"
+  },
+  {
+    "message_id": 311,
+    "detail": "Tickets must only be purchased from authorised outlets.  Acquiring tickets from any other source is illegal",
+    "vid_text": "Tickets must only be purchased from authorised outlets.  Acquiring tickets from any other source is illegal",
+    "gender": "F"
+  },
+  {
+    "message_id": 312,
+    "detail": "To avoid queues at the ticket office on a Monday morning did you know that you can renew your season or weekly tickets on a Friday evening – after work – when this ticket office is not busy?",
+    "vid_text": "To avoid queues at the ticket office on a Monday morning you can renew your season or weekly tickets on a Friday evening",
+    "gender": "F"
+  },
+  {
+    "message_id": 313,
+    "detail": "Welcome to London Underground.  We hope you have a pleasant journey.",
+    "vid_text": "Welcome to London Underground.  We hope you have a pleasant journey.",
+    "gender": "F"
+  },
+  {
+    "message_id": 314,
+    "detail": "This is a security announcement. Customers are requested to keep their possessions with them at all times.  When leaving this station or when leaving your train, please ensure that you take everything with you.   Any unattended bag or other item of luggage will be removed and may be destroyed.  Thank-you.",
+    "vid_text": "",
+    "gender": "M"
+  },
+  {
+    "message_id": 315,
+    "detail": "On police advice customers are advised not to buy tickets from ticket touts, as there are tickets available at the football ground.",
+    "vid_text": "",
+    "gender": "F"
+  },
+  {
+    "message_id": 316,
+    "detail": "Please ask a member of staff if you need help to make your journey.",
+    "vid_text": "Please ask a member of staff if you need help to make your journey.",
+    "gender": "F"
+  },
+  {
+    "message_id": 317,
+    "detail": "Thank you for travelling on London Underground, we hope you had a pleasant journey.",
+    "vid_text": "",
+    "gender": "F"
+  },
+  {
+    "message_id": 318,
+    "detail": "Customers are requested to take litter home with them",
+    "vid_text": "Customers are requested to take litter home with them",
+    "gender": "F"
+  },
+  {
+    "message_id": 331,
+    "detail": "If there is a member of the British Transport Police on the station, please  contact the operations room.",
+    "vid_text": "",
+    "gender": "M"
+  },
+  {
+    "message_id": 332,
+    "detail": "If there is a trained medical person on the station would you please make  yourself known to a member of London Underground staff.",
+    "vid_text": "",
+    "gender": "M"
+  },
+  {
+    "message_id": 333,
+    "detail": "Would the station cleaner please report to the Station Control Room immediately.",
+    "vid_text": "",
+    "gender": "M"
+  },
+  {
+    "message_id": 334,
+    "detail": "Staff announcement:  Will a member of the cleaning team please contact the supervisors office immediately.",
+    "vid_text": "",
+    "gender": "M"
+  },
+  {
+    "message_id": 335,
+    "detail": "Would the Lifts and Escalators engineer please report to the Station Control Room immediately.",
+    "vid_text": "",
+    "gender": "M"
+  },
+  {
+    "message_id": 351,
+    "detail": "Mind the gap please...Mind the gap please...Mind the gap please...",
+    "vid_text": "Mind the gap",
+    "gender": "M"
+  },
+  {
+    "message_id": 352,
+    "detail": "Please allow customers off the train first before boarding and move right down inside the cars using all available doors.",
+    "vid_text": "Please allow customers off the train first before boarding and move right down inside the cars using all available doors",
+    "gender": "F"
+  },
+  {
+    "message_id": 353,
+    "detail": "Please move right down inside the cars.",
+    "vid_text": "Please move right down inside the cars",
+    "gender": "F"
+  },
+  {
+    "message_id": 354,
+    "detail": "Please stand  behind the yellow line as the train approaches.  Use the full length of the platform, and let customers off the train first.",
+    "vid_text": "Please stand  behind the yellow line as the train approaches.  Use the full length of the platform, and let customers off the train first",
+    "gender": "F"
+  },
+  {
+    "message_id": 355,
+    "detail": "Please stand behind the yellow line.",
+    "vid_text": "Please stand behind the yellow line",
+    "gender": "F"
+  },
+  {
+    "message_id": 356,
+    "detail": "Stand clear of the doors please.",
+    "vid_text": "Stand clear of the doors",
+    "gender": "M"
+  },
+  {
+    "message_id": 357,
+    "detail": "The next train to pass through this station is not in service.",
+    "vid_text": "The next train to pass through this station is not in service.",
+    "gender": "F"
+  },
+  {
+    "message_id": 358,
+    "detail": "The next train to pass through this station is not in service.  For your own safety please stand behind the yellow line.",
+    "vid_text": "The next train to pass through this station is not in service.  Please stand behind the yellow line",
+    "gender": "F"
+  },
+  {
+    "message_id": 359,
+    "detail": "The next train will terminate at this station.",
+    "vid_text": "The next train will terminate at this station",
+    "gender": "F"
+  },
+  {
+    "message_id": 360,
+    "detail": "There has been an alteration to the destination of the next train.",
+    "vid_text": "There has been an alteration to the destination of the next train",
+    "gender": "F"
+  },
+  {
+    "message_id": 361,
+    "detail": "This train is ready to depart. Please stand clear of the doors.",
+    "vid_text": "This train is ready to depart. Please stand clear of the doors",
+    "gender": "F"
+  },
+  {
+    "message_id": 362,
+    "detail": "Please use the full length of the platform, and let customers off the train first.",
+    "vid_text": "Please use the full length of the platform and let customers off the train first",
+    "gender": "F"
+  },
+  {
+    "message_id": 363,
+    "detail": "Would customers please use the full length of the platform.",
+    "vid_text": "Would customers please use the full length of the platform",
+    "gender": "F"
+  },
+  {
+    "message_id": 364,
+    "detail": "Please use the exit at the front of the train.",
+    "vid_text": "",
+    "gender": "F"
+  },
+  {
+    "message_id": 365,
+    "detail": "Please use the exit at the rear of the train.",
+    "vid_text": "",
+    "gender": "F"
+  },
+  {
+    "message_id": 366,
+    "detail": "Customers should take extra care on the wet floors",
+    "vid_text": "Customers should take extra care on the wet floors",
+    "gender": "F"
+  },
+  {
+    "message_id": 367,
+    "detail": "Due to the weather conditions surfaces around the station may be slippery. Please take extra care.",
+    "vid_text": "Due to the weather conditions surfaces around the station may be slippery. Please take extra care.",
+    "gender": "F"
+  },
+  {
+    "message_id": 368,
+    "detail": "The Emirates Air Line is closed",
+    "vid_text": "The Emirates Air Line is closed",
+    "gender": "F"
+  },
+  {
+    "message_id": 369,
+    "detail": "The Emirates Air Line is suspended.",
+    "vid_text": "The Emirates Air Line is suspended.",
+    "gender": "F"
+  },
+  {
+    "message_id": 1106,
+    "detail": "",
+    "vid_text": "",
+    "gender": "NULL"
+  },
+  {
+    "message_id": 1107,
+    "detail": "",
+    "vid_text": "",
+    "gender": "NULL"
+  },
+  {
+    "message_id": 1120,
+    "detail": "",
+    "vid_text": "",
+    "gender": "M"
+  },
+  {
+    "message_id": 1614,
+    "detail": "In this hot weather, it is advisable to carry a bottle of water with you.",
+    "vid_text": "In this hot weather, it is advisable to carry a bottle of water with you.",
+    "gender": "F"
+  },
+  {
+    "message_id": 1623,
+    "detail": "NULL",
+    "vid_text": "",
+    "gender": "NULL"
+  },
+  {
+    "message_id": 5835,
+    "detail": "If you begin to feel unwell or see someone else on the train feeling unwell, please don’t pull the emergency alarm. Help is more quickly and easily available at the next station.",
+    "vid_text": "If you begin to feel unwell or see someone else on the train feeling unwell, please don’t pull the emergency alarm. Help is more quickly and easily available at the next station.",
+    "gender": "F"
+  }
+]
