@@ -10,6 +10,10 @@ $(document).ready(() => {
     var lineAudio = '';
     var fragmentText = [];
 
+    $.ajaxSetup({
+        async: false
+    });
+
     $.getJSON('fragment_data.json',(fragmentData)=>{
         if(fragmentData){
             $.each(fragmentData, (key, value)=>{
