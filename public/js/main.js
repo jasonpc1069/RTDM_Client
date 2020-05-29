@@ -358,7 +358,7 @@ $(document).ready(() => {
         //Preamble
         if (preambleAudio)
         {
-            file_names[song] = 'media/wavfiles/' + preambleAudio + '.wav';
+            file_names[song] = '/media/wavfiles/' + preambleAudio + '.wav';
             song = song + 1;
         } 
 
@@ -369,13 +369,13 @@ $(document).ready(() => {
             {
                 if (disruptionAudio[d] == 7000)
                 {
-                    file_names[song] = 'media/wavfiles/' + lineAudio + '.wav';
+                    file_names[song] = '/media/wavfiles/' + lineAudio + '.wav';
                     song = song + 1;
                     
                 }
                 else if ((disruptionAudio[d] != 7001) && (disruptionAudio[d] != 0))
                 {
-                    file_names[song] = 'media/wavfiles/' + disruptionAudio[d] + '.wav';
+                    file_names[song] = '/media/wavfiles/' + disruptionAudio[d] + '.wav';
                     song = song + 1;
                 }
             }
@@ -384,7 +384,7 @@ $(document).ready(() => {
         //Reason
         if (reasonAudio)
         {
-            file_names[song] = 'media/wavfiles/' + reasonAudio + '.wav';
+            file_names[song] = '/media/wavfiles/' + reasonAudio + '.wav';
             song = song + 1;
         } 
 
