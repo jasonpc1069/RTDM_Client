@@ -1,90 +1,126 @@
 [{
     "id": 1,
     "button_text": "Severe Delays",
-    "message" : "there are severe delays on the {line}"
+    "message" : "there are severe delays on the {line}",
+    "reason" : 1,
+    "audio" : [2911,7000]
 },
 {
     "id": 2,
     "button_text": "Minor Delays",
-    "message" : "there are minor delays on the {line}"
+    "message" : "there are minor delays on the {line}",
+    "reason" : 1,
+    "audio" : [2910,7000]
 },
 {
     "id": 3,
     "button_text": "Delays",
-    "message" : "there are delays on the {line}"
+    "message" : "there are delays on the {line}",
+    "reason" : 1,
+    "audio" : [1416,7000]
 },
 {
     "id": 4,
     "button_text": "Disrupted",
-    "message" : "the {line} services are currently disrupted"
+    "message" : "the {line} services are currently disrupted",
+    "reason" : 1,
+    "audio" : [1327,7000,965]
 },
 {
     "id": 5,
     "button_text": "Station Closed",
-    "message" : "{station} is closed"
+    "message" : "{station} is closed",
+    "reason" : 1,
+    "audio" : [7001,109]
 },
 {
     "id": 6,
     "button_text": "Good Service",
-    "message" : "good service on the {line}"
+    "message" : "good service on the {line}",
+    "reason" : 0,
+    "audio" : [989,1382,7000]
 },
 {
     "id": 7,
     "button_text": "Held",
-    "message" : "the {line} trains are currently being held in platforms"
+    "message" : "the {line} trains are currently being held in platforms",
+    "reason" : 1,
+    "audio" : [1327,7000,1045]
 },
 {
     "id": 8,
     "button_text": "Suspend",
-    "message" : "the {line} is suspended"
+    "message" : "the {line} is suspended",
+    "reason" : 1,
+    "audio" : [1327,7000,107]
 },
 {
     "id": 9,
     "button_text": "Part Suspend",
-    "message" : "the {line} is partially suspended"
+    "message" : "the {line} is partially suspended",
+    "reason" : 1,
+    "audio" : [1327,7000,113]
 },
 {
     "id": 10,
     "button_text": "Part Closure",
-    "message" : "the {line} is partially suspended"
+    "message" : "the {line} is partially closed",
+    "reason" : 1,
+    "audio" : [1327,7000,105]
 },
 {
     "id": 11,
     "button_text": "Moving",
-    "message" : "the {line} trains are now on the move again"
+    "message" : "the {line} trains are now on the move again",
+    "reason" : 1,
+    "audio" : [1327,7000,1046]
 },
 {
     "id": 12,
     "button_text": "Good All",
-    "message" : "There is a good service operating on the DLR | London Overground | TfL Rail | and London Underground lines"
+    "message" : "there is a good service operating on the DLR | London Overground | TfL Rail | and London Underground lines",
+    "reason" : 0,
+    "audio" : [117, 1382, 1205, 948, 4991, 428, 268]
 },
 {
     "id": 13,
     "button_text": "Gap",
-    "message" : "the {line} has larger gaps between trains than usual"
+    "message" : "the {line} has larger gaps between trains than usual",
+    "reason" : 1,
+    "audio" : [1327,7000,1048]
 },
 {
     "id": 14,
     "button_text": "Restored",
-    "message" : "the {line} services have been restored"
+    "message" : "the {line} services have been restored",
+    "reason" : 1,
+    "audio" : [1327,7000,1417]
 },
 {
     "id": 15,
     "button_text": "Resumed",
-    "message" : "the {line} services have resumed"
+    "message" : "the {line} services have resumed",
+    "reason" : 1,
+    "audio" : [1327,7000,1047]
 },
 {
     "id": 16,
     "button_text": "Buses",
-    "message" : "the {line} has a replacement bus service"
+    "message" : "the {line} has a replacement bus service",
+    "reason" : 1,
+    "audio" : [1327,7000,5320]
 },
 {
     "id": 17,
     "button_text": "Special Service",
-    "message" : "the {line} has a special service"
+    "message" : "the {line} has a special service",
+    "reason" : 1,
+    "audio" : [1327,7000,613, 973, 437]
 },
 {
     "id": 18,
     "button_text": "Not Stopping",
-    "message" : "the {line} is not stopping at {station} customers should alight at stations either side and continue their journey at street level"
+    "message" : "the {line} is not stopping at {station} customers should alight at stations either side and continue their journey at street-level",
+    "reason" : 1,
+    "audio" : [1327,7000,1155,7001,4868]
 }]

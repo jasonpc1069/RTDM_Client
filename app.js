@@ -2,7 +2,9 @@ const http = require('http');
 const port = process.env.PORT || 3300;
 const path = require ('path');
 const disruptionData = require('./config/current/disruption_data.json');
+const reasonData = require('./config/current/reason_data.json');
 const lineData = require('.//config/current/line_data.json');
+const preambleData = require('.//config/current/preamble_data.json');
 const fragmentsData = require('.//config/current/fragment_data.json');
 const express      = require('express');
 const fs = require ('fs');
@@ -36,8 +38,14 @@ http.createServer((req, res) => {
       case '/line_data.json':
         res.write(JSON.stringify(lineData));
         break;
-      case '/lfragment_data.json':
+      case '/fragment_data.json':
         res.write(JSON.stringify(fragmentsData));
+        break;
+      case '/preamble_data.json':
+        res.write(JSON.stringify(preambleData));
+        break;
+      case '/reason_data.json':
+        res.write(JSON.stringify(reasonData));
         break;
     }
 
@@ -54,6 +62,9 @@ http.createServer((req, res) => {
         break;
       case '.css':
         contentType = 'text/css';
+        break;
+      case '.js':
+        contentType = 'application/javascript';
         break;
     }
     
