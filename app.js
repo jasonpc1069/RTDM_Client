@@ -66,6 +66,9 @@ http.createServer((req, res) => {
       case '.js':
         contentType = 'application/javascript';
         break;
+      case '.wav':
+        contentType = 'audio/wav';
+        break;
     }
     
     fs.readFile (filePath, (err, content) => {
