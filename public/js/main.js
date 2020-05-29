@@ -10,7 +10,7 @@ $(document).ready(() => {
     var lineAudio = '';
     var fragmentText = [];
 
-    $.getJSON('http://localhost:3300/fragment_data.json',(fragmentData)=>{
+    $.getJSON('fragment_data.json',(fragmentData)=>{
         if(fragmentData){
             $.each(fragmentData, (key, value)=>{
                 fragmentText[value.section_id] = value.detail;
@@ -18,7 +18,7 @@ $(document).ready(() => {
         }
     });
     
-    $.getJSON('http://localhost:3300/disruption_data.json',(disruptionData)=>{
+    $.getJSON('disruption_data.json',(disruptionData)=>{
         if(disruptionData){
             $.each(disruptionData, (key, value)=>{
                 var str = value.button_text;
@@ -42,7 +42,7 @@ $(document).ready(() => {
         }
     });
 
-    $.getJSON('http://localhost:3300/reason_data.json',(reasonData)=>{
+    $.getJSON('/reason_data.json',(reasonData)=>{
         if(reasonData){
             $.each(reasonData, (key, value)=>{
                 var str = value.button_text;
@@ -52,7 +52,7 @@ $(document).ready(() => {
         }
     });
 
-    $.getJSON('http://localhost:3300/line_data.json',(lineData)=>{
+    $.getJSON('/line_data.json',(lineData)=>{
         if(lineData){
             $.each(lineData, (key, value)=>{
                 var background = "#e6e6e6";
@@ -91,7 +91,7 @@ $(document).ready(() => {
         }
     });
 
-    $.getJSON('http://localhost:3300/preamble_data.json',(preambleData)=>{
+    $.getJSON('/preamble_data.json',(preambleData)=>{
         if(preambleData){
             $.each(preambleData, (key, value)=>{
                 var str = value.text;
@@ -125,7 +125,7 @@ $(document).ready(() => {
         var butVal = $(evt.target).attr('value');
         lineButton = $(evt.target);
     
-        $.getJSON('http://localhost:3300/line_data.json',(lineData)=>{
+        $.getJSON('/line_data.json',(lineData)=>{
             if(lineData){
                 $.each(lineData, (key, value)=>{
                     if (butVal == value.id)
@@ -166,7 +166,7 @@ $(document).ready(() => {
         var butVal = $(evt.target).attr('value');
         
     
-        $.getJSON('http://localhost:3300/line_data.json',(lineData)=>{
+        $.getJSON('/line_data.json',(lineData)=>{
             if(lineData){
                 $.each(lineData, (key, value)=>{
                     if (lineButton.attr('value') == value.id)
@@ -201,7 +201,7 @@ $(document).ready(() => {
         evt.preventDefault();
         $(evt.target).siblings().removeClass('active');
 
-        $.getJSON('http://localhost:3300/disruption_data.json',(disruptionData)=>{
+        $.getJSON('/disruption_data.json',(disruptionData)=>{
             if(disruptionData){
                 $.each(disruptionData, (key, value)=>{
                     if (butVal == value.button_text)
@@ -240,7 +240,7 @@ $(document).ready(() => {
         evt.preventDefault();
         $(evt.target).siblings().removeClass('active');
         
-        $.getJSON('http://localhost:3300/preamble_data.json',(preamble)=>{
+        $.getJSON('/preamble_data.json',(preamble)=>{
             if(preamble){
                 $.each(preamble, (key, value)=>{
                     if (butVal == value.text)
@@ -266,7 +266,7 @@ $(document).ready(() => {
 
         reasonText = $(this).text();
 
-        $.getJSON('http://localhost:3300/reason_data.json',(reasonData)=>{
+        $.getJSON('/reason_data.json',(reasonData)=>{
             if(reasonData){
                 $.each(reasonData, (key, value)=>{
                     
@@ -292,7 +292,7 @@ $(document).ready(() => {
         evt.preventDefault();
         $(evt.target).siblings().removeClass('active');
 
-        $.getJSON('http://localhost:3300/reason_data.json',(reasonData)=>{
+        $.getJSON('/reason_data.json',(reasonData)=>{
             if(reasonData){
                 $.each(reasonData, (key, value)=>{
                     if (butVal == value.button_text)
