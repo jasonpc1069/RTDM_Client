@@ -10,7 +10,7 @@ $(document).ready(() => {
     var lineAudio = '';
     var fragmentText = [];
 
-    $.getJSON('fragment_data.json',(fragmentData)=>{
+    $.getJSON('fragment_data.json',async (fragmentData)=>{
         if(fragmentData){
             $.each(fragmentData, (key, value)=>{
                 fragmentText[value.section_id] = value.detail;
