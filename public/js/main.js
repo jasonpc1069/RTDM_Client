@@ -78,7 +78,19 @@ function previewSound()
         song = song + 1;
     } 
 
-        playSound(file_names);
+        //playSound(file_names);
+        var sound = new Howl({
+            src: ['/media/wavfiles/1049.wav'],
+            onend: function() {
+                if (previewEvt)
+                {   
+                    $(previewEvt.target).prop('disabled',false);
+                    previewEvent = null;
+                }
+            }
+        });
+
+        sound.play();
 }
 
 function playSound(file_names) {
