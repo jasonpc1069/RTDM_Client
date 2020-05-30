@@ -322,7 +322,9 @@ $(document).ready(() => {
     });
 
     $(document).on('click', '#previewClick', (evt)=>{
+        $(evt.target).removeClass('active');
         previewSound();
+        $(evt.target).addClass('active');
     });
 
     function updateMessageAssembler()
