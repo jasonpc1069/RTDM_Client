@@ -2,419 +2,89 @@
     "id": 1,
     "button_text": "Signal",
     "icon": "",
-    "message" : [
-        {
-            "fragmentId": 5215,
-            "text":"due to a signal failure", 
-            "audio": 5215
-        },
-        {	
-            "fragmentId": 5216,
-            "text": "due to a signalling problem", 
-            "audio": 5216
-        },
-        {
-            "fragmentId": 526,
-            "text": "due to an earlier signal failure",
-            "audio": 526
-        },
-        {	
-            "fragmentId": 514,
-            "text": "due to an earlier signal problem",
-            "audio": 514
-        },
-        {
-            "fragmentId": 513,
-            "text": "due to an earlier signal system failure",
-            "audio": 513
-        },
-        {
-            "fragmentId": 527,
-            "text": "due to an earlier signalling problem",
-            "audio":  527
-        },
-        {
-            "fragmentId": 5251,
-            "text": "due to signal failure caused by flooding",
-            "audio": 5251
-        },
-        {
-            "fragmentId": 4918,
-            "text": "while we fix a signal failure",
-            "audio": 4918
-        }
-    ]
+    "fragmentId" : [5215,5216,526,514,513,527,5251,4918]      
 },
 {
     "id": 2,
     "button_text": "Track",
     "icon": "",
-    "message" : [
-        {
-            "fragmentId": 5191,
-            "text": "due to a derailment",
-            "audio": 5191
-        },
-        {
-            "fragmentId": 4923,
-            "text": "due to a temporary speed restriction caused by heat",
-            "audio": 4923
-        },
-        {
-            "fragmentId": 5219,
-            "text":  "due to a tree on the track",
-            "audio": 5219
-        },
-        {
-            "fragmentId": 5220,
-            "text": "due to a tree on the track earlier",
-            "audio": 5220
-        },
-        {
-            "fragmentId": 4927,
-            "text": "due to a vehicle hitting a bridge",
-            "audio": 4927
-        },
-        {
-            "fragmentId": 5221,
-            "text": "due to adverse weather conditions",
-            "audio": 5221
-        },
-        {
-            "fragmentId": 5229,
-            "text":  "due to an animal on the track",
-            "audio": 5229
-        },
-        {
-            "fragmentId": 529,
-            "text": "due to an earlier points failure",
-            "audio": 529
-        },
-        {
-            "fragmentId": 532,
-            "text": "due to an obstruction on the track",
-            "audio": 532
-        },
-        {
-            "fragmentId": 506,
-            "text": "due to earlier faulty tunnel ventilation",
-            "audio": 506
-        },
-        {
-            "fragmentId": 505,
-            "text": "due to earlier temporary speed restrictions",
-            "audio": 505
-        },
-        {
-            "fragmentId": 5016,
-            "text": "due to faulty track",
-            "audio": 5016
-        },
-        {
-            "fragmentId": 5245,
-            "text": "due to Network Rail track works",
-            "audio": 5245
-        }
-    ]
+    "fragmentId" : [5191,4923,5219,5220,4927,5221,5229,529,532,506,505,5016,5245]
 },
 {
     "id": 3,
     "button_text": "Train",
     "icon": "",
-    "message" : [
-        {
-            "fragmentId": 422,
-            "text": "due to a bridge strike",
-            "audio": 422
-        },
-        {
-            "fragmentId": 5195,
-            "text": "due to a faulty train",
-            "audio": 5195
-        },
-        {
-            "fragmentId": 4905,
-            "text": "due to a shortage of train operators",
-            "audio": 4905
-        },
-        {
-            "fragmentId": 5214,
-            "text": "due to a shortage of trains",
-            "audio": 5214
-        },
-        {
-            "fragmentId": 5218,
-            "text": "due to a temporary absence of train operators",
-            "audio": 5218
-        },
-        {
-            "fragmentId": 4906,
-            "text": "due to a temporary shortage of train operators",
-            "audio": 4906
-        },
-        {
-            "fragmentId": 519,
-            "text": "due to an earlier faulty train",
-            "audio": 519
-        },
-        {
-            "fragmentId": 518,
-            "text": "due to an earlier cancellation",
-            "audio": 518
-        },
-        {
-            "fragmentId": 517,
-            "text": "due to an earlier derailment",
-            "audio": 517
-        },
-        {
-            "fragmentId": 509,
-            "text": "due to an earlier vehicle hitting a bridge",
-            "audio": 509
-        },
-        {
-            "fragmentId": 508,
-            "text": "due to earlier trains taken out of service for essential maintenance",
-            "audio": 508
-        },
-        {
-            "fragmentId": 5017,
-            "text": "due to faulty train communications",
-            "audio": 5017
-        },
-        {
-            "fragmentId": 4907,
-            "text": "due to train operators taken ill",
-            "audio": 4907
-        },
-        {
-            "fragmentId": 4955,
-            "text": "due to trains being taken out of service for essential maintenance",
-            "audio": 4955
-        },
-        {
-            "fragmentId": 4918,
-            "text": "while we fix a signal failure",
-            "audio": 4918
-        }
-    ]
+    "fragmentId" : [422,5195,4905,5214,5218,4906,519,518,517,509,508,5017,4907,4955,4918]
 },
 {
     "id": 4,
     "button_text": "Engineer",
     "icon": "",
-    "message" : [
-        {
-            "fragmentId": 4928,
-            "text": "as a result of the service recovering from a late finish to engineering work",
-            "audio": 4928
-        },
-        {
-            "fragmentId": 5190,
-            "text": "due to a communications equipment failure",
-            "audio": 5190
-        },
-        {
-            "fragmentId": 516,
-            "text": "due to earlier planned engineering work",
-            "audio": 516
-        },
-        {
-            "fragmentId": 516,
-            "text": "due to earlier planned engineering work",
-            "audio": 516
-        },
-        {
-            "fragmentId": 4929,
-            "text": "due to emergency engineering work",
-            "audio": 4929
-        },
-        {
-            "fragmentId": 5011,
-            "text": "due to emergency engineering works",
-            "audio": 5011
-        },
-        {
-            "fragmentId": 4817,
-            "text": "due to Network Rail",
-            "audio": 4817
-        },
-        {
-            "fragmentId": 5248,
-            "text": "due to over-running engineering works",
-            "audio": 5248
-        },
-        {
-            "fragmentId": 5022,
-            "text": "due to planned engineering work",
-            "audio": 5022
-        },
-        {
-            "fragmentId": 4638,
-            "text": "due to weekend engineering works.",
-            "audio": 4638
-        }
-    ]
+    "fragmentId" : [4928,5190,516,4929,5011,4817,5248,5022,4638]
 },
 {
     "id": 5,
     "button_text": "Station",
     "icon": "",
-    "message" : [
-        {
-            "text": "due to a faulty escalator",
-            "audio": 0
-        }
-    ]
+    "fragmentId" : [4928]
 },
 {
     "id": 6,
     "button_text": "People",
     "icon": "",
-    "message" : [
-        {
-            "text": "good service on the {line}",
-            "audio": 0
-        }
-    ]
+    "fragmentId" : [4928]
 },
 {
     "id": 7,
     "button_text": "Security",
     "icon": "",
-    "message" : [
-        {
-            "fragmentId": 5002,
-            "text": "due to a police investigation",
-            "audio": 5002
-        },
-        {
-            "fragmentId": 5212,
-            "text": "due to a reported emergency",
-            "audio": 5212
-        },
-        {
-            "fragmentId": 5213,
-            "text": "due to a security alert",
-            "audio": 5213
-        },
-        {
-            "fragmentId": 4115,
-            "text": "due to a security alert outside the station",
-            "audio": 4115
-        },
-        {
-            "fragmentId": 528,
-            "text": "due to an earlier police investigation",
-            "audio": 528
-        },
-        {
-            "fragmentId": 522,
-            "text": "due to an earlier security alert",
-            "audio": 522
-        },
-        {
-            "fragmentId": 523,
-            "text": "due to an earlier security alert outside the station",
-            "audio": 523
-        },
-        {
-            "fragmentId": 524,
-            "text": "due to an earlier suspect parcel",
-            "audio": 524
-        },
-        {
-            "fragmentId": 5255,
-            "text": "due to the London Fire Brigade in attendance",
-            "audio": 5255
-        }        
-    ]
+    "fragmentId" : [5002,5212,5213,4115,528,522,523,524,5255]
 },
 {
     "id": 8,
     "button_text": "Weather",
     "icon": "",
-    "message" : [
-        {
-            "text": "the {line} is suspended",
-            "audio": 0
-        }
-    ]
+    "fragmentId" : [4928]
 },
 {
     "id": 9,
     "button_text": "All",
     "icon": "",
-    "message" : [
-        {
-            "text": "the {line} is partially suspended",
-            "audio": 0
-        }
-    ]
+    "fragmentId" : [4928]
 },
 {
     "id": 10,
     "button_text": "Other",
     "icon": "",
-    "message" : [
-        {
-            "text": "the {line} is partially suspended",
-            "audio": 0
-        }
-    ]
+    "fragmentId" : [4928]
 },
 {
     "id": 11,
     "button_text": "While",
     "icon": "",
-    "message" : [
-        {
-            "text": "the {line} trains are now on the move again",
-            "audio": 0
-        }
-    ]
+    "fragmentId" : [4928]
 },
 {
     "id": 12,
     "button_text": "Earlier",
     "icon": "",
-    "message" : [
-        {
-            "text": "There is a good service operating on the DLR | London Overground | TfL Rail | and London Underground lines",
-            "audio": 0
-        }
-    ]
+    "fragmentId" : [4928]
 },
 {
     "id": 13,
     "button_text": "Following",
     "icon": "",
-    "message" : [
-        {
-            "text": "the {line} has larger gaps between trains than usual",
-            "audio": 0
-        }
-    ]
+    "fragmentId" : [4928]
 },
 {
     "id": 14,
     "button_text": "Restored",
     "icon": "",
-    "message" : [
-        {
-            "text": "the {line} services have been restored",
-            "audio": 0
-        }
-    ]
+    "fragmentId" : [4928]
 },
 {
     "id": 15,
     "button_text": "PIOT",
     "icon": "",
-    "message" : [
-        {
-            "text": "the {line} services have resumed",
-            "audio": 0
-        }
-    ]
+    "fragmentId" : [4928]
 }]

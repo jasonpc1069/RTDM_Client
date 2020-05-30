@@ -78,28 +78,7 @@ function previewSound()
         song = song + 1;
     } 
 
-        // // //playSound(file_names);
-        // var sound = new Howl({
-        //     src: ['/media/wavfiles/1049.wav'],
-        //     onend: function() {
-        //         if (previewEvt)
-        //         {   
-        //             $(previewEvt.target).prop('disabled',false);
-        //             previewEvent = null;
-        //         }
-        //     }
-        // });
-        const sound = require('sound-play')
-        sound.play('/media/wavfiles/1049.wav');
-
-        // sound.play();
-
-        // var player = require('play-sound')(opts = {});
-        // player.play ('/media/wavfiles/1049.wav', function(err){
-        //     if (err) throw err
-        // })
-
- 
+    playSound(file_names);
 }
 
 function playSound(file_names) {

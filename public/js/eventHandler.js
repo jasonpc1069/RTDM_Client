@@ -132,8 +132,6 @@ $(document).on('click', '#preambleClick', (evt)=>{
     })
 });
 
-
-
 $("#reasonSelectedList").on('click','li',function() {
     $(this).siblings().css('background-color', '#e9ecef');
     $(this).siblings().css('color', 'black');
@@ -147,9 +145,9 @@ $("#reasonSelectedList").on('click','li',function() {
         if(reasonData){
             $.each(reasonData, (key, value)=>{
                 
-                for(var m=0; m<value.message.length; m++) 
+                for(var f=0; f<value.fragmentID.length; f++) 
                 {      
-                    var id = value.message[m].fragmentId
+                    var id = value.fragmentId[f];
                     var str = fragmentText[id];
                     if (str == reasonText)
                     {
@@ -174,10 +172,10 @@ $(document).on('click', '#reasonClick', (evt)=>{
             $.each(reasonData, (key, value)=>{
                 if (butVal == value.button_text)
                 {
-                    for(var m=0; m<value.message.length; m++) 
+                    for(var f=0; f<value.fragmentId.length; f++) 
                     {      
-                        var id = value.message[m].fragmentId;
-                        if (m==0)
+                        var id = value.fragmentId[f];
+                        if (f==0)
                         {
                             $('#reasonSelectedList')
                                 .html(`<li class="list_font">${fragmentText[id]}</li>`);

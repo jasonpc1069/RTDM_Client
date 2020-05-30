@@ -6,8 +6,11 @@ $(document).ready(() => {
     $.getJSON('app_data.json',(appData)=>{
         if(appData){
             version = appData.version;
-            document.getElementById('version').innerHTML = `Version: ${version}`;
-            
+            $('#appData')
+                .append(`<img src="${appData.logo}" alt="TfL Logo" width="150">
+                <p class="navbar-text project-name text-dark">${appData.name} |
+                    <span class="project-logo">${appData.description}</span>
+                    <span class="heading_font">Version ${appData.version}</span></p>`);
         }
     });
 
