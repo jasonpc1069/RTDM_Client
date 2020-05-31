@@ -48,7 +48,7 @@
                             <div class="card-body p-0 d-flex flex-wrap flex-column align-content-start align-items-start" style="height: 326px;">
                                 <div class="reason_btn-panel">
                                     <div class="reason_btn-group d-flex flex-column flex-wrap btn-group" data-toggle="buttons" id="reasonList"></div>
-                                    <button type="button" class="btn btn-lg btn-primary reason_clear">Clear</button>
+                                    <button type="button" class="btn btn-lg btn-primary reason_clear" id="reasonClear" disabled>Clear</button>
                                 </div>
                                 <div class="d-flex">
                                     <div class="input-group reason_input_text" style="margin-top: 5px;">
@@ -57,15 +57,15 @@
                                                 <i class="fas fa-search"></i>
                                             </span>
                                         </div>
-                                        <input type="text" id="reasonText" placeholder="Enter search text" class="form-control">
+                                        <input type="text" id="reasonText" placeholder="Enter search text" class="form-control" disabled>
                                         <div class="input-group-append">
-                                            <button class="btn btn-primary button_text fas fa-times"></button>
+                                            <button class="btn btn-primary button_text fas fa-times" id="reasonSearchClear" disabled></button>
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary button_text" style="height: 38px; margin-left: 5px; margin-top: 5px;">Search</button>
+                                    <button class="btn btn-primary button_text" id="reasonTextSearch" style="height: 38px; margin-left: 5px; margin-top: 5px;" disabled>Search</button>
                                 </div>
                                 <div class="reason_search_text rounded" style="overflow: scroll">
-                                    <ul class="reasonItems" style="padding:0px; padding-left:5px; list-style-type:none;" id="reasonSelectedList"></ul>
+                                    <ol class="reasonItems" style="padding:0px; padding-left:5px; list-style-type:none;" id="reasonSelectedList"></ol>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +94,15 @@
                         <div class="complete_message_panel ident10 rounded">
                             <div style="padding-left: 5px; padding-right: 5px; margin-top: 2px; line-height: 18px;" id="messageAssembly"></div>
                         </div>
-                        <button class="btn btn-primary button_text ident10 mt-4" id="previewClick"><i class="fas fa-headphones"></i> Preview</button>
+                        <div class="ident10 d-flex message_btn_panel">
+                            <button class="btn btn-primary button_text assembler" id="assemblyClear"><i class="fas fa-headphones"></i><br>Clear</button>
+                            <button class="btn btn-primary button_text assembler" id="assemblyPrevious"><i class="fas fa-backward"></i><br>Previous</button>
+                            <button class="btn btn-primary button_text assembler" id="assemblyDelete"><i class="fas fa-trash-alt"></i><br>Delete</button>
+                            <button class="btn btn-primary button_text assembler" id="assemblyNext"><i class="fas fa-forward"></i><br>Next</button>
+                            <button class="btn btn-primary button_text assembler ml-5 mr-auto" id="previewClick"><i class="fas fa-headphones"></i><br>Preview</button>
+                            <button class="btn btn-primary button_text assembler" id="assemblySave"><i class="fas fa-save"></i><br>Save</button>
+                            <button class="btn btn-primary button_text assembler" id="assemblySchedule"><i class="fas fa-calendar-alt"></i><br>Play Schedule</button>
+                        </div>
                     </div>
                 </div>
             </div>

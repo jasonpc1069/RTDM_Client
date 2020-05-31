@@ -82,6 +82,19 @@
     font-size: 18px;
 }
 
+.assembler 
+{ 
+    width: 70px; 
+    height: 70px; 
+    background-color: #e6e6e6; 
+    color: black;
+    font-family: 'Helvetica'; 
+    font-size: 12px;
+    margin-top: 4px;
+    margin-right: 4px;
+    padding: 0px;
+}
+
 .button_text
 {
     font-family: 'Helvetica'; 
@@ -227,6 +240,11 @@
 }
 
 .message_fragment_text
+{
+    width: 700px;
+}
+
+.message_btn_panel
 {
     width: 700px;
 }

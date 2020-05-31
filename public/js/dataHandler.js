@@ -47,12 +47,23 @@ $(document).ready(() => {
     });
 
     $.getJSON('/reason_data.json',(reasonData)=>{
+        var arr = [];
         if(reasonData){
             $.each(reasonData, (key, value)=>{
                 var str = value.button_text;
                 $('#reasonList')
-                    .append(`<button type="radio" class="reason btn btn-outline-dark" disabled id="reasonClick" name="reason" value="${str}">${value.button_text}</button>`);         
+                    .append(`<button type="radio" class="reason btn btn-outline-dark" disabled id="reasonClick" name="reason" value="${str}">${value.button_text}</button>`); 
+    
+                    for (f = 0; f < value.fragmentId.length; f++)
+                    {
+                        arr.push(value.fragmentId[f]);
+                    }
             })
+
+            // Create Unique Array
+            reasonFragments = arr.filter(function(item, pos){
+                return arr.indexOf(item)== pos; 
+              });
         }
     });
 

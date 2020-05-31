@@ -10,6 +10,7 @@ var lineAudio = '';
 var fragmentText = [];
 var previewEvent = null;
 var version = '';
+var reasonFragments = [];
 
 function updateMessageAssembler()
 {
@@ -129,4 +130,26 @@ function generateFragmentText(fragmentElements)
     }
 
     return text;
+}
+
+function filterReasons(searchText)
+{
+    for(var f=0; f < reasonFragments.length; f++) 
+    { 
+        var id = reasonFragments[f];
+        if (fragmentText[id].includes(searchText) ||
+            fragmentText[id].match(searchText))
+        {
+            if (f==0)
+            {
+                $('#reasonSelectedList')
+                    .html(`<li class="list_font" id="reason_${id}">${fragmentText[id]}</li>`);
+            }
+            else
+            {
+                $('#reasonSelectedList')
+                    .append(`<li class="list_font" id="reason_${id}">${fragmentText[id]}</li>`);
+            }
+        }
+    }  
 }

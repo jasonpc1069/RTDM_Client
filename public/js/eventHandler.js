@@ -95,11 +95,27 @@ $(document).on('click', '#disruptionClick', (evt)=>{
                         $('.reason').each(function()   {
                             $(this).removeClass('active');
                         })
-                    }
 
+                        $('#reasonTextSearch').prop('disabled', true);
+                        $('#reasonSearchClear').prop('disabled', true);
+                        $('#reasonText').prop('disabled', true);
+                        $('#reasonClear').prop('disabled', true);
+                    }
+                    else
+                    {
+                        if ($('#reasonSelectedList').contents().length == 0)
+                        {
+                            filterReasons('.*');
+                        }
+                    }
+                    
                     $('.reason').each(function()   {
                         $(this).prop('disabled', !value.reason);
                     })
+
+                    $('#reasonTextSearch').prop('disabled', !value.reason);
+                    $('#reasonSearchClear').prop('disabled', !value.reason);
+                    $('#reasonText').prop('disabled', !value.reason);
 
                     disruptionText = text;
                     disruptionAudio = value.audio;
@@ -141,23 +157,10 @@ $("#reasonSelectedList").on('click','li',function() {
 
     reasonText = $(this).text();
 
-    $.getJSON('/reason_data.json',(reasonData)=>{
-        if(reasonData){
-            $.each(reasonData, (key, value)=>{
-                
-                for(var f=0; f<value.fragmentID.length; f++) 
-                {      
-                    var id = value.fragmentId[f];
-                    var str = fragmentText[id];
-                    if (str == reasonText)
-                    {
-                        reasonAudio = id;
-                    }
-                } 
-            })
-        }
-    });
-
+    var id = $(this).attr('id').split("_").pop();
+    
+    reasonAudio = id;
+    
     updateMessageAssembler();
 });
 
@@ -167,29 +170,88 @@ $(document).on('click', '#reasonClick', (evt)=>{
     evt.preventDefault();
     $(evt.target).siblings().removeClass('active');
 
+    $('#reasonSelectedList').empty();
+    $('#reasonClear').prop('disabled', false);
+    reasonText = '';
+    reasonAudio = '';
+    updateMessageAssembler();
+    
     $.getJSON('/reason_data.json',(reasonData)=>{
         if(reasonData){
             $.each(reasonData, (key, value)=>{
                 if (butVal == value.button_text)
                 {
-                    for(var f=0; f<value.fragmentId.length; f++) 
-                    {      
-                        var id = value.fragmentId[f];
-                        if (f==0)
-                        {
-                            $('#reasonSelectedList')
-                                .html(`<li class="list_font">${fragmentText[id]}</li>`);
-                        }
-                        else
-                        {
-                            $('#reasonSelectedList')
-                                .append(`<li class="list_font">${fragmentText[id]}</li>`);
-                        }
-                    } 
+                    if (value.search_criteria)
+                    {
+                        filterReasons(value.search_criteria);
+                    }
+                    else
+                    {
+                        for(var f=0; f<value.fragmentId.length; f++) 
+                        {      
+                            var id = value.fragmentId[f];
+                            if (f==0)
+                            {
+                                $('#reasonSelectedList')
+                                    .html(`<li class="list_font" id="reason_${id}">${fragmentText[id]}</li>`);
+                            }
+                            else
+                            {
+                                $('#reasonSelectedList')
+                                    .append(`<li class="list_font" id="reason_${id}">${fragmentText[id]}</li>`);
+                            }
+                        } 
+                    }
                 }           
             })
         }
     });
+});
+
+$(document).on('click', '#reasonTextSearch', (evt)=>{
+    var text = document.getElementById('reasonText').value;
+            
+    $('#reasonSelectedList').empty();
+    reasonText = '';
+    reasonAudio = '';
+
+    $('.reason').each(function()   {
+        $(this).removeClass('active');
+    })
+
+    filterReasons(text);
+    updateMessageAssembler();
+});
+
+$(document).on('click', '#reasonSearchClear', (evt)=>{
+    document.getElementById('reasonText').value = "";
+    reasonText = '';
+    reasonAudio = '';
+    
+    $('.reason').each(function()   {
+        $(this).removeClass('active');
+    })
+    filterReasons('.*');
+    updateMessageAssembler()
+});
+
+$(document).on('click', '#reasonClear', (evt)=>{
+    $('#reasonClear').prop('disabled', true);
+
+    reasonText = '';
+    reasonAudio = '';
+
+    $('#reasonSelectedList').empty();
+
+    $('.reason').each(function()   {
+        $(this).removeClass('active');
+    })
+    
+    $('.reason').each(function()   {
+        $(this).removeClass('active');
+    })
+    filterReasons('.*');
+    updateMessageAssembler();
 });
 
 $(document).on('click', '#previewClick', (evt)=>{
