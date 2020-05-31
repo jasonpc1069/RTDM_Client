@@ -173,36 +173,35 @@ function filterReasons(searchText)
         if (fragmentText[id].includes(searchText) ||
             fragmentText[id].match(searchText))
         {
-            filterArray.push(fragmentText[id]);
-        
-            if (f==0)
-            {
-                $('#reasonSelectedList')
-                    .html(`<li class="list_font" id="reason_${id}">${fragmentText[id]}</li>`);
-            }
-            else
-            {
-                $('#reasonSelectedList')
-                    .append(`<li class="list_font" id="reason_${id}">${fragmentText[id]}</li>`);
-            }
+            filterArray.push({id: `${id}`, text: `${fragmentText[id]}`});
         }
     }
 
     // Sort Array
-    filterArray.sort();
+    filterArray.sort(compareFragments);
 
-    // Add fragments to list
-    // for(f=0; f < filterArray.length; f++) 
-    // { 
-    //     if (f==0)
-    //     {
-    //         $('#reasonSelectedList')
-    //             .html(`<li class="list_font" id="reason_${id}">${filterArray[f]}</li>`);
-    //     }
-    //     else
-    //     {
-    //         $('#reasonSelectedList')
-    //             .append(`<li class="list_font" id="reason_${id}">${filterArray[f]}</li>`);
-    //     }
-    // }      
+    //Add fragments to list
+    for(f=0; f < filterArray.length; f++) 
+    { 
+        if (f==0)
+        {
+            $('#reasonSelectedList')
+                .html(`<li class="list_font" id="reason_${filterArray[f].id}">${filterArray[f].text}</li>`);
+        }
+        else
+        {
+            $('#reasonSelectedList')
+                .append(`<li class="list_font" id="reason_${filterArray[f].id}">${filterArray[f].text}</li>`);
+        }
+    }      
 }
+
+function compareFragments( a, b ) {
+    if ( a.text < b.text ){
+      return -1;
+    }
+    if ( a.text > b.ltext){
+      return 1;
+    }
+    return 0;
+  }

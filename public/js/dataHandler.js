@@ -34,12 +34,12 @@ $(document).ready(() => {
                     if (splitstr.length > 1)
                     {
                         $('#disruptionList')
-                            .append(`<button type="radio" class="disruption btn btn-outline-dark" id="disruptionClick" name="disruption" value="${str}">${splitstr[0]}<br>${splitstr[1]}</button>`);
+                            .append(`<button type="button" class="disruption btn btn-outline-dark" id="disruptionClick" name="disruption" value="${str}">${splitstr[0]}<br>${splitstr[1]}</button>`);
                     }
                     else
                     {
                         $('#disruptionList')
-                            .append(`<button type="radio" class="disruption btn btn-outline-dark" id="disruptionClick" name="disruption" value="${str}">${splitstr[0]}</button>`);
+                            .append(`<button type="button" class="disruption btn btn-outline-dark" id="disruptionClick" name="disruption" value="${str}">${splitstr[0]}</button>`);
                     }
                 }            
             })
@@ -52,7 +52,7 @@ $(document).ready(() => {
             $.each(reasonData, (key, value)=>{
                 var str = value.button_text;
                 $('#reasonList')
-                    .append(`<button type="radio" class="reason btn btn-outline-dark" disabled id="reasonClick" name="reason" value="${str}">${value.button_text}</button>`); 
+                    .append(`<button type="button" class="reason btn btn-outline-dark" disabled id="reasonClick" name="reason" value="${str}">${value.button_text}</button>`); 
     
                     for (f = 0; f < value.fragmentId.length; f++)
                     {
@@ -121,14 +121,14 @@ $(document).ready(() => {
                 if (value.active == 1)
                 {
                     $('#preambleList')
-                                .append(`<button type="radio" class="preamble btn btn-outline-success active" id="preambleClick" name="preamble" value="${str}">${str}</button>`);
+                                .append(`<button type="button" class="preamble btn btn-outline-success active" id="preambleClick" name="preamble" value="${str}">${str}</button>`);
                     preambleText = fragmentText[value.audio];
                     preambleFragment = value.audio;
                 }
                 else
                 {
                     $('#preambleList')
-                                .append(`<button type="radio" class="preamble btn btn-outline-success" id="preambleClick" name="preamble" value="${str}">${str}</button>`);
+                                .append(`<button type="button" class="preamble btn btn-outline-success" id="preambleClick" name="preamble" value="${str}">${str}</button>`);
                 }
 
                 compileAssembledFragments();
