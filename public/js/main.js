@@ -3,81 +3,84 @@ var reasonText = '';
 var lineButton = '';
 var preambleText ='';
 var lineText ='';
-var preambleAudio ='';
-var disruptionAudio = [];
-var reasonAudio ='';
-var lineAudio = '';
+var preambleFragment =0;
+var disruptionFragment = [];
+var reasonFragment = 0;
+var lineFragment = 0;
+var assembledFragments = [];
+var assemblerSelectedElement = 0;
 var fragmentText = [];
 var previewEvent = null;
 var version = '';
 var reasonFragments = [];
 
+function compileAssembledFragments()
+{
+    assembledFragments = [];
+    
+    //Preamble
+    if (preambleFragment !=0)
+    {
+        assembledFragments.push(preambleFragment);
+    }
+
+    // Disruption
+    for (var f=0; f<disruptionFragment.length; f++)
+    {
+        if (disruptionFragment[f] == 7000)
+        {
+            assembledFragments.push(lineFragment);
+        }
+        else
+        {
+            assembledFragments.push(disruptionFragment[f]);
+        }
+    }
+
+    // Reason
+    if (reasonFragment != 0)
+    {
+        assembledFragments.push(reasonFragment);
+    }
+
+    assemblerSelectedElement = 0;
+}
+
 function updateMessageAssembler()
 {
-    var temp_text = disruptionText.replace("{line}", lineText);
+    var id = 0;
 
-    if (disruptionText)
+    $('#messageAssembly')
+                    .html(`<span class="message_font">`);
+
+    for (var f=0; f < assembledFragments.length; f++)
     {
-        if (reasonText)
+        id = assembledFragments[f];
+        if (f == assemblerSelectedElement)
         {
             $('#messageAssembly')
-                    .html(`<span class="message_font"><u>${preambleText}</u> | ${temp_text} | ${reasonText} |</span>`);
+                    .append(`<u>${fragmentText[id]}</u> |`);
         }
         else
         {
             $('#messageAssembly')
-                    .html(`<span class="message_font"><u>${preambleText}</u> | ${temp_text} |</span>`);
+                    .append(`${fragmentText[id]} | `);
         }
     }
-    else  if (reasonText)
-    {
-        $('#messageAssembly')
-                .html(`<span class="message_font"><u>${preambleText}</u> | ${reasonText} |</span>`);
-    }
-    else
-    {
-        $('#messageAssembly')
-                .html(`<span class="message_font"><u>${preambleText}</u> |</span>`);
-    }
+
+    $('#messageAssembly')
+                    .append(`</span>`);
 }
 
 function previewSound()
 {
     var file_names=[];
-    var song = 0;
-
-    //Preamble
-    if (preambleAudio)
+    
+    // Build Play List
+    for (var f=0; f < assembledFragments.length; f++)
     {
-        file_names[song] = '/media/wavfiles/' + preambleAudio + '.wav';
-        song = song + 1;
-    } 
-
-    // Disruption
-    if (disruptionAudio.length>0)
-    {
-        for (d=0; d<disruptionAudio.length;d++)
-        {
-            if (disruptionAudio[d] == 7000)
-            {
-                file_names[song] = '/media/wavfiles/' + lineAudio + '.wav';
-                song = song + 1;
-                
-            }
-            else if ((disruptionAudio[d] != 7001) && (disruptionAudio[d] != 0))
-            {
-                file_names[song] = '/media/wavfiles/' + disruptionAudio[d] + '.wav';
-                song = song + 1;
-            }
-        }
+        file_names[f] = '/media/wavfiles/' + assembledFragments[f] + '.wav';
     }
-
-    //Reason
-    if (reasonAudio)
-    {
-        file_names[song] = '/media/wavfiles/' + reasonAudio + '.wav';
-        song = song + 1;
-    } 
 
     playSound(file_names);
 }
@@ -134,12 +137,17 @@ function generateFragmentText(fragmentElements)
 
 function filterReasons(searchText)
 {
+    var filterArray = [];
+
+    // Find Fragments based on search criteria
     for(var f=0; f < reasonFragments.length; f++) 
     { 
         var id = reasonFragments[f];
         if (fragmentText[id].includes(searchText) ||
             fragmentText[id].match(searchText))
         {
+            filterArray.push(fragmentText[id]);
+        
             if (f==0)
             {
                 $('#reasonSelectedList')
@@ -151,5 +159,23 @@ function filterReasons(searchText)
                     .append(`<li class="list_font" id="reason_${id}">${fragmentText[id]}</li>`);
             }
         }
-    }  
+    }
+
+    // Sort Array
+    filterArray.sort();
+
+    // Add fragments to list
+    // for(f=0; f < filterArray.length; f++) 
+    // { 
+    //     if (f==0)
+    //     {
+    //         $('#reasonSelectedList')
+    //             .html(`<li class="list_font" id="reason_${id}">${filterArray[f]}</li>`);
+    //     }
+    //     else
+    //     {
+    //         $('#reasonSelectedList')
+    //             .append(`<li class="list_font" id="reason_${id}">${filterArray[f]}</li>`);
+    //     }
+    // }      
 }

@@ -85,7 +85,7 @@ $(document).ready(() => {
 
                         var id = value.lines[0].audio;
                         lineText = fragmentText[id];
-                        lineAudio = id;
+                        lineFragment = id;
                     }
                 }
 
@@ -110,11 +110,12 @@ $(document).ready(() => {
         if(preambleData){
             $.each(preambleData, (key, value)=>{
                 var str = value.text;
+                
 
                 if (!preambleText)
                 {
                     preambleText = fragmentText[value.audio];
-                    preambleAudio = value.audio;
+                    preambleFragment = value.audio;
                 }
 
                 if (value.active == 1)
@@ -122,7 +123,7 @@ $(document).ready(() => {
                     $('#preambleList')
                                 .append(`<button type="radio" class="preamble btn btn-outline-success active" id="preambleClick" name="preamble" value="${str}">${str}</button>`);
                     preambleText = fragmentText[value.audio];
-                    preambleAudio = value.audio;
+                    preambleFragment = value.audio;
                 }
                 else
                 {
@@ -130,6 +131,7 @@ $(document).ready(() => {
                                 .append(`<button type="radio" class="preamble btn btn-outline-success" id="preambleClick" name="preamble" value="${str}">${str}</button>`);
                 }
 
+                compileAssembledFragments();
                 updateMessageAssembler();
                 
             })

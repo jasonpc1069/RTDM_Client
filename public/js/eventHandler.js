@@ -29,8 +29,9 @@ $(document).on('click', '#lineClick', (evt)=>{
 
                         var id = value.lines[0].audio;
                         lineText = fragmentText[id];
-                        lineAudio = id;
+                        lineFragment = id;
                         
+                        compileAssembledFragments();
                         updateMessageAssembler();
                     }
                 }
@@ -61,8 +62,9 @@ $(document).on('click', '#lineSelectionClick', (evt)=>{
 
                             var id = value.lines[l].audio;
                             lineText = fragmentText[id];
-                            lineAudio = id;
+                            lineFragment = id;
 
+                            compileAssembledFragments();
                             updateMessageAssembler();
                         }
                     }
@@ -88,7 +90,7 @@ $(document).on('click', '#disruptionClick', (evt)=>{
                     if (!value.reason)
                     {
                         reasonText = '';
-                        reasonAudio = '';
+                        reasonFragment = '';
 
                         $('#reasonSelectedList').empty();
 
@@ -118,8 +120,9 @@ $(document).on('click', '#disruptionClick', (evt)=>{
                     $('#reasonText').prop('disabled', !value.reason);
 
                     disruptionText = text;
-                    disruptionAudio = value.audio;
+                    disruptionFragment = value.audio;
 
+                    compileAssembledFragments();
                     updateMessageAssembler();                        
                 }
             })
@@ -139,8 +142,9 @@ $(document).on('click', '#preambleClick', (evt)=>{
                 if (butVal == value.text)
                 {
                     preambleText = fragmentText[value.audio];
-                    preambleAudio = value.audio;
+                    preambleFragment = value.audio;
 
+                    compileAssembledFragments();
                     updateMessageAssembler();
                 }
             })
@@ -159,8 +163,9 @@ $("#reasonSelectedList").on('click','li',function() {
 
     var id = $(this).attr('id').split("_").pop();
     
-    reasonAudio = id;
+    reasonFragment = id;
     
+    compileAssembledFragments();
     updateMessageAssembler();
 });
 
@@ -173,7 +178,9 @@ $(document).on('click', '#reasonClick', (evt)=>{
     $('#reasonSelectedList').empty();
     $('#reasonClear').prop('disabled', false);
     reasonText = '';
-    reasonAudio = '';
+    reasonFragment = '';
+
+    compileAssembledFragments();
     updateMessageAssembler();
     
     $.getJSON('/reason_data.json',(reasonData)=>{
@@ -213,25 +220,29 @@ $(document).on('click', '#reasonTextSearch', (evt)=>{
             
     $('#reasonSelectedList').empty();
     reasonText = '';
-    reasonAudio = '';
+    reasonFragment = '';
 
     $('.reason').each(function()   {
         $(this).removeClass('active');
     })
 
     filterReasons(text);
+
+    compileAssembledFragments();
     updateMessageAssembler();
 });
 
 $(document).on('click', '#reasonSearchClear', (evt)=>{
     document.getElementById('reasonText').value = "";
     reasonText = '';
-    reasonAudio = '';
+    reasonFragment = '';
     
     $('.reason').each(function()   {
         $(this).removeClass('active');
     })
     filterReasons('.*');
+
+    compileAssembledFragments();
     updateMessageAssembler()
 });
 
@@ -239,23 +250,51 @@ $(document).on('click', '#reasonClear', (evt)=>{
     $('#reasonClear').prop('disabled', true);
 
     reasonText = '';
-    reasonAudio = '';
+    reasonFragment = '';
 
     $('#reasonSelectedList').empty();
 
     $('.reason').each(function()   {
         $(this).removeClass('active');
     })
-    
+
     $('.reason').each(function()   {
         $(this).removeClass('active');
     })
     filterReasons('.*');
+
+    compileAssembledFragments();
     updateMessageAssembler();
 });
 
+// Assembler Buttons
 $(document).on('click', '#previewClick', (evt)=>{
-    $(evt.target).prop('disabled',true);
-    previewEvt = evt;
-    previewSound();
+    if ($('#messageAssembly').contents().length > 0)
+    {
+        $(evt.target).prop('disabled',true);
+        previewEvt = evt;
+        previewSound();
+    }
+});
+
+$(document).on('click', '#assemblyClear', (evt)=>{
+    $('#messageAssembly').empty();
+});
+
+$(document).on('click', '#assemblyNext', (evt)=>{
+    if (assemblerSelectedElement < (assembledFragments.length-1))
+    {
+        assemblerSelectedElement = assemblerSelectedElement + 1;
+    }
+    
+    updateMessageAssembler();
+});
+
+$(document).on('click', '#assemblyPrevious', (evt)=>{
+    if (assemblerSelectedElement > 0)
+    {
+        assemblerSelectedElement = assemblerSelectedElement - 1;
+    }
+
+    updateMessageAssembler();
 });
