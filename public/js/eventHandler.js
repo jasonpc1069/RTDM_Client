@@ -279,6 +279,14 @@ $(document).on('click', '#previewClick', (evt)=>{
 
 $(document).on('click', '#assemblyClear', (evt)=>{
     $('#messageAssembly').empty();
+    assemblerSelectedElement = 0;
+    assembledFragments = [];
+
+    $('#assemblyNext').prop('disabled', true);
+    $('#assemblyDelete').prop('disabled', true);
+    $('#assemblyPrevious').prop('disabled', true);
+    $('#assemblyClear').prop('disabled', true);
+    $('#previewClick').prop('disabled', true);
 });
 
 $(document).on('click', '#assemblyNext', (evt)=>{
@@ -286,7 +294,7 @@ $(document).on('click', '#assemblyNext', (evt)=>{
     {
         assemblerSelectedElement = assemblerSelectedElement + 1;
     }
-    
+
     updateMessageAssembler();
 });
 
@@ -294,6 +302,20 @@ $(document).on('click', '#assemblyPrevious', (evt)=>{
     if (assemblerSelectedElement > 0)
     {
         assemblerSelectedElement = assemblerSelectedElement - 1;
+    }
+
+    updateMessageAssembler();
+});
+
+$(document).on('click', '#assemblyDelete', (evt)=>{
+    if (assemblerSelectedElement < assembledFragments.length)
+    {
+        assembledFragments.splice(assemblerSelectedElement,1);
+    }
+
+    if (assemblerSelectedElement > (assembledFragments.length-1))
+    {
+        assemblerSelectedElement = (assembledFragments.length-1);
     }
 
     updateMessageAssembler();

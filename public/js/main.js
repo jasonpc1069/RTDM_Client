@@ -70,6 +70,33 @@ function updateMessageAssembler()
 
     $('#messageAssembly')
                     .append(`</span>`);
+
+    updateAssemblyButtons();
+                    
+}
+
+function updateAssemblyButtons()
+{
+    if  (assembledFragments.length > 0)
+    {
+        $('#assemblyPrevious').prop('disabled', 
+            (assemblerSelectedElement == 0));
+        
+        $('#assemblyNext').prop('disabled', 
+            (assemblerSelectedElement == (assembledFragments.length - 1)));
+
+        $('#assemblyDelete').prop('disabled', false);
+        $('#assemblyClear').prop('disabled', false);
+        $('#previewClick').prop('disabled', false);
+    }
+    else
+    {
+        $('#assemblyNext').prop('disabled', true);
+        $('#assemblyDelete').prop('disabled', true);
+        $('#assemblyPrevious').prop('disabled', true);
+        $('#assemblyClear').prop('disabled', true);
+        $('#previewClick').prop('disabled', true);
+    }
 }
 
 function previewSound()
