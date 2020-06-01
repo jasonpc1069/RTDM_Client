@@ -41,17 +41,15 @@
                         </div> 
                         <div class="disruption_panel card">
                             <div class="heading_font card-header pr-0">Disruption</div>
-                            <div class="disruption_btn-group card-body d-flex flex-column flex-wrap" data-toggle="buttons" id="disruptionList"></div>
+                            <div class="disruption_btn-group card-body" data-toggle="buttons" id="disruptionList"></div>
                         </div>
                         <div class="reason_panel card">
                             <div class="heading_font card-header">Reason</div>
-                            <div class="card-body p-0 d-flex flex-wrap flex-column align-content-start align-items-start" style="height: 326px;">
-                                <div class="reason_btn-panel">
-                                    <div class="reason_btn-group d-flex flex-column flex-wrap" data-toggle="buttons" id="reasonList"></div>
-                                    <button type="button" class="btn btn-lg btn-primary reason_clear" id="reasonClear" disabled>Clear</button>
-                                </div>
+                            <div class="reason_btn-panel card-body">
+                                <div class="reason_btn-group" data-toggle="buttons" id="reasonList"></div>
+                                <button type="button" class="btn btn-lg btn-primary reason_clear" id="reasonClear" disabled>Clear</button>
                                 <div class="d-flex">
-                                    <div class="input-group reason_input_text" style="margin-top: 5px;">
+                                    <div class="input-group reason_input_text"">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
                                                 <i class="fas fa-search"></i>
@@ -62,11 +60,16 @@
                                             <button class="btn btn-primary button_text fas fa-times" id="reasonSearchClear" disabled></button>
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary button_text" id="reasonTextSearch" style="height: 38px; margin-left: 5px; margin-top: 5px;" disabled>Search</button>
+                                    <button class="btn btn-primary button_text reason_text_search" id="reasonTextSearch" disabled>Search</button>
                                 </div>
                                 <div class="reason_search_text rounded" style="overflow: scroll">
-                                    <ol class="reasonItems" style="padding:0px; padding-left:5px; list-style-type:none;" id="reasonSelectedList"></ol>
+                                    <ol class="reasonItems reason_list" id="reasonSelectedList"></ol>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="detail_panel card">
+                            <div class="heading_font card-header">Detail</div>
+                            <div class="card-body detail_button_group">
                             </div>
                         </div>
                     </div>
@@ -92,9 +95,9 @@
                         </div>
                         <label class="heading_font ident10 m-0">Complete Message</label>
                         <div class="complete_message_panel ident10 rounded">
-                            <div style="padding-left: 5px; padding-right: 5px; margin-top: 2px; line-height: 18px;" id="messageAssembly"></div>
+                            <div class="complete_message" id="messageAssembly"></div>
                         </div>
-                        <div class="ident10 d-flex message_btn_panel">
+                        <div class="message_btn_panel ident10">
                             <button class="btn btn-outline-dark button_text assembler" id="assemblyClear" disabled><i class="fas fa-broom"></i><br>Clear</button>
                             <button class="btn btn-outline-dark button_text assembler" id="assemblyPrevious" disabled><i class="fas fa-backward"></i><br>Previous</button>
                             <button class="btn btn-outline-dark button_text assembler" id="assemblyDelete" disabled><i class="fas fa-trash-alt"></i><br>Delete</button>

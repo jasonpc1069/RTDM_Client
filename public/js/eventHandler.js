@@ -217,6 +217,7 @@ $(document).on('click', '#reasonClick', (evt)=>{
 
 $(document).on('click', '#reasonTextSearch', (evt)=>{
     var text = document.getElementById('reasonText').value;
+    text = text.toLowerCase();
             
     $('#reasonSelectedList').empty();
     reasonText = '';
