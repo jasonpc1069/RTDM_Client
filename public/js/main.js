@@ -106,7 +106,7 @@ function previewSound()
     // Build Play List
     for (var f=0; f < assembledFragments.length; f++)
     {
-        file_names[f] = '/media/mp3files/' + assembledFragments[f] + '.mp3';
+        file_names[f] = '/media/WavFiles/' + assembledFragments[f] + '.wav';
     }
 
     playSound(file_names);
