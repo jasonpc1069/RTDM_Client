@@ -28,7 +28,8 @@ app.engine('html', require('ejs').renderFile);
 //app.set('view engine', 'ejs')
 
 // BodyParser
-app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 // Express session
 app.use(
