@@ -1,0 +1,31 @@
+[{
+    "id": 1,
+    "button_text": "At Station",
+    "icon": "fas fa-exchange-alt"    
+},
+{
+    "id": 2,
+    "button_text": "Earlier",
+    "icon": "fas fa-clock"  
+},
+{
+    "id": 3,
+    "button_text": "Earlier at Station",
+    "icon": "fas fa-history"    
+},
+{
+    "id": 4,
+    "button_text": "Closed",
+    "icon": "fas fa-lock"   
+},
+{
+    "id": 5,
+    "button_text": "At Station",
+    "icon": "fas fa-globe-europe"
+},
+{
+    "id": 6,
+    "button_text": "In the area",
+    "icon": "fas fa-globe-europe"  
+}
+]

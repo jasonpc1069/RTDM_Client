@@ -2,7 +2,7 @@ $(document).on('click', '#lineClick', (evt)=>{
     var butVal = $(evt.target).attr('value');
     lineButton = $(evt.target);
 
-    $.getJSON('/line_data.json',(lineData)=>{
+    $.getJSON('data/current/line_data.json',(lineData)=>{
         if(lineData){
             $.each(lineData, (key, value)=>{
                 if (butVal == value.id)
@@ -44,7 +44,7 @@ $(document).on('click', '#lineSelectionClick', (evt)=>{
     var butVal = $(evt.target).attr('value');
     
 
-    $.getJSON('/line_data.json',(lineData)=>{
+    $.getJSON('data/current/line_data.json',(lineData)=>{
         if(lineData){
             $.each(lineData, (key, value)=>{
                 if (lineButton.attr('value') == value.id)
@@ -80,7 +80,7 @@ $(document).on('click', '#disruptionClick', (evt)=>{
     evt.preventDefault();
     $(evt.target).siblings().removeClass('active');
 
-    $.getJSON('/disruption_data.json',(disruptionData)=>{
+    $.getJSON('data/current/disruption_data.json',(disruptionData)=>{
         if(disruptionData){
             $.each(disruptionData, (key, value)=>{
                 if (butVal == value.button_text)
@@ -136,7 +136,7 @@ $(document).on('click', '#preambleClick', (evt)=>{
     evt.preventDefault();
     $(evt.target).siblings().removeClass('active');
     
-    $.getJSON('/preamble_data.json',(preamble)=>{
+    $.getJSON('data/current/preamble_data.json',(preamble)=>{
         if(preamble){
             $.each(preamble, (key, value)=>{
                 if (butVal == value.text)
@@ -183,7 +183,7 @@ $(document).on('click', '#reasonClick', (evt)=>{
     compileAssembledFragments();
     updateMessageAssembler();
     
-    $.getJSON('/reason_data.json',(reasonData)=>{
+    $.getJSON('data/current/reason_data.json',(reasonData)=>{
         if(reasonData){
             $.each(reasonData, (key, value)=>{
                 if (butVal == value.button_text)

@@ -3,7 +3,7 @@ $(document).ready(() => {
         async: false
     });
 
-    $.getJSON('app_data.json',(appData)=>{
+    $.getJSON('data/current/app_data.json',(appData)=>{
         if(appData){
             version = appData.version;
             $('#appData')
@@ -14,7 +14,7 @@ $(document).ready(() => {
         }
     });
 
-    $.getJSON('fragment_data.json',(fragmentData)=>{
+    $.getJSON('data/current/fragment_data.json',(fragmentData)=>{
         if(fragmentData){
             $.each(fragmentData, (key, value)=>{
                 fragmentText[value.section_id] = value.detail;
@@ -22,7 +22,7 @@ $(document).ready(() => {
         }
     });
     
-    $.getJSON('disruption_data.json',(disruptionData)=>{
+    $.getJSON('data/current/disruption_data.json',(disruptionData)=>{
         if(disruptionData){
             $.each(disruptionData, (key, value)=>{
                 var str = value.button_text;
@@ -46,7 +46,7 @@ $(document).ready(() => {
         }
     });
 
-    $.getJSON('/reason_data.json',(reasonData)=>{
+    $.getJSON('data/current/reason_data.json',(reasonData)=>{
         var arr = [];
         if(reasonData){
             $.each(reasonData, (key, value)=>{
@@ -67,7 +67,19 @@ $(document).ready(() => {
         }
     });
 
-    $.getJSON('/line_data.json',(lineData)=>{
+
+    $.getJSON('data/current/detail_data.json',(detailData)=>{
+        var arr = [];
+        if(detailData){
+            $.each(detailData, (key, value)=>{
+                var str = value.button_text;
+                $('#detailList')
+                    .append(`<button type="button" class="detail btn btn-outline-dark" disabled id="detailClick" name="detail" value="${str}"><i class="${value.icon}"></i><br>${value.button_text}</button>`);
+            })
+        }
+    });
+
+    $.getJSON('data/current/line_data.json',(lineData)=>{
         if(lineData){
             $.each(lineData, (key, value)=>{
                 var background = "#e6e6e6";
@@ -106,7 +118,7 @@ $(document).ready(() => {
         }
     });
 
-    $.getJSON('/preamble_data.json',(preambleData)=>{
+    $.getJSON('data/current/preamble_data.json',(preambleData)=>{
         if(preambleData){
             $.each(preambleData, (key, value)=>{
                 var str = value.text;

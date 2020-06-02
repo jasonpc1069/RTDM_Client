@@ -15,6 +15,7 @@
   {
       display: flex;
       flex-wrap: wrap;
+      flex: 0 1 100%;
   }
 
   nav
@@ -72,12 +73,35 @@
     padding: 0px;
 }
 
+.detail
+{ 
+    width: 70px; 
+    height: 70px;
+    background-color: #e6e6e6; 
+    color: black;
+    font-family: 'Helvetica'; 
+    font-size: 12px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    padding: 0px;
+}
+
 .reason_clear
 {
     margin-left: 4px;
     margin-top: 8px;
     width: 233px;
     height: 45px;
+    font-family: 'Helvetica'; 
+    font-size: 18px;
+}
+
+.detail_clear
+{
+    margin-left: 4px;
+    margin-top: 8px;
+    height: 45px;
+    width: 146px;
     font-family: 'Helvetica'; 
     font-size: 18px;
 }
@@ -112,6 +136,16 @@
     font-size: 12px;
     margin-left: 10px;
     margin-top: 1px;
+}
+
+
+.login_panel
+{
+    border: 3px white;
+    padding-left: 10px;
+    text-align: center;
+    margin-top: 50px;
+    align-items: center;
 }
 
 .main_panel
@@ -194,6 +228,29 @@
     flex-wrap: wrap;
 }
 
+.detail_btn-panel {
+    width: 156px;
+    height: 326px;
+    padding: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; 
+    align-content: flex-start;  
+    align-items: flex-start;
+}
+
+.detail_btn-group {
+    width: 156px;
+    height: 249px;
+    padding-left: 4px;
+    padding-top: 4px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
 .reason_list
 {
     padding:0px; 
@@ -210,7 +267,7 @@
 
 .detail_panel {
     background-color: #f0f0f0;
-    width: 150px;
+    width: 156px;
     height: 356px;
     margin-left: 10px;
     flex-direction: column;

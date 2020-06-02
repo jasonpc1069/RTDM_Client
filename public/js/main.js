@@ -13,6 +13,7 @@ var fragmentText = [];
 var previewEvent = null;
 var version = '';
 var reasonFragments = [];
+var error_messages = [];
 
 function compileAssembledFragments()
 {
