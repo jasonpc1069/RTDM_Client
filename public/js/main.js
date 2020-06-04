@@ -7,14 +7,34 @@ var preambleFragment =0;
 var disruptionFragment = [];
 var reasonFragment = 0;
 var lineFragment = 0;
+var lineImage = 0;
 var assembledFragments = [];
 var assemblerSelectedElement = 0;
 var fragmentText = [];
 var previewEvent = null;
+var applicationName ='';
 var version = '';
 var reasonFragments = [];
 var error_messages = [];
+var stations = [];
+var station_image_scale = 0;
+var currentName ='';
+var currentRole ='';
 
+
+$(function(){
+    $("#footer").load("html/footer.html");
+});
+
+$(function(){
+    $("#header").load("html/header.html");
+});
+
+$(function(){
+    $("#selectionpanels").load("html/selectionpanels.html");
+});
+
+    
 function compileAssembledFragments()
 {
     assembledFragments = [];
@@ -205,4 +225,38 @@ function compareFragments( a, b ) {
       return 1;
     }
     return 0;
-  }
+}
+
+function updateStatusBar()
+{
+    updateStatusApplicationData();
+    // updateStatusUserName();
+    getDateAndTime();
+    
+}
+
+function updateStatusApplicationData()
+{
+    $('#applicationDetails')
+        .html(`<span class="status_font">${applicationName}<br><span>
+            <span class="status_font">Version: ${version}<span>`);
+}
+
+function updateStatusUserName()
+{
+    $('#userDetails')
+        .html(`<span class="status_font">${currentUser}<br></span>
+              <span class="status_font"><${currentRole}></span>`);
+}
+
+function getDateAndTime()
+{
+    var dt = new Date();
+    var current_data = dt.toLocaleDateString('en-uk', {  weekday: 'long' }) + ' ' +
+    dt.getDay() + ' ' + dt.toLocaleDateString('en-uk', {  month: 'long' }) + ' ' + dt.getFullYear();
+    var current_time = dt.toLocaleTimeString();
+    document.getElementById("currentdate").innerHTML = current_data;
+    document.getElementById("currenttime").innerHTML =  current_time; 
+    var t = setTimeout(getDateAndTime, 500);
+}
+

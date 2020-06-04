@@ -1,12 +1,756 @@
 [{
     "id": 1,
-    "line": "Picadilly",
-    "background_colour": "blue",
-    "text_colour": "white"
+    "active" : 1,
+    "lines": [
+        {
+            "line" : "Piccadilly",
+            "background_colour": "#0450A1",
+            "text_colour": "white",
+            "message_text": "Piccadilly line",
+            "image": "piccadilly.png",
+            "image_scale": 70,
+            "fragment": 1211,
+            "stations":
+            [
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 22,
+                        "ypos": 41,
+                        "width": 44,
+                        "height": 72
+                    },
+                    "station_name": "Uxbridge",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 69,
+                        "ypos": 43,
+                        "width": 45,
+                        "height": 77
+                    },
+                    "station_name": "Hillingdon",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 115,
+                        "ypos": 47,
+                        "width": 41,
+                        "height": 63
+                    },
+                    "station_name": "Ickenham",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 156,
+                        "ypos": 47,
+                        "width": 44,
+                        "height": 72
+                    },
+                    "station_name": "Ruislip",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 201,
+                        "ypos": 31,
+                        "width": 41,
+                        "height": 67
+                    },
+                    "station_name": "Ruislip Manor",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 249,
+                        "ypos": 32,
+                        "width": 55,
+                        "height": 75
+                    },
+                    "station_name": "Eastcote",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 307,
+                        "ypos": 31,
+                        "width": 68,
+                        "height": 79
+                    },
+                    "station_name": "Rayners Lane",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 375,
+                        "ypos": 32,
+                        "width": 59,
+                        "height": 65
+                    },
+                    "station_name": "South Harrow",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 446,
+                        "ypos": 23,
+                        "width": 60,
+                        "height": 70
+                    },
+                    "station_name": "Sudbury Hill",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 518,
+                        "ypos": 31,
+                        "width": 47,
+                        "height": 73
+                    },
+                    "station_name": "Sudbury Town",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 572,
+                        "ypos": 50,
+                        "width": 43,
+                        "height": 57
+                    },
+                    "station_name": "Alperton",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 615,
+                        "ypos": 43,
+                        "width": 42,
+                        "height": 49
+                    },
+                    "station_name": "Park Royal",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 658,
+                        "ypos": 44,
+                        "width": 42,
+                        "height": 63
+                    },
+                    "station_name": "North Ealing",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 699,
+                        "ypos": 17,
+                        "width": 83,
+                        "height": 93
+                    },
+                    "station_name": "Ealing Common",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 838,
+                        "ypos": 91,
+                        "width": 62,
+                        "height": 91
+                    },
+                    "station_name": "Acton Town",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 2,
+                        "ypos": 354,
+                        "width": 69,
+                        "height": 74
+                    },
+                    "station_name": "Turnham Green",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 11,
+                        "ypos": 229,
+                        "width": 84,
+                        "height": 62
+                    },
+                    "station_name": "Heathrow Terminal 5",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 128,
+                        "ypos": 218,
+                        "width": 111,
+                        "height": 40
+                    },
+                    "station_name": "Heathrow Terminal 4",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 106,
+                        "ypos": 148,
+                        "width": 85,
+                        "height": 62
+                    },
+                    "station_name": "Heathrow Terminals 1,2,3",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 214,
+                        "ypos": 150,
+                        "width": 78,
+                        "height": 72
+                    },
+                    "station_name": "Hatton Cross",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 338,
+                        "ypos": 171,
+                        "width": 72,
+                        "height": 73
+                    },
+                    "station_name": "Hounslow West",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 425,
+                        "ypos": 162,
+                        "width": 62,
+                        "height": 90
+                    },
+                    "station_name": "Hounslow Central",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 489,
+                        "ypos": 172,
+                        "width": 41,
+                        "height": 58
+                    },
+                    "station_name": "Hounslow East",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 531,
+                        "ypos": 168,
+                        "width": 48,
+                        "height": 53
+                    },
+                    "station_name": "Osterley",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 579,
+                        "ypos": 186,
+                        "width": 61,
+                        "height": 75
+                    },
+                    "station_name": "Boston Manor",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 643,
+                        "ypos": 179,
+                        "width": 75,
+                        "height": 51
+                    },
+                    "station_name": "Northfields",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 723,
+                        "ypos": 181,
+                        "width": 86,
+                        "height": 53
+                    },
+                    "station_name": "South Ealing",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 83,
+                        "ypos": 358,
+                        "width": 85,
+                        "height": 85
+                    },
+                    "station_name": "Hammersmith",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 178,
+                        "ypos": 350,
+                        "width": 64,
+                        "height": 89
+                    },
+                    "station_name": "Barons Court",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 272,
+                        "ypos": 344,
+                        "width": 47,
+                        "height": 97
+                    },
+                    "station_name": "Earl's Court",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 343,
+                        "ypos": 340,
+                        "width": 53,
+                        "height": 95
+                    },
+                    "station_name": "Gloucester Road",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 411,
+                        "ypos": 344,
+                        "width": 96,
+                        "height": 109
+                    },
+                    "station_name": "South Kensington",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 530,
+                        "ypos": 343,
+                        "width": 52,
+                        "height": 93
+                    },
+                    "station_name": "Knightsbridge",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 637,
+                        "ypos": 346,
+                        "width": 57,
+                        "height": 90
+                    },
+                    "station_name": "Hyde Park Corner",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 706,
+                        "ypos": 345,
+                        "width": 70,
+                        "height": 102
+                    },
+                    "station_name": "Green Park",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 780,
+                        "ypos": 354,
+                        "width": 83,
+                        "height": 91
+                    },
+                    "station_name": "Piccadilly Circus",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 870,
+                        "ypos": 342,
+                        "width": 74,
+                        "height": 88
+                    },
+                    "station_name": "Leicester Square",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 957,
+                        "ypos": 346,
+                        "width": 66,
+                        "height": 86
+                    },
+                    "station_name": "Covent Garden",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 97,
+                        "ypos": 564,
+                        "width": 74,
+                        "height": 77
+                    },
+                    "station_name": "Holborn",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 172,
+                        "ypos": 570,
+                        "width": 69,
+                        "height": 81
+                    },
+                    "station_name": "Russell Square",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 243,
+                        "ypos": 548,
+                        "width": 101,
+                        "height": 178
+                    },
+                    "station_name": "King's Cross",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 351,
+                        "ypos": 547,
+                        "width": 50,
+                        "height": 78
+                    },
+                    "station_name": "Caledonian Road",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 402,
+                        "ypos": 593,
+                        "width": 35,
+                        "height": 54
+                    },
+                    "station_name": "Holloway Road",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 438,
+                        "ypos": 548,
+                        "width": 32,
+                        "height": 52
+                    },
+                    "station_name": "Arsenal",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 481,
+                        "ypos": 512,
+                        "width": 59,
+                        "height": 169
+                    },
+                    "station_name": "Finsbury Park",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 550,
+                        "ypos": 567,
+                        "width": 40,
+                        "height": 74
+                    },
+                    "station_name": "Manor House",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 589,
+                        "ypos": 538,
+                        "width": 44,
+                        "height": 75
+                    },
+                    "station_name": "Turnpike Lane",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 633,
+                        "ypos": 582,
+                        "width": 38,
+                        "height": 55
+                    },
+                    "station_name": "Wood Green",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 671,
+                        "ypos": 536,
+                        "width": 36,
+                        "height": 67
+                    },
+                    "station_name": "Bounds Green",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 704,
+                        "ypos": 595,
+                        "width": 41,
+                        "height": 65
+                    },
+                    "station_name": "Arnos Grove",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 742,
+                        "ypos": 538,
+                        "width": 45,
+                        "height": 66
+                    },
+                    "station_name": "Southgate",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 820,
+                        "ypos": 558,
+                        "width": 39,
+                        "height": 74
+                    },
+                    "station_name": "Oakwood",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 866,
+                        "ypos": 556,
+                        "width": 57,
+                        "height": 71
+                    },
+                    "station_name": "Cockfosters",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 21,
+                        "ypos": 150,
+                        "width": 64,
+                        "height": 72
+                    },
+                    "station_name": "Heathrow Terminal 5",
+                    "fragment_id": 0
+                },
+                { 
+                    "coordinates": 
+                    {
+                        "xpos": 624,
+                        "ypos": 112,
+                        "width": 59,
+                        "height": 52
+                    },
+                    "station_name": "Ealing Broadway",
+                    "fragment_id": 0
+                }
+             ]
+        }
+    ]
 },
 {
     "id": 2,
-    "line": "Other",
-    "background_colour": "lightgray",
-    "text_colour": "black"
+    "active" : 0,
+    "lines": [
+        {
+            "line": "Bakerloo",
+            "background_colour": "#ae6118",
+            "text_colour": "white",
+            "message_text": "Bakerloo line",
+            "image": "bakerloo.png",
+            "image_scale": 70,
+	        "fragment": 1201
+
+        },
+        {
+            "line": "Central",
+            "background_colour": "#e41f1f",
+            "text_colour": "white",
+            "message_text": "Central line",
+            "image": "centralline.png",
+            "image_scale": 100,
+	        "fragment": 1202
+        },
+        {
+            "line": "Circle",
+            "background_colour": "#f8d42d",
+            "text_colour": "blue",
+            "message_text": "Circle line",
+            "image": "circle.png",
+            "image_scale": 100,
+	        "fragment": 1203
+        },
+        {
+            "line": "District",
+            "background_colour": "#00a575",
+            "text_colour": "white",
+            "message_text": "District line",
+            "image": "districtline.png",
+            "image_scale": 100,
+	        "fragment": 1204
+        },
+        {
+            "line": "Elizabeth",
+            "background_colour": "#00005b",
+            "text_colour": "white",
+            "message_text": "Elizabeth line",
+            "image": "elizabethline.png",
+            "image_scale": 100,
+	        "fragment": 1199
+        },
+        {
+            "line": "H'Smith & City",
+            "background_colour": "#e899ab",
+            "text_colour": "blue",
+            "message_text": "HammerSmith & City line",
+            "image": "hammersmithandcity.png",
+            "image_scale": 100,
+	        "fragment": 1207
+        },
+        {
+            "line": "Jubilee",
+            "background_colour": "#8f989e",
+            "text_colour": "white",
+            "message_text": "Jubilee line",
+            "image": "jubilee.png",
+            "image_scale": 100,
+	        "fragment": 1208
+        },
+        {
+            "line": "Metropolitan",
+            "background_colour": "#893267",
+            "text_colour": "white",
+            "message_text": "Metropolitan line",
+            "image": "metropolitan.png",
+            "image_scale": 100,
+	        "fragment": 1209
+        },
+        {
+            "line": "Northern",
+            "background_colour": "#000000",
+            "text_colour": "white",
+            "message_text": "Northern line",
+            "image": "northern.png",
+            "image_scale": 100,
+	        "fragment": 1210
+        },
+        {
+            "line": "Victoria",
+            "background_colour": "#009fe0",
+            "text_colour": "white",
+            "message_text": "Victoria line",
+            "image": "victoria.png",
+            "image_scale": 100,
+	        "fragment": 1212
+        },
+        {
+            "line": "Waterloo & City",
+            "background_colour": "#70c3ce",
+            "text_colour": "blue",
+            "message_text": "Waterloo & City line",
+            "image": "waterloo.png",
+            "image_scale": 100,
+	        "fragment": 1213
+        },
+        {
+            "line": "DLR",
+            "background_colour": "#75cac8",
+            "text_colour": "white",
+            "message_text": "DLR",
+            "image": "dlr.png",
+            "image_scale": 100,
+	        "fragment": 1205
+        },
+        {
+            "line": "Overground",
+            "background_colour": "#ff8000",
+            "text_colour": "white",
+            "message_text": "London Overground",
+            "image": "overground.png",
+            "image_scale": 100,
+	        "fragment": 948
+        },
+        {
+            "line": "Tram",
+            "background_colour": "#84b817",
+            "text_colour": "white",
+            "message_text": "London Tramlink",
+            "image": "tram.png",
+            "image_scale": 100,
+	        "fragment": 212
+        }
+    ]
 }]

@@ -27,9 +27,12 @@ $(document).on('click', '#lineClick', (evt)=>{
                         lineButton.css('background-color', value.lines[0].background_colour);
                         lineButton.css('color', value.lines[0].text_colour);
 
-                        var id = value.lines[0].audio;
+                        var id = value.lines[0].fragment;
                         lineText = fragmentText[id];
                         lineFragment = id;
+                        lineImage = value.lines[0].image;
+                        stations = value.lines[0].stations;
+                        station_image_scale =  value.lines[0].image_scale;
                         
                         compileAssembledFragments();
                         updateMessageAssembler();
@@ -60,9 +63,12 @@ $(document).on('click', '#lineSelectionClick', (evt)=>{
                             lineButton.css('color', value.lines[l].text_colour);
                             lineButton.text(value.lines[l].line);
 
-                            var id = value.lines[l].audio;
+                            var id = value.lines[l].fragment;
                             lineText = fragmentText[id];
                             lineFragment = id;
+                            lineImage = value.lines[l].image;
+                            stations = value.lines[l].stations;
+                            station_image_scale =  value.lines[l].image_scale;
 
                             compileAssembledFragments();
                             updateMessageAssembler();
@@ -72,6 +78,33 @@ $(document).on('click', '#lineSelectionClick', (evt)=>{
             })
         }
     })
+});
+
+$(document).on('click', '#detailClick', (evt)=>{
+    var butVal = $(evt.target).attr('value');
+    var x1 = 0;
+    var y1 = 0;
+    var x2 = 0;
+    var y2 = 0;
+    var scale = (station_image_scale / 100);
+
+    evt.preventDefault();
+    $(evt.target).siblings().removeClass('active');
+    $('#stationImage')
+        .html(`<img src="/img/${lineImage}" alt="stationselection" id="station" usemap="#stationMap">`);
+        
+    $('#stationAreas').empty();
+    for (s=0; s < stations.length; s++)
+    {
+        x1 = (stations[s].coordinates.xpos * scale);
+        y1 = (stations[s].coordinates.ypos * scale);
+        x2 = x1 + (stations[s].coordinates.width * scale);
+        y2 = y1 + (stations[s].coordinates.height * scale);
+
+        $('#stationAreas').
+            append (`<area shape="rect" coords="${x1},${y1},${x2},${y2}" 
+                alt="${stations[s].station_name}" onclick="stationClicked(this)">`);
+    }
 });
 
 $(document).on('click', '#disruptionClick', (evt)=>{
@@ -320,4 +353,26 @@ $(document).on('click', '#assemblyDelete', (evt)=>{
     }
 
     updateMessageAssembler();
+});
+
+function stationClicked(area)
+{
+    $('#selectedStationList')
+            .html(`<span class="message_font">`);
+
+    $('#selectedStationList')
+    .append(`${area.getAttribute("alt")}<br>`);    
+}
+
+$(document).on('shown.bs.modal','#stationModal', function () {
+    // $( '#station' ).each( function() {
+    //     var $img = $( this);
+    //     $img.width( $img.width() * (station_image_scale / 100) );
+    // });
+
+    // $('#stationModal').modal('handleUpdate')
+})
+
+$(document).on('click', '#stationClear', (evt)=>{
+    $('#selectedStationList').empty();
 });

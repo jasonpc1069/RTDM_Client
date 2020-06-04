@@ -10,7 +10,7 @@ module.exports = function(passport) {
       // Match user
       User.findOne({
         username: username
-      }).then(user => {
+      }).select("+password").then(user => {
         if (!user) {
           return done(null, false, { message: 'That user is not registered' });
         }

@@ -1,0 +1,36 @@
+[{
+    "id": 1,
+    "button_text": "North",
+    "icon": "arrow-up"    
+},
+{
+    "id": 2,
+    "button_text": "East",
+    "icon": "arrow-right"  
+},
+{
+    "id": 3,
+    "button_text": "South",
+    "icon": "arrow-down"    
+},
+{
+    "id": 4,
+    "button_text": "West",
+    "icon": "arrow-left"   
+},
+{
+    "id": 5,
+    "button_text": "Both",
+    "icon": "sync"
+},
+{
+    "id": 6,
+    "button_text": "",
+    "icon": "undo"  
+},
+{
+    "id": 7,
+    "button_text": "",
+    "icon": "redo"  
+}
+]

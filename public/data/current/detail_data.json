@@ -1,31 +1,31 @@
 [{
     "id": 1,
     "button_text": "At Station",
-    "icon": "fas fa-exchange-alt"    
+    "icon": "exchange-alt"    
 },
 {
     "id": 2,
     "button_text": "Earlier",
-    "icon": "fas fa-clock"  
+    "icon": "clock"  
 },
 {
     "id": 3,
     "button_text": "Earlier at Station",
-    "icon": "fas fa-history"    
+    "icon": "history"    
 },
 {
     "id": 4,
     "button_text": "Closed",
-    "icon": "fas fa-lock"   
+    "icon": "lock"   
 },
 {
     "id": 5,
     "button_text": "At Station",
-    "icon": "fas fa-globe-europe"
+    "icon": "exchange-alt"
 },
 {
     "id": 6,
     "button_text": "In the area",
-    "icon": "fas fa-globe-europe"  
+    "icon": "globe-europe"  
 }
 ]

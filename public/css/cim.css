@@ -1,3 +1,37 @@
+/* Html Overrides*/
+body, nav, main
+{
+    display: flex;
+    flex-wrap: wrap;
+    flex: 0 1 100%;
+}
+
+main, body
+{
+    margin-bottom: 30px;
+}
+
+@media (min-width: 768px) {
+    .modal-xl {
+     max-width:90%;
+    }
+  }
+
+  #stationModal.modal.show {
+    display: flex !important;
+    justify-content: center;
+  }
+  
+  #stationModal.modal-dialog {
+    align-self: center;
+  }
+
+  area {
+    display: block;
+    cursor: pointer;
+}
+
+/* Containers */
 .flex_container
 {
     display: flex;
@@ -6,22 +40,40 @@
     align-content: flex-start;
 }
 
+.container {
+    flex: 1 0 auto;
+}
+
+
+/* Positions */
+.ident10
+{
+    position: relative;
+    left: 10px;
+}
+
+.v_spcr_5
+{
+    position: relative;
+    top: 5px;
+}
+
 .break {
     flex-basis: 100%;
     height: 0;
   }
 
-  body, nav, main
-  {
-      display: flex;
-      flex-wrap: wrap;
-      flex: 0 1 100%;
-  }
-
-  nav
-  {
-    flex: 0 1 100%;
-  }
+/* Buttons */
+.status 
+{ 
+    background-color: #e6e6e6; 
+    height: 90%;
+    color: black;
+    font-family: 'Helvetica'; 
+    font-size: 18px;
+    margin-top: 2px;
+    padding: 0px;
+}
 
 .line 
 { 
@@ -86,6 +138,20 @@
     padding: 0px;
 }
 
+.direction
+{ 
+    width: 70px; 
+    height: 35px;
+    background-color: #e6e6e6; 
+    color: black;
+    font-family: 'Helvetica'; 
+    font-size: 12px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    padding: 0px;
+    line-height: 12px;
+}
+
 .reason_clear
 {
     margin-left: 4px;
@@ -101,9 +167,19 @@
     margin-left: 4px;
     margin-top: 8px;
     height: 45px;
-    width: 146px;
     font-family: 'Helvetica'; 
     font-size: 18px;
+    width: 146px;
+}
+
+.direction_clear
+{
+    margin-left: 4px;
+    margin-top: 8px;
+    height: 45px;
+    font-family: 'Helvetica'; 
+    font-size: 18px;
+    width: 70px;
 }
 
 .assembler 
@@ -125,20 +201,13 @@
     font-size: 14px;
 }
 
-.message_search 
-{ 
-    width: 60px; 
-    height: 50px;
-    background-color: #e6e6e6; 
-    border-color: lightgray;
-    color: black;
-    font-family: 'Helvetica'; 
-    font-size: 12px;
-    margin-left: 10px;
-    margin-top: 1px;
+.active,
+.btn:active
+{
+    background: green !important
 }
 
-
+/* Login */
 .login_panel
 {
     border: 3px white;
@@ -148,32 +217,63 @@
     align-items: center;
 }
 
+/* Main */
 .main_panel
 {
     border: 3px white;
+    border-style: solid;
     padding-left: 10px;
-    height: 1150px;
-    width: 1250px;
+    height: 1250px;
+    width: 1350px;
     background-color: #16539F;
 }
+
+/* Status Bar */
+.status_bar_panel
+{
+    margin-left: 10px;
+    padding: 10px;
+    height: 90px;
+    width: 1310px;
+}
+
+.status_bar_container
+{
+    border: 1px white;
+    border-style: solid;
+    height: 70px;
+    width: 20px;
+    line-height: 18px;
+    color: white;
+    padding-top: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+/* Title Panel */
+.title_panel
+{
+    background-color: #16539F;
+    color: white;
+    height: 50px;
+    width: 100%;
+    text-align: middle;
+    flex: 0 1 100%;
+}
+
+/* Message Builder */
 .message_builder_panel
 {
     padding: 10px;
     height: 375px;
     
 }
-.message_assembly_panel
-{
-    border: 2px solid white; 
-    height: 710px;
-    width: 725px;
-    background-color: #f0f0f0;
-}
 
 .line_panel {
     background-color: #f0f0f0;
     width: 95px;
 }
+
 .line_btn-group {
     padding-left: 11px;
     padding-top: 4px;
@@ -183,6 +283,20 @@
     flex-direction: column;
     flex-wrap: wrap;
 }
+
+.preamble_panel {
+    background-color: #f0f0f0;
+    width: 95px;
+    margin-top: 5px;
+}
+
+.preamble_btn-group {
+    padding-left: 11px;
+    padding-top: 4px;
+    padding-right: 11px;
+    padding-bottom: 0px;
+}
+
 .disruption_panel {
     background-color: #f0f0f0;
     width: 244px;
@@ -228,8 +342,60 @@
     flex-wrap: wrap;
 }
 
-.detail_btn-panel {
+.reason_list
+{
+    padding:0px; 
+    padding-left:5px; 
+    list-style-type: none;
+}
+
+.reason_text_search
+{
+    height: 38px; 
+    margin-left: 5px; 
+    margin-top: 5px;
+}
+
+.reason_search_text
+{
+    background-color: #e9ecef; 
+    color: black;
+    border: 1px solid #ced4da; 
+    height: 255px;
+    width: 450px;
+    margin-top: 5px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+.reason_input_text
+{
+    width: 300px;
+    margin-top: 5px;
+}
+
+.detail_panel {
+    background-color: #f0f0f0;
     width: 156px;
+    height: 356px;
+    margin-left: 10px;
+    flex-direction: column;
+}
+
+.detail_body
+{
+    padding: 0px;
+    display: flex; 
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: flex-start;
+    height: 326px;
+}
+
+.detail_btn-panel {
+    width: 1560px;
     height: 326px;
     padding: 0px;
     display: flex;
@@ -251,29 +417,34 @@
     flex-wrap: wrap;
 }
 
-.reason_list
+.selected_stations_panel 
 {
-    padding:0px; 
-    padding-left:5px; 
-    list-style-type: none;
+    background-color: #e9ecef; 
+    color: black;
+    border: 1px solid #ced4da; 
+    height: 94%;
+    width: 200px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
-.reason_text_search
+.selected_stations
 {
-    height: 38px; 
-    margin-left: 5px; 
-    margin-top: 5px;
+    padding-left: 5px; 
+    padding-right: 5px; 
+    margin-top: 2px; 
+    line-height: 18px;
 }
 
-.detail_panel {
+.direction_panel {
     background-color: #f0f0f0;
-    width: 156px;
+    width: 80px;
     height: 356px;
     margin-left: 10px;
     flex-direction: column;
 }
 
-.detail_button_group
+.direction_body
 {
     padding: 0px;
     display: flex; 
@@ -284,53 +455,49 @@
     height: 326px;
 }
 
-.preamble_panel {
-    background-color: #f0f0f0;
-    width: 95px;
-    margin-top: 5px;
-}
-
-.preamble_btn-group {
-    padding-left: 11px;
-    padding-top: 4px;
-    padding-right: 11px;
-    padding-bottom: 0px;
-}
-
-.title_panel
-{
-    background-color: #16539F;
-    color: white;
-    height: 50px;
-    width: 100%;
-    text-align: middle;
-    flex: 0 1 100%;
-}
-
-.title_font
-{
-    font-family: 'Helvetica'; 
-    font-size: 30px;
-    margin-left: 10px;
-}
-
-.heading_font
-{
-    font-family: 'Helvetica'; 
-    font-size: 14px
-}
-
-.message_font
-{
-    font-family: 'Helvetica'; 
-    font-size: 16px;
+.direction_btn-panel {
+    width: 80px;
+    height: 326px;
     padding: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; 
+    align-content: flex-start;  
+    align-items: flex-start;
 }
 
-.list_font
+.direction_btn-group {
+    width: 80px;
+    height: 249px;
+    padding-left: 4px;
+    padding-top: 4px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+/* Message Assember */
+.message_assembly_panel
 {
+    border: 2px solid white; 
+    height: 710px;
+    width: 725px;
+    background-color: #f0f0f0;
+}
+
+.message_search 
+{ 
+    width: 60px; 
+    height: 50px;
+    background-color: #e6e6e6; 
+    border-color: lightgray;
+    color: black;
     font-family: 'Helvetica'; 
-    font-size: 14px
+    font-size: 12px;
+    margin-left: 10px;
+    margin-top: 1px;
 }
 
 .complete_message_panel
@@ -361,29 +528,12 @@
     line-height: 18px;
 }
 
-.reason_search_text
-{
-    background-color: #e9ecef; 
-    color: black;
-    border: 1px solid #ced4da; 
-    height: 255px;
-    width: 450px;
-    margin-top: 5px;
-    overflow-y: scroll;
-    overflow-x: scroll;
-    white-space: nowrap;
-}
-
 .message_input_text
 {
     width: 700px;
 }
 
-.reason_input_text
-{
-    width: 300px;
-    margin-top: 5px;
-}
+/* Navigation and Footer */
 
 .project-name {
     font-size: 25px;
@@ -395,22 +545,14 @@
     font-size: 25px;
 }
 
-.ident10
-{
-    position: relative;
-    left: 10px;
-}
-
-.v_spcr_5
-{
-    position: relative;
-    top: 5px;
-}
-
 .footer {
     flex-shrink: 0;
-    margin-top: 50px;
+    position: fixed;
     background-color: #444;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: blocl;
 }
 
 .footer p {
@@ -419,8 +561,38 @@
     font-size: 10px;
 }
 
-.active,
-.btn:active
+/* Fonts */
+.title_font
 {
-    background: green !important
+    font-family: 'Helvetica'; 
+    font-size: 30px;
+    margin-left: 10px;
 }
+
+.status_font
+{
+    font-family: 'Helvetica'; 
+    font-size: 14px;
+    padding: 0px;
+}
+
+.heading_font
+{
+    font-family: 'Helvetica'; 
+    font-size: 14px
+}
+
+.message_font
+{
+    font-family: 'Helvetica'; 
+    font-size: 16px;
+    padding: 0px;
+}
+
+.list_font
+{
+    font-family: 'Helvetica'; 
+    font-size: 14px
+}
+
+

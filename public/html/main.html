@@ -15,17 +15,37 @@
         <title>RTDM Client</title>
     </head>
     <body>
+        
         <!-- GUI -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#"></a>
             <div id="appData"></div>
             <a class="btn btn-outline-primary ml-auto nav__el--logout" href='/users/logout'>Logout</a>
-           
-        </nav>
-        
+        </nav>  
+
         <main>
-            <div class="container">
+            <div class="container-fluid">
                 <div class="main_panel">  
+                    <div class="status_bar_panel">
+                        <div class="row">
+                            <div class="col status_bar_container" style="margin-right: 5px">
+                                <button type="button" class="btn btn-lg btn-primary btn-block status" id="createMessage"><i class="fas fa-microphone"></i> Create Message</button>
+                            </div>
+                            <div class="col status_bar_container" style="margin-right: 5px">
+                                <button type="button" class="btn btn-lg btn-primary btn-block status" id="playLibrary"><i class="fas fa-book"></i> Play List and Library</button>
+                            </div>
+                            <div class="col status_bar_container" id="applicationDetails" style="margin-right: 5px">
+                            </div>
+                            <div class="col status_bar_container" id="userDetails" style="margin-right: 5px">
+                                <span class="status_font"><%= current_user.username %><br><span>
+                                <span class="status_font"><%= current_user.role %><span>
+                            </div>
+                            <div class="col status_bar_container">
+                                <span class="status_font" id="currentdate"></span>
+                                <span class="status_font" id="currenttime" style="float: right"></span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="title_panel">
                         <label class="title_font">1) Message Builder</label>
                     </div> 
@@ -68,10 +88,19 @@
                         </div>
                         <div class="detail_panel card">
                             <div class="heading_font card-header">Detail</div>
-                            <div class="card-body detail_button_group">
+                            <div class="card-body detail_body">
                                 <div class="detail_btn-panel card-body">
                                     <div class="detail_btn-group" data-toggle="buttons" id="detailList"></div>
                                     <button type="button" class="btn btn-lg btn-primary detail_clear" id="detailClear" disabled>Clear</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="direction_panel card">
+                            <div class="heading_font card-header px-0 text-center">Direction</div>
+                            <div class="card-body direction_body">
+                                <div class="direction_btn-panel card-body">
+                                    <div class="direction_btn-group" data-toggle="buttons" id="directionList"></div>
+                                    <button type="button" class="btn btn btn-primary direction_clear" id="directionClear" disabled>Clear</button>
                                 </div>
                             </div>
                         </div>
@@ -112,33 +141,26 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="footer" id="footer-main">
-                <div class="container">
-                   <div class="row">
-                       <div class="col-md-8 m-auto">
-                           <p>Built by the C&I Stratford Team, 2020</p>
-                       </div>
-                   </div>
-               </div>
-            </div> -->
         </main>
+        <div id="footer"></div>
+        <div id="selectionpanels"></div>
 
         <div class="modal fade" id="lineModal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
-              <div class="modal-content">
+                <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">Line Selector</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title">Line Selector</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                  </button>
+                    </button>
                 </div>
                 <div class="modal-body d-flex flex-column" id="lineSelectedList"></div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                 </div>
-              </div>
+                </div>
             </div>
-          </div>
+        </div>
 
         <!-- Bootstrap JS and dependencies -->
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>

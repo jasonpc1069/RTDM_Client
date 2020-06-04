@@ -6,13 +6,15 @@ $(document).ready(() => {
     $.getJSON('data/current/app_data.json',(appData)=>{
         if(appData){
             version = appData.version;
+            applicationName = appData.description;
             $('#appData')
                 .append(`<img src="${appData.logo}" alt="TfL Logo" width="150">
                 <p class="navbar-text project-name text-dark">${appData.name} |
-                    <span class="project-logo">${appData.description}</span>
-                    <span class="heading_font">Version ${appData.version}</span></p>`);
+                    <span class="project-logo">${appData.description}</span></p>`);
         }
     });
+
+    updateStatusBar();
 
     $.getJSON('data/current/fragment_data.json',(fragmentData)=>{
         if(fragmentData){
@@ -74,7 +76,18 @@ $(document).ready(() => {
             $.each(detailData, (key, value)=>{
                 var str = value.button_text;
                 $('#detailList')
-                    .append(`<button type="button" class="detail btn btn-outline-dark" disabled id="detailClick" name="detail" value="${str}"><i class="${value.icon}"></i><br>${value.button_text}</button>`);
+                    .append(`<button type="button" class="detail btn btn-outline-dark" id="detailClick" name="detail" data-toggle="modal" data-target="#stationModal" value="${str}"><i class="fas fa-${value.icon}"></i><br>${value.button_text}</button>`);
+            })
+        }
+    });
+
+    $.getJSON('data/current/direction_data.json',(directionData)=>{
+        var arr = [];
+        if(directionData){
+            $.each(directionData, (key, value)=>{
+                var str = value.button_text;
+                $('#directionList')
+                    .append(`<button type="button" class="direction btn btn-outline-dark" disabled id="directionClick" name="direction" value="${str}"><i class="fas fa-${value.icon}"></i><br>${value.button_text}</button>`);
             })
         }
     });
@@ -95,9 +108,12 @@ $(document).ready(() => {
                         background = value.lines[0].background_colour;
                         text_colour = value.lines[0].text_colour;
 
-                        var id = value.lines[0].audio;
+                        var id = value.lines[0].fragment;
                         lineText = fragmentText[id];
                         lineFragment = id;
+                        lineImage = value.lines[0].image;
+                        stations = value.lines[0].stations;
+                        station_image_scale =  value.lines[0].image_scale;
                     }
                 }
 

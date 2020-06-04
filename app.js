@@ -8,6 +8,7 @@ const session = require('express-session');
 const express      = require('express');
 const fs = require ('fs');
 const userRouter    = require('./routes/userRoutes');
+const MongoStore   = require('connect-mongo')(session);
 
 // Obtain the Express instance
 const app = express();
@@ -35,8 +36,10 @@ app.use(express.urlencoded({extended: true}));
 app.use(
   session({
     secret: 'secret',
+    expires: new Date(Date.now() + 3600000),
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
   })
 );
 
@@ -64,6 +67,10 @@ app.set('views', __dirname + '/public/html/');
 app.use('/users', userRouter);
 app.use('/', require('./routes/index.js'));
 
+app.use(function(req,res,next){
+  res.locals.currentUser = req.user;
+  next();
+})
 
 app.listen(port, console.log(`Node Server is running on port : ${port}`));
 
