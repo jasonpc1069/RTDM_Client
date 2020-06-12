@@ -1,0 +1,26 @@
+[{
+    "id": 1,
+    "button_text": "At Station",
+    "icon": "exchange-alt"    
+},
+{
+    "id": 2,
+    "button_text": "Earlier",
+    "icon": "clock"  
+},
+{
+    "id": 3,
+    "button_text": "Earlier at Station",
+    "icon": "history"    
+},
+{
+    "id": 4,
+    "button_text": "Closed",
+    "icon": "lock"   
+},
+{
+    "id": 5,
+    "button_text": "In the area",
+    "icon": "globe-europe"  
+}
+]

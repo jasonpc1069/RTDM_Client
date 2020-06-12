@@ -14,19 +14,38 @@
         
         <title>RTDM Client</title>
     </head>
-    <body>
+    <body onload="initialise();">
+        
         <!-- GUI -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#"></a>
             <div id="appData"></div>
-            <a class="btn btn-outline-primary ml-auto nav__el--logout(href='/users/logout')">Login</a>
-           
-        </nav>
-        
+            <a class="btn btn-outline-primary ml-auto nav__el--logout" href='/users/logout'>Logout</a>
+        </nav>  
+
         <main>
-            
-            <div class="container">
+            <div class="container-fluid">
                 <div class="main_panel">  
+                    <div class="status_bar_panel">
+                        <div class="row">
+                            <div class="col-2 status_bar_container" style="margin-right: 5px">
+                                <button type="button" class="btn btn-lg btn-primary btn-block status" id="createMessage"><i class="fas fa-microphone"></i> Create Message</button>
+                            </div>
+                            <div class="col-2 status_bar_container" style="margin-right: 5px">
+                                <button type="button" class="btn btn-lg btn-primary btn-block status" id="playLibrary"><i class="fas fa-book"></i> Play List and Library</button>
+                            </div>
+                            <div class="col-2 status_bar_container" id="applicationDetails" style="margin-right: 5px">
+                            </div>
+                            <div class="col status_bar_container" id="userDetails" style="margin-right: 5px">
+                                <span class="status_font"><%= current_user.username %><br><span>
+                                <span class="status_font"><%= current_user.role %><span>
+                            </div>
+                            <div class="col-2 status_bar_container">
+                                <span class="status_font" id="currentdate"></span>
+                                <span class="status_font" id="currenttime" style="float: right"></span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="title_panel">
                         <label class="title_font">1) Message Builder</label>
                     </div> 
@@ -69,82 +88,60 @@
                         </div>
                         <div class="detail_panel card">
                             <div class="heading_font card-header">Detail</div>
-                            <div class="card-body detail_button_group">
+                            <div class="card-body detail_body">
+                                <div class="detail_btn-panel card-body">
+                                    <div class="detail_btn-group" data-toggle="buttons" id="detailList"></div>
+                                    <button type="button" class="btn btn-lg btn-primary detail_clear" id="detailClear" disabled>Clear</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="direction_panel card">
+                            <div class="heading_font card-header px-0 text-center">Direction</div>
+                            <div class="card-body direction_body">
+                                <div class="direction_btn-panel card-body">
+                                    <div class="direction_btn-group" data-toggle="buttons" id="directionList"></div>
+                                    <button type="button" class="btn btn btn-primary direction_clear" id="directionClear" disabled>Clear</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="break"></div>
-                    <div class="message_assembly_panel">
-                        <div class="title_panel">
-                            <label class="title_font">2) Message Assembler</label>
-                        </div>
-                        <div class="input-group  message_input_text ident10" style="margin-top: 5px;">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="fas fa-search"></i>
-                                </span>
-                            </div>
-                            <input type="text" id="messageText" placeholder="Enter search text" class="form-control">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary button_text">Search</button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="fragmentArea" class="heading_font ident10 m-0">Fragments</label>
-                            <textarea id="fragmentArea" rows="15" class="form-control ident10 message_fragment_text" readonly></textarea>
-                        </div>
-                        <label class="heading_font ident10 m-0">Complete Message</label>
-                        <div class="complete_message_panel ident10 rounded">
-                            <div class="complete_message" id="messageAssembly"></div>
-                        </div>
-                        <div class="message_btn_panel ident10">
-                            <button class="btn btn-outline-dark button_text assembler" id="assemblyClear" disabled><i class="fas fa-broom"></i><br>Clear</button>
-                            <button class="btn btn-outline-dark button_text assembler" id="assemblyPrevious" disabled><i class="fas fa-backward"></i><br>Previous</button>
-                            <button class="btn btn-outline-dark button_text assembler" id="assemblyDelete" disabled><i class="fas fa-trash-alt"></i><br>Delete</button>
-                            <button class="btn btn-outline-dark button_text assembler" id="assemblyNext" disabled><i class="fas fa-forward"></i><br>Next</button>
-                            <button class="btn btn-outline-dark button_text assembler ml-5 mr-auto" id="previewClick" disabled><i class="fas fa-headphones"></i><br>Preview</button>
-                            <button class="btn btn-outline-dark button_text assembler" id="assemblySave" disabled><i class="fas fa-save"></i><br>Save</button>
-                            <button class="btn btn-outline-dark button_text assembler" id="assemblySchedule" disabled><i class="fas fa-calendar-alt"></i><br>Play Schedule</button>
-                        </div>
+                    <div class="d-flex wrap">
+                        <div id="messageassemblypanel"></div>
+                        <div id="textonlypanel"></div>
                     </div>
                 </div>
             </div>
-            <!-- <div class="footer" id="footer-main">
-                <div class="container">
-                   <div class="row">
-                       <div class="col-md-8 m-auto">
-                           <p>Built by the C&I Stratford Team, 2020</p>
-                       </div>
-                   </div>
-               </div>
-            </div> -->
         </main>
+        <div id="footer"></div>
+        <div id="selectionpanels"></div>
 
         <div class="modal fade" id="lineModal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
-              <div class="modal-content">
+                <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">Line Selector</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title">Line Selector</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                  </button>
+                    </button>
                 </div>
                 <div class="modal-body d-flex flex-column" id="lineSelectedList"></div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                 </div>
-              </div>
+                </div>
             </div>
-          </div>
+        </div>
 
-          <!-- Bootstrap JS and dependencies -->
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <!-- Bootstrap JS and dependencies -->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>      
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>       
         <script src="https://kit.fontawesome.com/7cc150e0f5.js" crossorigin="anonymous"></script>
         <script src="/dependencies/howler.core.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.0/howler.core.min.js" integrity="sha256-KVZnkPTU6/RYbD2Jxh9AOIoOmiYw4cIIr3uD2HVx8gY=" crossorigin="anonymous"></script>
-       
+        <script src="/dependencies/typo.js"></script>
+
         <!-- Main Javascript-->
         <script src="/js/main.js"></script>
         <script src="/js/dataHandler.js"></script> 

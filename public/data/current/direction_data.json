@@ -1,0 +1,50 @@
+[{
+    "id": 1,
+    "button_text": "North",
+    "icon": "arrow-up",
+    "fragment_id": 1344,
+    "text_position": 1  
+},
+{
+    "id": 2,
+    "button_text": "East",
+    "icon": "arrow-right",
+    "fragment_id": 1341,
+    "text_position": 1 
+},
+{
+    "id": 3,
+    "button_text": "South",
+    "icon": "arrow-down",
+    "fragment_id": 1347,
+    "text_position": 1  
+},
+{
+    "id": 4,
+    "button_text": "West",
+    "icon": "arrow-left",
+    "fragment_id": 1349,
+    "text_position": 1   
+},
+{
+    "id": 5,
+    "button_text": "Both",
+    "icon": "sync",
+    "fragment_id": 5347,
+    "text_position": 2
+},
+{
+    "id": 6,
+    "button_text": "",
+    "icon": "undo",
+    "fragment_id": 976,
+    "text_position": 1  
+},
+{
+    "id": 7,
+    "button_text": "",
+    "icon": "redo",
+    "fragment_id": 977,
+    "text_position": 1  
+}
+]

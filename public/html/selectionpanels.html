@@ -1,0 +1,45 @@
+<!-- Line Selection -->
+<div class="modal fade" id="lineModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Line Selector</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body d-flex flex-column" id="lineSelectedList"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fas fa-times"></i> Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- Station Selection -->
+<div class="modal fade" id="stationModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Station Selector</h5>
+        </div>
+        <div class="modal-body d-flex p-0">
+          <div id="stationImage"></div>
+          <map name="stationMap">
+            <div id="stationAreas"></div>
+          </map>
+          <div class="flex-column">
+            <label class="heading_font"  style="margin: 0px; margin-left:10px">Selected Stations</label>
+            <div class="selected_stations_panel rounded">
+                <div class="selected_stations" id="selectedStationList"></div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" id="stationSelect" data-dismiss="modal"><i class="fas fa-check"> </i> Select</button>
+          <button type="button" class="btn btn-primary" id="stationClear" data-dismiss="modal"><i class="fas fa-broom"></i> Clear</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i> Cancel</button>
+        </div>
+      </div>
+    </div>
+</div>

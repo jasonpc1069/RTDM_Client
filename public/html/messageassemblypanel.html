@@ -1,0 +1,33 @@
+<div class="message_assembly_panel">
+    <div class="title_panel">
+        <label class="title_font">2) Message Assembler</label>
+    </div>
+    <div class="input-group  message_input_text ident10" style="margin-top: 5px;">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="fas fa-search"></i>
+            </span>
+        </div>
+        <input type="text" id="messageText" placeholder="Enter search text" class="form-control">
+        <div class="input-group-append">
+            <button class="btn btn-primary button_text">Search</button>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="fragmentArea" class="heading_font ident10 m-0">Fragments</label>
+        <textarea id="fragmentArea" rows="15" class="form-control ident10 message_fragment_text" readonly></textarea>
+    </div>
+    <label class="heading_font ident10 m-0">Complete Message</label>
+    <div class="complete_message_panel ident10 rounded">
+        <div class="complete_message" id="messageAssembly"></div>
+    </div>
+    <div class="message_btn_panel ident10">
+        <button class="btn btn-outline-dark button_text assembler" id="assemblyClear" disabled><i class="fas fa-broom"></i><br>Clear</button>
+        <button class="btn btn-outline-dark button_text assembler" id="assemblyPrevious" disabled><i class="fas fa-backward"></i><br>Previous</button>
+        <button class="btn btn-outline-dark button_text assembler" id="assemblyDelete" disabled><i class="fas fa-trash-alt"></i><br>Delete</button>
+        <button class="btn btn-outline-dark button_text assembler" id="assemblyNext" disabled><i class="fas fa-forward"></i><br>Next</button>
+        <button class="btn btn-outline-dark button_text assembler ml-5 mr-auto" id="previewClick" disabled><i class="fas fa-headphones"></i><br>Preview</button>
+        <button class="btn btn-outline-dark button_text assembler" id="assemblySave" disabled><i class="fas fa-save"></i><br>Save</button>
+        <button class="btn btn-outline-dark button_text assembler" id="assemblySchedule" disabled><i class="fas fa-calendar-alt"></i><br>Play Schedule</button>
+    </div>
+</div>
