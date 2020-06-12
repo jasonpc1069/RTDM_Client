@@ -20,14 +20,6 @@
 },
 {
     "id": 5,
-<<<<<<< HEAD
-=======
-    "button_text": "At Station",
-    "icon": "exchange-alt"
-},
-{
-    "id": 6,
->>>>>>> a1f440b5b4c08119036a620f940ee829d23e9ed4
     "button_text": "In the area",
     "icon": "globe-europe"  
 }

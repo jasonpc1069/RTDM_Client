@@ -2,9 +2,5 @@
     "name": "RTDM",
     "description": "Real Time Disruption Messaging",
     "logo": "/img/tfl.png",
-<<<<<<< HEAD:public/data/current/app_data.json
     "version": "0.0.4"
-=======
-    "version": "0.0.3"
->>>>>>> a1f440b5b4c08119036a620f940ee829d23e9ed4:config/current/app_data.json
 }
