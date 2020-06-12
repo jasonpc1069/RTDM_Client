@@ -29,7 +29,6 @@ $(document).ready(function(){
             })
         }
     });
-
     $.getJSON('data/current/line_data.json',(lineData)=>{
         if(lineData){
             $.each(lineData, (key, value)=>{

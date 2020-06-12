@@ -14,7 +14,11 @@
         
         <title>RTDM Client</title>
     </head>
+<<<<<<< HEAD
     <body onload="initialise();">
+=======
+    <body>
+>>>>>>> a1f440b5b4c08119036a620f940ee829d23e9ed4
         
         <!-- GUI -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -28,6 +32,7 @@
                 <div class="main_panel">  
                     <div class="status_bar_panel">
                         <div class="row">
+<<<<<<< HEAD
                             <div class="col-2 status_bar_container" style="margin-right: 5px">
                                 <button type="button" class="btn btn-lg btn-primary btn-block status" id="createMessage"><i class="fas fa-microphone"></i> Create Message</button>
                             </div>
@@ -35,12 +40,25 @@
                                 <button type="button" class="btn btn-lg btn-primary btn-block status" id="playLibrary"><i class="fas fa-book"></i> Play List and Library</button>
                             </div>
                             <div class="col-2 status_bar_container" id="applicationDetails" style="margin-right: 5px">
+=======
+                            <div class="col status_bar_container" style="margin-right: 5px">
+                                <button type="button" class="btn btn-lg btn-primary btn-block status" id="createMessage"><i class="fas fa-microphone"></i> Create Message</button>
+                            </div>
+                            <div class="col status_bar_container" style="margin-right: 5px">
+                                <button type="button" class="btn btn-lg btn-primary btn-block status" id="playLibrary"><i class="fas fa-book"></i> Play List and Library</button>
+                            </div>
+                            <div class="col status_bar_container" id="applicationDetails" style="margin-right: 5px">
+>>>>>>> a1f440b5b4c08119036a620f940ee829d23e9ed4
                             </div>
                             <div class="col status_bar_container" id="userDetails" style="margin-right: 5px">
                                 <span class="status_font"><%= current_user.username %><br><span>
                                 <span class="status_font"><%= current_user.role %><span>
                             </div>
+<<<<<<< HEAD
                             <div class="col-2 status_bar_container">
+=======
+                            <div class="col status_bar_container">
+>>>>>>> a1f440b5b4c08119036a620f940ee829d23e9ed4
                                 <span class="status_font" id="currentdate"></span>
                                 <span class="status_font" id="currenttime" style="float: right"></span>
                             </div>
@@ -93,6 +111,18 @@
                                     <div class="detail_btn-group" data-toggle="buttons" id="detailList"></div>
                                     <button type="button" class="btn btn-lg btn-primary detail_clear" id="detailClear" disabled>Clear</button>
                                 </div>
+<<<<<<< HEAD
+=======
+                            </div>
+                        </div>
+                        <div class="direction_panel card">
+                            <div class="heading_font card-header px-0 text-center">Direction</div>
+                            <div class="card-body direction_body">
+                                <div class="direction_btn-panel card-body">
+                                    <div class="direction_btn-group" data-toggle="buttons" id="directionList"></div>
+                                    <button type="button" class="btn btn btn-primary direction_clear" id="directionClear" disabled>Clear</button>
+                                </div>
+>>>>>>> a1f440b5b4c08119036a620f940ee829d23e9ed4
                             </div>
                         </div>
                         <div class="direction_panel card">
@@ -134,7 +164,11 @@
         </div>
 
         <!-- Bootstrap JS and dependencies -->
+<<<<<<< HEAD
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>      
+=======
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+>>>>>>> a1f440b5b4c08119036a620f940ee829d23e9ed4
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>       
         <script src="https://kit.fontawesome.com/7cc150e0f5.js" crossorigin="anonymous"></script>

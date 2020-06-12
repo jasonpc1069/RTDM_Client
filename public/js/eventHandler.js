@@ -466,4 +466,3 @@ $(document).on('shown.bs.modal','#stationModal', function () {
 $(document).on('click', '#stationClear', (evt)=>{
     $('#selectedStationList').empty();
 });
-
