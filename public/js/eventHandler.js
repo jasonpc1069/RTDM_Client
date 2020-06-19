@@ -1,4 +1,7 @@
 $(document).ready(function(){
+    
+    initialise();
+
     $('.line').click(function(evt){ 
         var butVal = $(evt.target).attr('value');
         lineButton = $(evt.target);
@@ -35,7 +38,7 @@ $(document).ready(function(){
                             stations = value.lines[0].stations;
                             station_image_scale =  value.lines[0].image_scale;
                             
-                            updateMessagePanels();
+                            resetInitialApplicationStates();
                         }
                     }
                 })
@@ -48,6 +51,7 @@ $(document).ready(function(){
     
         evt.preventDefault();
         $(evt.target).siblings().removeClass('active');
+        $(evt.target).removeClass('active');
         
         $.getJSON('data/current/preamble_data.json',(preamble)=>{
             if(preamble){
@@ -69,6 +73,7 @@ $(document).ready(function(){
     
         evt.preventDefault();
         $(evt.target).siblings().removeClass('active');
+        $(evt.target).removeClass('active');
     
         $.getJSON('data/current/disruption_data.json',(disruptionData)=>{
             if(disruptionData){
@@ -77,9 +82,8 @@ $(document).ready(function(){
                     {
                         var text = generateFragmentText(value.fragment_id);
                             
-                        if (!value.reason)
+                        if (!value.reason != ReasonStates.no_reason)
                         {
-                            reasonText = '';
                             reasonFragment = '';
     
                             $('#reasonSelectedList').empty();
@@ -112,9 +116,12 @@ $(document).ready(function(){
                         disruptionText = text;
                         disruptionFragment = value.fragment_id;
                         disruptionDetailIds = value.detail_buttons;
+                        reason_position = value.reason;
     
+                        updateDetailButtons(value.buttons); 
+                        updateDirectionButtons(value.buttons.direction);
+                        updateTicketList(value.buttons.ticket);
                         updateMessagePanels();
-                        updateDetailButtons(value.detail_buttons); 
                     }
                 })
             }
@@ -126,13 +133,10 @@ $(document).ready(function(){
                     
         evt.preventDefault();
         $(evt.target).siblings().removeClass('active');
+        $(evt.target).removeClass('active');
     
         $('#reasonSelectedList').empty();
         $('#reasonClear').prop('disabled', false);
-        reasonText = '';
-        reasonFragment = '';
-    
-        updateMessagePanels();
         
         $.getJSON('data/current/reason_data.json',(reasonData)=>{
             if(reasonData){
@@ -165,6 +169,7 @@ $(document).ready(function(){
                         if (value.detail_buttons.length != 0)
                         {
                             updateDetailButtons(value.detail_buttons);
+                            updateMessagePanels();
                         }
                     }           
                 })
@@ -179,24 +184,223 @@ $(document).ready(function(){
         var x2 = 0;
         var y2 = 0;
         var scale = (station_image_scale / 100);
+        var station_name = '';
+        var id = 0;
     
         evt.preventDefault();
         $(evt.currentTarget).siblings().removeClass('active');
-        $('#stationImage')
-            .html(`<img src="/img/${lineImage}" alt="stationselection" id="station" usemap="#stationMap">`);
-            
-        $('#stationAreas').empty();
-        for (s=0; s < stations.length; s++)
+        $(evt.currentTarget).removeClass('active');
+
+        $('#detailClear').prop('disabled', false);
+
+        $.getJSON('data/current/detail_data.json',(detailData)=>{
+            if(detailData){
+                $.each(detailData, (key, value)=>{
+                    if (value.panel_id == DetailPanels.detail)
+                    {
+                        for (b = 0; b < value.buttons.length; b++)
+                        {
+                            if (butVal == value.buttons[b].button_text)
+                            {
+                                detailFragments[DetailIndex.detail] = value.buttons[b].fragments;
+                                map_display_state = value.buttons[b].display_map;
+                            }
+                        }
+                    } 
+                })
+            }
+        })
+
+        if ($(evt.currentTarget).attr("data-target"))
         {
-            x1 = (stations[s].coordinates.xpos * scale);
-            y1 = (stations[s].coordinates.ypos * scale);
-            x2 = x1 + (stations[s].coordinates.width * scale);
-            y2 = y1 + (stations[s].coordinates.height * scale);
-    
-            $('#stationAreas').
-                append (`<area shape="rect" coords="${x1},${y1},${x2},${y2}" 
-                    alt="${stations[s].station_name}" onclick="stationClicked(this)" id="stationArea" title="${stations[s].station_name}">`);
+            current_map_display = DetailIndex.detail;
+            previousStationFragmentList = stationFragmentList[current_map_display].concat();
+            updateStationList();
+
+            $('#stationImage')
+                .html(`<img src="/img/${lineImage}" alt="stationselection" id="station" usemap="#stationMap">`);
+                
+            $('#stationAreas').empty();
+            for (s=0; s < stations.length; s++)
+            {
+                x1 = (stations[s].coordinates.xpos * scale);
+                y1 = (stations[s].coordinates.ypos * scale);
+                x2 = x1 + (stations[s].coordinates.width * scale);
+                y2 = y1 + (stations[s].coordinates.height * scale);
+
+                station_name = stations[s].station_name;
+                id = stations[s].fragment_id;
+        
+                $('#stationAreas').
+                    append (`<area shape="rect" coords="${x1},${y1},${x2},${y2}" 
+                        alt="${station_name}" onclick="stationClicked(this)" id="stationArea_${id}" title="${station_name}">`);
+            }
         }
+        
+        updateMessagePanels();
+    });
+
+    $('.detail_1').click(function(evt){
+        var butVal = $(evt.target).attr('value');
+        var x1 = 0;
+        var y1 = 0;
+        var x2 = 0;
+        var y2 = 0;
+        var scale = (station_image_scale / 100);
+        var station_name = '';
+        var id = 0;
+    
+        evt.preventDefault();
+        $(evt.currentTarget).siblings().removeClass('active');
+        $(evt.currentTarget).removeClass('active');
+
+        $('#detail_1_clear').prop('disabled', false);
+
+        $.getJSON('data/current/detail_data.json',(detailData)=>{
+            if(detailData){
+                $.each(detailData, (key, value)=>{
+                    if (value.panel_id == DetailPanels.detail_1)
+                    {
+                        for (b = 0; b < value.buttons.length; b++)
+                        {
+                            if (butVal == value.buttons[b].button_text)
+                            {
+                                detailFragments[DetailIndex.detail_1] = value.buttons[b].fragments;
+                                map_display_state = value.buttons[b].display_map;
+                            }
+                    
+                        }
+                    }
+                    
+                })
+            }
+        })
+
+        if ($(evt.currentTarget).attr("data-target"))
+        {
+            current_map_display = DetailIndex.detail_1;
+            previousStationFragmentList = stationFragmentList[current_map_display].concat();
+            updateStationList();
+
+            $('#stationImage')
+                .html(`<img src="/img/${lineImage}" alt="stationselection" id="station" usemap="#stationMap">`);
+                
+            $('#stationAreas').empty();
+            for (s=0; s < stations.length; s++)
+            {
+                x1 = (stations[s].coordinates.xpos * scale);
+                y1 = (stations[s].coordinates.ypos * scale);
+                x2 = x1 + (stations[s].coordinates.width * scale);
+                y2 = y1 + (stations[s].coordinates.height * scale);
+
+                station_name = stations[s].station_name;
+                id = stations[s].fragment_id;
+        
+                $('#stationAreas').
+                    append (`<area shape="rect" coords="${x1},${y1},${x2},${y2}" 
+                        alt="${station_name}" onclick="stationClicked(this)" id="stationArea_${id}" title="${station_name}">`);
+            }
+        }
+        
+        updateMessagePanels();
+    
+    });
+
+    $('.additional_detail').click(function(evt){
+        var butVal = $(evt.target).attr('value');
+        var x1 = 0;
+        var y1 = 0;
+        var x2 = 0;
+        var y2 = 0;
+        var scale = (station_image_scale / 100);
+        var station_name = '';
+        var id = 0;
+    
+        evt.preventDefault();
+        $(evt.currentTarget).siblings().removeClass('active');
+        $(evt.currentTarget).removeClass('active');
+
+        $('#additional_detail_clear').prop('disabled', false);
+
+        $.getJSON('data/current/detail_data.json',(detailData)=>{
+            if(detailData){
+                $.each(detailData, (key, value)=>{
+                    if (value.panel_id == DetailPanels.additional_detail)
+                    {
+                        for (b = 0; b < value.buttons.length; b++)
+                        {
+                            if (butVal == value.buttons[b].button_text)
+                            {
+                                detailFragments[DetailIndex.additional_detail] = value.buttons[b].fragments;
+                                map_display_state = value.buttons[b].display_map;
+                            }
+                    
+                        }
+                    }
+                    
+                })
+            }
+        })
+
+        if ($(evt.currentTarget).attr("data-target"))
+        {
+            current_map_display = DetailIndex.additional_detail;
+            previousStationFragmentList = stationFragmentList[current_map_display].concat();
+            updateStationList();
+
+            $('#stationImage')
+                .html(`<img src="/img/${lineImage}" alt="stationselection" id="station" usemap="#stationMap">`);
+                
+            $('#stationAreas').empty();
+            for (s=0; s < stations.length; s++)
+            {
+                x1 = (stations[s].coordinates.xpos * scale);
+                y1 = (stations[s].coordinates.ypos * scale);
+                x2 = x1 + (stations[s].coordinates.width * scale);
+                y2 = y1 + (stations[s].coordinates.height * scale);
+
+                station_name = stations[s].station_name;
+                id = stations[s].fragment_id;
+        
+                $('#stationAreas').
+                    append (`<area shape="rect" coords="${x1},${y1},${x2},${y2}" 
+                        alt="${station_name}" onclick="stationClicked(this)" id="stationArea_${id}" title="${station_name}">`);
+            }
+        }
+        
+        updateMessagePanels();
+    
+    });
+
+    $('.rest').click(function(evt){
+        var butVal = $(evt.target).attr('value');
+    
+        evt.preventDefault();
+        $(evt.currentTarget).siblings().removeClass('active');
+        $(evt.currentTarget).removeClass('active');
+
+        $('#rest_of_line_clear').prop('disabled', false);
+
+        $.getJSON('data/current/detail_data.json',(detailData)=>{
+            if(detailData){
+                $.each(detailData, (key, value)=>{
+                    if (value.panel_id == DetailPanels.rest_of_line)
+                    {
+                        for (b = 0; b < value.buttons.length; b++)
+                        {
+                            if (butVal == value.buttons[b].button_text)
+                            {
+                                detailFragments[DetailIndex.rest_of_line] = value.buttons[b].fragments;
+                            }
+                    
+                        }
+                    }
+                })
+            }
+        })
+    
+        updateMessagePanels();
+    
     });
     
     $('.direction').click(function(evt){
@@ -204,6 +408,9 @@ $(document).ready(function(){
     
         evt.preventDefault();
         $(evt.currentTarget).siblings().removeClass('active');
+        $(evt.currentTarget).removeClass('active');
+
+        $('#directionClear').prop('disabled', false);
     
         $.getJSON('data/current/direction_data.json',(directionData)=>{
             if(directionData){
@@ -211,8 +418,8 @@ $(document).ready(function(){
                     if (butVal == value.id)
                     {
                         directionFragment = value.fragment_id;
-                        directionPosition = value.text_position;
-                    
+                        direction_position = value.text_position;
+
                         updateMessagePanels();
                     }
                 })
@@ -223,28 +430,26 @@ $(document).ready(function(){
     $(document).on('keyup', '#textualMessage', function (e) {
         updateTextualMessageLength();
         clearTimeout(spellingTimer);
-        spellingTimer = setTimeout(onTextualMessageEdit, spellingInterval);
+        spellingTimer = setTimeout(onTextualMessageEdit, SPELLING_INTERVAL);
     });
 
     $(document).on("click", "#textualSuggestions li", function(event) {
         correctSpelling($(this).text());
       });
+
+    $('#stationSelect').click(function(evt){
+        updateMessagePanels();
+    })
+
+    $('#stationClear').click(function(evt){
+        $('#selectedStationList').empty();
+        stationFragmentList[current_map_display] = [];
+    })
+    
+    $('#stationCancel').click(function(evt){
+        stationFragmentList[current_map_display] = previousStationFragmentList;
+    })
 });
-
-
-
-// window.addEventListener('load', function() {
-//     var editbox = document.getElementById("textualMessage")
-
-//     editbox.addEventListener('keyup', (e) => {
-//         updateTextualMessageLength();
-//         clearTimeout(spellingTimer);
-//         spellingTimer = setTimeout(spellCheckTextualMessage, spellingInterval);
-//         // if (32 === e.keyCode) {
-//         //     alert("this should appear");
-//         // }        
-//     });
-// });
 
 $(document).on('click', '.lineSelection', (evt)=>{
     var butVal = $(evt.target).attr('value');
@@ -272,7 +477,7 @@ $(document).on('click', '.lineSelection', (evt)=>{
                             stations = value.lines[l].stations;
                             station_image_scale =  value.lines[l].image_scale;
 
-                            updateMessagePanels();
+                            resetInitialApplicationStates();
                         }
                     }
                 }
@@ -288,8 +493,6 @@ $("#reasonSelectedList").on('click','li',function() {
     $(this).css('background-color', 'green');
     $(this).css('color', 'white');
 
-    reasonText = $(this).text();
-
     var id = $(this).attr('id').split("_").pop();
     
     reasonFragment = id;
@@ -298,14 +501,44 @@ $("#reasonSelectedList").on('click','li',function() {
 });
 
 
+$("#ticketSelectionList").on('click','li',function() {
+    var id = $(this).attr('id').split("_").pop();
+    var index = 0;
+
+    if (ticketFragmentList.includes(id))
+    {
+        $(this).css('background-color', '#e9ecef');
+        $(this).css('color', 'black');
+
+        // Remove Ticket
+        index = ticketFragmentList.indexOf(id);
+        ticketFragmentList.splice(index,1);
+    }
+    else
+    {
+        $(this).css('background-color', 'green');
+        $(this).css('color', 'white');
+        ticketFragmentList.push(id);
+    }
+
+    // Determine whether the ticket clear button should be enabled
+    if (ticketFragmentList.length > 0)
+    {
+        $('#ticketClear').prop('disabled', false);
+    }
+    else
+    {
+        $('#ticketClear').prop('disabled', true);
+    }
+    
+    updateMessagePanels();
+});
 
 $(document).on('click', '#reasonTextSearch', (evt)=>{
     var text = document.getElementById('reasonText').value;
     text = text.toLowerCase();
             
     $('#reasonSelectedList').empty();
-    reasonText = '';
-    reasonFragment = '';
 
     $('.reason').each(function()   {
         $(this).removeClass('active');
@@ -313,26 +546,20 @@ $(document).on('click', '#reasonTextSearch', (evt)=>{
 
     filterReasons(text);
 
-    updateMessagePanels();
 });
 
 $(document).on('click', '#reasonSearchClear', (evt)=>{
     document.getElementById('reasonText').value = "";
-    reasonText = '';
-    reasonFragment = '';
     
     $('.reason').each(function()   {
         $(this).removeClass('active');
     })
     filterReasons('.*');
-
-    updateMessagePanels();
 });
 
 $(document).on('click', '#reasonClear', (evt)=>{
     $('#reasonClear').prop('disabled', true);
 
-    reasonText = '';
     reasonFragment = '';
 
     $('#reasonSelectedList').empty();
@@ -340,19 +567,91 @@ $(document).on('click', '#reasonClear', (evt)=>{
     $('.reason').each(function()   {
         $(this).removeClass('active');
     })
-
-    $('.reason').each(function()   {
-        $(this).removeClass('active');
-    })
     filterReasons('.*');
-
-    updateMessagePanels();
 
     // Update Detail Buttons
     if (disruptionDetailIds.length != 0)
     {
         updateDetailButtons(disruptionDetailIds);
     }
+
+    updateMessagePanels();
+});
+
+$(document).on('click', '#detailClear', (evt)=>{
+    $('#detailClear').prop('disabled', true);
+
+    $('.detail').each(function()   {
+        $(this).removeClass('active');
+    })
+
+    detailFragments[DetailIndex.detail] = [];
+    stationFragmentList[DetailIndex.detail] = [];
+
+    updateMessagePanels();
+});
+
+$(document).on('click', '#detail_1_clear', (evt)=>{
+    $('#detail_1_clear').prop('disabled', true);
+
+    $('.detail_1').each(function()   {
+        $(this).removeClass('active');
+    })
+
+    detailFragments[DetailIndex.detail_1] = [];
+    stationFragmentList[DetailIndex.detail_1] = [];
+
+    updateMessagePanels();
+});
+
+$(document).on('click', '#additional_detail_clear', (evt)=>{
+    $('#additional_detail_clear').prop('disabled', true);
+
+    $('.additional_detail').each(function()   {
+        $(this).removeClass('active');
+    })
+
+    detailFragments[DetailIndex.additional_detail] = [];
+    stationFragmentList[DetailIndex.additional_detail] = [];
+
+    updateMessagePanels();
+});
+
+$(document).on('click', '#rest_of_line_clear', (evt)=>{
+    $('#rest_of_line_clear').prop('disabled', true);
+
+    $('.rest').each(function()   {
+        $(this).removeClass('active');
+    })
+
+    detailFragments[DetailIndex.rest_of_line] = [];
+    
+    updateMessagePanels();
+});
+
+$(document).on('click', '#ticketClear', (evt)=>{
+    $('#ticketClear').prop('disabled', true);
+
+    $('.ticket_item').each(function()   {
+        $(this).css('background-color', '#e9ecef');
+        $(this).css('color', 'black');
+    })
+
+    ticketFragmentList = [];
+    
+    updateMessagePanels();
+});
+
+$(document).on('click', '#directionClear', (evt)=>{
+    $('#directionClear').prop('disabled', true);
+
+    $('.direction').each(function()   {
+        $(this).removeClass('active');
+    })
+
+    directionFragment = 0;
+    
+    updateMessagePanels();
 });
 
 // Assembler Buttons
@@ -447,11 +746,76 @@ $(document).on('click', '#textualPrevious', (evt)=>{
 
 function stationClicked(area)
 {
-    $('#selectedStationList')
-            .html(`<span class="message_font">`);
+    var id = area.getAttribute("id");
+    var index = area.getAttribute("id").indexOf('_');
+    var fragment = id.substring(index+1);
+    var fragment_text = fragmentText[fragment];
+    var index = 0;
+    var station_list = [];
+    var station_fragment_list = [];
+    var current_list = [];
+    var current = '';
+    var e = 0;
 
-    $('#selectedStationList')
-    .append(`${area.getAttribute("alt")}<br>`);    
+    station_fragment_list = stationFragmentList[current_map_display];
+    stationFragmentList[current_map_display] = [];
+
+    if (map_display_state == MapDisplayStates.single_selection)
+    {
+        
+        //Display Station
+        $('#selectedStationList').html(`<ul class="message_font" style="margin: 0px">`);
+        $('#selectedStationList')
+                .append(`<li>${fragment_text}</li><ul>`);
+
+        // Set the station fragment
+        stationFragmentList[current_map_display].push(fragment);
+    
+    }
+    else if (map_display_state == MapDisplayStates.multi_selection)
+    {
+        // Get Current Stations
+        current = document.getElementById('selectedStationList');
+        current_list = current.getElementsByTagName("li");
+
+        // Add stations to array
+        for (e = 0; e < current_list.length; e++) 
+        {
+             station_list.push( current_list[e].innerText);
+        }
+        
+        // Determine whether array already contains station
+        if (station_list.includes(fragment_text))
+        {
+            // Remove Station
+            index = station_list.indexOf(fragment_text);
+            station_list.splice(index,1);
+
+            // Remove Fragment
+            index = station_fragment_list.indexOf(fragment);
+            station_fragment_list.splice(index, 1);
+        }
+        else
+        {
+            //Add Station
+            station_list.push(fragment_text);
+            station_fragment_list.push(fragment);
+        }
+
+        stationFragmentList[current_map_display] = station_fragment_list;
+
+        // Redisplay Items
+        $('#selectedStationList').html(`<ul class="message_font" style="margin: 0px">`);
+
+        for (var e = 0; e < station_list.length; e++)
+        {
+            $('#selectedStationList')
+                .append(`<li>${station_list[e]}</li>`);
+        }
+
+        $('#selectedStationList')
+                .append(`</ul>`);
+    }
 }
 
 $(document).on('shown.bs.modal','#stationModal', function () {

@@ -2,143 +2,287 @@
     "id": 1,
     "button_text": "Severe Delays",
     "message" : "there are severe delays on the {line}",
+    "active" : 0,
     "reason" : 1,
     "fragment_id" : [2911,7000],
-    "detail_buttons" :[2,3,5]
+    "buttons": {
+        "detail" :[1,2,3,5],
+        "detail_1" :[1,2,3,4],
+        "additional" :[1],
+        "rest": [1,2,3,4],
+        "direction": 1,
+        "ticket": 1
+    }
 },
 {
     "id": 2,
     "button_text": "Minor Delays",
     "message" : "there are minor delays on the {line}",
+    "active" : 0,
     "reason" : 1,
     "fragment_id" : [2910,7000],
-    "detail_buttons" :[2,3,5]
+    "buttons":{
+        "detail" :[1,2,3,5],
+        "detail_1" :[1,2,3,4],
+        "additional" :[1],
+        "rest": [1,2,3,4],
+        "direction": 1,
+        "ticket": 1
+    } 
 },
 {
     "id": 3,
     "button_text": "Delays",
     "message" : "there are delays on the {line}",
+    "active" : 0,
     "reason" : 1,
     "fragment_id" : [1416,7000],
-    "detail_buttons" :[2,3,5]
+    "buttons":{
+        "detail" :[1,2,3,5],
+        "detail_1" :[1,2,3,4],
+        "additional" :[1],
+        "rest": [1,2,3,4],
+        "direction": 1,
+        "ticket": 1
+    }
 },
 {
     "id": 4,
     "button_text": "Disrupted",
     "message" : "the {line} services are currently disrupted",
+    "active" : 0,
     "reason" : 1,
     "fragment_id" : [1327,7000,965],
-    "detail_buttons" :[2,3,5]
+    "buttons":{
+        "detail" :[1,2,3,5],
+        "detail_1" :[1,2,3,4],
+        "additional" :[1],
+        "rest": [1,2,3,4],
+        "direction": 1,
+        "ticket": 1
+    }
 },
 {
     "id": 5,
     "button_text": "Station Closed",
     "message" : "{station} is closed",
+    "active" : 0,
     "reason" : 1,
     "fragment_id" : [7001,109],
-    "detail_buttons" :[4]
+    "buttons": {
+        "detail" :[4],
+        "detail_1": [],
+        "additional": [],
+        "rest": [1,2,3,4],
+        "direction": 0,
+        "ticket": 1
+    }
 },
 {
     "id": 6,
     "button_text": "Good Service",
     "message" : "good service on the {line}",
+    "active" : 1,
     "reason" : 0,
     "fragment_id" : [989,1382,7000],
-    "detail_buttons" :[]
+    "buttons":{
+        "detail" :[],
+        "detail_1": [1],
+        "additional": [1],
+        "rest": [1,2,3,4],
+        "direction": 1,
+        "ticket": 0
+    }
 },
 {
     "id": 7,
     "button_text": "Held",
     "message" : "the {line} trains are currently being held in platforms",
+    "active" : 0,
     "reason" : 1,
     "fragment_id" : [1327,7000,1045],
-    "detail_buttons" :[2,3,5]
+    "buttons":{
+        "detail" :[1,2,3,5],
+        "detail_1" :[1,2,3,4],
+        "additional" :[1],
+        "rest": [1,2,3,4],
+        "direction": 1,
+        "ticket": 1
+    }
 },
 {
     "id": 8,
     "button_text": "Suspend",
     "message" : "the {line} is suspended",
+    "active" : 0,
     "reason" : 1,
     "fragment_id" : [1327,7000,107],
-    "detail_buttons" :[2,3,5]
+    "buttons":{
+        "detail" :[1,2,3,5],
+        "detail_1" :[1,2,3,4],
+        "additional" :[1],
+        "rest": [1,2,3,4],
+        "direction": 1,
+        "ticket": 1
+    }
 },
 {
     "id": 9,
     "button_text": "Part Suspend",
     "message" : "the {line} is partially suspended",
+    "active" : 0,
     "reason" : 1,
     "fragment_id" : [1327,7000,113],
-    "detail_buttons" :[2,3,5]
+    "buttons":{
+        "detail" :[1,2,3,5],
+        "detail_1" :[1,2,3,4],
+        "additional" :[1],
+        "rest": [1,2,3,4],
+        "direction": 1,
+        "ticket": 1
+    }
 },
 {
     "id": 10,
     "button_text": "Part Closure",
     "message" : "the {line} is partially closed",
+    "active" : 0,
     "reason" : 1,
     "fragment_id" : [1327,7000,105],
-    "detail_buttons" :[2,3,5]
+    "buttons":{
+        "detail" :[1,2,3,5],
+        "detail_1" :[1,2,3,4],
+        "additional" :[1],
+        "rest": [1,2,3,4],
+        "direction": 1,
+        "ticket": 1
+    }
 },
 {
     "id": 11,
     "button_text": "Moving",
     "message" : "the {line} trains are now on the move again",
+    "active" : 0,
     "reason" : 1,
     "fragment_id" : [1327,7000,1046],
-    "detail_buttons" :[2,3,5]
+    "buttons":{
+        "detail" :[1,2,3,5],
+        "detail_1" :[1,2,3,4],
+        "additional" :[1],
+        "rest": [1,2,3,4],
+        "direction": 1,
+        "ticket": 1
+    }
 },
 {
     "id": 12,
     "button_text": "Good All",
     "message" : "there is a good service operating on the DLR | London Overground | TfL Rail | and London Underground lines",
+    "active" : 0,
     "reason" : 0,
     "fragment_id" : [117, 1382, 1205, 948, 4991, 428, 268],
-    "detail_buttons" :[]
+    "buttons":{
+        "detail" :[],
+        "detail_1": [],
+        "additional": [],
+        "rest": [],
+        "direction": 0,
+        "ticket": 0
+    }
 },
 {
     "id": 13,
     "button_text": "Gap",
     "message" : "the {line} has larger gaps between trains than usual",
+    "active" : 0,
     "reason" : 1,
     "fragment_id" : [1327,7000,1048],
-    "detail_buttons" :[2,3,5]
+    "buttons":{
+        "detail" :[1,2,3,5],
+        "detail_1" :[1,2,3,4],
+        "additional" :[1],
+        "rest": [1,2,3,4],
+        "direction": 1,
+        "ticket": 1
+    }
 },
 {
     "id": 14,
     "button_text": "Restored",
     "message" : "the {line} services have been restored",
+    "active" : 0,
     "reason" : 1,
     "fragment_id" : [1327,7000,1417],
-    "detail_buttons" :[2,3,5]
+    "buttons":{
+        "detail" :[1,2,3,5],
+        "detail_1" :[1,2,3,4],
+        "additional" :[1],
+        "rest": [1,2,3,4],
+        "direction": 1,
+        "ticket": 1
+    }
 },
 {
     "id": 15,
     "button_text": "Resumed",
     "message" : "the {line} services have resumed",
+    "active" : 0,
     "reason" : 1,
     "fragment_id" : [1327,7000,1047],
-    "detail_buttons" :[2,3,5]
+    "buttons":{
+        "detail" :[1,2,3,5],
+        "detail_1" :[1,2,3,4],
+        "additional" :[1],
+        "rest": [1,2,3,4],
+        "direction": 1,
+        "ticket": 1
+    }
 },
 {
     "id": 16,
     "button_text": "Buses",
     "message" : "the {line} has a replacement bus service",
+    "active" : 0,
     "reason" : 1,
     "fragment_id" : [1327,7000,5320],
-    "detail_buttons" :[2,3,5]
+    "buttons":{
+        "detail" :[1,2,3,5],
+        "detail_1" :[1,2,3,4],
+        "additional" :[1],
+        "rest": [1,2,3,4],
+        "direction": 1,
+        "ticket": 1
+    }
 },
 {
     "id": 17,
     "button_text": "Special Service",
     "message" : "the {line} has a special service",
+    "active" : 0,
     "reason" : 1,
     "fragment_id" : [1327,7000,613, 973, 437],
-    "detail_buttons" :[2,3,5]
+    "buttons":{
+        "detail" :[1,2,3,5],
+        "detail_1" :[1,2,3,4],
+        "additional" :[1],
+        "rest": [1,2,3,4],
+        "direction": 1,
+        "ticket": 1
+    }
 },
 {
     "id": 18,
     "button_text": "Not Stopping",
     "message" : "the {line} is not stopping at {station} customers should alight at stations either side and continue their journey at street-level",
-    "reason" : 1,
+    "active" : 0,
+    "reason" : 2,
     "fragment_id" : [1327,7000,1155,7001,4868],
-    "detail_buttons" :[1]
+    "buttons":{
+        "detail" :[1],
+        "detail_1" :[],
+        "additional": [],
+        "rest": [1,2,3,4],
+        "direction": 1,
+        "ticket": 1
+    }
 }]

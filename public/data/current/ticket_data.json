@@ -1,0 +1,106 @@
+[   {
+        "fragmentId": [4641,7003,953],
+        "tickets": [
+            {
+                "id": 1,
+                "text": "London Buses",
+                "fragmentId" : 949
+            },
+            {
+                "id": 2,
+                "text": "London Overground",
+                "fragmentId" : 948
+            },
+            {
+                "id": 3,
+                "text": "London Midland",
+                "fragmentId" : 5377
+            },
+            {
+                "id": 4,
+                "text": "London Underground",
+                "fragmentId" : 5380
+            },
+            {
+                "id": 5,
+                "text": "TfL Rail",
+                "fragmentId" : 4991
+            },
+            {
+                "id": 6,
+                "text": "local buses",
+                "fragmentId" : 952
+            },
+            {
+                "id": 7,
+                "text": "buses",
+                "fragmentId" : 1122
+            },
+            {
+                "id": 8,
+                "text": "Stansted Express",
+                "fragmentId" : 5488
+            },
+            {
+                "id": 9,
+                "text": "Southern",
+                "fragmentId" : 950
+            },
+            {
+                "id": 10,
+                "text": "Southeastern Trains",
+                "fragmentId" : 958
+            },
+            {
+                "id": 11,
+                "text": "C2C",
+                "fragmentId" : 956
+            },
+            {
+                "id": 12,
+                "text": "First Capital Connect services",
+                "fragmentId" : 957
+            },
+            {
+                "id": 13,
+                "text": "Chiltern Railways",
+                "fragmentId" : 4652
+            },
+            {
+                "id": 14,
+                "text": "East Coast Railway",
+                "fragmentId" : 4653
+            },
+            {
+                "id": 15,
+                "text": "First Great Western",
+                "fragmentId" : 4654
+            },
+            {
+                "id": 16,
+                "text": "Heathrow Connect",
+                "fragmentId" : 4655
+            },
+            {
+                "id": 17,
+                "text": "Heathrow Express",
+                "fragmentId" : 4656
+            },
+            {
+                "id": 18,
+                "text": "South West Trains",
+                "fragmentId" : 4659
+            },
+            {
+                "id": 19,
+                "text": "Virgin Trains",
+                "fragmentId" : 4660
+            },
+            {
+                "id": 20,
+                "text": "DLR",
+                "fragmentId" : 1205
+            }
+        ]
+    }       
+]

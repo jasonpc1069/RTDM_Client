@@ -1,26 +1,124 @@
-[{
-    "id": 1,
-    "button_text": "At Station",
-    "icon": "exchange-alt"    
-},
-{
-    "id": 2,
-    "button_text": "Earlier",
-    "icon": "clock"  
-},
-{
-    "id": 3,
-    "button_text": "Earlier at Station",
-    "icon": "history"    
-},
-{
-    "id": 4,
-    "button_text": "Closed",
-    "icon": "lock"   
-},
-{
-    "id": 5,
-    "button_text": "In the area",
-    "icon": "globe-europe"  
-}
+[   
+    {   
+        "panel_id": 1,
+        "panel_name" : "Detail",
+        "buttons": [
+            {
+                "id": 1,
+                "button_text": "At Station",
+                "display_map": 1,
+                "fragments": [1364,7001],
+                "icon": "exchange-alt"    
+            },
+            {
+                "id": 2,
+                "button_text": "Earlier",
+                "display_map": 0,
+                "fragments": [993],
+                "icon": "clock"  
+            },
+            {
+                "id": 3,
+                "button_text": "Earlier at Station",
+                "display_map": 1,
+                "fragments": [993, 1364, 7001],
+                "icon": "history"    
+            },
+            {
+                "id": 4,
+                "button_text": "Closed",
+                "display_map": 1,
+                "fragments": [7001, 109],
+                "icon": "lock"   
+            },
+            {
+                "id": 5,
+                "button_text": "In the area",
+                "display_map": 1,
+                "fragments": [1597, 7001, 1596],
+                "icon": "globe-europe"  
+            }
+        ]
+    },
+    {   
+        "panel_id": 2,
+        "panel_name" : "Detail_1",
+        "buttons": [
+            {
+                "id": 1,
+                "button_text": "Between",
+                "display_map": 2,
+                "fragments": [796, 7002],
+                "icon": ""    
+            },
+            {
+                "id": 2,
+                "button_text": "Not Stopping at",
+                "display_map": 2,
+                "fragments": [1153, 7002],
+                "icon": ""  
+            },
+            {
+                "id": 3,
+                "button_text": "Suspended Between",
+                "fragments": [104, 789, 7002],
+                "display_map": 2,
+                "icon": ""    
+            },
+            {
+                "id": 4,
+                "button_text": "No Service",
+                "display_map": 2,
+                "fragments": [994, 7002],
+                "icon": ""   
+            }
+        ]
+    },
+    {   
+        "panel_id": 3,
+        "panel_name" : "Additional_Detail",
+        "buttons": [
+            {
+                "id": 1,
+                "button_text": "and between",
+                "display_map": 2,
+                "fragments": [1362, 796, 7002],
+                "icon": ""    
+            }
+        ]
+    },
+    {   
+        "panel_id": 4,
+        "panel_name" : "Rest_of_Line",
+        "buttons": [
+            {
+                "id": 1,
+                "button_text": "Severe Delays",
+                "display_map": 0,
+                "fragments": [941],
+                "icon": ""    
+            },
+            {
+                "id": 2,
+                "button_text": "Minor Delays",
+                "display_map": 0,
+                "fragments": [944],
+                "icon": ""    
+            },
+            {
+                "id": 3,
+                "button_text": "Delays",
+                "display_map": 0,
+                "fragments": [987],
+                "icon": ""    
+            },
+            {
+                "id": 4,
+                "button_text": "Good Service",
+                "display_map": 0,
+                "fragments": [961],
+                "icon": ""    
+            }
+        ]
+    }
 ]

@@ -94,18 +94,17 @@ $(document).ready(function(){
                                 .append(`<button type="button" class="preamble btn btn-outline-success active" id="preamble_${id}" name="preamble" value="${str}">${str}</button>`);
                     preambleText = fragmentText[value.fragment_id];
                     preambleFragment = value.fragment_id;
+
+                    // Set Initial values
+                    start_preamble_fragment = value.fragment_id;
+                    start_preamble_id = id;
                 }
                 else
                 {
                     $('#preambleList')
                                 .append(`<button type="button" class="preamble btn btn-outline-success" id="preamble_${id}" name="preamble" value="${str}">${str}</button>`);
                 }  
-            })
-
-            $.when(read)
-            {
-                updateMessagePanels();
-            }   
+            }) 
         }
     })
     
@@ -118,6 +117,13 @@ $(document).ready(function(){
             $.each(disruptionData, (key, value)=>{
                 str = value.button_text;
                 id = value.id;
+
+                // Determine whether the button is the initial button
+                if (value.active == 1 && start_disruption_id == 0)
+                {
+                    start_disruption_id = id;
+                    start_disruption_fragments = value.fragment_id;
+                }
 
                 if (str.length > 0)
                 {
@@ -168,18 +174,51 @@ $(document).ready(function(){
         var arr = [];
         var id = 0;
         var str = '';
+        var icon = '';
+        var b = 0;
         if(detailData){
             $.each(detailData, (key, value)=>{
-                var str = value.button_text;
-                var id = value.id;
-                $('#detailList')
-                    .append(`<button type="button" class="detail btn btn-outline-dark" id="detail_${id}" name="detail" data-toggle="modal" data-target="#stationModal" value="${str}" disabled><i class="fas fa-${value.icon}"></i><br>${value.button_text}</button>`);
+                var panel_id = value.panel_id;
+                for (b = 0; b < value.buttons.length; b++)
+                {
+                    str = value.buttons[b].button_text;
+                    id = value.buttons[b].id;
+                    icon = value.buttons[b].icon
+               
+                    if (panel_id == DetailPanels.detail)
+                    {
+                        if (value.buttons[b].display_map != MapDisplayStates.no_map)
+                        {
+                            $('#detailList')
+                                .append(`<button type="button" class="detail btn btn-outline-dark" id="detail_${id}" name="detail" data-toggle="modal" data-target="#stationModal" data-dismiss="modal" value="${str}" disabled><i class="fas fa-${icon}"></i><br>${str}</button>`);
+                        }
+                        else
+                        {
+                            $('#detailList')
+                                .append(`<button type="button" class="detail btn btn-outline-dark" id="detail_${id}" name="detail" value="${str}" disabled><i class="fas fa-${icon}"></i><br>${str}</button>`);
+                        }
+                    }
+                    else if (panel_id == DetailPanels.detail_1)
+                    {
+                        $('#detail_1_list')
+                            .append(`<button type="button" class="detail_1 btn btn-outline-dark" id="detail_1_${id}" name="detail_1" data-toggle="modal" data-target="#stationModal" value="${str}" disabled>${str}</button>`);
+                    }
+                    else if (panel_id == DetailPanels.additional_detail)
+                    {
+                        $('#additional_detail_list')
+                            .append(`<button type="button" class="additional_detail btn btn-outline-dark" id="additional_detail_${id}" name="additional_detail" data-toggle="modal" data-target="#stationModal" value="${str}" disabled>${str}</button>`);
+                    }
+                    else if (panel_id == DetailPanels.rest_of_line)
+                    {
+                        $('#rest_of_line_list')
+                            .append(`<button type="button" class="rest btn btn-outline-dark" id="rest_${id}" name="rest" value="${str}" disabled>${str}</button>`);
+                    }
+                }
             })
         }
     });
 
     $.getJSON('data/current/direction_data.json',(directionData)=>{
-        var arr = [];
         var id = 0;
         var str = '';
         if(directionData){
@@ -187,7 +226,26 @@ $(document).ready(function(){
                 str = value.button_text;
                 id = value.id;
                 $('#directionList')
-                    .append(`<button type="button" class="direction btn btn-outline-dark" id="direction_${id}" name="direction" value="${id}"><i class="fas fa-${value.icon}"></i><br>${value.button_text}</button>`);
+                    .append(`<button type="button" class="direction btn btn-outline-dark" id="direction_${id}" name="direction" value="${id}" disabled><i class="fas fa-${value.icon}"></i><br>${value.button_text}</button>`);
+            })
+        }
+    });
+
+    $.getJSON('data/current/ticket_data.json',(ticketData)=>{
+        var id = 0;
+        var str = '';
+        var t;
+
+        if(ticketData){
+            $.each(ticketData, (key, value)=>{
+                str = value.button_text;
+                ticketFragments = value.fragmentId;
+                for (t = 0; t < value.tickets.length; t++)
+                {
+                    id = value.tickets[t].fragmentId;
+                    $('#ticketSelectionList')
+                        .append(`<li class="list_font ticket_item ticket_disabled" id="ticket_${id}">${fragmentText[id]}</li>`);
+                }
             })
         }
     });

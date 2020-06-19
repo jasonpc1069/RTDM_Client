@@ -14,7 +14,7 @@
         
         <title>RTDM Client</title>
     </head>
-    <body onload="initialise();">
+    <body>
         
         <!-- GUI -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -102,6 +102,42 @@
                                     <div class="direction_btn-group" data-toggle="buttons" id="directionList"></div>
                                     <button type="button" class="btn btn btn-primary direction_clear" id="directionClear" disabled>Clear</button>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="detail_1_panel card">
+                            <div class="heading_font card-header">Detail</div>
+                            <div class="card-body detail_1_body">
+                                <div class="detail_1_btn-panel card-body">
+                                    <div class="detail_1_btn-group" data-toggle="buttons" id="detail_1_list"></div>
+                                    <button type="button" class="btn btn btn-primary detail_1_clear" id="detail_1_clear" disabled>Clear</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="additional_detail_panel card">
+                            <div class="heading_font card-header px-0 pt-0 pb-1 text-center">Additional Detail</div>
+                            <div class="card-body additional_detail_body">
+                                <div class="additional_detail_btn-panel card-body">
+                                    <div class="additional_detail_btn-group" data-toggle="buttons" id="additional_detail_list"></div>
+                                    <button type="button" class="btn btn btn-primary additional_detail_clear" id="additional_detail_clear" disabled>Clear</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rest_of_line_panel card">
+                            <div class="heading_font card-header px-0">Rest of Line</div>
+                            <div class="card-body rest_of_line_body">
+                                <div class="rest_of_line_btn-panel card-body">
+                                    <div class="rest_of_line_btn-group" data-toggle="buttons" id="rest_of_line_list"></div>
+                                    <button type="button" class="btn btn btn-primary rest_of_line_clear" id="rest_of_line_clear" disabled>Clear</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ticket_panel card">
+                            <div class="heading_font card-header">Tickets Accepted On</div>
+                            <div class="ticket_body card-body">
+                                <div class="ticket_list_panel rounded" style="overflow: scroll">
+                                    <ol class="ticketItems ticket_list" id="ticketSelectionList"></ol>
+                                </div>
+                                <button type="button" class="btn btn-lg btn-primary ticket_clear" id="ticketClear" disabled>Clear</button>
                             </div>
                         </div>
                     </div>

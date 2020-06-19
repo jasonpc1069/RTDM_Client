@@ -1,36 +1,62 @@
-var disruptionText = '';
-var reasonText = '';
-var lineButton = '';
-var preambleText ='';
-var lineText ='';
-var preambleFragment =0;
-var disruptionFragment = [];
-var reasonFragment = 0;
-var lineFragment = 0;
-var lineImage = 0;
-var assembledFragments = {fragments: [], selected: 0};
-var textualFragments = {fragments: [], selected: 0, error_count: 0, errors: []};
-var fragmentText = [];
-var previewEvent = null;
+// Constants
+const AND_FRAGMENT = 1362;
+const DetailIndex = Object.freeze({"detail": 0, "detail_1": 1, "additional_detail":2, "rest_of_line": 3});
+const DetailPanels = Object.freeze({"detail": 1, "detail_1": 2, "additional_detail":3, "rest_of_line": 4});
+const DirectionTextPosition = Object.freeze({"pre":1, "post":2});
+const FILTER_ALL = '.*';
+const LINE_FRAGMENT = 7000;
+const MapDisplayStates = Object.freeze({"no_map": 0, "single_selection": 1, "multi_selection":2});
+const ReasonStates = Object.freeze({"no_reason":0, "post":1, "pre":2});
+const SPELLING_INTERVAL = 2000;  //time in ms (2 seconds)
+const STATION_FRAGMENT = 7001;
+const STATION_FRAGMENT_LIST = 7002;
+const TICKET_FRAGMENT_LIST = 7003;
+const TOTAL_MESSAGE_LENGTH = 254;
+
+// Global Variables
 var applicationName ='';
-var version = '';
-var reasonFragments = [];
-var error_messages = [];
-var stations = [];
-var station_image_scale = 0;
+var assembledFragments = {fragments: [], selected: 0};
+var banned_words = [];
 var currentName ='';
 var currentRole ='';
-var disruptionDetailIds = [];
-var directionFragment = '';
-var directionPosition = '';
-const TOTAL_MESSAGE_LENGTH = 254;
-var spellingTimer;                //timer identifier
-var spellingInterval = 2000;  //time in ms (5 seconds)
+var current_map_display = 0;
+var detailFragments = [[],[],[],[]];
 var dictionary = new Typo( "en_GB" );
+var directionFragment = 0;
+var direction_position = 0;
+var disruptionDetailIds = [];
+var disruptionFragment = [];
+var disruptionText = '';
+var error_messages = [];
+var fragmentText = [];
 var html_loaded = false;
+var lineButton = '';
+var lineFragment = 0;
+var lineImage = 0;
+var lineText ='';
+var map_display_state = 0;
+var preambleFragment =0;
+var preambleText ='';
 var preamble_loaded = false;
-var banned_words = [];
+var previewEvent = null;
+var previousStationFragmentList = []; 
+var reasonFragment = 0; // The current selected reason fragment
+var reasonFragments = [];   //The current list of reasons
+var reason_position = 0;
+var spellingTimer;   //timer identifier
+var start_disruption_fragments = [];
+var start_disruption_id = 0;
+var start_preamble_fragment = 0;
+var start_preamble_id = 0;
+var stationFragmentList = [[],[],[]]; 
+var station_image_scale = 0;
+var stations = [];  // Array of Line Stations
+var textualFragments = {fragments: [], selected: 0, error_count: 0, errors: []};
+var ticketFragments = [];
+var ticketFragmentList = [];
+var version = '';
 
+// Functions to load additional HTML files
 $(function(){
     $("#footer").load("html/footer.html");
 });
@@ -51,9 +77,92 @@ $('#messageassemblypanel').load('html/messageassemblypanel.html', function() {
     updateMessageAssembler();
 });
 
+// Functions
+
+/**
+ */
 function initialise()
 {
     readTextFile("/dictionaries/bannedwords.dic");
+    resetInitialApplicationStates();
+}
+
+function resetInitialApplicationStates()
+{
+    resetDisruptionButtons();
+    resetPreambleButtons();
+    resetReasonButtons();
+
+    updateMessagePanels();
+}
+
+function resetDisruptionButtons()
+{
+    var buttons = document.querySelectorAll('.disruption');
+    var button_name = '';
+    var button_id = 0;
+
+    disruptionFragment = [];
+
+     // Set Button States
+    for (b = 0; b<buttons.length; b++)
+    {
+        button_name = buttons[b].getAttribute('id');
+        button_id = button_name.substr(button_name.indexOf('_') + 1);
+        buttons[b].classList.remove('active');
+        
+        if (start_disruption_id == button_id && 
+            start_disruption_id !=0)
+        {
+            buttons[b].classList.add('active');
+            disruptionFragment = start_disruption_fragments;
+        }
+    }
+}
+
+function resetPreambleButtons()
+{
+    var buttons = document.querySelectorAll('.preamble');
+    var button_name = '';
+    var button_id = 0;
+
+   preambleFragment = 0;
+
+    // Set Button States
+    for (b = 0; b<buttons.length; b++)
+    {
+        button_name = buttons[b].getAttribute('id');
+        button_id = button_name.substr(button_name.indexOf('_') + 1);
+        
+        buttons[b].classList.remove('active');
+        
+        if (start_preamble_id == button_id && 
+            start_preamble_id !=0)
+        {
+            buttons[b].classList.add('active');
+            preambleFragment = start_preamble_fragment;
+        }
+    }
+}
+
+function resetReasonButtons()
+{
+    var buttons = document.querySelectorAll('.reason');
+    var button_name = '';
+    var button_id = 0;
+
+    reasonFragment = 0;
+
+    // Set Button States
+    for (b = 0; b<buttons.length; b++)
+    {
+        buttons[b].classList.remove('active');
+    }
+
+    filterReasons(FILTER_ALL);
+    $('#reasonClear').prop('disabled', true);
+
+
 }
 
 function updateMessagePanels()
@@ -65,8 +174,19 @@ function updateMessagePanels()
 }
 
     
+/**
+ * @param  {} fragments
+ */
 function compileFragments(fragments)
 {
+    var f = 0;
+    var last_token = '';
+    var reason_text = '';
+    var s = 0;
+    var station_fragment_used = 0;
+    var t = 0;
+    var token_arr = [];
+
     fragments.fragments = [];
     
     //Preamble
@@ -75,21 +195,35 @@ function compileFragments(fragments)
        fragments.fragments.push(preambleFragment);
     }
 
-    // Disruption
-    for (var f=0; f<disruptionFragment.length; f++)
+    // Determine whether the reason should be displayed before the disruption
+    if (reason_position == ReasonStates.pre &&
+        reasonFragment != 0)
     {
-        if (disruptionFragment[f] == 7000)
+        fragments.fragments.push(reasonFragment);
+        reason_text = fragmentText[reasonFragment];
+    }
+
+    // Disruption
+    for (f=0; f<disruptionFragment.length; f++)
+    {
+        if (disruptionFragment[f] == LINE_FRAGMENT)
         {
+            // Determine whether a direction has been set
             if (directionFragment)
             {
-                if (directionPosition == 2)
+                if (direction_position == DirectionTextPosition.post &&
+                    !disruptionFragment.includes(STATION_FRAGMENT))
                 {
                     fragments.fragments.push(lineFragment);
                     fragments.fragments.push(directionFragment);
                 }
-                else
+                else if (direction_position == DirectionTextPosition.pre)
                 {
                     fragments.fragments.push(directionFragment);
+                    fragments.fragments.push(lineFragment);
+                }
+                else
+                {
                     fragments.fragments.push(lineFragment);
                 }
             }
@@ -98,17 +232,146 @@ function compileFragments(fragments)
                 fragments.fragments.push(lineFragment);
             }
         }
+        else if (disruptionFragment[f] == STATION_FRAGMENT)
+        {
+            if (stationFragmentList[DetailIndex.detail].length >0)
+            {
+                fragments.fragments.push(stationFragmentList[DetailIndex.detail][0]);
+            }
+
+            // Determine whether a direction has been set
+            if (directionFragment && direction_position == DirectionTextPosition.post)
+            {
+                fragments.fragments.push(directionFragment);
+            }
+
+            station_fragment_used = 1;
+        }
         else
         {
             fragments.fragments.push(disruptionFragment[f]);
         }
     }
 
+    // Details 1
+    if (detailFragments[DetailIndex.detail_1].length > 0)
+    {
+        for (f=0; f < detailFragments[DetailIndex.detail_1].length; f++)
+        {
+            if (detailFragments[DetailIndex.detail_1][f] == STATION_FRAGMENT_LIST)
+            {
+                for (s=0; s < stationFragmentList[DetailIndex.detail_1].length; s++)
+                {
+                    // Determine whethere station is the last in the list
+                    if ((s+1) == stationFragmentList[DetailIndex.detail_1].length && s != 0)
+                    {
+                        fragments.fragments.push(AND_FRAGMENT);
+                    }
+
+                    fragments.fragments.push(stationFragmentList[DetailIndex.detail_1][s]);
+                }
+            }
+            else
+            {
+                fragments.fragments.push(detailFragments[DetailIndex.detail_1][f]);
+            }
+        }
+    }
+
+    // Additional Detail Fragments
+    if (detailFragments[DetailIndex.additional_detail].length > 0)
+    {
+        for (f=0; f < detailFragments[DetailIndex.additional_detail].length; f++)
+        {
+            if (detailFragments[DetailIndex.additional_detail][f] == STATION_FRAGMENT_LIST)
+            {
+                for (s=0; s < stationFragmentList[DetailIndex.additional_detail].length; s++)
+                {
+                    // Determine whethere station is the last in the list
+                    if ((s+1) == stationFragmentList[DetailIndex.additional_detail].length && s != 0)
+                    {
+                        fragments.fragments.push(AND_FRAGMENT);
+                    }
+
+                    fragments.fragments.push(stationFragmentList[DetailIndex.additional_detail][s]);
+                }
+            }
+            else
+            {
+                fragments.fragments.push(detailFragments[DetailIndex.additional_detail][f]);
+            }
+        }
+    }
+
     // Reason
-    if (reasonFragment != 0)
+    if (reason_position == ReasonStates.post &&
+        reasonFragment != 0)
     {
         fragments.fragments.push(reasonFragment);
+        reason_text = fragmentText[reasonFragment];
+
+        //Split reason text into tokens
+        token_arr = reason_text.split(' ');
+        last_token = token_arr.pop();
     }
+
+    // Details
+    if (station_fragment_used == 0 || !detailFragments[DetailIndex.detail].includes(STATION_FRAGMENT)) 
+    {
+        for (f=0; f<detailFragments[DetailIndex.detail].length; f++)
+        {
+            if (detailFragments[DetailIndex.detail][f] == STATION_FRAGMENT)
+            {
+                if (stationFragmentList[DetailIndex.detail].length > 0)
+                {
+                    fragments.fragments.push(stationFragmentList[DetailIndex.detail][0]);
+                }
+            }
+            else
+            {
+                if (fragmentText[detailFragments[f]] != last_token)
+                {
+                    fragments.fragments.push(detailFragments[DetailIndex.detail][f]);
+                }
+            }
+        }
+    }
+
+    // Rest Of Line
+    if (detailFragments[DetailIndex.rest_of_line].length > 0)
+    {
+        for (f=0; f < detailFragments[DetailIndex.rest_of_line].length; f++)
+        {
+            fragments.fragments.push(detailFragments[DetailIndex.rest_of_line][f]);
+        }
+    }
+
+    // Tickets
+    if (ticketFragments.length > 0 && ticketFragmentList.length > 0)
+    {
+        for (f=0; f < ticketFragments.length; f++)
+        {
+            if (ticketFragments[f] == TICKET_FRAGMENT_LIST)
+            {
+                for (t=0; t < ticketFragmentList.length; t++)
+                {
+                    // Determine whethere station is the last in the list
+                    if ((t+1) == ticketFragmentList.length && t != 0)
+                    {
+                        fragments.fragments.push(AND_FRAGMENT);
+                    }
+
+                    fragments.fragments.push(ticketFragmentList[t]);
+                }
+            }
+            else
+            {
+                fragments.fragments.push(ticketFragments[f]);
+            }
+        }
+    }
+
+
 
     fragments.selected = 0;
 }
@@ -126,7 +389,7 @@ function updateMessageAssembler()
         if (f == assembledFragments.selected)
         {
             $('#messageAssembly')
-                    .append(`<u>${fragmentText[id]}</u> |`);
+                    .append(`<u>${fragmentText[id]}</u> | `);
         }
         else
         {
@@ -305,8 +568,8 @@ function filterReasons(searchText)
     for(var f=0; f < reasonFragments.length; f++) 
     { 
         var id = reasonFragments[f];
-        if (fragmentText[id].includes(searchText) ||
-            fragmentText[id].match(searchText))
+        if (fragmentText[id].toLowerCase().includes(searchText) ||
+            fragmentText[id].toLowerCase().match(searchText))
         {
             filterArray.push({id: `${id}`, text: `${fragmentText[id]}`});
         }
@@ -335,7 +598,7 @@ function compareFragments( a, b ) {
     if ( a.text < b.text ){
       return -1;
     }
-    if ( a.text > b.ltext){
+    if ( a.text > b.text){
       return 1;
     }
     return 0;
@@ -374,26 +637,179 @@ function getDateAndTime()
     var t = setTimeout(getDateAndTime, 500);
 }
 
-function updateDetailButtons(id_list)
+function updateDetailButtons(button_list)
 {
-    var buttons = document.querySelectorAll('.detail');
+    var buttons = [];
     var button_name = '';
     var button_id = 0;
-    var enabled = true;
+    
+    // Detail Buttons
+    buttons = document.querySelectorAll('.detail');
+    
     for (b = 0; b<buttons.length; b++)
     {
         button_name = buttons[b].getAttribute('id');
-        button_id = button_name.substr(button_name.indexOf('_') + 1);
-        buttons[b].disabled = true;
-        buttons[b].classList.remove('active');
-        for (i = 0; i < id_list.length; i++)
+        button_id = parseInt(button_name.substr(button_name.indexOf('_') + 1),10);
+
+        // Determine whether the button should be disabled
+        if (button_list.detail.includes(button_id))
         {
-            if (id_list[i] == button_id)
+            // Enabled
+            buttons[b].disabled = false;
+        }
+        else
+        {
+            // Disabled
+            buttons[b].disabled = true;
+            if (buttons[b].classList.contains('active'))
             {
-                buttons[b].disabled = false;
+                buttons[b].classList.remove('active');
+                detailFragments[DetailIndex.detail] = [];
+                stationFragmentList[DetailIndex.detail] = [];
+                $('#detailClear').prop('disabled', true);
             }
         }
     }
+
+    // Detail_1 Buttons
+    buttons = document.querySelectorAll('.detail_1');
+
+    for (b = 0; b<buttons.length; b++)
+    {
+        button_name = buttons[b].getAttribute('id');
+        button_id = parseInt(button_name.substr(button_name.lastIndexOf('_') + 1),10);
+        
+        // Determine whether the button should be disabled
+        if (button_list.detail_1.includes(button_id))
+        {
+            // Enabled
+            buttons[b].disabled = false;
+        }
+        else
+        {
+            // Disabled
+            buttons[b].disabled = true;
+            if (buttons[b].classList.contains('active'))
+            {
+                buttons[b].classList.remove('active');
+                detailFragments[DetailIndex.detail_1] = [];
+                stationFragmentList[DetailIndex.detail_1] = [];
+                $('#detail_1_clear').prop('disabled', true);
+            }
+        }
+    }
+
+    // Additional Buttons
+    buttons = document.querySelectorAll('.additional_detail');
+   
+    for (b = 0; b<buttons.length; b++)
+    {
+        button_name = buttons[b].getAttribute('id');
+        button_id = parseInt(button_name.substr(button_name.lastIndexOf('_') + 1),10);
+
+        // Determine whether the button should be disabled
+        if (button_list.additional.includes(button_id))
+        {
+            // Enabled
+            buttons[b].disabled = false;
+        }
+        else
+        {
+           // Disabled
+            buttons[b].disabled = true;
+            if (buttons[b].classList.contains('active'))
+            {
+                buttons[b].classList.remove('active');
+                detailFragments[DetailIndex.additional_detail] = [];
+                stationFragmentList[DetailIndex.additional_detail] = [];
+                $('#additional_detail_clear').prop('disabled', true);
+            }
+        }
+    }
+
+    // Rest of Line
+    buttons = document.querySelectorAll('.rest');
+   
+    for (b = 0; b<buttons.length; b++)
+    {
+        button_name = buttons[b].getAttribute('id');
+        button_id = parseInt(button_name.substr(button_name.lastIndexOf('_') + 1),10);
+
+        // Determine whether the button should be disabled
+        if (button_list.rest.includes(button_id))
+        {
+            // Enabled
+            buttons[b].disabled = false;
+        }
+        else
+        {
+           // Disabled
+            buttons[b].disabled = true;
+            if (buttons[b].classList.contains('active'))
+            {
+                buttons[b].classList.remove('active');
+                detailFragments[DetailIndex.rest_of_line] = [];
+                $('#rest_of_line_clear').prop('disabled', true);
+            }
+        }
+    }
+}
+
+function updateDirectionButtons(state)
+{
+    var buttons = [];
+
+    // Determine whether the clear button should be disabled
+    if (state == 0)
+    {
+        $('#directionClear').prop('disabled', true);
+    }
+
+    // Detail Buttons
+    buttons = document.querySelectorAll('.direction');
+
+    for (b = 0; b<buttons.length; b++)
+    {
+        // Determine whether the button should unselected
+        if (state == 0 && buttons[b].classList.contains('active'))
+        {
+            buttons[b].classList.remove('active');
+            directionFragment = 0;
+        }
+        buttons[b].disabled = !state;
+    }
+}
+
+
+function updateTicketList(state)
+{
+    // Determine whether the clear button should be disabled
+    if (state == 0)
+    {
+        // Disable Clear Button
+        $('#ticketClear').prop('disabled', true);
+
+        // Remove Selections
+        $('.ticket_item').each(function()   {
+            $(this).css('background-color', '#e9ecef');
+            $(this).css('color', 'black');
+        })
+    
+        ticketFragmentList = [];
+    }
+
+    $('.ticket_item').each(function()   {
+
+        // Determine whether the list item should be enabled
+        if (state == 0)
+        {
+            $(this).addClass('ticket_disabled');
+        }
+        else
+        {
+            $(this).removeClass('ticket_disabled');
+        }
+    })
 }
 
 function onTextualMessageEdit()
@@ -550,6 +966,31 @@ function setEndOfContenteditable(contentEditableElement)
         range.moveToElementText(contentEditableElement);
         range.collapse(false);
         range.select();
+    }
+}
+
+function updateStationList()
+{
+    var station_list = [];
+    var id = 0;
+    $('#selectedStationList').empty();
+
+    station_list = stationFragmentList[current_map_display];
+
+    if (station_list.length > 0)
+    {
+        $('#selectedStationList').html(`<ul class="message_font" style="margin: 0px">`);
+
+        for (var s=0; s < station_list.length; s++)
+        {
+            id = station_list[s];
+
+            $('#selectedStationList')
+                .append(`<li>${fragmentText[id]}</li>`);
+        }
+
+        $('#selectedStationList')
+                .append(`</ul>`);
     }
 }
 
