@@ -1,4 +1,17 @@
-// Constants
+/**
+ * Copyright (c) 2020 London Underground
+ * 
+ * @module js/main.js
+ *
+ * @fileoverview Handles the main client functionallity 
+ *
+ * @summary Main Client Handler
+ * @author Jason Caldwell
+ */
+
+/*-----------------------------------------------------------------------------
+  Global Constants
+-------------------------------------------------------------------------------*/
 const AND_FRAGMENT = 1362;
 const DetailIndex = Object.freeze({"detail": 0, "detail_1": 1, "additional_detail":2, "rest_of_line": 3});
 const DetailPanels = Object.freeze({"detail": 1, "detail_1": 2, "additional_detail":3, "rest_of_line": 4});
@@ -13,10 +26,14 @@ const STATION_FRAGMENT_LIST = 7002;
 const TICKET_FRAGMENT_LIST = 7003;
 const TOTAL_MESSAGE_LENGTH = 254;
 
-// Global Variables
+/*-----------------------------------------------------------------------------
+  Global Variables
+-------------------------------------------------------------------------------*/
 var applicationName ='';
 var assembledFragments = {fragments: [], selected: 0};
-var banned_words = [];
+var banned_words = {fragments: []};
+var builderFragments = [];
+var completeFragmentData = [];
 var currentName ='';
 var currentRole ='';
 var current_map_display = 0;
@@ -30,6 +47,7 @@ var disruptionText = '';
 var error_messages = [];
 var fragmentText = [];
 var html_loaded = false;
+var initialLine = 0;
 var lineButton = '';
 var lineFragment = 0;
 var lineImage = 0;
@@ -56,7 +74,9 @@ var ticketFragments = [];
 var ticketFragmentList = [];
 var version = '';
 
-// Functions to load additional HTML files
+/*-----------------------------------------------------------------------------
+  Functions to load additional HTML files
+-------------------------------------------------------------------------------*/
 $(function(){
     $("#footer").load("html/footer.html");
 });
@@ -77,9 +97,8 @@ $('#messageassemblypanel').load('html/messageassemblypanel.html', function() {
     updateMessageAssembler();
 });
 
-// Functions
-
 /**
+ *  Initialise the Application
  */
 function initialise()
 {
@@ -87,15 +106,23 @@ function initialise()
     resetInitialApplicationStates();
 }
 
+/**
+ * Reset the initial states of the Application
+ */
 function resetInitialApplicationStates()
 {
     resetDisruptionButtons();
     resetPreambleButtons();
     resetReasonButtons();
+    resetDetailButtons();
+    resetDirectionButtons();
+    resetTicketOptions();
 
     updateMessagePanels();
 }
-
+/**
+ * Reset the active states of the disruption buttons
+ */
 function resetDisruptionButtons()
 {
     var buttons = document.querySelectorAll('.disruption');
@@ -120,6 +147,9 @@ function resetDisruptionButtons()
     }
 }
 
+/**
+ * Reset the active states of the Preamble buttons
+ */
 function resetPreambleButtons()
 {
     var buttons = document.querySelectorAll('.preamble');
@@ -144,7 +174,9 @@ function resetPreambleButtons()
         }
     }
 }
-
+/**
+ * Reset the active and enabled states of the Reason buttons
+ */
 function resetReasonButtons()
 {
     var buttons = document.querySelectorAll('.reason');
@@ -153,29 +185,167 @@ function resetReasonButtons()
 
     reasonFragment = 0;
 
+    if ($('#reasonSelectedList').contents().length == 0)
+    {
+        filterReasons(FILTER_ALL);
+    }
+
     // Set Button States
     for (b = 0; b<buttons.length; b++)
     {
         buttons[b].classList.remove('active');
+        buttons[b].disabled = true;
     }
 
-    filterReasons(FILTER_ALL);
     $('#reasonClear').prop('disabled', true);
+    $('#reasonTextSearch').prop('disabled', true);
+    $('#reasonSearchClear').prop('disabled', true);
+    $('#reasonText').prop('disabled', true);
 
-
+    $('.reason_item').each(function()   {
+        $(this).addClass('reason_disabled');
+        $(this).css('background-color', '#e9ecef');
+        $(this).css('color', 'black');
+    })
 }
 
+/**
+ * Reset the active states of the Detail buttons
+ */
+function resetDetailButtons()
+{
+    var buttons = document.querySelectorAll('.detail');
+    var button_name = '';
+    var button_id = 0;
+
+   detailFragments[DetailIndex.detail] = [];
+
+    // Set Button States
+    for (b = 0; b<buttons.length; b++)
+    {
+        button_name = buttons[b].getAttribute('id');
+        button_id = button_name.substr(button_name.indexOf('_') + 1);
+        
+        buttons[b].classList.remove('active');
+        buttons[b].disabled = true;
+    }
+
+    buttons = document.querySelectorAll('.detail_1');
+
+    detailFragments[DetailIndex.detail_1] = [];
+
+    // Set Button States
+    for (b = 0; b<buttons.length; b++)
+    {
+        button_name = buttons[b].getAttribute('id');
+        button_id = button_name.substr(button_name.indexOf('_') + 1);
+        
+        buttons[b].classList.remove('active');
+        buttons[b].disabled = true;
+    }
+
+    buttons = document.querySelectorAll('.additional_detail');
+    detailFragments[DetailIndex.additional_detail] = [];
+
+    // Set Button States
+    for (b = 0; b<buttons.length; b++)
+    {
+        button_name = buttons[b].getAttribute('id');
+        button_id = button_name.substr(button_name.indexOf('_') + 1);
+        
+        buttons[b].classList.remove('active');
+        buttons[b].disabled = true;
+    }
+
+    buttons = document.querySelectorAll('.rest');
+    detailFragments[DetailIndex.rest_of_line] = [];
+
+    // Set Button States
+    for (b = 0; b<buttons.length; b++)
+    {
+        button_name = buttons[b].getAttribute('id');
+        button_id = button_name.substr(button_name.indexOf('_') + 1);
+        
+        buttons[b].classList.remove('active');
+        buttons[b].disabled = true;
+    }
+
+
+    $('#detailClear').prop('disabled', true);
+    $('#detail_1_clear').prop('disabled', true);
+    $('#additional_detail_clear').prop('disabled', true);
+    $('#rest_of_line_clear').prop('disabled', true);
+}
+
+
+function resetDirectionButtons()
+{
+    var buttons = document.querySelectorAll('.direction');
+    var button_name = '';
+    var button_id = 0;
+
+   directionFragment = 0;
+
+    // Set Button States
+    for (b = 0; b<buttons.length; b++)
+    {
+        button_name = buttons[b].getAttribute('id');
+        button_id = button_name.substr(button_name.indexOf('_') + 1);
+        
+        buttons[b].classList.remove('active');
+        buttons[b].disabled = true;
+    }
+
+    $('#directionClear').prop('disabled', true);
+}
+
+function resetTicketOptions()
+{
+    $('#ticketClear').prop('disabled', true);
+
+    $('.ticket_item').each(function()   {
+        $(this).css('background-color', '#e9ecef');
+        $(this).css('color', 'black');
+        $(this).addClass('ticket_disabled');
+    })
+
+    ticketFragmentList = [];
+}
+
+function resetLineButton()
+{
+    var button_name = '';
+    var button_id = 0;
+
+    $('.line').each(function()   {
+        button_name = $(this).attr('id');
+        button_id = button_name.substr(button_name.indexOf('_') + 1);
+       
+        if (button_id == initialLine)
+        {
+            $(this).trigger('click');
+        }
+    })
+}
+
+/**
+ * Updates all of the message panels
+ */
 function updateMessagePanels()
 {
     compileFragments(assembledFragments);
     updateMessageAssembler();
     compileFragments(textualFragments);
     updateTextualMessage();
+    compileFragments(builderFragments);
+    updateBuilderMessage();
 }
 
     
 /**
- * @param  {} fragments
+ * Compiles the fragments for display and preview
+ * 
+ * @param  {} fragments - The fragment store
  */
 function compileFragments(fragments)
 {
@@ -375,7 +545,9 @@ function compileFragments(fragments)
 
     fragments.selected = 0;
 }
-
+/**
+ * Updates the Message in the Message Assembler panel
+ */
 function updateMessageAssembler()
 {
     var id = 0;
@@ -398,12 +570,21 @@ function updateMessageAssembler()
         }
     }
 
+    if (assembledFragments.selected >= assembledFragments.fragments.length)
+    {
+        $('#messageAssembly')
+                    .append(`<u>|</u>`);
+    }
+
     $('#messageAssembly')
                     .append(`</span>`);
 
     updateAssemblyButtons();             
 }
 
+/**
+ * Updates the Message in the Textual Message panel
+ */
 function updateTextualMessage()
 {
     var id = 0;
@@ -417,7 +598,7 @@ function updateTextualMessage()
         message = message + fragmentText[id] + ' ';
     }
 
-    $('#textualMessage').html(`<span class="message_font">${message.trim()}</span>`);
+    $('#textualMessage').html(`<span class="message_font">${message.trim()}.</span>`);
 
     updateTextualMessageLength();
     updateTextualButtons();  
@@ -425,8 +606,13 @@ function updateTextualMessage()
     textualFragments.error_count = 0;
     textualFragments.errors = [];
 
-}
+    // Empty the suggestions list
+    $('#textualSuggestions').empty();
 
+}
+/**
+ * Updates the textual message length 
+ */
 function updateTextualMessageLength()
 {
     var message = '';
@@ -436,13 +622,19 @@ function updateTextualMessageLength()
 
     if(document.getElementById("textualMessage") != null)
     {
-         message = document.getElementById('textualMessage').innerText;
-    
+        // Get the current message
+        message = document.getElementById('textualMessage').innerText;
 
+        // Calculate lenngths
         message_length = message.trim().length;
+
+        if (message.endsWith('.'))
+        {
+            message_length = message_length - 1;
+        }
         char_remaining = TOTAL_MESSAGE_LENGTH - message_length;
         
-
+        // Display length
         document.getElementById('messagelength').innerHTML = 'Message Length: ';
         
         if (message_length > TOTAL_MESSAGE_LENGTH )
@@ -459,22 +651,58 @@ function updateTextualMessageLength()
     }
 }
 
+/**
+ * Updates the Message in the Message Assembler panel
+ */
+function updateBuilderMessage()
+{
+    var id = 0;
+    var message = '';
+
+    $('#builderCompleteMessage').empty();
+    
+    for (var f=0; f < builderFragments.fragments.length; f++)
+    {
+        id = builderFragments.fragments[f];
+        message = message + fragmentText[id] + ' ';
+    }
+
+    $('#builderCompleteMessage').html(`<span class="builder_message_font">${message.trim()}.</span>`);      
+    
+    updateBuilderMessageButtons();
+}
+
+/**
+ * Updates the message assembly control buttons
+ */
 function updateAssemblyButtons()
 {
+    // Determine whether the assembler contains a message
     if  (assembledFragments.fragments.length > 0)
     {
+        // Update previous and next
         $('#assemblyPrevious').prop('disabled', 
             (assembledFragments.selected == 0));
         
         $('#assemblyNext').prop('disabled', 
-            (assembledFragments.selected == (assembledFragments.fragments.length - 1)));
+            (assembledFragments.selected == assembledFragments.fragments.length));
 
-        $('#assemblyDelete').prop('disabled', false);
+        // Enable control buttons
+
+        if (assembledFragments.selected < assembledFragments.fragments.length)
+        {
+            $('#assemblyDelete').prop('disabled', false);
+        }
+        else
+        {
+            $('#assemblyDelete').prop('disabled', true);
+        }
         $('#assemblyClear').prop('disabled', false);
         $('#previewClick').prop('disabled', false);
     }
     else
     {
+        // No message - disable all buttons
         $('#assemblyNext').prop('disabled', true);
         $('#assemblyDelete').prop('disabled', true);
         $('#assemblyPrevious').prop('disabled', true);
@@ -482,44 +710,87 @@ function updateAssemblyButtons()
         $('#previewClick').prop('disabled', true);
     }
 }
-
+/**
+ * Updates the textual message control buttons
+ */
 function updateTextualButtons()
 {
+    // Determine whether a message is being displayed
     if  (textualFragments.fragments.length > 0)
     {
+        // Enable clear button
         $('#textualClear').prop('disabled', false);
     }
     else
     {
+        // No message - disable all buttons
         $('#textualNext').prop('disabled', true);
         $('#textualPrevious').prop('disabled', true);
         $('#textualClear').prop('disabled', true);
     }
 }
 
-function previewSound()
+/**
+ * Updates the textual message control buttons
+ */
+function updateBuilderMessageButtons()
+{
+    // Determine whether the builder contains a message
+    if  (builderFragments.fragments.length > 0)
+    {
+        // Enable control buttons
+        $('#builderClear').prop('disabled', false);
+        $('#builderPreview').prop('disabled', false);
+    }
+    else
+    {
+        // No message - disable all buttons
+        $('#builderClear').prop('disabled', true);
+        $('#builder').prop('disabled', true);
+    }
+}
+
+/**
+ * Preview the message in the message audibly
+ *
+ * @param {array} fragments - the message fragments
+ */
+function previewSound(fragments)
 {
     var file_names=[];
-    
+
     // Build Play List
-    for (var f=0; f < assembledFragments.fragments.length; f++)
+    for (var f=0; f < fragments.length; f++)
     {
-        file_names[f] = '/media/WavFiles/' + assembledFragments.fragments[f] + '.wav';
+        if (fragments[f] < LINE_FRAGMENT && fragments[f] !=0)
+        {
+            file_names[f] = '/media/WavFiles/' + fragments[f] + '.wav';
+        }
     }
 
     playSound(file_names);
 }
-
+/**
+ * Play the audio files in the play list
+ * 
+ * @param  {} file_names - the audio playlist
+ */
 function playSound(file_names) {
     var sound = new Howl({
         src: [file_names[0]],
+        
+        // When the current audio file has finished
         onend: function() {
             file_names.shift();
+
+            // determine whether any more files are left to play
             if (file_names.length > 0) {
+                // play next file
                 playSound(file_names);
             }
             else
             {
+                // No more files - enable preview button
                 if (previewEvt)
                 {
                     $(previewEvt.target).prop('disabled',false);
@@ -531,28 +802,34 @@ function playSound(file_names) {
     sound.play();
 }
 
-function soundFinished(evt)
-{
-    $(evt.target).prop('disabled',false);
-}
-
+/**
+ *  Generates text from the fragment elements
+ *
+ * @param {array} fragmentElements - the fragment elements
+ * @returns {string} returns the generated text
+ */
 function generateFragmentText(fragmentElements)
 {
     var text = '';
 
+    // Add each element to the text
     for (f = 0; f <fragmentElements.length; f++)
     {
+        // Add seperator
         if (f != 0)
         {
             text = text + ' | ';
         }
 
-        if (fragmentElements[f] == 7000)
+        // Determine whether the fragment is the line fragment
+        if (fragmentElements[f] == LINE_FRAGMENT)
         {
+            // add line text
             text = text + '{line}'
         }
         else
         {
+            // add fragment text
             text = text + fragmentText[fragmentElements[f]];
         }
     }
@@ -560,6 +837,11 @@ function generateFragmentText(fragmentElements)
     return text;
 }
 
+/**
+ * Filters the reasons using the search criteria
+ *
+ * @param {string} searchText - the search criteria
+ */
 function filterReasons(searchText)
 {
     var filterArray = [];
@@ -584,30 +866,80 @@ function filterReasons(searchText)
         if (f==0)
         {
             $('#reasonSelectedList')
-                .html(`<li class="list_font" id="reason_${filterArray[f].id}">${filterArray[f].text}</li>`);
+                .html(`<li class="list_font reason_item" id="reason_${filterArray[f].id}">${filterArray[f].text}</li>`);
         }
         else
         {
             $('#reasonSelectedList')
-                .append(`<li class="list_font" id="reason_${filterArray[f].id}">${filterArray[f].text}</li>`);
+                .append(`<li class="list_font reason_item" id="reason_${filterArray[f].id}">${filterArray[f].text}</li>`);
         }
     }      
 }
 
+/**
+ * Filters the reasons using the search criteria
+ *
+ * @param {string} searchText - the search criteria
+ */
+function filterFragmentData(searchText)
+{
+    var filterArray = [];
+
+    $('#fragmentArea').empty();
+
+    // Find Fragments based on search criteria
+    for(var f=0; f < completeFragmentData.length; f++) 
+    { 
+        if (String(completeFragmentData[f].detail).toLowerCase().startsWith(searchText) ||
+            String(completeFragmentData[f].detail).toLowerCase().match(searchText))
+        {
+            filterArray.push(completeFragmentData[f]);
+        }
+    }
+
+    console.log(filterArray);
+
+    
+    // Sort Array
+    // filterArray.sort(compareFragments);
+
+    //Add fragments to list
+    for(f=0; f < filterArray.length; f++) 
+    { 
+        $('#fragmentArea')
+                .append(`<li class="fragment_list_font fragment_item" id="fragment_${filterArray[f].section_id}">
+                ${filterArray[f].vid_text} (${String(filterArray[f].section_position).toUpperCase()})<br>
+                <span class="fragment_list_small_font">${filterArray[f].detail}</span><br><br></li>`);
+    }      
+}
+
+/**
+ * Compares the two elements 
+ *
+ * @param {string} a - element a
+ * @param {string} b - element a
+ * @returns {number} -1 if a < b; 1 if a > b; 0 if a= b
+ */
 function compareFragments( a, b ) {
+    // determine if a < b
     if ( a.text < b.text ){
       return -1;
     }
+    // determine if a > b
     if ( a.text > b.text){
       return 1;
     }
+    // a= b
     return 0;
 }
 
+/**
+ *  Updates the application status bar
+ *
+ */
 function updateStatusBar()
 {
     updateStatusApplicationData();
-    // updateStatusUserName();
     getDateAndTime();
     
 }

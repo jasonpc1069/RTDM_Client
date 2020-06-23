@@ -19,12 +19,12 @@ $(document).ready(function(){
                             {
                                 $('#lineSelectedList')
                                     .append(`<button type="button" class="btn btn-primary btn-block lineSelection" data-dismiss="modal" value="${value.lines[l].line}" id="line_selection_${l}"
-                                    style="background-color: ${value.lines[l].background_colour}; color: ${value.lines[l].text_colour}">${value.lines[l].line}</button>`);
+                                    style="background-color: ${value.lines[l].background_colour}; color: ${value.lines[l].text_colour}">${value.lines[l].message_text}</button>`);
                             }
                         }
                         else
                         {
-                            lineButton.siblings().css('background-color', '#e9ecef');
+                            lineButton.siblings().css('background-color', '#e6e6e6');
                             lineButton.siblings().css('color', 'black');
                             lineButton.siblings().text(lineButton.siblings().attr('name'));
 
@@ -82,27 +82,20 @@ $(document).ready(function(){
                     {
                         var text = generateFragmentText(value.fragment_id);
                             
-                        if (!value.reason != ReasonStates.no_reason)
+                        if (value.reason == ReasonStates.no_reason)
                         {
-                            reasonFragment = '';
-    
-                            $('#reasonSelectedList').empty();
-    
-                            $('.reason').each(function()   {
-                                $(this).removeClass('active');
-                            })
-    
-                            $('#reasonTextSearch').prop('disabled', true);
-                            $('#reasonSearchClear').prop('disabled', true);
-                            $('#reasonText').prop('disabled', true);
-                            $('#reasonClear').prop('disabled', true);
+                            resetReasonButtons();
                         }
                         else
                         {
                             if ($('#reasonSelectedList').contents().length == 0)
                             {
-                                filterReasons('.*');
+                                filterReasons(FILTER_ALL);
                             }
+
+                            $('.reason_item').each(function()   {
+                                $(this).removeClass('reason_disabled');
+                            })
                         }
                         
                         $('.reason').each(function()   {
@@ -155,12 +148,12 @@ $(document).ready(function(){
                                 if (f==0)
                                 {
                                     $('#reasonSelectedList')
-                                        .html(`<li class="list_font" id="reason_${id}">${fragmentText[id]}</li>`);
+                                        .html(`<li class="list_font reason_item" id="reason_${id}">${fragmentText[id]}</li>`);
                                 }
                                 else
                                 {
                                     $('#reasonSelectedList')
-                                        .append(`<li class="list_font" id="reason_${id}">${fragmentText[id]}</li>`);
+                                        .append(`<li class="list_font reason_item" id="reason_${id}">${fragmentText[id]}</li>`);
                                 }
                             } 
                         }
@@ -221,19 +214,23 @@ $(document).ready(function(){
                 .html(`<img src="/img/${lineImage}" alt="stationselection" id="station" usemap="#stationMap">`);
                 
             $('#stationAreas').empty();
-            for (s=0; s < stations.length; s++)
-            {
-                x1 = (stations[s].coordinates.xpos * scale);
-                y1 = (stations[s].coordinates.ypos * scale);
-                x2 = x1 + (stations[s].coordinates.width * scale);
-                y2 = y1 + (stations[s].coordinates.height * scale);
 
-                station_name = stations[s].station_name;
-                id = stations[s].fragment_id;
-        
-                $('#stationAreas').
-                    append (`<area shape="rect" coords="${x1},${y1},${x2},${y2}" 
-                        alt="${station_name}" onclick="stationClicked(this)" id="stationArea_${id}" title="${station_name}">`);
+            if (stations)
+            {
+                for (s=0; s < stations.length; s++)
+                {
+                    x1 = (stations[s].coordinates.xpos * scale);
+                    y1 = (stations[s].coordinates.ypos * scale);
+                    x2 = x1 + (stations[s].coordinates.width * scale);
+                    y2 = y1 + (stations[s].coordinates.height * scale);
+
+                    station_name = stations[s].station_name;
+                    id = stations[s].fragment_id;
+            
+                    $('#stationAreas').
+                        append (`<area shape="rect" coords="${x1},${y1},${x2},${y2}" 
+                            alt="${station_name}" onclick="stationClicked(this)" id="stationArea_${id}" title="${station_name}">`);
+                }
             }
         }
         
@@ -286,19 +283,23 @@ $(document).ready(function(){
                 .html(`<img src="/img/${lineImage}" alt="stationselection" id="station" usemap="#stationMap">`);
                 
             $('#stationAreas').empty();
-            for (s=0; s < stations.length; s++)
-            {
-                x1 = (stations[s].coordinates.xpos * scale);
-                y1 = (stations[s].coordinates.ypos * scale);
-                x2 = x1 + (stations[s].coordinates.width * scale);
-                y2 = y1 + (stations[s].coordinates.height * scale);
 
-                station_name = stations[s].station_name;
-                id = stations[s].fragment_id;
-        
-                $('#stationAreas').
-                    append (`<area shape="rect" coords="${x1},${y1},${x2},${y2}" 
-                        alt="${station_name}" onclick="stationClicked(this)" id="stationArea_${id}" title="${station_name}">`);
+            if (stations)
+            {
+                for (s=0; s < stations.length; s++)
+                {
+                    x1 = (stations[s].coordinates.xpos * scale);
+                    y1 = (stations[s].coordinates.ypos * scale);
+                    x2 = x1 + (stations[s].coordinates.width * scale);
+                    y2 = y1 + (stations[s].coordinates.height * scale);
+
+                    station_name = stations[s].station_name;
+                    id = stations[s].fragment_id;
+            
+                    $('#stationAreas').
+                        append (`<area shape="rect" coords="${x1},${y1},${x2},${y2}" 
+                            alt="${station_name}" onclick="stationClicked(this)" id="stationArea_${id}" title="${station_name}">`);
+                }
             }
         }
         
@@ -352,19 +353,23 @@ $(document).ready(function(){
                 .html(`<img src="/img/${lineImage}" alt="stationselection" id="station" usemap="#stationMap">`);
                 
             $('#stationAreas').empty();
-            for (s=0; s < stations.length; s++)
-            {
-                x1 = (stations[s].coordinates.xpos * scale);
-                y1 = (stations[s].coordinates.ypos * scale);
-                x2 = x1 + (stations[s].coordinates.width * scale);
-                y2 = y1 + (stations[s].coordinates.height * scale);
 
-                station_name = stations[s].station_name;
-                id = stations[s].fragment_id;
-        
-                $('#stationAreas').
-                    append (`<area shape="rect" coords="${x1},${y1},${x2},${y2}" 
-                        alt="${station_name}" onclick="stationClicked(this)" id="stationArea_${id}" title="${station_name}">`);
+            if (stations)
+            {
+                for (s=0; s < stations.length; s++)
+                {
+                    x1 = (stations[s].coordinates.xpos * scale);
+                    y1 = (stations[s].coordinates.ypos * scale);
+                    x2 = x1 + (stations[s].coordinates.width * scale);
+                    y2 = y1 + (stations[s].coordinates.height * scale);
+
+                    station_name = stations[s].station_name;
+                    id = stations[s].fragment_id;
+            
+                    $('#stationAreas').
+                        append (`<area shape="rect" coords="${x1},${y1},${x2},${y2}" 
+                            alt="${station_name}" onclick="stationClicked(this)" id="stationArea_${id}" title="${station_name}">`);
+                }
             }
         }
         
@@ -439,16 +444,35 @@ $(document).ready(function(){
 
     $('#stationSelect').click(function(evt){
         updateMessagePanels();
-    })
+    });
 
     $('#stationClear').click(function(evt){
         $('#selectedStationList').empty();
         stationFragmentList[current_map_display] = [];
-    })
+        updateMessagePanels();
+    });
     
     $('#stationCancel').click(function(evt){
         stationFragmentList[current_map_display] = previousStationFragmentList;
-    })
+        updateMessagePanels();
+    });
+
+    $("#fragmentArea").on('click','li',function() {
+        var id = $(this).attr('id').split("_").pop();
+        var index = assembledFragments.selected;
+
+        $(this).siblings().css('background-color', '#e9ecef');
+        $(this).siblings().css('color', 'black');
+    
+        $(this).css('background-color', 'green');
+        $(this).css('color', 'white');
+
+        assembledFragments.fragments.splice(index,0,id).join();
+        textualFragments.fragments.splice(index,0,id).join();
+
+        updateMessageAssembler();
+        updateTextualMessage();
+    });
 });
 
 $(document).on('click', '.lineSelection', (evt)=>{
@@ -546,6 +570,13 @@ $(document).on('click', '#reasonTextSearch', (evt)=>{
 
     filterReasons(text);
 
+});
+
+$(document).on('click', '#fragmentSearch', (evt)=>{
+    var text = document.getElementById('fragmentText').value;
+    text = text.toLowerCase();
+            
+    filterFragmentData(text);
 });
 
 $(document).on('click', '#reasonSearchClear', (evt)=>{
@@ -654,13 +685,27 @@ $(document).on('click', '#directionClear', (evt)=>{
     updateMessagePanels();
 });
 
+// Builder
+$(document).on('click', '#builderClear', (evt)=>{
+    resetLineButton();
+});
+
+$(document).on('click', '#builderPreview', (evt)=>{
+    if ($('#builderCompleteMessage').contents().length > 0)
+    {
+        $(evt.target).prop('disabled',true);
+        previewEvt = evt;
+        previewSound(builderFragments.fragments);
+    }
+});
+
 // Assembler Buttons
 $(document).on('click', '#previewClick', (evt)=>{
     if ($('#messageAssembly').contents().length > 0)
     {
         $(evt.target).prop('disabled',true);
         previewEvt = evt;
-        previewSound();
+        previewSound(assembledFragments.fragments);
     }
 });
 
@@ -677,7 +722,7 @@ $(document).on('click', '#assemblyClear', (evt)=>{
 });
 
 $(document).on('click', '#assemblyNext', (evt)=>{
-    if (assembledFragments.selected < (assembledFragments.fragments.length-1))
+    if (assembledFragments.selected < (assembledFragments.fragments.length))
     {
         assembledFragments.selected = assembledFragments.selected + 1;
     }
@@ -698,14 +743,16 @@ $(document).on('click', '#assemblyDelete', (evt)=>{
     if (assembledFragments.selected < assembledFragments.fragments.length)
     {
         assembledFragments.fragments.splice(assembledFragments.selected,1);
+        textualFragments.fragments.splice(assembledFragments.selected,1)
     }
 
-    if (assembledFragments.selected > (assembledFragments.fragments.length-1))
+    if (assembledFragments.selected > (assembledFragments.fragments.length))
     {
-        assembledFragments.selected = (assembledFragments.fragments.length-1);
+        assembledFragments.selected = (assembledFragments.fragments.length);
     }
 
     updateMessageAssembler();
+    updateTextualMessage();
 });
 
 $(document).on('click', '#textualClear', (evt)=>{
@@ -816,6 +863,8 @@ function stationClicked(area)
         $('#selectedStationList')
                 .append(`</ul>`);
     }
+
+    updateMessagePanels();
 }
 
 $(document).on('shown.bs.modal','#stationModal', function () {

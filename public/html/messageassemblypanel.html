@@ -8,14 +8,16 @@
                 <i class="fas fa-search"></i>
             </span>
         </div>
-        <input type="text" id="messageText" placeholder="Enter search text" class="form-control">
+        <input type="text" id="fragmentText" placeholder="Enter search text" class="form-control">
         <div class="input-group-append">
-            <button class="btn btn-primary button_text">Search</button>
+            <button class="btn btn-primary button_text" id="fragmentSearch">Search</button>
         </div>
     </div>
     <div class="form-group">
         <label for="fragmentArea" class="heading_font ident10 m-0">Fragments</label>
-        <textarea id="fragmentArea" rows="15" class="form-control ident10 message_fragment_text" readonly></textarea>
+        <div class="form-control ident10 message_fragment_text">
+            <ol class="fragment_list" id="fragmentArea"></ol>
+        </div>
     </div>
     <label class="heading_font ident10 m-0">Complete Message</label>
     <div class="complete_message_panel ident10 rounded">

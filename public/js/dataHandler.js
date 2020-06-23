@@ -24,6 +24,7 @@ $(document).ready(function(){
 
     $.getJSON('data/current/fragment_data.json',(fragmentData)=>{
         if(fragmentData){
+            completeFragmentData = fragmentData;
             $.each(fragmentData, (key, value)=>{
                 fragmentText[value.section_id] = value.detail;
             })
@@ -53,19 +54,21 @@ $(document).ready(function(){
                         lineImage = value.lines[0].image;
                         stations = value.lines[0].stations;
                         station_image_scale =  value.lines[0].image_scale;
+
+                        initialLine = id;
                     }
                 }
 
                 if (value.lines.length == 1)
                 {
                     $('#lineList')
-                                .append(`<button type="button" class="line btn btn-dark" id="line_${id}" value="${id}"
+                                .append(`<button type="button" class="line btn btn-outline-dark" id="line_${id}" value="${id}"
                                 name="${str}" style="background-color: ${background}; color: ${text_colour}">${str}</button>`);
                 }
                 else
                 {
                     $('#lineList')
-                                .append(`<button type="button" class="line btn btn-dark" id="line_${id}" value="${id}" data-toggle="modal" data-target="#lineModal"
+                                .append(`<button type="button" class="line btn btn-outline-dark" id="line_${id}" value="${id}" data-toggle="modal" data-target="#lineModal"
                                 name="${str}" style="background-color: ${background}; color: ${text_colour}">${str}</button>`);
                 }
                 
@@ -91,7 +94,7 @@ $(document).ready(function(){
                 if (value.active == 1)
                 {
                     $('#preambleList')
-                                .append(`<button type="button" class="preamble btn btn-outline-success active" id="preamble_${id}" name="preamble" value="${str}">${str}</button>`);
+                                .append(`<button type="button" class="preamble btn btn-outline-dark active" id="preamble_${id}" name="preamble" value="${str}">${str}</button>`);
                     preambleText = fragmentText[value.fragment_id];
                     preambleFragment = value.fragment_id;
 
@@ -102,7 +105,7 @@ $(document).ready(function(){
                 else
                 {
                     $('#preambleList')
-                                .append(`<button type="button" class="preamble btn btn-outline-success" id="preamble_${id}" name="preamble" value="${str}">${str}</button>`);
+                                .append(`<button type="button" class="preamble btn btn-outline-dark" id="preamble_${id}" name="preamble" value="${str}">${str}</button>`);
                 }  
             }) 
         }

@@ -53,12 +53,23 @@ area
     flex: 1 0 auto;
 }
 
+.btn-outline-dark:hover {    
+    background-color: #e6e6e6; 
+    color: black;
+}
 
 /* Positions */
 .ident10
 {
     position: relative;
     left: 10px;
+}
+
+/* Positions */
+.ident5
+{
+    position: relative;
+    left: 5px;
 }
 
 .v_spcr_5
@@ -86,7 +97,7 @@ area
 
 .line 
 { 
-    width: 70px; 
+    width: 65px; 
     height: 70px; 
     background-color: #e6e6e6; 
     color: black;
@@ -98,7 +109,7 @@ area
 
 .preamble 
 { 
-    width: 70px; 
+    width: 65px; 
     height: 45px; 
     background-color: #e6e6e6; 
     color: black;
@@ -110,7 +121,7 @@ area
 
 .disruption 
 { 
-    width: 75px; 
+    width: 65px; 
     height: 45px;
     background-color: #e6e6e6; 
     color: black;
@@ -123,7 +134,7 @@ area
 
 .reason
 { 
-    width: 75px; 
+    width: 65px; 
     height: 45px;
     background-color: #e6e6e6; 
     color: black;
@@ -136,7 +147,7 @@ area
 
 .detail
 { 
-    width: 70px; 
+    width: 65px; 
     height: 70px;
     background-color: #e6e6e6; 
     color: black;
@@ -149,7 +160,7 @@ area
 
 .direction
 { 
-    width: 70px; 
+    width: 65px; 
     height: 35px;
     background-color: #e6e6e6; 
     color: black;
@@ -163,12 +174,12 @@ area
 
 .detail_1
 { 
-    width: 70px; 
+    width: 65px; 
     height: 55px;
     background-color: #e6e6e6; 
     color: black;
     font-family: 'Helvetica'; 
-    font-size: 12px;
+    font-size: 11px;
     margin-right: 4px;
     margin-bottom: 4px;
     padding: 0px;
@@ -176,7 +187,7 @@ area
 
 .additional_detail
 { 
-    width: 70px; 
+    width: 65px; 
     height: 55px;
     background-color: #e6e6e6; 
     color: black;
@@ -189,7 +200,7 @@ area
 
 .rest
 { 
-    width: 70px; 
+    width: 65px; 
     height: 55px;
     background-color: #e6e6e6; 
     color: black;
@@ -204,7 +215,7 @@ area
 {
     margin-left: 4px;
     margin-top: 8px;
-    width: 233px;
+    width: 203px;
     height: 45px;
     font-family: 'Helvetica'; 
     font-size: 18px;
@@ -217,7 +228,7 @@ area
     height: 45px;
     font-family: 'Helvetica'; 
     font-size: 18px;
-    width: 146px;
+    width: 136px;
 }
 
 .direction_clear
@@ -227,7 +238,8 @@ area
     height: 45px;
     font-family: 'Helvetica'; 
     font-size: 18px;
-    width: 70px;
+    width: 65px;
+    padding: 0px;
 }
 
 .detail_1_clear
@@ -237,7 +249,8 @@ area
     height: 45px;
     font-family: 'Helvetica'; 
     font-size: 18px;
-    width: 70px;
+    width: 65px;
+    padding: 0px;
 }
 
 .additional_detail_clear
@@ -247,7 +260,8 @@ area
     height: 45px;
     font-family: 'Helvetica'; 
     font-size: 18px;
-    width: 70px;
+    width: 65px;
+    padding: 0px;
 }
 
 .rest_of_line_clear
@@ -257,17 +271,31 @@ area
     height: 45px;
     font-family: 'Helvetica'; 
     font-size: 18px;
-    width: 70px;
+    width: 65px;
+    padding: 0px;
 }
 
 .ticket_clear
 {
     margin-left: 4px;
     margin-top: 8px;
-    width: 340px;
+    width: 190px;
     height: 45px;
     font-family: 'Helvetica'; 
     font-size: 18px;
+}
+
+.builder 
+{ 
+    width: 60px; 
+    height: 60px; 
+    background-color: #e6e6e6; 
+    color: black;
+    font-family: 'Helvetica'; 
+    font-size: 12px;
+    margin-top: 4px;
+    margin-right: 4px;
+    padding: 0px;
 }
 
 .assembler 
@@ -323,8 +351,8 @@ area
     border: 3px white;
     border-style: solid;
     padding-left: 10px;
-    height: 1230px;
-    width: 1970px;
+    height: 1160px;
+    width: 1920px;
     background-color: #16539F;
 }
 
@@ -334,7 +362,7 @@ area
     margin-left: 10px;
     padding: 10px;
     height: 90px;
-    width: 1930px;
+    width: 1875px;
 }
 
 .status_bar_container
@@ -369,37 +397,36 @@ area
 
 .line_panel {
     background-color: #f0f0f0;
-    width: 95px;
+    width: 75px;
+    align-items: center;
 }
 
 .line_btn-group {
-    padding-left: 11px;
     padding-top: 4px;
-    padding-right: 11px;
     padding-bottom: 0px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    align-self: center;
 }
 
 .preamble_panel {
     background-color: #f0f0f0;
-    width: 95px;
+    width: 75px;
     margin-top: 5px;
 }
 
 .preamble_btn-group {
-    padding-left: 11px;
     padding-top: 4px;
-    padding-right: 11px;
     padding-bottom: 0px;
+    align-self: center;
 }
 
 .disruption_panel {
     background-color: #f0f0f0;
-    width: 244px;
+    width: 214px;
     height: 356px;
-    margin-left: 10px;
+    margin-left: 5px;
 }
 .disruption_btn-group {
     height: 306px;
@@ -411,14 +438,14 @@ area
 
 .reason_panel {
     background-color: #f0f0f0;
-    width: 700px;
+    width: 595px;
     height: 356px;
-    margin-left: 10px;
+    margin-left: 5px;
     flex-direction: column;
 }
 
 .reason_btn-panel {
-    width: 244px;
+    width: 214px;
     height: 326px;
     padding: 0px;
     display: flex;
@@ -429,7 +456,7 @@ area
 }
 
 .reason_btn-group {
-    width: 244px;
+    width: 214px;
     height: 249px;
     padding-left: 4px;
     padding-top: 4px;
@@ -447,6 +474,11 @@ area
     list-style-type: none;
 }
 
+.reason_disabled {
+    pointer-events:none; 
+    opacity:0.6;
+}
+
 .reason_text_search
 {
     height: 38px; 
@@ -460,7 +492,7 @@ area
     color: black;
     border: 1px solid #ced4da; 
     height: 255px;
-    width: 450px;
+    width: 375px;
     margin-top: 5px;
     overflow-y: scroll;
     overflow-x: scroll;
@@ -475,9 +507,9 @@ area
 
 .detail_panel {
     background-color: #f0f0f0;
-    width: 156px;
+    width: 146px;
     height: 356px;
-    margin-left: 10px;
+    margin-left: 5px;
     flex-direction: column;
 }
 
@@ -493,7 +525,7 @@ area
 }
 
 .detail_btn-panel {
-    width: 156px;
+    width: 146px;
     height: 326px;
     padding: 0px;
     display: flex;
@@ -504,7 +536,7 @@ area
 }
 
 .detail_btn-group {
-    width: 156px;
+    width: 146px;
     height: 249px;
     padding-left: 4px;
     padding-top: 4px;
@@ -537,9 +569,9 @@ area
 
 .direction_panel {
     background-color: #f0f0f0;
-    width: 80px;
+    width: 75px;
     height: 356px;
-    margin-left: 10px;
+    margin-left: 5px;
     flex-direction: column;
 }
 
@@ -555,7 +587,7 @@ area
 }
 
 .direction_btn-panel {
-    width: 80px;
+    width: 75px;
     height: 326px;
     padding: 0px;
     display: flex;
@@ -566,7 +598,7 @@ area
 }
 
 .direction_btn-group {
-    width: 80px;
+    width: 75px;
     height: 249px;
     padding-left: 4px;
     padding-top: 4px;
@@ -579,9 +611,9 @@ area
 
 .detail_1_panel {
     background-color: #f0f0f0;
-    width: 80px;
+    width: 75px;
     height: 356px;
-    margin-left: 10px;
+    margin-left: 5px;
     flex-direction: column;
 }
 
@@ -597,7 +629,7 @@ area
 }
 
 .detail_1_btn-panel {
-    width: 80px;
+    width: 75px;
     height: 326px;
     padding: 0px;
     display: flex;
@@ -608,7 +640,7 @@ area
 }
 
 .detail_1_btn-group {
-    width: 80px;
+    width: 75px;
     height: 249px;
     padding-left: 4px;
     padding-top: 4px;
@@ -621,9 +653,9 @@ area
 
 .additional_detail_panel {
     background-color: #f0f0f0;
-    width: 80px;
+    width: 75px;
     height: 356px;
-    margin-left: 10px;
+    margin-left: 5px;
     flex-direction: column;
 }
 
@@ -639,7 +671,7 @@ area
 }
 
 .additional_detail_btn-panel {
-    width: 80px;
+    width: 75px;
     height: 326px;
     padding: 0px;
     display: flex;
@@ -650,7 +682,7 @@ area
 }
 
 .additional_detail_btn-group {
-    width: 80px;
+    width: 75px;
     height: 249px;
     padding-left: 4px;
     padding-top: 4px;
@@ -663,9 +695,9 @@ area
 
 .rest_of_line_panel {
     background-color: #f0f0f0;
-    width: 80px;
+    width: 75px;
     height: 356px;
-    margin-left: 10px;
+    margin-left: 5px;
     flex-direction: column;
 }
 
@@ -681,7 +713,7 @@ area
 }
 
 .rest_of_line_btn-panel {
-    width: 80px;
+    width: 75px;
     height: 326px;
     padding: 0px;
     display: flex;
@@ -692,7 +724,7 @@ area
 }
 
 .rest_of_line_btn-group {
-    width: 80px;
+    width: 75px;
     height: 249px;
     padding-left: 4px;
     padding-top: 4px;
@@ -705,13 +737,13 @@ area
 
 .ticket_panel {
     background-color: #f0f0f0;
-    width: 350px;
+    width: 200px;
     height: 356px;
-    margin-left: 10px;
+    margin-left: 5px;
 }
 
 .ticket_body {
-    width: 350px;
+    width: 200px;
     padding: 0px;
     
 }
@@ -719,7 +751,7 @@ area
 .ticket_list_panel {
     margin-top: 5px;
     margin-left: 3px;
-    width: 340px;
+    width: 190px;
     height: 245px;
     padding: 1px;
     border: 1px solid #ced4da; 
@@ -740,12 +772,52 @@ area
     opacity:0.6;
 }
 
+.builder_message_card {
+    background-color: #f0f0f0;
+    width: 320px;
+    height: 356px;
+    margin-left: 5px;
+    padding: 0px;
+    
+}
+
+.builder_message_panel {
+    background-color: #f0f0f0;
+    border: 1px solid #ced4da; 
+    margin-top: 5px;
+    margin-left: 4px;
+    width: 310px;
+    height: 235px;
+    padding: 0px;
+    overflow-y: scroll;
+}
+
+.builder_message_body {
+    width: 315px;
+    padding: 0px;
+}
+
+.builder_complete_message
+{
+    padding-left: 5px; 
+    padding-right: 5px; 
+    margin-top: 2px; 
+    line-height: 18px;
+}
+
+.builder_message_btn_panel
+{
+    width: 310px;
+    display: flex;
+    margin-left: 5px;
+}
+
 /* Message Assember */
 .message_assembly_panel
 {
     border: 2px solid white; 
-    height: 710px;
-    width: 725px;
+    height: 640px;
+    width: 650px;
     background-color: #f0f0f0;
 }
 
@@ -768,17 +840,34 @@ area
     color: black;
     border: 1px solid #ced4da; 
     height: 100px;
-    width: 700px;
+    width: 625px;
+    overflow-y: scroll;
 }
 
 .message_fragment_text
 {
-    width: 700px;
+    background-color: #e9ecef; 
+    width: 625px;
+    height: 300px;
+    padding: 1px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    white-space: nowrap;
+    line-height: 12px;
+}
+
+.fragment_list
+{
+    width: 825px;
+    margin-top: 5px;
+    padding:0px; 
+    padding-left:5px; 
+    list-style-type: none;
 }
 
 .message_btn_panel
 {
-    width: 700px;
+    width: 625px;
     display: flex;
 }
 
@@ -788,21 +877,23 @@ area
     padding-right: 5px; 
     margin-top: 2px; 
     line-height: 18px;
+    font-family: 'Helvetica'; 
+    font-size: 16px;
 }
 
 .message_input_text
 {
-    width: 700px;
+    width: 625px;
 }
 
 /* Text Only */
 .text_only_panel
 {
     border: 2px solid white; 
-    height: 710px;
-    width: 900px;
+    height: 640px;
+    width: 825px;
     background-color: #f0f0f0;
-    margin-left: 10px;
+    margin-left: 5px;
 }
 
 .textual_message_panel
@@ -811,7 +902,8 @@ area
     color: black;
     border: 1px solid #ced4da; 
     height: 100px;
-    width: 875px;
+    width: 810px;
+    overflow-y: scroll;
 }
 
 .textual_message
@@ -827,8 +919,8 @@ area
     background-color: #e9ecef; 
     color: black;
     border: 1px solid #ced4da; 
-    height: 450px;
-    width: 200px;
+    height: 350px;
+    width: 300px;
 }
 
 .textual_suggestions
@@ -842,8 +934,8 @@ area
 
 .textual_btn_panel
 {
-    width: 670px;
-    margin-left: 10px;
+    width: 610px;
+    margin-left: 5px;
     display: flex;
     flex-wrap: wrap;
    
@@ -905,10 +997,31 @@ area
     padding: 0px;
 }
 
+.builder_message_font
+{
+    font-family: 'Helvetica'; 
+    font-size: 14px;
+    padding: 0px;
+}
+
 .list_font
 {
     font-family: 'Helvetica'; 
     font-size: 14px
+}
+
+.fragment_list_font
+{
+    font-family: 'Helvetica'; 
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.fragment_list_small_font
+{
+    font-family: 'Helvetica'; 
+    font-size: 10px;
+    font-weight: normal;
 }
 
 
