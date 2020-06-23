@@ -1170,6 +1170,10 @@ function spellCheckTextualMessage(update_errors)
     // Check Spelling
     for (t=0; t < tokens.length; t++)
     {
+        if (tokens[t].endsWith('.'))
+        {
+            tokens[t] = tokens[t].substring(0,tokens[t].length-1);
+        }
         if (isBannedWord(tokens[t]))
         {
             message = message + '<span class="message_font" style="color: red">'
@@ -1209,7 +1213,7 @@ function spellCheckTextualMessage(update_errors)
 
     // Update Textual Message
     $('#textualMessage')
-        .html(`<span class="message_font" style="color: black">${message}</span>`);
+        .html(`<span class="message_font" style="color: black">${message.trim()}.</span>`);
 
     $('#textualNext').prop('disabled', !(textualFragments.selected < (textualFragments.error_count-1)));
     $('#textualPrevious').prop('disabled', !(textualFragments.selected >  0));
