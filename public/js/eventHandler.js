@@ -3,19 +3,19 @@ $(document).ready(function(){
     initialise();
 
     $('.line').click(function(evt){ 
-        var butVal = $(evt.target).attr('value');
+        let butVal = $(evt.target).attr('value');
         lineButton = $(evt.target);
 
         $.getJSON('data/current/line_data.json',(lineData)=>{
             if(lineData){
                 $.each(lineData, (key, value)=>{
-                    if (butVal == value.id)
+                    if (parseInt(butVal,10) === value.id)
                     {
                         if (value.lines.length > 1)
                         {
                             $('#lineSelectedList').empty();
                             
-                            for(var l=0; l<value.lines.length; l++) 
+                            for(let l=0; l<value.lines.length; l++) 
                             {
                                 $('#lineSelectedList')
                                     .append(`<button type="button" class="btn btn-primary btn-block lineSelection" data-dismiss="modal" value="${value.lines[l].line}" id="line_selection_${l}"
@@ -31,8 +31,8 @@ $(document).ready(function(){
                             lineButton.css('background-color', value.lines[0].background_colour);
                             lineButton.css('color', value.lines[0].text_colour);
 
-                            var id = value.lines[0].fragment;
-                            lineText = fragmentText[id];
+                            let id = value.lines[0].fragment;
+                            lineText = fragmentText.text[id];
                             lineFragment = id;
                             lineImage = value.lines[0].image;
                             stations = value.lines[0].stations;
@@ -47,7 +47,7 @@ $(document).ready(function(){
     });
 
     $('.preamble').click(function(evt){ 
-        var butVal = $(evt.target).attr('value');
+        let butVal = $(evt.target).attr('value');
     
         evt.preventDefault();
         $(evt.target).siblings().removeClass('active');
@@ -56,9 +56,9 @@ $(document).ready(function(){
         $.getJSON('data/current/preamble_data.json',(preamble)=>{
             if(preamble){
                 $.each(preamble, (key, value)=>{
-                    if (butVal == value.text)
+                    if (butVal === value.text)
                     {
-                        preambleText = fragmentText[value.fragment_id];
+                        preambleText = fragmentText.text[value.fragment_id];
                         preambleFragment = value.fragment_id;
     
                         updateMessagePanels();
@@ -69,7 +69,7 @@ $(document).ready(function(){
     });
 
     $('.disruption').click(function(evt){    
-        var butVal = $(evt.target).attr('value');
+        let butVal = $(evt.target).attr('value');
     
         evt.preventDefault();
         $(evt.target).siblings().removeClass('active');
@@ -78,19 +78,19 @@ $(document).ready(function(){
         $.getJSON('data/current/disruption_data.json',(disruptionData)=>{
             if(disruptionData){
                 $.each(disruptionData, (key, value)=>{
-                    if (butVal == value.button_text)
+                    if (butVal === value.button_text)
                     {
-                        var text = generateFragmentText(value.fragment_id);
+                        let text = generateFragmentText(value.fragment_id);
                             
-                        if (value.reason == ReasonStates.no_reason)
+                        if (value.reason === ReasonStates.no_reason)
                         {
                             resetReasonButtons();
                         }
                         else
                         {
-                            if ($('#reasonSelectedList').contents().length == 0)
+                            if ($('#reasonSelectedList').contents().length === 0)
                             {
-                                filterReasons(FILTER_ALL);
+                                filterReasonsByType(FILTER_ALL, null);
                             }
 
                             $('.reason_item').each(function()   {
@@ -122,7 +122,7 @@ $(document).ready(function(){
     });
 
     $('.reason').click(function(evt){
-        var butVal = $(evt.target).attr('value');
+        let butVal = $(evt.target).attr('value');
                     
         evt.preventDefault();
         $(evt.target).siblings().removeClass('active');
@@ -134,32 +134,12 @@ $(document).ready(function(){
         $.getJSON('data/current/reason_data.json',(reasonData)=>{
             if(reasonData){
                 $.each(reasonData, (key, value)=>{
-                    if (butVal == value.button_text)
+                    if (butVal === value.button_text)
                     {
-                        if (value.search_criteria)
-                        {
-                            filterReasons(value.search_criteria);
-                        }
-                        else
-                        {
-                            for(var f=0; f<value.fragmentId.length; f++) 
-                            {      
-                                var id = value.fragmentId[f];
-                                if (f==0)
-                                {
-                                    $('#reasonSelectedList')
-                                        .html(`<li class="list_font reason_item" id="reason_${id}">${fragmentText[id]}</li>`);
-                                }
-                                else
-                                {
-                                    $('#reasonSelectedList')
-                                        .append(`<li class="list_font reason_item" id="reason_${id}">${fragmentText[id]}</li>`);
-                                }
-                            } 
-                        }
-    
+                        filterReasonsByType(value.disruption_types, value.disruption_group);
+                        
                         // Update Detail Buttons
-                        if (value.detail_buttons.length != 0)
+                        if (value.detail_buttons.length !== 0)
                         {
                             updateDetailButtons(value.detail_buttons);
                             updateMessagePanels();
@@ -171,15 +151,8 @@ $(document).ready(function(){
     });
 
     $('.detail').click(function(evt){
-        var butVal = $(evt.target).attr('value');
-        var x1 = 0;
-        var y1 = 0;
-        var x2 = 0;
-        var y2 = 0;
-        var scale = (station_image_scale / 100);
-        var station_name = '';
-        var id = 0;
-    
+        let butVal = $(evt.target).attr('value');
+        
         evt.preventDefault();
         $(evt.currentTarget).siblings().removeClass('active');
         $(evt.currentTarget).removeClass('active');
@@ -189,11 +162,11 @@ $(document).ready(function(){
         $.getJSON('data/current/detail_data.json',(detailData)=>{
             if(detailData){
                 $.each(detailData, (key, value)=>{
-                    if (value.panel_id == DetailPanels.detail)
+                    if (value.panel_id === DetailPanels.detail)
                     {
                         for (b = 0; b < value.buttons.length; b++)
                         {
-                            if (butVal == value.buttons[b].button_text)
+                            if (butVal === value.buttons[b].button_text)
                             {
                                 detailFragments[DetailIndex.detail] = value.buttons[b].fragments;
                                 map_display_state = value.buttons[b].display_map;
@@ -204,49 +177,17 @@ $(document).ready(function(){
             }
         })
 
-        if ($(evt.currentTarget).attr("data-target"))
+        if ($(evt.currentTarget).attr("data-target") && map_display_state)
         {
-            current_map_display = DetailIndex.detail;
-            previousStationFragmentList = stationFragmentList[current_map_display].concat();
-            updateStationList();
-
-            $('#stationImage')
-                .html(`<img src="/img/${lineImage}" alt="stationselection" id="station" usemap="#stationMap">`);
-                
-            $('#stationAreas').empty();
-
-            if (stations)
-            {
-                for (s=0; s < stations.length; s++)
-                {
-                    x1 = (stations[s].coordinates.xpos * scale);
-                    y1 = (stations[s].coordinates.ypos * scale);
-                    x2 = x1 + (stations[s].coordinates.width * scale);
-                    y2 = y1 + (stations[s].coordinates.height * scale);
-
-                    station_name = stations[s].station_name;
-                    id = stations[s].fragment_id;
-            
-                    $('#stationAreas').
-                        append (`<area shape="rect" coords="${x1},${y1},${x2},${y2}" 
-                            alt="${station_name}" onclick="stationClicked(this)" id="stationArea_${id}" title="${station_name}">`);
-                }
-            }
+            displayStationMap(map_display_state, DetailIndex.detail);
         }
         
         updateMessagePanels();
     });
 
     $('.detail_1').click(function(evt){
-        var butVal = $(evt.target).attr('value');
-        var x1 = 0;
-        var y1 = 0;
-        var x2 = 0;
-        var y2 = 0;
-        var scale = (station_image_scale / 100);
-        var station_name = '';
-        var id = 0;
-    
+        let butVal = $(evt.target).attr('value');
+        
         evt.preventDefault();
         $(evt.currentTarget).siblings().removeClass('active');
         $(evt.currentTarget).removeClass('active');
@@ -256,16 +197,15 @@ $(document).ready(function(){
         $.getJSON('data/current/detail_data.json',(detailData)=>{
             if(detailData){
                 $.each(detailData, (key, value)=>{
-                    if (value.panel_id == DetailPanels.detail_1)
+                    if (value.panel_id === DetailPanels.detail_1)
                     {
                         for (b = 0; b < value.buttons.length; b++)
                         {
-                            if (butVal == value.buttons[b].button_text)
+                            if (butVal === value.buttons[b].button_text)
                             {
                                 detailFragments[DetailIndex.detail_1] = value.buttons[b].fragments;
                                 map_display_state = value.buttons[b].display_map;
                             }
-                    
                         }
                     }
                     
@@ -273,34 +213,9 @@ $(document).ready(function(){
             }
         })
 
-        if ($(evt.currentTarget).attr("data-target"))
+        if ($(evt.currentTarget).attr("data-target") && map_display_state)
         {
-            current_map_display = DetailIndex.detail_1;
-            previousStationFragmentList = stationFragmentList[current_map_display].concat();
-            updateStationList();
-
-            $('#stationImage')
-                .html(`<img src="/img/${lineImage}" alt="stationselection" id="station" usemap="#stationMap">`);
-                
-            $('#stationAreas').empty();
-
-            if (stations)
-            {
-                for (s=0; s < stations.length; s++)
-                {
-                    x1 = (stations[s].coordinates.xpos * scale);
-                    y1 = (stations[s].coordinates.ypos * scale);
-                    x2 = x1 + (stations[s].coordinates.width * scale);
-                    y2 = y1 + (stations[s].coordinates.height * scale);
-
-                    station_name = stations[s].station_name;
-                    id = stations[s].fragment_id;
-            
-                    $('#stationAreas').
-                        append (`<area shape="rect" coords="${x1},${y1},${x2},${y2}" 
-                            alt="${station_name}" onclick="stationClicked(this)" id="stationArea_${id}" title="${station_name}">`);
-                }
-            }
+            displayStationMap(map_display_state, DetailIndex.detail_1);
         }
         
         updateMessagePanels();
@@ -308,15 +223,8 @@ $(document).ready(function(){
     });
 
     $('.additional_detail').click(function(evt){
-        var butVal = $(evt.target).attr('value');
-        var x1 = 0;
-        var y1 = 0;
-        var x2 = 0;
-        var y2 = 0;
-        var scale = (station_image_scale / 100);
-        var station_name = '';
-        var id = 0;
-    
+        let butVal = $(evt.target).attr('value');
+        
         evt.preventDefault();
         $(evt.currentTarget).siblings().removeClass('active');
         $(evt.currentTarget).removeClass('active');
@@ -326,11 +234,11 @@ $(document).ready(function(){
         $.getJSON('data/current/detail_data.json',(detailData)=>{
             if(detailData){
                 $.each(detailData, (key, value)=>{
-                    if (value.panel_id == DetailPanels.additional_detail)
+                    if (value.panel_id === DetailPanels.additional_detail)
                     {
                         for (b = 0; b < value.buttons.length; b++)
                         {
-                            if (butVal == value.buttons[b].button_text)
+                            if (butVal === value.buttons[b].button_text)
                             {
                                 detailFragments[DetailIndex.additional_detail] = value.buttons[b].fragments;
                                 map_display_state = value.buttons[b].display_map;
@@ -343,34 +251,9 @@ $(document).ready(function(){
             }
         })
 
-        if ($(evt.currentTarget).attr("data-target"))
+        if ($(evt.currentTarget).attr("data-target") && map_display_state)
         {
-            current_map_display = DetailIndex.additional_detail;
-            previousStationFragmentList = stationFragmentList[current_map_display].concat();
-            updateStationList();
-
-            $('#stationImage')
-                .html(`<img src="/img/${lineImage}" alt="stationselection" id="station" usemap="#stationMap">`);
-                
-            $('#stationAreas').empty();
-
-            if (stations)
-            {
-                for (s=0; s < stations.length; s++)
-                {
-                    x1 = (stations[s].coordinates.xpos * scale);
-                    y1 = (stations[s].coordinates.ypos * scale);
-                    x2 = x1 + (stations[s].coordinates.width * scale);
-                    y2 = y1 + (stations[s].coordinates.height * scale);
-
-                    station_name = stations[s].station_name;
-                    id = stations[s].fragment_id;
-            
-                    $('#stationAreas').
-                        append (`<area shape="rect" coords="${x1},${y1},${x2},${y2}" 
-                            alt="${station_name}" onclick="stationClicked(this)" id="stationArea_${id}" title="${station_name}">`);
-                }
-            }
+            displayStationMap(map_display_state, DetailIndex.additional_detail);
         }
         
         updateMessagePanels();
@@ -378,7 +261,7 @@ $(document).ready(function(){
     });
 
     $('.rest').click(function(evt){
-        var butVal = $(evt.target).attr('value');
+        let butVal = $(evt.target).attr('value');
     
         evt.preventDefault();
         $(evt.currentTarget).siblings().removeClass('active');
@@ -389,11 +272,11 @@ $(document).ready(function(){
         $.getJSON('data/current/detail_data.json',(detailData)=>{
             if(detailData){
                 $.each(detailData, (key, value)=>{
-                    if (value.panel_id == DetailPanels.rest_of_line)
+                    if (value.panel_id === DetailPanels.rest_of_line)
                     {
                         for (b = 0; b < value.buttons.length; b++)
                         {
-                            if (butVal == value.buttons[b].button_text)
+                            if (butVal === value.buttons[b].button_text)
                             {
                                 detailFragments[DetailIndex.rest_of_line] = value.buttons[b].fragments;
                             }
@@ -409,7 +292,7 @@ $(document).ready(function(){
     });
     
     $('.direction').click(function(evt){
-        var butVal = $(evt.currentTarget).attr('value');
+        let butVal = parseInt($(evt.currentTarget).attr('value'));
     
         evt.preventDefault();
         $(evt.currentTarget).siblings().removeClass('active');
@@ -420,7 +303,7 @@ $(document).ready(function(){
         $.getJSON('data/current/direction_data.json',(directionData)=>{
             if(directionData){
                 $.each(directionData, (key, value)=>{
-                    if (butVal == value.id)
+                    if (butVal === value.id)
                     {
                         directionFragment = value.fragment_id;
                         direction_position = value.text_position;
@@ -430,6 +313,19 @@ $(document).ready(function(){
                 })
             }
         })
+    });
+
+    $(document).on('keyup', '#fragmentText', function (e) {
+        let text = document.getElementById('fragmentText').value;
+
+        if (text.length != 0)
+        {
+            filterFragmentData(text);
+        }
+        else
+        {
+            $('#fragmentArea').empty();
+        }
     });
 
     $(document).on('keyup', '#textualMessage', function (e) {
@@ -458,8 +354,8 @@ $(document).ready(function(){
     });
 
     $("#fragmentArea").on('click','li',function() {
-        var id = $(this).attr('id').split("_").pop();
-        var index = assembledFragments.selected;
+        let id = $(this).attr('id').split("_").pop();
+        let index = assembledFragments.selected;
 
         $(this).siblings().css('background-color', '#e9ecef');
         $(this).siblings().css('color', 'black');
@@ -476,16 +372,18 @@ $(document).ready(function(){
 });
 
 $(document).on('click', '.lineSelection', (evt)=>{
-    var butVal = $(evt.target).attr('value');
+    let butVal = $(evt.target).attr('value');
+    let button_id = 0;
 
     $.getJSON('data/current/line_data.json',(lineData)=>{
         if(lineData){
             $.each(lineData, (key, value)=>{
-                if (lineButton.attr('value') == value.id)
+                button_id = parseInt(lineButton.attr('value'));
+                if ( button_id=== value.id)
                 {
-                    for(var l=0; l<value.lines.length; l++) 
+                    for(let l=0; l<value.lines.length; l++) 
                     {
-                        if (value.lines[l].line == butVal)
+                        if (value.lines[l].line === butVal)
                         {
                             lineButton.siblings().css('background-color', '#e9ecef');
                             lineButton.siblings().css('color', 'black');
@@ -494,8 +392,8 @@ $(document).on('click', '.lineSelection', (evt)=>{
                             lineButton.css('color', value.lines[l].text_colour);
                             lineButton.text(value.lines[l].line);
 
-                            var id = value.lines[l].fragment;
-                            lineText = fragmentText[id];
+                            let id = value.lines[l].fragment;
+                            lineText = fragmentText.text[id];
                             lineFragment = id;
                             lineImage = value.lines[l].image;
                             stations = value.lines[l].stations;
@@ -511,55 +409,62 @@ $(document).on('click', '.lineSelection', (evt)=>{
 });
 
 $("#reasonSelectedList").on('click','li',function() {
-    $(this).siblings().css('background-color', '#e9ecef');
-    $(this).siblings().css('color', 'black');
-    
-    $(this).css('background-color', 'green');
-    $(this).css('color', 'white');
 
-    var id = $(this).attr('id').split("_").pop();
-    
-    reasonFragment = id;
-    
-    updateMessagePanels();
+    if (!$(this).hasClass ('reason_disabled'))
+    {
+        $(this).siblings().css('background-color', '#e9ecef');
+        $(this).siblings().css('color', 'black');
+        
+        $(this).css('background-color', 'green');
+        $(this).css('color', 'white');
+
+        let id = $(this).attr('id').split("_").pop();
+        
+        reasonFragment = id;
+        
+        updateMessagePanels();
+    }
 });
 
 
 $("#ticketSelectionList").on('click','li',function() {
-    var id = $(this).attr('id').split("_").pop();
-    var index = 0;
+    let id = $(this).attr('id').split("_").pop();
+    let index = 0;
 
-    if (ticketFragmentList.includes(id))
+    if (!$(this).hasClass ('ticket_disabled'))
     {
-        $(this).css('background-color', '#e9ecef');
-        $(this).css('color', 'black');
+        if (ticketFragmentList.includes(id))
+        {
+            $(this).css('background-color', '#e9ecef');
+            $(this).css('color', 'black');
 
-        // Remove Ticket
-        index = ticketFragmentList.indexOf(id);
-        ticketFragmentList.splice(index,1);
-    }
-    else
-    {
-        $(this).css('background-color', 'green');
-        $(this).css('color', 'white');
-        ticketFragmentList.push(id);
-    }
+            // Remove Ticket
+            index = ticketFragmentList.indexOf(id);
+            ticketFragmentList.splice(index,1);
+        }
+        else
+        {
+            $(this).css('background-color', 'green');
+            $(this).css('color', 'white');
+            ticketFragmentList.push(id);
+        }
 
-    // Determine whether the ticket clear button should be enabled
-    if (ticketFragmentList.length > 0)
-    {
-        $('#ticketClear').prop('disabled', false);
+        // Determine whether the ticket clear button should be enabled
+        if (ticketFragmentList.length > 0)
+        {
+            $('#ticketClear').prop('disabled', false);
+        }
+        else
+        {
+            $('#ticketClear').prop('disabled', true);
+        }
+        
+        updateMessagePanels();
     }
-    else
-    {
-        $('#ticketClear').prop('disabled', true);
-    }
-    
-    updateMessagePanels();
 });
 
 $(document).on('click', '#reasonTextSearch', (evt)=>{
-    var text = document.getElementById('reasonText').value;
+    let text = document.getElementById('reasonText').value;
     text = text.toLowerCase();
             
     $('#reasonSelectedList').empty();
@@ -568,12 +473,12 @@ $(document).on('click', '#reasonTextSearch', (evt)=>{
         $(this).removeClass('active');
     })
 
-    filterReasons(text);
+    filterReasonsByText(text);
 
 });
 
 $(document).on('click', '#fragmentSearch', (evt)=>{
-    var text = document.getElementById('fragmentText').value;
+    let text = document.getElementById('fragmentText').value;
     text = text.toLowerCase();
             
     filterFragmentData(text);
@@ -585,7 +490,7 @@ $(document).on('click', '#reasonSearchClear', (evt)=>{
     $('.reason').each(function()   {
         $(this).removeClass('active');
     })
-    filterReasons('.*');
+    filterReasonsByType(FILTER_ALL, null);
 });
 
 $(document).on('click', '#reasonClear', (evt)=>{
@@ -598,10 +503,10 @@ $(document).on('click', '#reasonClear', (evt)=>{
     $('.reason').each(function()   {
         $(this).removeClass('active');
     })
-    filterReasons('.*');
+    filterReasonsByType(FILTER_ALL, null);
 
     // Update Detail Buttons
-    if (disruptionDetailIds.length != 0)
+    if (disruptionDetailIds.length !== 0)
     {
         updateDetailButtons(disruptionDetailIds);
     }
@@ -793,21 +698,20 @@ $(document).on('click', '#textualPrevious', (evt)=>{
 
 function stationClicked(area)
 {
-    var id = area.getAttribute("id");
-    var index = area.getAttribute("id").indexOf('_');
-    var fragment = id.substring(index+1);
-    var fragment_text = fragmentText[fragment];
-    var index = 0;
-    var station_list = [];
-    var station_fragment_list = [];
-    var current_list = [];
-    var current = '';
-    var e = 0;
+    let id = area.getAttribute("id");
+    let index = area.getAttribute("id").indexOf('_');
+    let fragment = id.substring(index+1);
+    let fragment_text = fragmentText.text[fragment];
+    let station_list = [];
+    let station_fragment_list = [];
+    let current_list = [];
+    let current = '';
+    let e = 0;
 
     station_fragment_list = stationFragmentList[current_map_display];
     stationFragmentList[current_map_display] = [];
 
-    if (map_display_state == MapDisplayStates.single_selection)
+    if (map_display_state === MapDisplayStates.single_selection)
     {
         
         //Display Station
@@ -819,7 +723,7 @@ function stationClicked(area)
         stationFragmentList[current_map_display].push(fragment);
     
     }
-    else if (map_display_state == MapDisplayStates.multi_selection)
+    else if (map_display_state === MapDisplayStates.multi_selection)
     {
         // Get Current Stations
         current = document.getElementById('selectedStationList');
@@ -854,7 +758,7 @@ function stationClicked(area)
         // Redisplay Items
         $('#selectedStationList').html(`<ul class="message_font" style="margin: 0px">`);
 
-        for (var e = 0; e < station_list.length; e++)
+        for (let e = 0; e < station_list.length; e++)
         {
             $('#selectedStationList')
                 .append(`<li>${station_list[e]}</li>`);
@@ -869,7 +773,7 @@ function stationClicked(area)
 
 $(document).on('shown.bs.modal','#stationModal', function () {
     // $( '#station' ).each( function() {
-    //     var $img = $( this);
+    //     let $img = $( this);
     //     $img.width( $img.width() * (station_image_scale / 100) );
     // });
 

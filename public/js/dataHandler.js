@@ -5,7 +5,7 @@ $(document).ready(function(){
 
     $.getJSON('data/current/app_data.json',(appData)=>{
         if(appData){
-            var local = '';
+            let local = '';
             if (location.hostname === "localhost" || location.hostname === "127.0.0.1")
             {
                 local = "LOCAL ";
@@ -23,33 +23,43 @@ $(document).ready(function(){
     updateStatusBar();
 
     $.getJSON('data/current/fragment_data.json',(fragmentData)=>{
+        let id = 0;
         if(fragmentData){
             completeFragmentData = fragmentData;
             $.each(fragmentData, (key, value)=>{
-                fragmentText[value.section_id] = value.detail;
+                id = value.section_id;
+                fragmentText.section[id] = value.section_position.toUpperCase();
+                fragmentText.text[id] = value.message_name.trim();
             })
         }
     });
+
+    $.getJSON('data/current/disruption_types.json',(typeData)=>{
+        if(typeData){
+            disruptionTypeData = typeData;
+        }
+    });
+    
     $.getJSON('data/current/line_data.json',(lineData)=>{
         if(lineData){
             $.each(lineData, (key, value)=>{
-                var background = "#e6e6e6";
-                var text_colour = "black";
-                var str = "Other";
-                var id =  value.id;
-                var fragment_id = 0;
+                let background = "#e6e6e6";
+                let text_colour = "black";
+                let str = "Other";
+                let id =  value.id;
+                let fragment_id = 0;
 
-                if (value.lines.length == 1)
+                if (value.lines.length === 1)
                 {
                     str = value.lines[0].line;
 
-                    if (value.active != 0)
+                    if (value.active !== 0)
                     {
                         background = value.lines[0].background_colour;
                         text_colour = value.lines[0].text_colour;
 
                         fragment_id = value.lines[0].fragment;
-                        lineText = fragmentText[fragment_id];
+                        lineText = fragmentText.text[fragment_id];
                         lineFragment = fragment_id;
                         lineImage = value.lines[0].image;
                         stations = value.lines[0].stations;
@@ -59,7 +69,7 @@ $(document).ready(function(){
                     }
                 }
 
-                if (value.lines.length == 1)
+                if (value.lines.length === 1)
                 {
                     $('#lineList')
                                 .append(`<button type="button" class="line btn btn-outline-dark" id="line_${id}" value="${id}"
@@ -77,26 +87,27 @@ $(document).ready(function(){
     });
 
     $.getJSON('data/current/preamble_data.json',(preambleData)=>{
-        var str = '';
-        var id = 0;
+        let str = '';
+        let id = 0;
 
         if(preambleData){
-            var read = $.each(preambleData, (key, value)=>{
+            let read = $.each(preambleData, (key, value)=>{
                 str = value.text;
                 id = value.id;
                 
                 if (!preambleText)
                 {
-                    preambleText = fragmentText[value.fragment_id];
+                    preambleText = fragmentText.text[value.fragment_id];
                     preambleFragment = value.fragment_id;
                 }
 
-                if (value.active == 1)
+                if (value.active === 1)
                 {
                     $('#preambleList')
                                 .append(`<button type="button" class="preamble btn btn-outline-dark active" id="preamble_${id}" name="preamble" value="${str}">${str}</button>`);
-                    preambleText = fragmentText[value.fragment_id];
+                    preambleText = fragmentText.text[value.fragment_id];
                     preambleFragment = value.fragment_id;
+                    
 
                     // Set Initial values
                     start_preamble_fragment = value.fragment_id;
@@ -112,9 +123,9 @@ $(document).ready(function(){
     })
     
     $.getJSON('data/current/disruption_data.json',(disruptionData)=>{
-        var str = '';
-        var id = 0;
-        var splitstr = '';
+        let str = '';
+        let id = 0;
+        let splitstr = '';
 
         if(disruptionData){
             $.each(disruptionData, (key, value)=>{
@@ -122,7 +133,7 @@ $(document).ready(function(){
                 id = value.id;
 
                 // Determine whether the button is the initial button
-                if (value.active == 1 && start_disruption_id == 0)
+                if (value.active === 1 && start_disruption_id === 0)
                 {
                     start_disruption_id = id;
                     start_disruption_fragments = value.fragment_id;
@@ -148,9 +159,8 @@ $(document).ready(function(){
     });
 
     $.getJSON('data/current/reason_data.json',(reasonData)=>{
-        var arr = [];
-        var id = 0;
-        var str = '';
+        let id = 0;
+        let str = '';
 
         if(reasonData){
             $.each(reasonData, (key, value)=>{
@@ -158,39 +168,29 @@ $(document).ready(function(){
                 id = value.id;
                 $('#reasonList')
                     .append(`<button type="button" class="reason btn btn-outline-dark" disabled id="reason_${id}" name="reason" value="${str}">${str}</button>`); 
-    
-                    for (f = 0; f < value.fragmentId.length; f++)
-                    {
-                        arr.push(value.fragmentId[f]);
-                    }
             })
-
-            // Create Unique Array
-            reasonFragments = arr.filter(function(item, pos){
-                return arr.indexOf(item)== pos; 
-              });
         }
     });
 
 
     $.getJSON('data/current/detail_data.json',(detailData)=>{
-        var arr = [];
-        var id = 0;
-        var str = '';
-        var icon = '';
-        var b = 0;
+        let arr = [];
+        let id = 0;
+        let str = '';
+        let icon = '';
+        let b = 0;
         if(detailData){
             $.each(detailData, (key, value)=>{
-                var panel_id = value.panel_id;
+                let panel_id = value.panel_id;
                 for (b = 0; b < value.buttons.length; b++)
                 {
                     str = value.buttons[b].button_text;
                     id = value.buttons[b].id;
                     icon = value.buttons[b].icon
                
-                    if (panel_id == DetailPanels.detail)
+                    if (panel_id === DetailPanels.detail)
                     {
-                        if (value.buttons[b].display_map != MapDisplayStates.no_map)
+                        if (value.buttons[b].display_map !== MapDisplayStates.no_map)
                         {
                             $('#detailList')
                                 .append(`<button type="button" class="detail btn btn-outline-dark" id="detail_${id}" name="detail" data-toggle="modal" data-target="#stationModal" data-dismiss="modal" value="${str}" disabled><i class="fas fa-${icon}"></i><br>${str}</button>`);
@@ -201,17 +201,17 @@ $(document).ready(function(){
                                 .append(`<button type="button" class="detail btn btn-outline-dark" id="detail_${id}" name="detail" value="${str}" disabled><i class="fas fa-${icon}"></i><br>${str}</button>`);
                         }
                     }
-                    else if (panel_id == DetailPanels.detail_1)
+                    else if (panel_id === DetailPanels.detail_1)
                     {
                         $('#detail_1_list')
                             .append(`<button type="button" class="detail_1 btn btn-outline-dark" id="detail_1_${id}" name="detail_1" data-toggle="modal" data-target="#stationModal" value="${str}" disabled>${str}</button>`);
                     }
-                    else if (panel_id == DetailPanels.additional_detail)
+                    else if (panel_id === DetailPanels.additional_detail)
                     {
                         $('#additional_detail_list')
                             .append(`<button type="button" class="additional_detail btn btn-outline-dark" id="additional_detail_${id}" name="additional_detail" data-toggle="modal" data-target="#stationModal" value="${str}" disabled>${str}</button>`);
                     }
-                    else if (panel_id == DetailPanels.rest_of_line)
+                    else if (panel_id === DetailPanels.rest_of_line)
                     {
                         $('#rest_of_line_list')
                             .append(`<button type="button" class="rest btn btn-outline-dark" id="rest_${id}" name="rest" value="${str}" disabled>${str}</button>`);
@@ -222,8 +222,8 @@ $(document).ready(function(){
     });
 
     $.getJSON('data/current/direction_data.json',(directionData)=>{
-        var id = 0;
-        var str = '';
+        let id = 0;
+        let str = '';
         if(directionData){
             $.each(directionData, (key, value)=>{
                 str = value.button_text;
@@ -235,21 +235,11 @@ $(document).ready(function(){
     });
 
     $.getJSON('data/current/ticket_data.json',(ticketData)=>{
-        var id = 0;
-        var str = '';
-        var t;
-
         if(ticketData){
-            $.each(ticketData, (key, value)=>{
-                str = value.button_text;
-                ticketFragments = value.fragmentId;
-                for (t = 0; t < value.tickets.length; t++)
-                {
-                    id = value.tickets[t].fragmentId;
-                    $('#ticketSelectionList')
-                        .append(`<li class="list_font ticket_item ticket_disabled" id="ticket_${id}">${fragmentText[id]}</li>`);
-                }
-            })
+            ticketFragments = ticketData.fragmentId;
+            ticketGroup = ticketData.group;
+    
+            buildTicketList();
         }
     });
 

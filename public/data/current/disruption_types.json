@@ -1,0 +1,3752 @@
+﻿[
+    {
+        "section_id": "1001",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "1002",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "1003",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "1004",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "1005",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "station"
+    },
+    {
+        "section_id": "1006",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "engineering"
+    },
+    {
+        "section_id": "1009",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "1010",
+        "type": "dueto",
+        "options": "station   ",
+        "group": "people"
+    },
+    {
+        "section_id": "1011",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "signal"
+    },
+    {
+        "section_id": "1013",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "security"
+    },
+    {
+        "section_id": "1014",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "security"
+    },
+    {
+        "section_id": "1015",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "security"
+    },
+    {
+        "section_id": "1016",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "signal"
+    },
+    {
+        "section_id": "1017",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "signal"
+    },
+    {
+        "section_id": "1018",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "security"
+    },
+    {
+        "section_id": "1019",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "1020",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "1022",
+        "type": "dueto",
+        "options": "station   ",
+        "group": "other"
+    },
+    {
+        "section_id": "1023",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "signal"
+    },
+    {
+        "section_id": "1024",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "station"
+    },
+    {
+        "section_id": "1025",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "station"
+    },
+    {
+        "section_id": "1026",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "engineering"
+    },
+    {
+        "section_id": "1027",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "engineering"
+    },
+    {
+        "section_id": "1028",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "engineering"
+    },
+    {
+        "section_id": "1029",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "station"
+    },
+    {
+        "section_id": "1030",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "signal"
+    },
+    {
+        "section_id": "1031",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "signal"
+    },
+    {
+        "section_id": "1032",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "1033",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "1034",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "1035",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "engineering"
+    },
+    {
+        "section_id": "1036",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "engineering"
+    },
+    {
+        "section_id": "1037",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "1038",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "1039",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "security"
+    },
+    {
+        "section_id": "1040",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "1041",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "security"
+    },
+    {
+        "section_id": "1042",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "1043",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "1044",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "1201",
+        "type": "line",
+        "options": "NULL",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1202",
+        "type": "line",
+        "options": "NULL",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1203",
+        "type": "line",
+        "options": "NULL",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1204",
+        "type": "line",
+        "options": "NULL",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1205",
+        "type": "line",
+        "options": "NULL",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1206",
+        "type": "line",
+        "options": "NULL",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1207",
+        "type": "line",
+        "options": "NULL",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1209",
+        "type": "line",
+        "options": "NULL",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1207",
+        "type": "line",
+        "options": "NULL",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1210",
+        "type": "line",
+        "options": "NULL",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1211",
+        "type": "line",
+        "options": "NULL",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1212",
+        "type": "line",
+        "options": "NULL",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1213",
+        "type": "line",
+        "options": "NULL",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1062",
+        "type": "dueto",
+        "options": "station   ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1241",
+        "type": "bakerloonotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1242",
+        "type": "bakerloosuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1243",
+        "type": "centralnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1244",
+        "type": "centralsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1247",
+        "type": "districtnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1245",
+        "type": "circlenotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1246",
+        "type": "circlesuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1248",
+        "type": "districtsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1249",
+        "type": "dlrnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1250",
+        "type": "dlrsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1251",
+        "type": "ellnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1252",
+        "type": "ellsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1253",
+        "type": "hcnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1254",
+        "type": "hcsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1255",
+        "type": "jubileenotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1256",
+        "type": "jubileesuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1257",
+        "type": "metropolitannotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1258",
+        "type": "metropolitansuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1259",
+        "type": "northernlinenotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1260",
+        "type": "northernsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1261",
+        "type": "piccadilynotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1262",
+        "type": "piccadilysuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1263",
+        "type": "victorianotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1264",
+        "type": "victoriasuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1501",
+        "type": "bakerloosuspended",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1502",
+        "type": "centralsuspended",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1503",
+        "type": "districtsuspended",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1504",
+        "type": "circlesuspended",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1505",
+        "type": "ellsuspended",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1506",
+        "type": "hcsuspended",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1507",
+        "type": "jubileesuspended",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1508",
+        "type": "northernsuspended",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1509",
+        "type": "northernbanksuspended",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1510",
+        "type": "northernxsuspended",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1511",
+        "type": "metropolitansuspended",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1512",
+        "type": "piccadilysuspended",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1513",
+        "type": "victoriasuspended",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1514",
+        "type": "wcsuspended",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1515",
+        "type": "dlrsuspended",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1516",
+        "type": "bakerloosevere",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1517",
+        "type": "centralsevere",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1518",
+        "type": "circlesevere",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1519",
+        "type": "districtsevere",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1520",
+        "type": "ellsevere",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1521",
+        "type": "hcsevere",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1522",
+        "type": "jubileesevere",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1523",
+        "type": "metropolitansevere",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1524",
+        "type": "northernsevere",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1525",
+        "type": "piccadiliysevere",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1526",
+        "type": "victoriasevere",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1527",
+        "type": "wcsevere",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1528",
+        "type": "dlrsevere",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1529",
+        "type": "bakerloominor",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1530",
+        "type": "centralminor",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1531",
+        "type": "circleminor",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1532",
+        "type": "districtminor",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1533",
+        "type": "ellminor",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1534",
+        "type": "hcminor",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1535",
+        "type": "jubileeminor",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1536",
+        "type": "metropolitanminor",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1537",
+        "type": "northernminor",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1538",
+        "type": "piccadilyminor",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1539",
+        "type": "victoriaminor",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1540",
+        "type": "wcminor",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1541",
+        "type": "dlrminor",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1265",
+        "type": "eastcentralnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1266",
+        "type": "eastcentralsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1267",
+        "type": "eastdistrictnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1268",
+        "type": "eastdistrictsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1269",
+        "type": "eastdlrnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1270",
+        "type": "eastdlrsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1271",
+        "type": "easthcnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1272",
+        "type": "easthcsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1273",
+        "type": "eastjubileenotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1274",
+        "type": "eastjubileesuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1275",
+        "type": "eastpicadillynotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1276",
+        "type": "eastboundpiccadilysuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1277",
+        "type": "northbakerloonotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1278",
+        "type": "northbakerloosuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1279",
+        "type": "northellnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1280",
+        "type": "northellsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1281",
+        "type": "northjubileenotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1282",
+        "type": "northjubileesuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1283",
+        "type": "northmetropolitannotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1284",
+        "type": "northmetropolitansuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1285",
+        "type": "northnorthernnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1286",
+        "type": "northnorthernsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1287",
+        "type": "northnorthernbanknotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1288",
+        "type": "northnorthernbanksuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1289",
+        "type": "northnorthernxnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1290",
+        "type": "northnorthernxsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1291",
+        "type": "northpiccadilynotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1292",
+        "type": "northpiccadilysuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1293",
+        "type": "northvictorianotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1294",
+        "type": "northvictoriasuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1295",
+        "type": "southellsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1296",
+        "type": "southellnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1297",
+        "type": "southjubileenotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1298",
+        "type": "southjubileesuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1299",
+        "type": "southmetropolitannotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1300",
+        "type": "southmetropolitansuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1301",
+        "type": "southnorthernsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1302",
+        "type": "southnorthernnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1303",
+        "type": "southpiccadilynotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1304",
+        "type": "southpiccadilysuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1305",
+        "type": "southvictoriasuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1306",
+        "type": "southvictorianotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1307",
+        "type": "southbakerloonotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1308",
+        "type": "southbakerloosuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1309",
+        "type": "southnorthernbanknotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1310",
+        "type": "southnothernbanksuspended",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1311",
+        "type": "southnorthernxnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1312",
+        "type": "southnorthernxsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1313",
+        "type": "westcentralnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1314",
+        "type": "westcentralsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1315",
+        "type": "westdistrictnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1316",
+        "type": "westdistrictsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1317",
+        "type": "westdlrnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1318",
+        "type": "westdlrsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1319",
+        "type": "westhcnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1320",
+        "type": "westhcsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1321",
+        "type": "westjubileenotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1322",
+        "type": "westjubileesuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1323",
+        "type": "westpiccadilynotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1324",
+        "type": "westpiccadilysuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "4000",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1563",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "4001",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "4002",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1568",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1571",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1572",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1092",
+        "type": "dueto",
+        "options": "NULL",
+        "group": "NULL"
+    },
+    {
+        "section_id": "421",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "1577",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1578",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1579",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1581",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1582",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "422",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "978",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "447",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "station"
+    },
+    {
+        "section_id": "448",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "station"
+    },
+    {
+        "section_id": "500",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "1259",
+        "type": "northernnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1101",
+        "type": "northernbanknotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1102",
+        "type": "northernxnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1525",
+        "type": "piccadilysevere",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1524",
+        "type": "northernxsevere",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1537",
+        "type": "northernxminor",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1537",
+        "type": "northernbankminor",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1524",
+        "type": "northernbanksevere",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1103",
+        "type": "northernxsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1104",
+        "type": "northernbanksuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "795",
+        "type": "wcsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "794",
+        "type": "wcnotstopping",
+        "options": "NULL",
+        "group": "NULL"
+    },
+    {
+        "section_id": "501",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "502",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "weather"
+    },
+    {
+        "section_id": "503",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "weather"
+    },
+    {
+        "section_id": "504",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "weather"
+    },
+    {
+        "section_id": "505",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "track"
+    },
+    {
+        "section_id": "506",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "track"
+    },
+    {
+        "section_id": "507",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "station"
+    },
+    {
+        "section_id": "508",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "509",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "510",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "station"
+    },
+    {
+        "section_id": "511",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "512",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "513",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "signal"
+    },
+    {
+        "section_id": "514",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "signal"
+    },
+    {
+        "section_id": "515",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "516",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "engineering"
+    },
+    {
+        "section_id": "517",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "518",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "519",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "5215",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "signal"
+    },
+    {
+        "section_id": "521",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "522",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "security"
+    },
+    {
+        "section_id": "523",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "security"
+    },
+    {
+        "section_id": "524",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "security"
+    },
+    {
+        "section_id": "525",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "weather"
+    },
+    {
+        "section_id": "526",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "signal"
+    },
+    {
+        "section_id": "527",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "signal"
+    },
+    {
+        "section_id": "528",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "security"
+    },
+    {
+        "section_id": "529",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "track"
+    },
+    {
+        "section_id": "531",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "532",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "track"
+    },
+    {
+        "section_id": "533",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "534",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "535",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "536",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "537",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "538",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "539",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "540",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "541",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "443",
+        "type": "tickets",
+        "options": "NULL",
+        "group": "tickets"
+    },
+    {
+        "section_id": "949",
+        "type": "tickets",
+        "options": "NULL",
+        "group": "tickets"
+    },
+    {
+        "section_id": "952",
+        "type": "tickets",
+        "options": "NULL",
+        "group": "tickets"
+    },
+    {
+        "section_id": "950",
+        "type": "tickets",
+        "options": "NULL",
+        "group": "tickets"
+    },
+    {
+        "section_id": "948",
+        "type": "tickets",
+        "options": "NULL",
+        "group": "tickets"
+    },
+    {
+        "section_id": "958",
+        "type": "tickets",
+        "options": "NULL",
+        "group": "tickets"
+    },
+    {
+        "section_id": "956",
+        "type": "tickets",
+        "options": "NULL",
+        "group": "tickets"
+    },
+    {
+        "section_id": "957",
+        "type": "tickets",
+        "options": "NULL",
+        "group": "tickets"
+    },
+    {
+        "section_id": "4652",
+        "type": "tickets",
+        "options": "NULL",
+        "group": "tickets"
+    },
+    {
+        "section_id": "4653",
+        "type": "tickets",
+        "options": "NULL",
+        "group": "tickets"
+    },
+    {
+        "section_id": "4654",
+        "type": "tickets",
+        "options": "NULL",
+        "group": "tickets"
+    },
+    {
+        "section_id": "4655",
+        "type": "tickets",
+        "options": "NULL",
+        "group": "tickets"
+    },
+    {
+        "section_id": "4656",
+        "type": "tickets",
+        "options": "NULL",
+        "group": "tickets"
+    },
+    {
+        "section_id": "4657",
+        "type": "tickets",
+        "options": "NULL",
+        "group": "tickets"
+    },
+    {
+        "section_id": "2900",
+        "type": "branches",
+        "options": "NULL",
+        "group": "central"
+    },
+    {
+        "section_id": "4659",
+        "type": "tickets",
+        "options": "NULL",
+        "group": "tickets"
+    },
+    {
+        "section_id": "4660",
+        "type": "tickets",
+        "options": "NULL",
+        "group": "tickets"
+    },
+    {
+        "section_id": "945",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "477",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "478",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "485",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "4639",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "4640",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "4642",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1398",
+        "type": "eastcirclenotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "49",
+        "type": "tickets",
+        "options": "NULL",
+        "group": "tickets"
+    },
+    {
+        "section_id": "1395",
+        "type": "eastcirclesuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1408",
+        "type": "anticlockwisecirclenotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1397",
+        "type": "westcirclenotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1396",
+        "type": "westcirclesuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "542",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "543",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "544",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "545",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "546",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "548",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "549",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "550",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "551",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "1111",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "engineering"
+    },
+    {
+        "section_id": "3841",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "1205",
+        "type": "tickets",
+        "options": "NULL",
+        "group": "tickets"
+    },
+    {
+        "section_id": "1109",
+        "type": "tickets",
+        "options": "NULL",
+        "group": "tickets"
+    },
+    {
+        "section_id": "1122",
+        "type": "tickets",
+        "options": "NULL",
+        "group": "tickets"
+    },
+    {
+        "section_id": "4101",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "4102",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "4103",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "4104",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "4105",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "station"
+    },
+    {
+        "section_id": "4106",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "engineering"
+    },
+    {
+        "section_id": "4107",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "4109",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "501",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "4111",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "4112",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "track"
+    },
+    {
+        "section_id": "4113",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "security"
+    },
+    {
+        "section_id": "4114",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "security"
+    },
+    {
+        "section_id": "4115",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "security"
+    },
+    {
+        "section_id": "4116",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "signal"
+    },
+    {
+        "section_id": "4117",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "signal"
+    },
+    {
+        "section_id": "4118",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "security"
+    },
+    {
+        "section_id": "4119",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "weather"
+    },
+    {
+        "section_id": "4120",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "4121",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "4122",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "4123",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "track"
+    },
+    {
+        "section_id": "4124",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "station"
+    },
+    {
+        "section_id": "4125",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "station"
+    },
+    {
+        "section_id": "4126",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "engineering"
+    },
+    {
+        "section_id": "4127",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "engineering"
+    },
+    {
+        "section_id": "4128",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "engineering"
+    },
+    {
+        "section_id": "4129",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "station"
+    },
+    {
+        "section_id": "4130",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "track"
+    },
+    {
+        "section_id": "4131",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "4132",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "weather"
+    },
+    {
+        "section_id": "4133",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "weather"
+    },
+    {
+        "section_id": "4134",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "4135",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "engineering"
+    },
+    {
+        "section_id": "4136",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "engineering"
+    },
+    {
+        "section_id": "4137",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "944",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "943",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "961",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "4138",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "4139",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "4140",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "4141",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "4142",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "4143",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "1325",
+        "type": "overgroundnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1326",
+        "type": "overgroundsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1544",
+        "type": "overgroundsuspended",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1545",
+        "type": "overgroundsevere",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1546",
+        "type": "overgroundminor",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "4144",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "2901",
+        "type": "branches",
+        "options": "NULL",
+        "group": "central"
+    },
+    {
+        "section_id": "2901",
+        "type": "branches",
+        "options": "disruption",
+        "group": "district"
+    },
+    {
+        "section_id": "2902",
+        "type": "branches",
+        "options": "disruption",
+        "group": "district"
+    },
+    {
+        "section_id": "2903",
+        "type": "branches",
+        "options": "disruption",
+        "group": "district"
+    },
+    {
+        "section_id": "2904",
+        "type": "branches",
+        "options": "NULL",
+        "group": "central"
+    },
+    {
+        "section_id": "2905",
+        "type": "branches",
+        "options": "NULL",
+        "group": "central"
+    },
+    {
+        "section_id": "2906",
+        "type": "branches",
+        "options": "NULL",
+        "group": "northern"
+    },
+    {
+        "section_id": "2907",
+        "type": "branches",
+        "options": "NULL",
+        "group": "northern"
+    },
+    {
+        "section_id": "1201",
+        "type": "bakerloo",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1202",
+        "type": "central",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1203",
+        "type": "circle",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1204",
+        "type": "district",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1207",
+        "type": "hc",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1208",
+        "type": "jubilee",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1209",
+        "type": "metropolitan",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1210",
+        "type": "northern",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1211",
+        "type": "piccadilly",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1212",
+        "type": "victoria",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1205",
+        "type": "dlr",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1213",
+        "type": "wc",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "948",
+        "type": "overground",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "2908",
+        "type": "branches",
+        "options": "NULL",
+        "group": "northern"
+    },
+    {
+        "section_id": "2909",
+        "type": "branches",
+        "options": "NULL",
+        "group": "northern"
+    },
+    {
+        "section_id": "2915",
+        "type": "branches",
+        "options": "NULL",
+        "group": "metropolitan"
+    },
+    {
+        "section_id": "2916",
+        "type": "branches",
+        "options": "NULL",
+        "group": "metropolitan"
+    },
+    {
+        "section_id": "2917",
+        "type": "branches",
+        "options": "NULL",
+        "group": "metropolitan"
+    },
+    {
+        "section_id": "2918",
+        "type": "branches",
+        "options": "NULL",
+        "group": "metropolitan"
+    },
+    {
+        "section_id": "2919",
+        "type": "branches",
+        "options": "NULL",
+        "group": "piccadilly"
+    },
+    {
+        "section_id": "2916",
+        "type": "branches",
+        "options": "NULL",
+        "group": "piccadilly"
+    },
+    {
+        "section_id": "2920",
+        "type": "branches",
+        "options": "disruption",
+        "group": "district"
+    },
+    {
+        "section_id": "2921",
+        "type": "branches",
+        "options": "disruption",
+        "group": "district"
+    },
+    {
+        "section_id": "4638",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "engineering"
+    },
+    {
+        "section_id": "4817",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "engineering"
+    },
+    {
+        "section_id": "4903",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "2921",
+        "type": "branches",
+        "options": "NULL",
+        "group": "northern"
+    },
+    {
+        "section_id": "2922",
+        "type": "branches",
+        "options": "NULL",
+        "group": "northern"
+    },
+    {
+        "section_id": "4905",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "4906",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "4907",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "4908",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "4910",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "4923",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "track"
+    },
+    {
+        "section_id": "4957",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "4958",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "4959",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "4960",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "4961",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "4962",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "4963",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "4964",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "4965",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "5190",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "engineering"
+    },
+    {
+        "section_id": "5191",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "track"
+    },
+    {
+        "section_id": "5192",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "5193",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "station"
+    },
+    {
+        "section_id": "5195",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "5196",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "station"
+    },
+    {
+        "section_id": "5197",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "5198",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "5199",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "5200",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "5201",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "5202",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "504",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "5204",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "5205",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "5206",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "5207",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "5208",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "505",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "5210",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "5212",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "security"
+    },
+    {
+        "section_id": "5213",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "security"
+    },
+    {
+        "section_id": "5214",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "5217",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "station"
+    },
+    {
+        "section_id": "5218",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "5223",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "5224",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "5225",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "5226",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "5227",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "5228",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "5229",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "track"
+    },
+    {
+        "section_id": "5231",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "5232",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "station"
+    },
+    {
+        "section_id": "506",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "5234",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "engineering"
+    },
+    {
+        "section_id": "5235",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "5236",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "5237",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "station"
+    },
+    {
+        "section_id": "5238",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "track"
+    },
+    {
+        "section_id": "5239",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "5240",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "weather"
+    },
+    {
+        "section_id": "520",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "5241",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "weather"
+    },
+    {
+        "section_id": "5242",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "weather"
+    },
+    {
+        "section_id": "4867",
+        "type": "tail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1405",
+        "type": "anticlockwisecirclesuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1409",
+        "type": "anticlockwisecirclesuspended",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1401",
+        "type": "anticlockwisecirclesevere",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1403",
+        "type": "anticlockwisecircleminor",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1407",
+        "type": "clockwisecirclenotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1406",
+        "type": "clockwisecirclesuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1410",
+        "type": "clockwisecirclesuspended",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1402",
+        "type": "clockwisecirclesevere",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1404",
+        "type": "clockwisecircleminor",
+        "options": "NULL",
+        "group": "NULL"
+    },
+    {
+        "section_id": "4995",
+        "type": "tflrailnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "4996",
+        "type": "tflrailsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "4987",
+        "type": "tflrailsevere",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "4988",
+        "type": "tflrailminor",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "4878",
+        "type": "tflrail",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "4991",
+        "type": "tflrail",
+        "options": "tail      ",
+        "group": "NULL"
+    },
+    {
+        "section_id": "4991",
+        "type": "tickets",
+        "options": "NULL",
+        "group": "tickets"
+    },
+    {
+        "section_id": "520",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "5221",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "weather"
+    },
+    {
+        "section_id": "5221",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "track"
+    },
+    {
+        "section_id": "4983",
+        "type": "tflrailsuspended",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1135",
+        "type": "crossrailnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1136",
+        "type": "crossrailsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1141",
+        "type": "crossrailsuspended",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "230",
+        "type": "crossrailsevere",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "231",
+        "type": "crossrailminor",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1200",
+        "type": "elizabethlinenotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1227",
+        "type": "elizabethlinesuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1230",
+        "type": "elizabethlinesuspended",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "226",
+        "type": "elizabethlinesevere",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "228",
+        "type": "elizabethlineminor",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "1199",
+        "type": "elizabethline",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "216",
+        "type": "tramnotstopping",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "217",
+        "type": "tramsuspendedbetween",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "221",
+        "type": "tramsuspended",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "229",
+        "type": "tramsevere",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "227",
+        "type": "tramminor",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "212",
+        "type": "tram",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "5216",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "signal"
+    },
+    {
+        "section_id": "5251",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "signal"
+    },
+    {
+        "section_id": "5535",
+        "type": "stastart",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "5536",
+        "type": "stastart",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "5537",
+        "type": "stastart",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "5546",
+        "type": "stastart",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "5547",
+        "type": "stastart",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "5548",
+        "type": "stastart",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "5243",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "weather"
+    },
+    {
+        "section_id": "5244",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "5245",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "track"
+    },
+    {
+        "section_id": "5246",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "station"
+    },
+    {
+        "section_id": "5247",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "station"
+    },
+    {
+        "section_id": "5248",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "engineering"
+    },
+    {
+        "section_id": "5249",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "5250",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "4918",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "5252",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "station"
+    },
+    {
+        "section_id": "5253",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "station"
+    },
+    {
+        "section_id": "5254",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "station"
+    },
+    {
+        "section_id": "5255",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "security"
+    },
+    {
+        "section_id": "5256",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "5257",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "other"
+    },
+    {
+        "section_id": "5258",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "1195",
+        "type": "elizabeth",
+        "options": "disruption",
+        "group": "NULL"
+    },
+    {
+        "section_id": "5293",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "following"
+    },
+    {
+        "section_id": "1418",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "following"
+    },
+    {
+        "section_id": "4704",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4705",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4706",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4707",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4900",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4901",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4902",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4904",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4909",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4911",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4912",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4913",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4914",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4917",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4918",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "4912",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4922",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4924",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4925",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4926",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4927",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "track"
+    },
+    {
+        "section_id": "4928",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "engineering"
+    },
+    {
+        "section_id": "4929",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "engineering"
+    },
+    {
+        "section_id": "4930",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4931",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4932",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "people"
+    },
+    {
+        "section_id": "4933",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4934",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4935",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4936",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4937",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4938",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4939",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4940",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "507",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "4942",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4943",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4944",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4945",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4946",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4947",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4948",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4949",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4950",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4951",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4953",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4954",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "4955",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "train"
+    },
+    {
+        "section_id": "4956",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "5601",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "5602",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "502",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "503",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "5605",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "5606",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "508",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "5609",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "5610",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "5615",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "5617",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "5618",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "5619",
+        "type": "whilemiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "511",
+        "type": "trainmiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "512",
+        "type": "trainmiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "509",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "5204",
+        "type": "trainmiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "5206",
+        "type": "trainmiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "5208",
+        "type": "trainmiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "510",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "4904",
+        "type": "trainmiddle",
+        "options": "NULL",
+        "group": ""
+    },
+    {
+        "section_id": "511",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "511",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "512",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "512",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "513",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "514",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "515",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "516",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "517",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "518",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "519",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "519",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "5219",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "track"
+    },
+    {
+        "section_id": "521",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "522",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "523",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "524",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "525",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "526",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "527",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "528",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "529",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "533",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "534",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "535",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "536",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "537",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "538",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "539",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "540",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "541",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "542",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "543",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "544",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "545",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "548",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "549",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "550",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "551",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "1020",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "1062",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "1418",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "4120",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "5220",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "track"
+    },
+    {
+        "section_id": "5231",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "5293",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "earlier"
+    },
+    {
+        "section_id": "5219",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "weather"
+    },
+    {
+        "section_id": "5251",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "weather"
+    },
+    {
+        "section_id": "4918",
+        "type": "duemiddle",
+        "options": "NULL",
+        "group": "signal"
+    }
+]

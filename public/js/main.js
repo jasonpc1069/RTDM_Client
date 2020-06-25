@@ -16,7 +16,8 @@ const AND_FRAGMENT = 1362;
 const DetailIndex = Object.freeze({"detail": 0, "detail_1": 1, "additional_detail":2, "rest_of_line": 3});
 const DetailPanels = Object.freeze({"detail": 1, "detail_1": 2, "additional_detail":3, "rest_of_line": 4});
 const DirectionTextPosition = Object.freeze({"pre":1, "post":2});
-const FILTER_ALL = '.*';
+const DisruptionTypes = Object.freeze({"duemiddle":1, "trainmiddle":2, "whilemiddle":3,"tickets":4});
+const FILTER_ALL = ["duemiddle", "whilemiddle", "trainmiddle"];
 const LINE_FRAGMENT = 7000;
 const MapDisplayStates = Object.freeze({"no_map": 0, "single_selection": 1, "multi_selection":2});
 const ReasonStates = Object.freeze({"no_reason":0, "post":1, "pre":2});
@@ -29,50 +30,51 @@ const TOTAL_MESSAGE_LENGTH = 254;
 /*-----------------------------------------------------------------------------
   Global Variables
 -------------------------------------------------------------------------------*/
-var applicationName ='';
-var assembledFragments = {fragments: [], selected: 0};
-var banned_words = {fragments: []};
-var builderFragments = [];
-var completeFragmentData = [];
-var currentName ='';
-var currentRole ='';
-var current_map_display = 0;
-var detailFragments = [[],[],[],[]];
-var dictionary = new Typo( "en_GB" );
-var directionFragment = 0;
-var direction_position = 0;
-var disruptionDetailIds = [];
-var disruptionFragment = [];
-var disruptionText = '';
-var error_messages = [];
-var fragmentText = [];
-var html_loaded = false;
-var initialLine = 0;
-var lineButton = '';
-var lineFragment = 0;
-var lineImage = 0;
-var lineText ='';
-var map_display_state = 0;
-var preambleFragment =0;
-var preambleText ='';
-var preamble_loaded = false;
-var previewEvent = null;
-var previousStationFragmentList = []; 
-var reasonFragment = 0; // The current selected reason fragment
-var reasonFragments = [];   //The current list of reasons
-var reason_position = 0;
-var spellingTimer;   //timer identifier
-var start_disruption_fragments = [];
-var start_disruption_id = 0;
-var start_preamble_fragment = 0;
-var start_preamble_id = 0;
-var stationFragmentList = [[],[],[]]; 
-var station_image_scale = 0;
-var stations = [];  // Array of Line Stations
-var textualFragments = {fragments: [], selected: 0, error_count: 0, errors: []};
-var ticketFragments = [];
-var ticketFragmentList = [];
-var version = '';
+let applicationName ='';
+let assembledFragments = {fragments: [], selected: 0};
+let banned_words = {fragments: []};
+let builderFragments = [];
+let completeFragmentData = [];
+let currentName ='';
+let currentRole ='';
+let current_map_display = 0;
+let detailFragments = [[],[],[],[]];
+let dictionary = new Typo( "en_GB" );
+let directionFragment = 0;
+let direction_position = 0;
+let disruptionDetailIds = [];
+let disruptionFragment = [];
+let disruptionText = '';
+let disruptionTypeData = [];
+let error_messages = [];
+let fragmentText = {section:[], text:[]};
+let html_loaded = false;
+let initialLine = 0;
+let lineButton = '';
+let lineFragment = 0;
+let lineImage = 0;
+let lineText ='';
+let map_display_state = 0;
+let preambleFragment =0;
+let preambleText ='';
+let preamble_loaded = false;
+let previewEvent = null;
+let previousStationFragmentList = []; 
+let reasonFragment = 0; // The current selected reason fragment
+let reason_position = 0;
+let spellingTimer;   //timer identifier
+let start_disruption_fragments = [];
+let start_disruption_id = 0;
+let start_preamble_fragment = 0;
+let start_preamble_id = 0;
+let stationFragmentList = [[],[],[]]; 
+let station_image_scale = 0;
+let stations = [];  // Array of Line Stations
+let textualFragments = {fragments: [], selected: 0, error_count: 0, errors: []};
+let ticketFragments = [];
+let ticketGroup = '';
+let ticketFragmentList = [];
+let version = '';
 
 /*-----------------------------------------------------------------------------
   Functions to load additional HTML files
@@ -125,9 +127,9 @@ function resetInitialApplicationStates()
  */
 function resetDisruptionButtons()
 {
-    var buttons = document.querySelectorAll('.disruption');
-    var button_name = '';
-    var button_id = 0;
+    let buttons = document.querySelectorAll('.disruption');
+    let button_name = '';
+    let button_id = 0;
 
     disruptionFragment = [];
 
@@ -135,11 +137,11 @@ function resetDisruptionButtons()
     for (b = 0; b<buttons.length; b++)
     {
         button_name = buttons[b].getAttribute('id');
-        button_id = button_name.substr(button_name.indexOf('_') + 1);
+        button_id = parseInt(button_name.substr(button_name.indexOf('_') + 1),10);
         buttons[b].classList.remove('active');
         
-        if (start_disruption_id == button_id && 
-            start_disruption_id !=0)
+        if (start_disruption_id === button_id && 
+            start_disruption_id !==0)
         {
             buttons[b].classList.add('active');
             disruptionFragment = start_disruption_fragments;
@@ -152,9 +154,9 @@ function resetDisruptionButtons()
  */
 function resetPreambleButtons()
 {
-    var buttons = document.querySelectorAll('.preamble');
-    var button_name = '';
-    var button_id = 0;
+    let buttons = document.querySelectorAll('.preamble');
+    let button_name = '';
+    let button_id = 0;
 
    preambleFragment = 0;
 
@@ -162,12 +164,14 @@ function resetPreambleButtons()
     for (b = 0; b<buttons.length; b++)
     {
         button_name = buttons[b].getAttribute('id');
-        button_id = button_name.substr(button_name.indexOf('_') + 1);
+        button_id = parseInt(button_name.substr(button_name.indexOf('_') + 1));
         
         buttons[b].classList.remove('active');
+
         
-        if (start_preamble_id == button_id && 
-            start_preamble_id !=0)
+        
+        if (start_preamble_id === button_id && 
+            start_preamble_id !== 0)
         {
             buttons[b].classList.add('active');
             preambleFragment = start_preamble_fragment;
@@ -179,15 +183,15 @@ function resetPreambleButtons()
  */
 function resetReasonButtons()
 {
-    var buttons = document.querySelectorAll('.reason');
-    var button_name = '';
-    var button_id = 0;
+    let buttons = document.querySelectorAll('.reason');
+    let button_name = '';
+    let button_id = 0;
 
     reasonFragment = 0;
 
-    if ($('#reasonSelectedList').contents().length == 0)
+    if ($('#reasonSelectedList').contents().length === 0)
     {
-        filterReasons(FILTER_ALL);
+        filterReasonsByType(FILTER_ALL, null);
     }
 
     // Set Button States
@@ -214,18 +218,13 @@ function resetReasonButtons()
  */
 function resetDetailButtons()
 {
-    var buttons = document.querySelectorAll('.detail');
-    var button_name = '';
-    var button_id = 0;
-
-   detailFragments[DetailIndex.detail] = [];
+    let buttons = document.querySelectorAll('.detail');
+    
+    detailFragments[DetailIndex.detail] = [];
 
     // Set Button States
     for (b = 0; b<buttons.length; b++)
-    {
-        button_name = buttons[b].getAttribute('id');
-        button_id = button_name.substr(button_name.indexOf('_') + 1);
-        
+    {   
         buttons[b].classList.remove('active');
         buttons[b].disabled = true;
     }
@@ -237,9 +236,6 @@ function resetDetailButtons()
     // Set Button States
     for (b = 0; b<buttons.length; b++)
     {
-        button_name = buttons[b].getAttribute('id');
-        button_id = button_name.substr(button_name.indexOf('_') + 1);
-        
         buttons[b].classList.remove('active');
         buttons[b].disabled = true;
     }
@@ -249,10 +245,7 @@ function resetDetailButtons()
 
     // Set Button States
     for (b = 0; b<buttons.length; b++)
-    {
-        button_name = buttons[b].getAttribute('id');
-        button_id = button_name.substr(button_name.indexOf('_') + 1);
-        
+    { 
         buttons[b].classList.remove('active');
         buttons[b].disabled = true;
     }
@@ -263,9 +256,6 @@ function resetDetailButtons()
     // Set Button States
     for (b = 0; b<buttons.length; b++)
     {
-        button_name = buttons[b].getAttribute('id');
-        button_id = button_name.substr(button_name.indexOf('_') + 1);
-        
         buttons[b].classList.remove('active');
         buttons[b].disabled = true;
     }
@@ -280,18 +270,13 @@ function resetDetailButtons()
 
 function resetDirectionButtons()
 {
-    var buttons = document.querySelectorAll('.direction');
-    var button_name = '';
-    var button_id = 0;
+   let buttons = document.querySelectorAll('.direction');
 
    directionFragment = 0;
 
     // Set Button States
     for (b = 0; b<buttons.length; b++)
-    {
-        button_name = buttons[b].getAttribute('id');
-        button_id = button_name.substr(button_name.indexOf('_') + 1);
-        
+    { 
         buttons[b].classList.remove('active');
         buttons[b].disabled = true;
     }
@@ -314,14 +299,14 @@ function resetTicketOptions()
 
 function resetLineButton()
 {
-    var button_name = '';
-    var button_id = 0;
+    let button_name = '';
+    let button_id = 0;
 
     $('.line').each(function()   {
         button_name = $(this).attr('id');
-        button_id = button_name.substr(button_name.indexOf('_') + 1);
+        button_id = parseInt(button_name.substr(button_name.indexOf('_') + 1));
        
-        if (button_id == initialLine)
+        if (button_id === initialLine)
         {
             $(this).trigger('click');
         }
@@ -349,45 +334,45 @@ function updateMessagePanels()
  */
 function compileFragments(fragments)
 {
-    var f = 0;
-    var last_token = '';
-    var reason_text = '';
-    var s = 0;
-    var station_fragment_used = 0;
-    var t = 0;
-    var token_arr = [];
+    let f = 0;
+    let last_token = '';
+    let reason_text = '';
+    let s = 0;
+    let station_fragment_used = 0;
+    let t = 0;
+    let token_arr = [];
 
     fragments.fragments = [];
     
     //Preamble
-    if (preambleFragment !=0)
+    if (preambleFragment !== 0)
     {
        fragments.fragments.push(preambleFragment);
     }
 
     // Determine whether the reason should be displayed before the disruption
-    if (reason_position == ReasonStates.pre &&
-        reasonFragment != 0)
+    if (reason_position === ReasonStates.pre &&
+        reasonFragment !== 0)
     {
         fragments.fragments.push(reasonFragment);
-        reason_text = fragmentText[reasonFragment];
+        reason_text = fragmentText.text[reasonFragment];
     }
 
     // Disruption
     for (f=0; f<disruptionFragment.length; f++)
     {
-        if (disruptionFragment[f] == LINE_FRAGMENT)
+        if (disruptionFragment[f] === LINE_FRAGMENT)
         {
             // Determine whether a direction has been set
             if (directionFragment)
             {
-                if (direction_position == DirectionTextPosition.post &&
+                if (direction_position === DirectionTextPosition.post &&
                     !disruptionFragment.includes(STATION_FRAGMENT))
                 {
                     fragments.fragments.push(lineFragment);
                     fragments.fragments.push(directionFragment);
                 }
-                else if (direction_position == DirectionTextPosition.pre)
+                else if (direction_position === DirectionTextPosition.pre)
                 {
                     fragments.fragments.push(directionFragment);
                     fragments.fragments.push(lineFragment);
@@ -402,7 +387,7 @@ function compileFragments(fragments)
                 fragments.fragments.push(lineFragment);
             }
         }
-        else if (disruptionFragment[f] == STATION_FRAGMENT)
+        else if (disruptionFragment[f] === STATION_FRAGMENT)
         {
             if (stationFragmentList[DetailIndex.detail].length >0)
             {
@@ -410,7 +395,7 @@ function compileFragments(fragments)
             }
 
             // Determine whether a direction has been set
-            if (directionFragment && direction_position == DirectionTextPosition.post)
+            if (directionFragment && direction_position === DirectionTextPosition.post)
             {
                 fragments.fragments.push(directionFragment);
             }
@@ -428,12 +413,12 @@ function compileFragments(fragments)
     {
         for (f=0; f < detailFragments[DetailIndex.detail_1].length; f++)
         {
-            if (detailFragments[DetailIndex.detail_1][f] == STATION_FRAGMENT_LIST)
+            if (detailFragments[DetailIndex.detail_1][f] === STATION_FRAGMENT_LIST)
             {
                 for (s=0; s < stationFragmentList[DetailIndex.detail_1].length; s++)
                 {
                     // Determine whethere station is the last in the list
-                    if ((s+1) == stationFragmentList[DetailIndex.detail_1].length && s != 0)
+                    if ((s+1) === stationFragmentList[DetailIndex.detail_1].length && s !== 0)
                     {
                         fragments.fragments.push(AND_FRAGMENT);
                     }
@@ -453,12 +438,12 @@ function compileFragments(fragments)
     {
         for (f=0; f < detailFragments[DetailIndex.additional_detail].length; f++)
         {
-            if (detailFragments[DetailIndex.additional_detail][f] == STATION_FRAGMENT_LIST)
+            if (detailFragments[DetailIndex.additional_detail][f] === STATION_FRAGMENT_LIST)
             {
                 for (s=0; s < stationFragmentList[DetailIndex.additional_detail].length; s++)
                 {
                     // Determine whethere station is the last in the list
-                    if ((s+1) == stationFragmentList[DetailIndex.additional_detail].length && s != 0)
+                    if ((s+1) === stationFragmentList[DetailIndex.additional_detail].length && s !== 0)
                     {
                         fragments.fragments.push(AND_FRAGMENT);
                     }
@@ -474,11 +459,11 @@ function compileFragments(fragments)
     }
 
     // Reason
-    if (reason_position == ReasonStates.post &&
-        reasonFragment != 0)
+    if (reason_position === ReasonStates.post &&
+        reasonFragment !== 0)
     {
         fragments.fragments.push(reasonFragment);
-        reason_text = fragmentText[reasonFragment];
+        reason_text = fragmentText.text[reasonFragment];
 
         //Split reason text into tokens
         token_arr = reason_text.split(' ');
@@ -486,11 +471,11 @@ function compileFragments(fragments)
     }
 
     // Details
-    if (station_fragment_used == 0 || !detailFragments[DetailIndex.detail].includes(STATION_FRAGMENT)) 
+    if (station_fragment_used === 0 || !detailFragments[DetailIndex.detail].includes(STATION_FRAGMENT)) 
     {
         for (f=0; f<detailFragments[DetailIndex.detail].length; f++)
         {
-            if (detailFragments[DetailIndex.detail][f] == STATION_FRAGMENT)
+            if (detailFragments[DetailIndex.detail][f] === STATION_FRAGMENT)
             {
                 if (stationFragmentList[DetailIndex.detail].length > 0)
                 {
@@ -499,7 +484,7 @@ function compileFragments(fragments)
             }
             else
             {
-                if (fragmentText[detailFragments[f]] != last_token)
+                if (fragmentText.text[detailFragments[f]] !== last_token)
                 {
                     fragments.fragments.push(detailFragments[DetailIndex.detail][f]);
                 }
@@ -521,12 +506,12 @@ function compileFragments(fragments)
     {
         for (f=0; f < ticketFragments.length; f++)
         {
-            if (ticketFragments[f] == TICKET_FRAGMENT_LIST)
+            if (ticketFragments[f] === TICKET_FRAGMENT_LIST)
             {
                 for (t=0; t < ticketFragmentList.length; t++)
                 {
                     // Determine whethere station is the last in the list
-                    if ((t+1) == ticketFragmentList.length && t != 0)
+                    if ((t+1) === ticketFragmentList.length && t !== 0)
                     {
                         fragments.fragments.push(AND_FRAGMENT);
                     }
@@ -550,23 +535,23 @@ function compileFragments(fragments)
  */
 function updateMessageAssembler()
 {
-    var id = 0;
+    let id = 0;
 
     $('#messageAssembly')
                     .html(`<span class="message_font">`);
 
-    for (var f=0; f < assembledFragments.fragments.length; f++)
+    for (let f=0; f < assembledFragments.fragments.length; f++)
     {
         id = assembledFragments.fragments[f];
-        if (f == assembledFragments.selected)
+        if (f === assembledFragments.selected)
         {
             $('#messageAssembly')
-                    .append(`<u>${fragmentText[id]}</u> | `);
+                    .append(`<u>${fragmentText.text[id]}</u> | `);
         }
         else
         {
             $('#messageAssembly')
-                    .append(`${fragmentText[id]} | `);
+                    .append(`${fragmentText.text[id]} | `);
         }
     }
 
@@ -587,15 +572,15 @@ function updateMessageAssembler()
  */
 function updateTextualMessage()
 {
-    var id = 0;
-    var message = '';
+    let id = 0;
+    let message = '';
 
     $('#textualMessage').empty();
     
-    for (var f=0; f < textualFragments.fragments.length; f++)
+    for (let f=0; f < textualFragments.fragments.length; f++)
     {
         id = textualFragments.fragments[f];
-        message = message + fragmentText[id] + ' ';
+        message = message + fragmentText.text[id] + ' ';
     }
 
     $('#textualMessage').html(`<span class="message_font">${message.trim()}.</span>`);
@@ -615,12 +600,12 @@ function updateTextualMessage()
  */
 function updateTextualMessageLength()
 {
-    var message = '';
-    var contents = '';
-    var message_length = 0;
-    var char_remaining = 0;
+    let message = '';
+    let contents = '';
+    let message_length = 0;
+    let char_remaining = 0;
 
-    if(document.getElementById("textualMessage") != null)
+    if(document.getElementById("textualMessage") !== null)
     {
         // Get the current message
         message = document.getElementById('textualMessage').innerText;
@@ -656,15 +641,15 @@ function updateTextualMessageLength()
  */
 function updateBuilderMessage()
 {
-    var id = 0;
-    var message = '';
+    let id = 0;
+    let message = '';
 
     $('#builderCompleteMessage').empty();
     
-    for (var f=0; f < builderFragments.fragments.length; f++)
+    for (let f=0; f < builderFragments.fragments.length; f++)
     {
         id = builderFragments.fragments[f];
-        message = message + fragmentText[id] + ' ';
+        message = message + fragmentText.text[id] + ' ';
     }
 
     $('#builderCompleteMessage').html(`<span class="builder_message_font">${message.trim()}.</span>`);      
@@ -682,10 +667,10 @@ function updateAssemblyButtons()
     {
         // Update previous and next
         $('#assemblyPrevious').prop('disabled', 
-            (assembledFragments.selected == 0));
+            (assembledFragments.selected === 0));
         
         $('#assemblyNext').prop('disabled', 
-            (assembledFragments.selected == assembledFragments.fragments.length));
+            (assembledFragments.selected === assembledFragments.fragments.length));
 
         // Enable control buttons
 
@@ -757,12 +742,12 @@ function updateBuilderMessageButtons()
  */
 function previewSound(fragments)
 {
-    var file_names=[];
+    let file_names=[];
 
     // Build Play List
-    for (var f=0; f < fragments.length; f++)
+    for (let f=0; f < fragments.length; f++)
     {
-        if (fragments[f] < LINE_FRAGMENT && fragments[f] !=0)
+        if (fragments[f] < LINE_FRAGMENT && fragments[f] !==0)
         {
             file_names[f] = '/media/WavFiles/' + fragments[f] + '.wav';
         }
@@ -776,7 +761,7 @@ function previewSound(fragments)
  * @param  {} file_names - the audio playlist
  */
 function playSound(file_names) {
-    var sound = new Howl({
+    let sound = new Howl({
         src: [file_names[0]],
         
         // When the current audio file has finished
@@ -810,19 +795,19 @@ function playSound(file_names) {
  */
 function generateFragmentText(fragmentElements)
 {
-    var text = '';
+    let text = '';
 
     // Add each element to the text
     for (f = 0; f <fragmentElements.length; f++)
     {
         // Add seperator
-        if (f != 0)
+        if (f !== 0)
         {
             text = text + ' | ';
         }
 
         // Determine whether the fragment is the line fragment
-        if (fragmentElements[f] == LINE_FRAGMENT)
+        if (fragmentElements[f] === LINE_FRAGMENT)
         {
             // add line text
             text = text + '{line}'
@@ -830,7 +815,7 @@ function generateFragmentText(fragmentElements)
         else
         {
             // add fragment text
-            text = text + fragmentText[fragmentElements[f]];
+            text = text + fragmentText.text[fragmentElements[f]];
         }
     }
 
@@ -838,24 +823,43 @@ function generateFragmentText(fragmentElements)
 }
 
 /**
- * Filters the reasons using the search criteria
+ * Filters the reasons using the disruption types
  *
- * @param {string} searchText - the search criteria
+ * @param {Array} types - the disruption types
+ * @param {String} group - the disruption group
  */
-function filterReasons(searchText)
+function filterReasonsByType(types, group)
 {
-    var filterArray = [];
+    let filterArray = [];
+    let newArray = [];
+    let id = 0;
+    let element_list = [];
 
-    // Find Fragments based on search criteria
-    for(var f=0; f < reasonFragments.length; f++) 
-    { 
-        var id = reasonFragments[f];
-        if (fragmentText[id].toLowerCase().includes(searchText) ||
-            fragmentText[id].toLowerCase().match(searchText))
+    for(let f=0; f < disruptionTypeData.length; f++) 
+    {  
+        if ((types.includes(disruptionTypeData[f].type)) &&
+            ((disruptionTypeData[f].group == group && group !== null) ||
+             (group === null)))
         {
-            filterArray.push({id: `${id}`, text: `${fragmentText[id]}`});
+            id = disruptionTypeData[f].section_id;
+            if (fragmentText.text[id])
+            {
+                if (fragmentText.section[id] ==='M')
+                {
+                    filterArray.push({id: `${id}`, text: `${fragmentText.text[id].trim()}`});
+                }
+            }
+            else
+            {
+                console.log('ID: ', id);
+            }
         }
     }
+
+    // Remove Duplicates from the Array
+    filterArray =  filterArray.filter((obj, pos, self) => {
+        return self.map(mapObj => mapObj['text']).indexOf(obj['text']) === pos;
+    });
 
     // Sort Array
     filterArray.sort(compareFragments);
@@ -863,7 +867,59 @@ function filterReasons(searchText)
     //Add fragments to list
     for(f=0; f < filterArray.length; f++) 
     { 
-        if (f==0)
+        if (f===0)
+        {
+            $('#reasonSelectedList')
+                .html(`<li class="list_font reason_item" id="reason_${filterArray[f].id}">${filterArray[f].text}</li>`);
+        }
+        else
+        {
+            $('#reasonSelectedList')
+                .append(`<li class="list_font reason_item" id="reason_${filterArray[f].id}">${filterArray[f].text}</li>`);
+        }
+    }      
+}
+
+/**
+ * Filters the reasons using the search criteria
+ *
+ * @param {string} searchText - the search criteria
+ */
+function filterReasonsByText(searchText)
+{
+    let filterArray = [];
+    let id = 0;
+    
+    for(let f=0; f < disruptionTypeData.length; f++) 
+    {  
+        id = disruptionTypeData[f].section_id;
+
+        if (fragmentText.text[id])
+        {
+            if (fragmentText.text[id].toLowerCase().includes(searchText) ||
+                fragmentText.text[id].toLowerCase().match(searchText))
+            {
+                filterArray.push({id: `${id}`, text: `${fragmentText.text[id].trim()}`});
+            }
+        }
+        else
+        {
+            console.log('ID: ', id);
+        }
+    }
+
+    // Remove Duplicates from the Array
+    filterArray =  filterArray.filter((obj, pos, self) => {
+        return self.map(mapObj => mapObj['text']).indexOf(obj['text']) === pos;
+    });
+
+    // Sort Array
+    filterArray.sort(compareFragments);
+
+    //Add fragments to list
+    for(f=0; f < filterArray.length; f++) 
+    { 
+        if (f===0)
         {
             $('#reasonSelectedList')
                 .html(`<li class="list_font reason_item" id="reason_${filterArray[f].id}">${filterArray[f].text}</li>`);
@@ -883,33 +939,65 @@ function filterReasons(searchText)
  */
 function filterFragmentData(searchText)
 {
-    var filterArray = [];
+    let filterArray = [];
 
     $('#fragmentArea').empty();
 
     // Find Fragments based on search criteria
-    for(var f=0; f < completeFragmentData.length; f++) 
+    for(let f=0; f < completeFragmentData.length; f++) 
     { 
-        if (String(completeFragmentData[f].detail).toLowerCase().startsWith(searchText) ||
-            String(completeFragmentData[f].detail).toLowerCase().match(searchText))
+        if (String(completeFragmentData[f].detail).toLowerCase().startsWith(searchText))
         {
             filterArray.push(completeFragmentData[f]);
         }
     }
 
-    console.log(filterArray);
-
-    
     // Sort Array
-    // filterArray.sort(compareFragments);
+    filterArray.sort(compareMessageFragments);
 
     //Add fragments to list
     for(f=0; f < filterArray.length; f++) 
     { 
         $('#fragmentArea')
                 .append(`<li class="fragment_list_font fragment_item" id="fragment_${filterArray[f].section_id}">
-                ${filterArray[f].vid_text} (${String(filterArray[f].section_position).toUpperCase()})<br>
+                ${filterArray[f].message_name} (${String(filterArray[f].section_position).toUpperCase()})<br>
                 <span class="fragment_list_small_font">${filterArray[f].detail}</span><br><br></li>`);
+    }      
+}
+
+/**
+ * Filters the reasons using the search criteria
+ *
+ * @param {string} searchText - the search criteria
+ */
+function buildTicketList()
+{
+    let filterArray = [];
+    let id = 0;
+    
+    for(let f=0; f < disruptionTypeData.length; f++) 
+    {  
+        if (disruptionTypeData[f].group == ticketGroup)
+        {
+            id = disruptionTypeData[f].section_id;
+            
+            if (fragmentText.text[id])
+            {
+                filterArray.push({id: `${id}`, text: `${fragmentText.text[id].trim()}`});
+            }
+        }
+    }
+
+    // Sort Array
+    filterArray.sort(compareFragments);
+
+    $('#ticketSelectionList').empty();
+
+    //Add fragments to list
+    for(f=0; f < filterArray.length; f++) 
+    { 
+        $('#ticketSelectionList')
+                    .append(`<li class="list_font ticket_item ticket_disabled" id="ticket_${filterArray[f].id}">${filterArray[f].text}</li>`);
     }      
 }
 
@@ -922,11 +1010,31 @@ function filterFragmentData(searchText)
  */
 function compareFragments( a, b ) {
     // determine if a < b
-    if ( a.text < b.text ){
+    if ( a.text.toLowerCase() < b.text.toLowerCase() ){
       return -1;
     }
     // determine if a > b
-    if ( a.text > b.text){
+    if ( a.text.toLowerCase() > b.text.toLowerCase()){
+      return 1;
+    }
+    // a= b
+    return 0;
+}
+
+/**
+ * Compares the two elements 
+ *
+ * @param {string} a - element a
+ * @param {string} b - element a
+ * @returns {number} -1 if a < b; 1 if a > b; 0 if a= b
+ */
+function compareMessageFragments( a, b ) {
+    // determine if a < b
+    if ( a.detail.toLowerCase() < b.detail.toLowerCase() ){
+      return -1;
+    }
+    // determine if a > b
+    if ( a.detail.toLowerCase() > b.detail.toLowerCase()){
       return 1;
     }
     // a= b
@@ -960,20 +1068,20 @@ function updateStatusUserName()
 
 function getDateAndTime()
 {
-    var dt = new Date();
-    var current_data = dt.toLocaleDateString('en-uk', {  weekday: 'long' }) + ' ' +
+    let dt = new Date();
+    let current_data = dt.toLocaleDateString('en-uk', {  weekday: 'long' }) + ' ' +
     dt.getDate() + ' ' + dt.toLocaleDateString('en-uk', {  month: 'long' }) + ' ' + dt.getFullYear();
-    var current_time = dt.toLocaleTimeString();
+    let current_time = dt.toLocaleTimeString();
     document.getElementById("currentdate").innerHTML = current_data;
     document.getElementById("currenttime").innerHTML =  current_time; 
-    var t = setTimeout(getDateAndTime, 500);
+    let t = setTimeout(getDateAndTime, 500);
 }
 
 function updateDetailButtons(button_list)
 {
-    var buttons = [];
-    var button_name = '';
-    var button_id = 0;
+    let buttons = [];
+    let button_name = '';
+    let button_id = 0;
     
     // Detail Buttons
     buttons = document.querySelectorAll('.detail');
@@ -984,7 +1092,7 @@ function updateDetailButtons(button_list)
         button_id = parseInt(button_name.substr(button_name.indexOf('_') + 1),10);
 
         // Determine whether the button should be disabled
-        if (button_list.detail.includes(button_id))
+        if (button_list.detail && button_list.detail.includes(button_id))
         {
             // Enabled
             buttons[b].disabled = false;
@@ -1012,7 +1120,7 @@ function updateDetailButtons(button_list)
         button_id = parseInt(button_name.substr(button_name.lastIndexOf('_') + 1),10);
         
         // Determine whether the button should be disabled
-        if (button_list.detail_1.includes(button_id))
+        if (button_list.detail_1 && button_list.detail_1.includes(button_id))
         {
             // Enabled
             buttons[b].disabled = false;
@@ -1040,7 +1148,7 @@ function updateDetailButtons(button_list)
         button_id = parseInt(button_name.substr(button_name.lastIndexOf('_') + 1),10);
 
         // Determine whether the button should be disabled
-        if (button_list.additional.includes(button_id))
+        if (button_list.additional && button_list.additional.includes(button_id))
         {
             // Enabled
             buttons[b].disabled = false;
@@ -1068,7 +1176,7 @@ function updateDetailButtons(button_list)
         button_id = parseInt(button_name.substr(button_name.lastIndexOf('_') + 1),10);
 
         // Determine whether the button should be disabled
-        if (button_list.rest.includes(button_id))
+        if (button_list.rest && button_list.rest.includes(button_id))
         {
             // Enabled
             buttons[b].disabled = false;
@@ -1089,10 +1197,10 @@ function updateDetailButtons(button_list)
 
 function updateDirectionButtons(state)
 {
-    var buttons = [];
+    let buttons = [];
 
     // Determine whether the clear button should be disabled
-    if (state == 0)
+    if (state === 0)
     {
         $('#directionClear').prop('disabled', true);
     }
@@ -1103,7 +1211,7 @@ function updateDirectionButtons(state)
     for (b = 0; b<buttons.length; b++)
     {
         // Determine whether the button should unselected
-        if (state == 0 && buttons[b].classList.contains('active'))
+        if (state === 0 && buttons[b].classList.contains('active'))
         {
             buttons[b].classList.remove('active');
             directionFragment = 0;
@@ -1116,7 +1224,7 @@ function updateDirectionButtons(state)
 function updateTicketList(state)
 {
     // Determine whether the clear button should be disabled
-    if (state == 0)
+    if (state === 0)
     {
         // Disable Clear Button
         $('#ticketClear').prop('disabled', true);
@@ -1133,7 +1241,7 @@ function updateTicketList(state)
     $('.ticket_item').each(function()   {
 
         // Determine whether the list item should be enabled
-        if (state == 0)
+        if (state === 0)
         {
             $(this).addClass('ticket_disabled');
         }
@@ -1154,10 +1262,10 @@ function onTextualMessageEdit()
 
 function spellCheckTextualMessage(update_errors)
 {
-    var message = '';
-    var tokens = [];
-    var suggestions = [];
-    var error = 0;
+    let message = '';
+    let tokens = [];
+    let suggestions = [];
+    let error = 0;
 
     message = document.getElementById('textualMessage').innerText;
     $('#textualMessage').empty();
@@ -1184,7 +1292,7 @@ function spellCheckTextualMessage(update_errors)
             if (!dictionary.check(tokens[t]))
             {
                 message = message + '<span class="message_font" style="color: lightcoral">';
-                if (error == textualFragments.selected)
+                if (error === textualFragments.selected)
                 {
                     message = message + ('<u style="text-decoration-color: black;">' + tokens[t].trim() + '</u> ');
                     suggestions = dictionary.suggest(tokens[t]);
@@ -1232,9 +1340,9 @@ function spellCheckTextualMessage(update_errors)
 
 function correctSpelling (correction)
 {
-    var message = '';
-    var selected  = textualFragments.selected;
-    var regex = '';
+    let message = '';
+    let selected  = textualFragments.selected;
+    let regex = '';
 
     message = document.getElementById('textualMessage').innerText;
 
@@ -1260,7 +1368,7 @@ function isBannedWord(word)
 {
     for (b=0; b < banned_words.length; b++)
     {
-        if (word.trim().toLowerCase() == banned_words[b])
+        if (word.trim().toLowerCase() === banned_words[b])
         {
             return true;
         }
@@ -1270,13 +1378,13 @@ function isBannedWord(word)
 }
 
 function readTextFile(filePath){
-    var rawFile = new XMLHttpRequest();
+    let rawFile = new XMLHttpRequest();
     rawFile.open("GET", filePath , true);
     rawFile.send(null);
 
     rawFile.onreadystatechange = function (){
         if(rawFile.readyState === 4){
-            if(rawFile.status === 200 || rawFile.status == 0){
+            if(rawFile.status === 200 || rawFile.status === 0){
                 banned_words = 
                     rawFile.responseText.toLowerCase().split("\n");
             }
@@ -1286,7 +1394,7 @@ function readTextFile(filePath){
 
 function setEndOfContenteditable(contentEditableElement)
 {
-    var range,selection;
+    let range,selection;
     if(document.createRange)//Firefox, Chrome, Opera, Safari, IE 9+
     {
         range = document.createRange();
@@ -1307,8 +1415,8 @@ function setEndOfContenteditable(contentEditableElement)
 
 function updateStationList()
 {
-    var station_list = [];
-    var id = 0;
+    let station_list = [];
+    let id = 0;
     $('#selectedStationList').empty();
 
     station_list = stationFragmentList[current_map_display];
@@ -1317,16 +1425,63 @@ function updateStationList()
     {
         $('#selectedStationList').html(`<ul class="message_font" style="margin: 0px">`);
 
-        for (var s=0; s < station_list.length; s++)
+        for (let s=0; s < station_list.length; s++)
         {
             id = station_list[s];
 
             $('#selectedStationList')
-                .append(`<li>${fragmentText[id]}</li>`);
+                .append(`<li>${fragmentText.text[id]}</li>`);
         }
 
         $('#selectedStationList')
                 .append(`</ul>`);
+    }
+}
+
+function displayStationMap (display_state, index)
+{
+    let x1 = 0;
+    let y1 = 0;
+    let x2 = 0;
+    let y2 = 0;
+    let scale = (station_image_scale / 100);
+    let station_name = '';
+    let id = 0;
+
+    current_map_display = index;
+    previousStationFragmentList = stationFragmentList[current_map_display].concat();
+    updateStationList();
+
+    $('#stationImage')
+        .html(`<img src="/img/${lineImage}" alt="stationselection" id="station" usemap="#stationMap">`);
+        
+    $('#stationAreas').empty();
+
+    if (stations)
+    {
+        for (s=0; s < stations.length; s++)
+        {
+            x1 = (stations[s].coordinates.xpos * scale);
+            y1 = (stations[s].coordinates.ypos * scale);
+            x2 = x1 + (stations[s].coordinates.width * scale);
+            y2 = y1 + (stations[s].coordinates.height * scale);
+
+            station_name = stations[s].station_name;
+            id = stations[s].fragment_id;
+            
+            if (display_state === MapDisplayStates.multi_selection)
+            {
+                $('#stationAreas').
+                    append (`<area shape="rect" coords="${x1},${y1},${x2},${y2}" 
+                        alt="${station_name}" onclick="stationClicked(this)" id="stationArea_${id}" title="${station_name}">`);
+            }
+            else
+            {
+                $('#stationAreas').
+                    append (`<area shape="rect" coords="${x1},${y1},${x2},${y2}" 
+                        alt="${station_name}" onclick="stationClicked(this)" data-dismiss="modal" id="stationArea_${id}" title="${station_name}">`);
+            }
+        }
     }
 }
 

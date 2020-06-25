@@ -98,7 +98,7 @@ area
 .line 
 { 
     width: 65px; 
-    height: 70px; 
+    height: 55px; 
     background-color: #e6e6e6; 
     color: black;
     font-family: 'Helvetica'; 
@@ -122,20 +122,20 @@ area
 .disruption 
 { 
     width: 65px; 
-    height: 45px;
+    height: 40px;
     background-color: #e6e6e6; 
     color: black;
     font-family: 'Helvetica'; 
     font-size: 12px;
     margin-right: 4px;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     padding: 0px;
 }
 
 .reason
 { 
     width: 65px; 
-    height: 45px;
+    height: 40px;
     background-color: #e6e6e6; 
     color: black;
     font-family: 'Helvetica'; 
@@ -148,7 +148,7 @@ area
 .detail
 { 
     width: 65px; 
-    height: 70px;
+    height: 65px;
     background-color: #e6e6e6; 
     color: black;
     font-family: 'Helvetica'; 
@@ -167,7 +167,7 @@ area
     font-family: 'Helvetica'; 
     font-size: 12px;
     margin-right: 4px;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
     padding: 0px;
     line-height: 12px;
 }
@@ -175,7 +175,7 @@ area
 .detail_1
 { 
     width: 65px; 
-    height: 55px;
+    height: 50px;
     background-color: #e6e6e6; 
     color: black;
     font-family: 'Helvetica'; 
@@ -188,7 +188,7 @@ area
 .additional_detail
 { 
     width: 65px; 
-    height: 55px;
+    height: 50px;
     background-color: #e6e6e6; 
     color: black;
     font-family: 'Helvetica'; 
@@ -201,7 +201,7 @@ area
 .rest
 { 
     width: 65px; 
-    height: 55px;
+    height: 50px;
     background-color: #e6e6e6; 
     color: black;
     font-family: 'Helvetica'; 
@@ -216,7 +216,7 @@ area
     margin-left: 4px;
     margin-top: 8px;
     width: 203px;
-    height: 45px;
+    height: 40px;
     font-family: 'Helvetica'; 
     font-size: 18px;
 }
@@ -225,7 +225,7 @@ area
 {
     margin-left: 4px;
     margin-top: 8px;
-    height: 45px;
+    height: 40px;
     font-family: 'Helvetica'; 
     font-size: 18px;
     width: 136px;
@@ -235,7 +235,7 @@ area
 {
     margin-left: 4px;
     margin-top: 8px;
-    height: 45px;
+    height: 40px;
     font-family: 'Helvetica'; 
     font-size: 18px;
     width: 65px;
@@ -246,7 +246,7 @@ area
 {
     margin-left: 4px;
     margin-top: 8px;
-    height: 45px;
+    height: 40px;
     font-family: 'Helvetica'; 
     font-size: 18px;
     width: 65px;
@@ -257,7 +257,7 @@ area
 {
     margin-left: 4px;
     margin-top: 8px;
-    height: 45px;
+    height: 40px;
     font-family: 'Helvetica'; 
     font-size: 18px;
     width: 65px;
@@ -268,7 +268,7 @@ area
 {
     margin-left: 4px;
     margin-top: 8px;
-    height: 45px;
+    height: 40px;
     font-family: 'Helvetica'; 
     font-size: 18px;
     width: 65px;
@@ -278,15 +278,21 @@ area
 .ticket_clear
 {
     margin-left: 4px;
-    margin-top: 8px;
+    margin-top: 4px;
     width: 190px;
-    height: 45px;
+    height: 40px;
     font-family: 'Helvetica'; 
     font-size: 18px;
 }
 
-.builder 
-{ 
+.reason_text_search
+{
+    height: 33px; 
+    margin-left: 5px; 
+    margin-top: 5px;
+} 
+
+.builder{ 
     width: 60px; 
     height: 60px; 
     background-color: #e6e6e6; 
@@ -300,12 +306,12 @@ area
 
 .assembler 
 { 
-    width: 70px; 
-    height: 70px; 
+    width: 60px; 
+    height: 60px; 
     background-color: #e6e6e6; 
     color: black;
     font-family: 'Helvetica'; 
-    font-size: 12px;
+    font-size: 13px;
     margin-top: 4px;
     margin-right: 4px;
     padding: 0px;
@@ -313,12 +319,12 @@ area
 
 .textual 
 { 
-    width: 70px; 
-    height: 70px; 
+    width: 60px; 
+    height: 60px; 
     background-color: #e6e6e6; 
     color: black;
     font-family: 'Helvetica'; 
-    font-size: 12px;
+    font-size: 13px;
     margin-right: 4px;
     padding: 0px;
 }
@@ -351,8 +357,8 @@ area
     border: 3px white;
     border-style: solid;
     padding-left: 10px;
-    height: 1160px;
-    width: 1920px;
+    height: 995px;
+    width: 1910px;
     background-color: #16539F;
 }
 
@@ -361,15 +367,15 @@ area
 {
     margin-left: 10px;
     padding: 10px;
-    height: 90px;
-    width: 1875px;
+    height: 60px;
+    width: 1865px;
 }
 
 .status_bar_container
 {
     border: 1px white;
     border-style: solid;
-    height: 70px;
+    height: 50px;
     width: 20px;
     line-height: 18px;
     color: white;
@@ -383,7 +389,7 @@ area
 {
     background-color: #16539F;
     color: white;
-    height: 50px;
+    height: 40px;
     width: 100%;
     text-align: middle;
     flex: 0 1 100%;
@@ -392,7 +398,7 @@ area
 /* Message Builder */
 .message_builder_panel
 {
-    height: 365px;
+    height: 335px;
 }
 
 .line_panel {
@@ -425,7 +431,7 @@ area
 .disruption_panel {
     background-color: #f0f0f0;
     width: 214px;
-    height: 356px;
+    height: 326px;
     margin-left: 5px;
 }
 .disruption_btn-group {
@@ -438,15 +444,15 @@ area
 
 .reason_panel {
     background-color: #f0f0f0;
-    width: 595px;
-    height: 356px;
+    width: 585px;
+    height: 326px;
     margin-left: 5px;
     flex-direction: column;
 }
 
 .reason_btn-panel {
     width: 214px;
-    height: 326px;
+    height: 296px;
     padding: 0px;
     display: flex;
     flex-wrap: wrap;
@@ -457,7 +463,7 @@ area
 
 .reason_btn-group {
     width: 214px;
-    height: 249px;
+    height: 224px;
     padding-left: 4px;
     padding-top: 4px;
     padding-right: 0px;
@@ -469,21 +475,30 @@ area
 
 .reason_list
 {
+    width: 475px;
     padding:0px; 
     padding-left:5px; 
     list-style-type: none;
+    cursor: pointer;
 }
 
 .reason_disabled {
-    pointer-events:none; 
     opacity:0.6;
+    cursor: not-allowed;
 }
 
 .reason_text_search
 {
-    height: 38px; 
+    height: 30px;
+    width: 60px; 
     margin-left: 5px; 
     margin-top: 5px;
+    padding: 0px;
+}
+
+.reason_text
+{
+    height: 30px; 
 }
 
 .reason_search_text
@@ -491,24 +506,26 @@ area
     background-color: #e9ecef; 
     color: black;
     border: 1px solid #ced4da; 
-    height: 255px;
-    width: 375px;
+    height: 235px;
+    width: 365px;
+    line-height: 20px;
     margin-top: 5px;
     overflow-y: scroll;
-    overflow-x: scroll;
+    overflow-x: auto;
     white-space: nowrap;
 }
 
 .reason_input_text
 {
     width: 300px;
+    height: 30px;
     margin-top: 5px;
 }
 
 .detail_panel {
     background-color: #f0f0f0;
     width: 146px;
-    height: 356px;
+    height: 326px;
     margin-left: 5px;
     flex-direction: column;
 }
@@ -526,7 +543,7 @@ area
 
 .detail_btn-panel {
     width: 146px;
-    height: 326px;
+    height: 296px;
     padding: 0px;
     display: flex;
     flex-wrap: wrap;
@@ -537,7 +554,7 @@ area
 
 .detail_btn-group {
     width: 146px;
-    height: 249px;
+    height: 224px;
     padding-left: 4px;
     padding-top: 4px;
     padding-right: 0px;
@@ -570,7 +587,7 @@ area
 .direction_panel {
     background-color: #f0f0f0;
     width: 75px;
-    height: 356px;
+    height: 326px;
     margin-left: 5px;
     flex-direction: column;
 }
@@ -588,7 +605,7 @@ area
 
 .direction_btn-panel {
     width: 75px;
-    height: 326px;
+    height: 296px;
     padding: 0px;
     display: flex;
     flex-wrap: wrap;
@@ -599,11 +616,11 @@ area
 
 .direction_btn-group {
     width: 75px;
-    height: 249px;
+    height: 224px;
     padding-left: 4px;
-    padding-top: 4px;
-    padding-right: 0px;
     padding-bottom: 0px;
+    padding-right: 0px;
+    padding-top: 4px;
     display: flex;
     flex-direction: column;
     
@@ -612,7 +629,7 @@ area
 .detail_1_panel {
     background-color: #f0f0f0;
     width: 75px;
-    height: 356px;
+    height: 326px;
     margin-left: 5px;
     flex-direction: column;
 }
@@ -625,12 +642,12 @@ area
     flex-direction: column;
     align-content: flex-start;
     align-items: flex-start;
-    height: 326px;
+    height: 296px;
 }
 
 .detail_1_btn-panel {
     width: 75px;
-    height: 326px;
+    height: 296px;
     padding: 0px;
     display: flex;
     flex-wrap: wrap;
@@ -641,7 +658,7 @@ area
 
 .detail_1_btn-group {
     width: 75px;
-    height: 249px;
+    height: 224px;
     padding-left: 4px;
     padding-top: 4px;
     padding-right: 0px;
@@ -654,7 +671,7 @@ area
 .additional_detail_panel {
     background-color: #f0f0f0;
     width: 75px;
-    height: 356px;
+    height: 326px;
     margin-left: 5px;
     flex-direction: column;
 }
@@ -667,12 +684,12 @@ area
     flex-direction: column;
     align-content: flex-start;
     align-items: flex-start;
-    height: 326px;
+    height: 296px;
 }
 
 .additional_detail_btn-panel {
     width: 75px;
-    height: 326px;
+    height: 296px;
     padding: 0px;
     display: flex;
     flex-wrap: wrap;
@@ -683,7 +700,7 @@ area
 
 .additional_detail_btn-group {
     width: 75px;
-    height: 249px;
+    height: 224px;
     padding-left: 4px;
     padding-top: 4px;
     padding-right: 0px;
@@ -696,7 +713,7 @@ area
 .rest_of_line_panel {
     background-color: #f0f0f0;
     width: 75px;
-    height: 356px;
+    height: 326px;
     margin-left: 5px;
     flex-direction: column;
 }
@@ -709,12 +726,12 @@ area
     flex-direction: column;
     align-content: flex-start;
     align-items: flex-start;
-    height: 326px;
+    height: 296px;
 }
 
 .rest_of_line_btn-panel {
     width: 75px;
-    height: 326px;
+    height: 296px;
     padding: 0px;
     display: flex;
     flex-wrap: wrap;
@@ -725,7 +742,7 @@ area
 
 .rest_of_line_btn-group {
     width: 75px;
-    height: 249px;
+    height: 224px;
     padding-left: 4px;
     padding-top: 4px;
     padding-right: 0px;
@@ -738,7 +755,7 @@ area
 .ticket_panel {
     background-color: #f0f0f0;
     width: 200px;
-    height: 356px;
+    height: 326px;
     margin-left: 5px;
 }
 
@@ -752,30 +769,34 @@ area
     margin-top: 5px;
     margin-left: 3px;
     width: 190px;
-    height: 245px;
+    line-height: 20px;
+    height: 224px;
     padding: 1px;
     border: 1px solid #ced4da; 
     overflow-y: scroll;
-    overflow-x: scroll;
+    overflow-x: auto;
     white-space: nowrap;
 }
 
 .ticket_list
 {
+    width: 200px;
     padding:0px; 
     padding-left:5px; 
     list-style-type: none;
+    cursor: pointer;
 }
 
 .ticket_disabled {
-    pointer-events:none; 
+    pointer-events:auto; 
     opacity:0.6;
+    cursor: not-allowed;
 }
 
 .builder_message_card {
     background-color: #f0f0f0;
     width: 320px;
-    height: 356px;
+    height: 326px;
     margin-left: 5px;
     padding: 0px;
     
@@ -787,9 +808,9 @@ area
     margin-top: 5px;
     margin-left: 4px;
     width: 310px;
-    height: 235px;
+    height: 205px;
     padding: 0px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .builder_message_body {
@@ -803,6 +824,7 @@ area
     padding-right: 5px; 
     margin-top: 2px; 
     line-height: 18px;
+    cursor: not-allowed;
 }
 
 .builder_message_btn_panel
@@ -816,9 +838,14 @@ area
 .message_assembly_panel
 {
     border: 2px solid white; 
-    height: 640px;
+    height: 545px;
     width: 650px;
     background-color: #f0f0f0;
+}
+
+.message_search_group
+{
+    height: 30px;
 }
 
 .message_search 
@@ -841,19 +868,20 @@ area
     border: 1px solid #ced4da; 
     height: 100px;
     width: 625px;
-    overflow-y: scroll;
+    overflow-y: auto;
+    cursor: not-allowed;
 }
 
 .message_fragment_text
 {
     background-color: #e9ecef; 
     width: 625px;
-    height: 300px;
+    height: 250px;
     padding: 1px;
-    overflow-y: scroll;
-    overflow-x: scroll;
+    overflow-y: auto;
+    overflow-x: auto;
     white-space: nowrap;
-    line-height: 12px;
+    line-height: 11px;
 }
 
 .fragment_list
@@ -863,6 +891,7 @@ area
     padding:0px; 
     padding-left:5px; 
     list-style-type: none;
+    cursor: pointer;
 }
 
 .message_btn_panel
@@ -890,7 +919,7 @@ area
 .text_only_panel
 {
     border: 2px solid white; 
-    height: 640px;
+    height: 545px;
     width: 825px;
     background-color: #f0f0f0;
     margin-left: 5px;
@@ -903,7 +932,7 @@ area
     border: 1px solid #ced4da; 
     height: 100px;
     width: 810px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .textual_message
@@ -973,7 +1002,7 @@ area
 .title_font
 {
     font-family: 'Helvetica'; 
-    font-size: 30px;
+    font-size: 28px;
     margin-left: 10px;
 }
 
