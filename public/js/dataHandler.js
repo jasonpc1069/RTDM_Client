@@ -1,8 +1,36 @@
 $(document).ready(function(){
+    
+    // Determine whether the document loading is complete
+    if( document.readyState !== 'complete') 
+    {
+        // Document loading not complete - wait for completion
+        let interval = setInterval(function() {
+            if(document.readyState === 'complete') {
+                clearInterval(interval);
+                loadData();
+                app.initialise();
+            }    
+        }, 10);
+    }
+    else
+    {
+        // Document load completed
+        loadData();
+        app.initialise();
+    }
+})
+
+/**
+ * Load the application data
+ *
+ */
+function loadData()
+{
     $.ajaxSetup({
         async: false
     });
 
+    // Load Application Data
     $.getJSON('data/current/app_data.json',(appData)=>{
         if(appData){
             let local = '';
@@ -11,8 +39,8 @@ $(document).ready(function(){
                 local = "LOCAL ";
             }
 
-            version = appData.version;
-            applicationName = appData.description;
+            app.version = appData.version;
+            app.applicationName = appData.description;
             $('#appData')
                 .append(`<img src="${appData.logo}" alt="TfL Logo" width="150">
                 <p class="navbar-text project-name text-dark">${local}${appData.name} |
@@ -20,26 +48,30 @@ $(document).ready(function(){
         }
     });
 
-    updateStatusBar();
+    app.updateStatusBar();
 
+
+    // Load Fragment Data
     $.getJSON('data/current/fragment_data.json',(fragmentData)=>{
         let id = 0;
         if(fragmentData){
-            completeFragmentData = fragmentData;
+            app.completeFragmentData = fragmentData;
             $.each(fragmentData, (key, value)=>{
                 id = value.section_id;
-                fragmentText.section[id] = value.section_position.toUpperCase();
-                fragmentText.text[id] = value.message_name.trim();
+                app.fragmentText.section[id] = value.section_position.toUpperCase();
+                app.fragmentText.text[id] = value.message_name.trim();
             })
         }
     });
 
+    // Load Disruption Data
     $.getJSON('data/current/disruption_types.json',(typeData)=>{
         if(typeData){
-            disruptionTypeData = typeData;
+            app.disruptionTypeData  = typeData;
         }
     });
     
+    // Load Line Data
     $.getJSON('data/current/line_data.json',(lineData)=>{
         if(lineData){
             $.each(lineData, (key, value)=>{
@@ -49,23 +81,26 @@ $(document).ready(function(){
                 let id =  value.id;
                 let fragment_id = 0;
 
+                // Determine whether the line only has 1 line
                 if (value.lines.length === 1)
                 {
+                    // Single Line
                     str = value.lines[0].line;
 
+                    // Determine whether the line is intially active
                     if (value.active !== 0)
                     {
+                        // Active - set line fragment data
                         background = value.lines[0].background_colour;
                         text_colour = value.lines[0].text_colour;
 
                         fragment_id = value.lines[0].fragment;
-                        lineText = fragmentText.text[fragment_id];
-                        lineFragment = fragment_id;
-                        lineImage = value.lines[0].image;
-                        stations = value.lines[0].stations;
-                        station_image_scale =  value.lines[0].image_scale;
+                        app.lineFragment = fragment_id;
+                        app.lineImage = value.lines[0].image;
+                        app.stations = value.lines[0].stations;
+                        app.station_image_scale =  value.lines[0].image_scale;
 
-                        initialLine = id;
+                        app.initialLine = id;
                     }
                 }
 
@@ -86,6 +121,7 @@ $(document).ready(function(){
         }
     });
 
+    // Load the Preamble Data
     $.getJSON('data/current/preamble_data.json',(preambleData)=>{
         let str = '';
         let id = 0;
@@ -95,23 +131,24 @@ $(document).ready(function(){
                 str = value.text;
                 id = value.id;
                 
-                if (!preambleText)
+                // Determine whether the fragment has been set
+                if (!app.preambleFragment)
                 {
-                    preambleText = fragmentText.text[value.fragment_id];
-                    preambleFragment = value.fragment_id;
+                    app.preambleFragment = value.fragment_id;
                 }
 
+                // Determine whether preamble is initially active
                 if (value.active === 1)
                 {
+                    // Active
                     $('#preambleList')
                                 .append(`<button type="button" class="preamble btn btn-outline-dark active" id="preamble_${id}" name="preamble" value="${str}">${str}</button>`);
-                    preambleText = fragmentText.text[value.fragment_id];
-                    preambleFragment = value.fragment_id;
+                    app.preambleFragment = value.fragment_id;
                     
 
                     // Set Initial values
-                    start_preamble_fragment = value.fragment_id;
-                    start_preamble_id = id;
+                    app.start_preamble_fragment = value.fragment_id;
+                    app.start_preamble_id = id;
                 }
                 else
                 {
@@ -122,6 +159,7 @@ $(document).ready(function(){
         }
     })
     
+    // Load Disruption Data
     $.getJSON('data/current/disruption_data.json',(disruptionData)=>{
         let str = '';
         let id = 0;
@@ -133,10 +171,10 @@ $(document).ready(function(){
                 id = value.id;
 
                 // Determine whether the button is the initial button
-                if (value.active === 1 && start_disruption_id === 0)
+                if (value.active === 1 && app.start_disruption_id === 0)
                 {
-                    start_disruption_id = id;
-                    start_disruption_fragments = value.fragment_id;
+                    app.start_disruption_id = id;
+                    app.start_disruption_fragments = value.fragment_id;
                 }
 
                 if (str.length > 0)
@@ -158,6 +196,7 @@ $(document).ready(function(){
         }
     });
 
+    // Load Reason Data
     $.getJSON('data/current/reason_data.json',(reasonData)=>{
         let id = 0;
         let str = '';
@@ -172,13 +211,14 @@ $(document).ready(function(){
         }
     });
 
-
+    //Load Detail Data
     $.getJSON('data/current/detail_data.json',(detailData)=>{
         let arr = [];
         let id = 0;
         let str = '';
         let icon = '';
         let b = 0;
+        
         if(detailData){
             $.each(detailData, (key, value)=>{
                 let panel_id = value.panel_id;
@@ -187,9 +227,11 @@ $(document).ready(function(){
                     str = value.buttons[b].button_text;
                     id = value.buttons[b].id;
                     icon = value.buttons[b].icon
-               
+                    
+                    // Determine which detail data is being loaded
                     if (panel_id === DetailPanels.detail)
                     {
+                        // Detail
                         if (value.buttons[b].display_map !== MapDisplayStates.no_map)
                         {
                             $('#detailList')
@@ -201,16 +243,22 @@ $(document).ready(function(){
                                 .append(`<button type="button" class="detail btn btn-outline-dark" id="detail_${id}" name="detail" value="${str}" disabled><i class="fas fa-${icon}"></i><br>${str}</button>`);
                         }
                     }
+
+                    // Detail_1
                     else if (panel_id === DetailPanels.detail_1)
                     {
                         $('#detail_1_list')
                             .append(`<button type="button" class="detail_1 btn btn-outline-dark" id="detail_1_${id}" name="detail_1" data-toggle="modal" data-target="#stationModal" value="${str}" disabled>${str}</button>`);
                     }
+
+                    // Additional Data
                     else if (panel_id === DetailPanels.additional_detail)
                     {
                         $('#additional_detail_list')
                             .append(`<button type="button" class="additional_detail btn btn-outline-dark" id="additional_detail_${id}" name="additional_detail" data-toggle="modal" data-target="#stationModal" value="${str}" disabled>${str}</button>`);
                     }
+
+                    // Rest of Line
                     else if (panel_id === DetailPanels.rest_of_line)
                     {
                         $('#rest_of_line_list')
@@ -221,6 +269,7 @@ $(document).ready(function(){
         }
     });
 
+    // Load Direction Data
     $.getJSON('data/current/direction_data.json',(directionData)=>{
         let id = 0;
         let str = '';
@@ -234,14 +283,14 @@ $(document).ready(function(){
         }
     });
 
+
+    // Load Ticket Data
     $.getJSON('data/current/ticket_data.json',(ticketData)=>{
         if(ticketData){
-            ticketFragments = ticketData.fragmentId;
-            ticketGroup = ticketData.group;
+            app.ticketFragments = ticketData.fragmentId;
+            app.ticketGroup = ticketData.group;
     
-            buildTicketList();
+            app.buildTicketList();
         }
-    });
-
-    
-})
+    })
+}

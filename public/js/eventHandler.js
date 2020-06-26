@@ -1,10 +1,7 @@
 $(document).ready(function(){
-    
-    initialise();
-
     $('.line').click(function(evt){ 
         let butVal = $(evt.target).attr('value');
-        lineButton = $(evt.target);
+        app.lineButton = $(evt.target);
 
         $.getJSON('data/current/line_data.json',(lineData)=>{
             if(lineData){
@@ -24,21 +21,20 @@ $(document).ready(function(){
                         }
                         else
                         {
-                            lineButton.siblings().css('background-color', '#e6e6e6');
-                            lineButton.siblings().css('color', 'black');
-                            lineButton.siblings().text(lineButton.siblings().attr('name'));
+                            app.lineButton.siblings().css('background-color', '#e6e6e6');
+                            app.lineButton.siblings().css('color', 'black');
+                            app.lineButton.siblings().text(app.lineButton.siblings().attr('name'));
 
-                            lineButton.css('background-color', value.lines[0].background_colour);
-                            lineButton.css('color', value.lines[0].text_colour);
+                            app.lineButton.css('background-color', value.lines[0].background_colour);
+                            app.lineButton.css('color', value.lines[0].text_colour);
 
                             let id = value.lines[0].fragment;
-                            lineText = fragmentText.text[id];
-                            lineFragment = id;
-                            lineImage = value.lines[0].image;
-                            stations = value.lines[0].stations;
-                            station_image_scale =  value.lines[0].image_scale;
+                            app.lineFragment = id;
+                            app.lineImage = value.lines[0].image;
+                            app.stations = value.lines[0].stations;
+                            app.station_image_scale =  value.lines[0].image_scale;
                             
-                            resetInitialApplicationStates();
+                            app.resetInitialApplicationStates();
                         }
                     }
                 })
@@ -58,10 +54,9 @@ $(document).ready(function(){
                 $.each(preamble, (key, value)=>{
                     if (butVal === value.text)
                     {
-                        preambleText = fragmentText.text[value.fragment_id];
-                        preambleFragment = value.fragment_id;
+                        app.preambleFragment = value.fragment_id;
     
-                        updateMessagePanels();
+                        app.updateMessagePanels();
                     }
                 })
             }
@@ -79,18 +74,16 @@ $(document).ready(function(){
             if(disruptionData){
                 $.each(disruptionData, (key, value)=>{
                     if (butVal === value.button_text)
-                    {
-                        let text = generateFragmentText(value.fragment_id);
-                            
+                    {    
                         if (value.reason === ReasonStates.no_reason)
                         {
-                            resetReasonButtons();
+                            app.resetReasonButtons();
                         }
                         else
                         {
                             if ($('#reasonSelectedList').contents().length === 0)
                             {
-                                filterReasonsByType(FILTER_ALL, null);
+                                app.filterReasonsByType(FILTER_ALL, null);
                             }
 
                             $('.reason_item').each(function()   {
@@ -106,15 +99,14 @@ $(document).ready(function(){
                         $('#reasonSearchClear').prop('disabled', !value.reason);
                         $('#reasonText').prop('disabled', !value.reason);
     
-                        disruptionText = text;
-                        disruptionFragment = value.fragment_id;
-                        disruptionDetailIds = value.detail_buttons;
-                        reason_position = value.reason;
+                        app.disruptionFragment = value.fragment_id;
+                        app.disruptionDetailIds = value.detail_buttons;
+                        app.reason_position = value.reason;
     
-                        updateDetailButtons(value.buttons); 
-                        updateDirectionButtons(value.buttons.direction);
-                        updateTicketList(value.buttons.ticket);
-                        updateMessagePanels();
+                        app.updateDetailButtons(value.buttons); 
+                        app.updateDirectionButtons(value.buttons.direction);
+                        app.updateTicketList(value.buttons.ticket);
+                        app.updateMessagePanels();
                     }
                 })
             }
@@ -136,13 +128,13 @@ $(document).ready(function(){
                 $.each(reasonData, (key, value)=>{
                     if (butVal === value.button_text)
                     {
-                        filterReasonsByType(value.disruption_types, value.disruption_group);
+                        app.filterReasonsByType(value.disruption_types, value.disruption_group);
                         
                         // Update Detail Buttons
                         if (value.detail_buttons.length !== 0)
                         {
-                            updateDetailButtons(value.detail_buttons);
-                            updateMessagePanels();
+                            app.updateDetailButtons(value.detail_buttons);
+                            app.updateMessagePanels();
                         }
                     }           
                 })
@@ -168,8 +160,8 @@ $(document).ready(function(){
                         {
                             if (butVal === value.buttons[b].button_text)
                             {
-                                detailFragments[DetailIndex.detail] = value.buttons[b].fragments;
-                                map_display_state = value.buttons[b].display_map;
+                                app.detailFragments[DetailIndex.detail] = value.buttons[b].fragments;
+                                app.map_display_state = value.buttons[b].display_map;
                             }
                         }
                     } 
@@ -177,12 +169,12 @@ $(document).ready(function(){
             }
         })
 
-        if ($(evt.currentTarget).attr("data-target") && map_display_state)
+        if ($(evt.currentTarget).attr("data-target") && app.map_display_state)
         {
-            displayStationMap(map_display_state, DetailIndex.detail);
+            app.displayStationMap(app.map_display_state, DetailIndex.detail);
         }
         
-        updateMessagePanels();
+        app.updateMessagePanels();
     });
 
     $('.detail_1').click(function(evt){
@@ -203,8 +195,8 @@ $(document).ready(function(){
                         {
                             if (butVal === value.buttons[b].button_text)
                             {
-                                detailFragments[DetailIndex.detail_1] = value.buttons[b].fragments;
-                                map_display_state = value.buttons[b].display_map;
+                                app.detailFragments[DetailIndex.detail_1] = value.buttons[b].fragments;
+                                app.map_display_state = value.buttons[b].display_map;
                             }
                         }
                     }
@@ -213,12 +205,12 @@ $(document).ready(function(){
             }
         })
 
-        if ($(evt.currentTarget).attr("data-target") && map_display_state)
+        if ($(evt.currentTarget).attr("data-target") && app.map_display_state)
         {
-            displayStationMap(map_display_state, DetailIndex.detail_1);
+            app.displayStationMap(app.map_display_state, DetailIndex.detail_1);
         }
         
-        updateMessagePanels();
+        app.updateMessagePanels();
     
     });
 
@@ -240,8 +232,8 @@ $(document).ready(function(){
                         {
                             if (butVal === value.buttons[b].button_text)
                             {
-                                detailFragments[DetailIndex.additional_detail] = value.buttons[b].fragments;
-                                map_display_state = value.buttons[b].display_map;
+                                app.detailFragments[DetailIndex.additional_detail] = value.buttons[b].fragments;
+                                app.map_display_state = value.buttons[b].display_map;
                             }
                     
                         }
@@ -251,12 +243,12 @@ $(document).ready(function(){
             }
         })
 
-        if ($(evt.currentTarget).attr("data-target") && map_display_state)
+        if ($(evt.currentTarget).attr("data-target") && app.map_display_state)
         {
-            displayStationMap(map_display_state, DetailIndex.additional_detail);
+            app.displayStationMap(app.map_display_state, DetailIndex.additional_detail);
         }
         
-        updateMessagePanels();
+        app.updateMessagePanels();
     
     });
 
@@ -278,7 +270,7 @@ $(document).ready(function(){
                         {
                             if (butVal === value.buttons[b].button_text)
                             {
-                                detailFragments[DetailIndex.rest_of_line] = value.buttons[b].fragments;
+                                app.detailFragments[DetailIndex.rest_of_line] = value.buttons[b].fragments;
                             }
                     
                         }
@@ -287,7 +279,7 @@ $(document).ready(function(){
             }
         })
     
-        updateMessagePanels();
+        app.updateMessagePanels();
     
     });
     
@@ -305,10 +297,10 @@ $(document).ready(function(){
                 $.each(directionData, (key, value)=>{
                     if (butVal === value.id)
                     {
-                        directionFragment = value.fragment_id;
-                        direction_position = value.text_position;
+                        app.directionFragment = value.fragment_id;
+                        app.direction_position = value.text_position;
 
-                        updateMessagePanels();
+                        app.updateMessagePanels();
                     }
                 })
             }
@@ -320,7 +312,7 @@ $(document).ready(function(){
 
         if (text.length != 0)
         {
-            filterFragmentData(text);
+            app.filterFragmentData(text);
         }
         else
         {
@@ -329,33 +321,33 @@ $(document).ready(function(){
     });
 
     $(document).on('keyup', '#textualMessage', function (e) {
-        updateTextualMessageLength();
-        clearTimeout(spellingTimer);
-        spellingTimer = setTimeout(onTextualMessageEdit, SPELLING_INTERVAL);
+        app.updateTextualMessageLength();
+        clearTimeout(app.spellingTimer);
+        app.spellingTimer = setTimeout(app.onTextualMessageEdit, SPELLING_INTERVAL);
     });
 
     $(document).on("click", "#textualSuggestions li", function(event) {
-        correctSpelling($(this).text());
+        app.correctSpelling($(this).text());
       });
 
     $('#stationSelect').click(function(evt){
-        updateMessagePanels();
+        app.updateMessagePanels();
     });
 
     $('#stationClear').click(function(evt){
         $('#selectedStationList').empty();
-        stationFragmentList[current_map_display] = [];
-        updateMessagePanels();
+        app.stationFragmentList[app.current_map_display] = [];
+        app.updateMessagePanels();
     });
     
     $('#stationCancel').click(function(evt){
-        stationFragmentList[current_map_display] = previousStationFragmentList;
-        updateMessagePanels();
+        app.stationFragmentList[app.current_map_display] = app.previousStationFragmentList;
+        app.updateMessagePanels();
     });
 
     $("#fragmentArea").on('click','li',function() {
         let id = $(this).attr('id').split("_").pop();
-        let index = assembledFragments.selected;
+        let index = app.assembledFragments.selected;
 
         $(this).siblings().css('background-color', '#e9ecef');
         $(this).siblings().css('color', 'black');
@@ -363,43 +355,43 @@ $(document).ready(function(){
         $(this).css('background-color', 'green');
         $(this).css('color', 'white');
 
-        assembledFragments.fragments.splice(index,0,id).join();
-        textualFragments.fragments.splice(index,0,id).join();
+        app.assembledFragments.fragments.splice(index,0,id).join();
+        app.textualFragments.fragments.splice(index,0,id).join();
 
-        updateMessageAssembler();
-        updateTextualMessage();
+        app.updateMessageAssembler();
+        app.updateTextualMessage();
     });
 });
 
 $(document).on('click', '.lineSelection', (evt)=>{
     let butVal = $(evt.target).attr('value');
     let button_id = 0;
+    let id = 0;
 
     $.getJSON('data/current/line_data.json',(lineData)=>{
         if(lineData){
             $.each(lineData, (key, value)=>{
-                button_id = parseInt(lineButton.attr('value'));
+                button_id = parseInt(app.lineButton.attr('value'));
                 if ( button_id=== value.id)
                 {
                     for(let l=0; l<value.lines.length; l++) 
                     {
                         if (value.lines[l].line === butVal)
                         {
-                            lineButton.siblings().css('background-color', '#e9ecef');
-                            lineButton.siblings().css('color', 'black');
+                            app.lineButton.siblings().css('background-color', '#e9ecef');
+                            app.lineButton.siblings().css('color', 'black');
 
-                            lineButton.css('background-color', value.lines[l].background_colour);
-                            lineButton.css('color', value.lines[l].text_colour);
-                            lineButton.text(value.lines[l].line);
+                            app.lineButton.css('background-color', value.lines[l].background_colour);
+                            app.lineButton.css('color', value.lines[l].text_colour);
+                            app.lineButton.text(value.lines[l].line);
 
-                            let id = value.lines[l].fragment;
-                            lineText = fragmentText.text[id];
-                            lineFragment = id;
-                            lineImage = value.lines[l].image;
-                            stations = value.lines[l].stations;
-                            station_image_scale =  value.lines[l].image_scale;
+                            id = value.lines[l].fragment;
+                            app.lineFragment = id;
+                            app.lineImage = value.lines[l].image;
+                            app.stations = value.lines[l].stations;
+                            app.station_image_scale =  value.lines[l].image_scale;
 
-                            resetInitialApplicationStates();
+                            app.resetInitialApplicationStates();
                         }
                     }
                 }
@@ -420,9 +412,9 @@ $("#reasonSelectedList").on('click','li',function() {
 
         let id = $(this).attr('id').split("_").pop();
         
-        reasonFragment = id;
+        app.reasonFragment = id;
         
-        updateMessagePanels();
+        app.updateMessagePanels();
     }
 });
 
@@ -433,24 +425,24 @@ $("#ticketSelectionList").on('click','li',function() {
 
     if (!$(this).hasClass ('ticket_disabled'))
     {
-        if (ticketFragmentList.includes(id))
+        if (app.ticketFragmentList.includes(id))
         {
             $(this).css('background-color', '#e9ecef');
             $(this).css('color', 'black');
 
             // Remove Ticket
-            index = ticketFragmentList.indexOf(id);
-            ticketFragmentList.splice(index,1);
+            index = app.ticketFragmentList.indexOf(id);
+            app.ticketFragmentList.splice(index,1);
         }
         else
         {
             $(this).css('background-color', 'green');
             $(this).css('color', 'white');
-            ticketFragmentList.push(id);
+            app.ticketFragmentList.push(id);
         }
 
         // Determine whether the ticket clear button should be enabled
-        if (ticketFragmentList.length > 0)
+        if (app.ticketFragmentList.length > 0)
         {
             $('#ticketClear').prop('disabled', false);
         }
@@ -459,7 +451,7 @@ $("#ticketSelectionList").on('click','li',function() {
             $('#ticketClear').prop('disabled', true);
         }
         
-        updateMessagePanels();
+        app.updateMessagePanels();
     }
 });
 
@@ -473,7 +465,7 @@ $(document).on('click', '#reasonTextSearch', (evt)=>{
         $(this).removeClass('active');
     })
 
-    filterReasonsByText(text);
+    app.filterReasonsByText(text);
 
 });
 
@@ -481,7 +473,7 @@ $(document).on('click', '#fragmentSearch', (evt)=>{
     let text = document.getElementById('fragmentText').value;
     text = text.toLowerCase();
             
-    filterFragmentData(text);
+    app.filterFragmentData(text);
 });
 
 $(document).on('click', '#reasonSearchClear', (evt)=>{
@@ -490,28 +482,30 @@ $(document).on('click', '#reasonSearchClear', (evt)=>{
     $('.reason').each(function()   {
         $(this).removeClass('active');
     })
-    filterReasonsByType(FILTER_ALL, null);
+
+    app.filterReasonsByType(FILTER_ALL, null);
 });
 
 $(document).on('click', '#reasonClear', (evt)=>{
     $('#reasonClear').prop('disabled', true);
 
-    reasonFragment = '';
+    app.reasonFragment = 0;
 
     $('#reasonSelectedList').empty();
 
     $('.reason').each(function()   {
         $(this).removeClass('active');
     })
-    filterReasonsByType(FILTER_ALL, null);
+
+    app.filterReasonsByType(FILTER_ALL, null);
 
     // Update Detail Buttons
-    if (disruptionDetailIds.length !== 0)
+    if (app.disruptionDetailIds.length !== 0)
     {
-        updateDetailButtons(disruptionDetailIds);
+        app.updateDetailButtons(app.disruptionDetailIds);
     }
 
-    updateMessagePanels();
+    app.updateMessagePanels();
 });
 
 $(document).on('click', '#detailClear', (evt)=>{
@@ -521,10 +515,10 @@ $(document).on('click', '#detailClear', (evt)=>{
         $(this).removeClass('active');
     })
 
-    detailFragments[DetailIndex.detail] = [];
-    stationFragmentList[DetailIndex.detail] = [];
+    app.detailFragments[DetailIndex.detail] = [];
+    app.stationFragmentList[DetailIndex.detail] = [];
 
-    updateMessagePanels();
+    app.updateMessagePanels();
 });
 
 $(document).on('click', '#detail_1_clear', (evt)=>{
@@ -534,10 +528,10 @@ $(document).on('click', '#detail_1_clear', (evt)=>{
         $(this).removeClass('active');
     })
 
-    detailFragments[DetailIndex.detail_1] = [];
-    stationFragmentList[DetailIndex.detail_1] = [];
+    app.detailFragments[DetailIndex.detail_1] = [];
+    app.stationFragmentList[DetailIndex.detail_1] = [];
 
-    updateMessagePanels();
+    app.updateMessagePanels();
 });
 
 $(document).on('click', '#additional_detail_clear', (evt)=>{
@@ -547,10 +541,10 @@ $(document).on('click', '#additional_detail_clear', (evt)=>{
         $(this).removeClass('active');
     })
 
-    detailFragments[DetailIndex.additional_detail] = [];
-    stationFragmentList[DetailIndex.additional_detail] = [];
+    app.detailFragments[DetailIndex.additional_detail] = [];
+    app.stationFragmentList[DetailIndex.additional_detail] = [];
 
-    updateMessagePanels();
+    app.updateMessagePanels();
 });
 
 $(document).on('click', '#rest_of_line_clear', (evt)=>{
@@ -560,9 +554,9 @@ $(document).on('click', '#rest_of_line_clear', (evt)=>{
         $(this).removeClass('active');
     })
 
-    detailFragments[DetailIndex.rest_of_line] = [];
+    app.detailFragments[DetailIndex.rest_of_line] = [];
     
-    updateMessagePanels();
+    app.updateMessagePanels();
 });
 
 $(document).on('click', '#ticketClear', (evt)=>{
@@ -573,9 +567,9 @@ $(document).on('click', '#ticketClear', (evt)=>{
         $(this).css('color', 'black');
     })
 
-    ticketFragmentList = [];
+    app.ticketFragmentList = [];
     
-    updateMessagePanels();
+    app.updateMessagePanels();
 });
 
 $(document).on('click', '#directionClear', (evt)=>{
@@ -585,22 +579,23 @@ $(document).on('click', '#directionClear', (evt)=>{
         $(this).removeClass('active');
     })
 
-    directionFragment = 0;
+    app.directionFragment = 0;
     
-    updateMessagePanels();
+    app.updateMessagePanels();
 });
 
 // Builder
 $(document).on('click', '#builderClear', (evt)=>{
-    resetLineButton();
+    app.resetLineButton();
 });
 
 $(document).on('click', '#builderPreview', (evt)=>{
     if ($('#builderCompleteMessage').contents().length > 0)
     {
         $(evt.target).prop('disabled',true);
-        previewEvt = evt;
-        previewSound(builderFragments.fragments);
+        $('#previewClick').prop('disabled',true);
+        
+        app.previewSound(app.builderFragments.fragments);
     }
 });
 
@@ -609,15 +604,16 @@ $(document).on('click', '#previewClick', (evt)=>{
     if ($('#messageAssembly').contents().length > 0)
     {
         $(evt.target).prop('disabled',true);
-        previewEvt = evt;
-        previewSound(assembledFragments.fragments);
+        $('#builderPreview').prop('disabled',true);
+
+        app.previewSound(app.assembledFragments.fragments);
     }
 });
 
 $(document).on('click', '#assemblyClear', (evt)=>{
     $('#messageAssembly').empty();
-    assembledFragments.selected = 0;
-    assembledFragments.fragments = [];
+    app.assembledFragments.selected = 0;
+    app.assembledFragments.fragments = [];
 
     $('#assemblyNext').prop('disabled', true);
     $('#assemblyDelete').prop('disabled', true);
@@ -627,47 +623,47 @@ $(document).on('click', '#assemblyClear', (evt)=>{
 });
 
 $(document).on('click', '#assemblyNext', (evt)=>{
-    if (assembledFragments.selected < (assembledFragments.fragments.length))
+    if (app.assembledFragments.selected < (app.assembledFragments.fragments.length))
     {
-        assembledFragments.selected = assembledFragments.selected + 1;
+        app.assembledFragments.selected = app.assembledFragments.selected + 1;
     }
 
-    updateMessageAssembler();
+    app.updateMessageAssembler();
 });
 
 $(document).on('click', '#assemblyPrevious', (evt)=>{
-    if (assembledFragments.selected > 0)
+    if (app.assembledFragments.selected > 0)
     {
-        assembledFragments.selected = assembledFragments.selected - 1;
+        app.assembledFragments.selected = app.assembledFragments.selected - 1;
     }
 
-    updateMessageAssembler();
+    app.updateMessageAssembler();
 });
 
 $(document).on('click', '#assemblyDelete', (evt)=>{
-    if (assembledFragments.selected < assembledFragments.fragments.length)
+    if (app.assembledFragments.selected < app.assembledFragments.fragments.length)
     {
-        assembledFragments.fragments.splice(assembledFragments.selected,1);
-        textualFragments.fragments.splice(assembledFragments.selected,1)
+        app.assembledFragments.fragments.splice(app.assembledFragments.selected,1);
+        app.textualFragments.fragments.splice(app.assembledFragments.selected,1)
     }
 
-    if (assembledFragments.selected > (assembledFragments.fragments.length))
+    if (app.assembledFragments.selected > (app.assembledFragments.fragments.length))
     {
-        assembledFragments.selected = (assembledFragments.fragments.length);
+        app.assembledFragments.selected = (app.assembledFragments.fragments.length);
     }
 
-    updateMessageAssembler();
-    updateTextualMessage();
+    app.updateMessageAssembler();
+    app.updateTextualMessage();
 });
 
 $(document).on('click', '#textualClear', (evt)=>{
     $('#textualMessage').empty();
-    textualFragments.selected = 0;
-    textualFragments.error_count = 0;
-    textualFragments.errors = [];
-    textualFragments.fragments = [];
+    app.textualFragments.selected = 0;
+    app.textualFragments.error_count = 0;
+    app.textualFragments.errors = [];
+    app.textualFragments.fragments = [];
 
-    updateTextualMessageLength();
+    app.updateTextualMessageLength();
 
     $('#textualNext').prop('disabled', true);
     $('#textualPrevious').prop('disabled', true);
@@ -677,41 +673,60 @@ $(document).on('click', '#textualClear', (evt)=>{
 });
 
 $(document).on('click', '#textualNext', (evt)=>{
-    textualFragments.selected = textualFragments.selected + 1;
+    app.textualFragments.selected = app.textualFragments.selected + 1;
 
     $('#textualNext').prop('disabled', 
-        !(textualFragments.selected < (textualFragments.error_count-1)));
+        !(app.textualFragments.selected < (app.textualFragments.error_count-1)));
     $('#textualPrevious').prop('disabled', false);
 
-    spellCheckTextualMessage(false);
+    app.spellCheckTextualMessage(false);
 });
 
 $(document).on('click', '#textualPrevious', (evt)=>{
-    textualFragments.selected = textualFragments.selected - 1;
+    app.textualFragments.selected = app.textualFragments.selected - 1;
 
     $('#textualNext').prop('disabled', 
-        !(textualFragments.selected < (textualFragments.error_count-1)));
-    $('#textualPrevious').prop('disabled', !(textualFragments.selected > 0));
+        !(app.textualFragments.selected < (app.textualFragments.error_count-1)));
+    $('#textualPrevious').prop('disabled', !(app.textualFragments.selected > 0));
 
-    spellCheckTextualMessage(false);
+    app.spellCheckTextualMessage(false);
 });
 
+$(document).on('shown.bs.modal','#stationModal', function () {
+    // $( '#station' ).each( function() {
+    //     let $img = $( this);
+    //     $img.width( $img.width() * (app.station_image_scale / 100) );
+    // });
+
+    // $('#stationModal').modal('handleUpdate')
+})
+
+$(document).on('click', '#stationClear', (evt)=>{
+    $('#selectedStationList').empty();
+});
+
+/**
+ * Dunction called when a station is clicked
+ *
+ * @param {element} area - the area element
+ */
 function stationClicked(area)
 {
     let id = area.getAttribute("id");
     let index = area.getAttribute("id").indexOf('_');
     let fragment = id.substring(index+1);
-    let fragment_text = fragmentText.text[fragment];
+    let fragment_text = app.fragmentText.text[fragment];
     let station_list = [];
     let station_fragment_list = [];
     let current_list = [];
     let current = '';
     let e = 0;
 
-    station_fragment_list = stationFragmentList[current_map_display];
-    stationFragmentList[current_map_display] = [];
+    // Get the station fragment lists
+    station_fragment_list = app.stationFragmentList[app.current_map_display];
+    app.stationFragmentList[app.current_map_display] = [];
 
-    if (map_display_state === MapDisplayStates.single_selection)
+    if (app.map_display_state === MapDisplayStates.single_selection)
     {
         
         //Display Station
@@ -720,10 +735,10 @@ function stationClicked(area)
                 .append(`<li>${fragment_text}</li><ul>`);
 
         // Set the station fragment
-        stationFragmentList[current_map_display].push(fragment);
+        app.stationFragmentList[app.current_map_display].push(fragment);
     
     }
-    else if (map_display_state === MapDisplayStates.multi_selection)
+    else if (app.map_display_state === MapDisplayStates.multi_selection)
     {
         // Get Current Stations
         current = document.getElementById('selectedStationList');
@@ -753,7 +768,7 @@ function stationClicked(area)
             station_fragment_list.push(fragment);
         }
 
-        stationFragmentList[current_map_display] = station_fragment_list;
+        app.stationFragmentList[app.current_map_display] = station_fragment_list;
 
         // Redisplay Items
         $('#selectedStationList').html(`<ul class="message_font" style="margin: 0px">`);
@@ -768,18 +783,5 @@ function stationClicked(area)
                 .append(`</ul>`);
     }
 
-    updateMessagePanels();
+    app.updateMessagePanels();
 }
-
-$(document).on('shown.bs.modal','#stationModal', function () {
-    // $( '#station' ).each( function() {
-    //     let $img = $( this);
-    //     $img.width( $img.width() * (station_image_scale / 100) );
-    // });
-
-    // $('#stationModal').modal('handleUpdate')
-})
-
-$(document).on('click', '#stationClear', (evt)=>{
-    $('#selectedStationList').empty();
-});
