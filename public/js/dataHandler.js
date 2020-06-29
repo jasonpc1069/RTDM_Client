@@ -1,8 +1,3 @@
-document.addEventListener('DOMContentLoaded', function () {
-	// This code won't run until the DOM content is loaded...
-	console.log('loaded!');
-}, false);
-
 $(document).ready(function(){
     
     loadData();
