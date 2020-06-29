@@ -69,7 +69,6 @@ app.use('/', require('./routes/index.js'));
 
 app.use(function(req,res,next){
   res.locals.currentUser = req.user;
-  res.locals.Typo = Typo;
   next();
 })
 

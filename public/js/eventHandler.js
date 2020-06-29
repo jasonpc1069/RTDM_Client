@@ -1,45 +1,47 @@
 $(document).ready(function(){
+    console.log(document.readyState);
+    loadData();
+    app.initialiseApplication();
+
     $('.line').click(function(evt){ 
         let butVal = $(evt.target).attr('value');
         app.lineButton = $(evt.target);
 
-        $.getJSON('data/current/line_data.json',(lineData)=>{
-            if(lineData){
-                $.each(lineData, (key, value)=>{
-                    if (parseInt(butVal,10) === value.id)
+        if(app.lineData){
+            $.each(app.lineData, (key, value)=>{
+                if (parseInt(butVal,10) === value.id)
+                {
+                    if (value.lines.length > 1)
                     {
-                        if (value.lines.length > 1)
+                        $('#lineSelectedList').empty();
+                        
+                        for(let l=0; l<value.lines.length; l++) 
                         {
-                            $('#lineSelectedList').empty();
-                            
-                            for(let l=0; l<value.lines.length; l++) 
-                            {
-                                $('#lineSelectedList')
-                                    .append(`<button type="button" class="btn btn-primary btn-block lineSelection" data-dismiss="modal" value="${value.lines[l].line}" id="line_selection_${l}"
-                                    style="background-color: ${value.lines[l].background_colour}; color: ${value.lines[l].text_colour}">${value.lines[l].message_text}</button>`);
-                            }
-                        }
-                        else
-                        {
-                            app.lineButton.siblings().css('background-color', '#e6e6e6');
-                            app.lineButton.siblings().css('color', 'black');
-                            app.lineButton.siblings().text(app.lineButton.siblings().attr('name'));
-
-                            app.lineButton.css('background-color', value.lines[0].background_colour);
-                            app.lineButton.css('color', value.lines[0].text_colour);
-
-                            let id = value.lines[0].fragment;
-                            app.lineFragment = id;
-                            app.lineImage = value.lines[0].image;
-                            app.stations = value.lines[0].stations;
-                            app.station_image_scale =  value.lines[0].image_scale;
-                            
-                            app.resetInitialApplicationStates();
+                            $('#lineSelectedList')
+                                .append(`<button type="button" class="btn btn-primary btn-block lineSelection" data-dismiss="modal" value="${value.lines[l].line}" id="line_selection_${l}"
+                                style="background-color: ${value.lines[l].background_colour}; color: ${value.lines[l].text_colour}">${value.lines[l].message_text}</button>`);
                         }
                     }
-                })
-            }
-        })
+                    else
+                    {
+                        app.lineButton.siblings().css('background-color', '#e6e6e6');
+                        app.lineButton.siblings().css('color', 'black');
+                        app.lineButton.siblings().text(app.lineButton.siblings().attr('name'));
+
+                        app.lineButton.css('background-color', value.lines[0].background_colour);
+                        app.lineButton.css('color', value.lines[0].text_colour);
+
+                        let id = value.lines[0].fragment;
+                        app.lineFragment = id;
+                        app.lineImage = value.lines[0].image;
+                        app.stations = value.lines[0].stations;
+                        app.station_image_scale =  value.lines[0].image_scale;
+                        
+                        app.resetInitialApplicationStates();
+                    }
+                }
+            })
+        }
     });
 
     $('.preamble').click(function(evt){ 
@@ -70,47 +72,46 @@ $(document).ready(function(){
         $(evt.target).siblings().removeClass('active');
         $(evt.target).removeClass('active');
     
-        $.getJSON('data/current/disruption_data.json',(disruptionData)=>{
-            if(disruptionData){
-                $.each(disruptionData, (key, value)=>{
-                    if (butVal === value.button_text)
-                    {    
-                        if (value.reason === ReasonStates.no_reason)
-                        {
-                            app.resetReasonButtons();
-                        }
-                        else
-                        {
-                            if ($('#reasonSelectedList').contents().length === 0)
-                            {
-                                app.filterReasonsByType(FILTER_ALL, null);
-                            }
-
-                            $('.reason_item').each(function()   {
-                                $(this).removeClass('reason_disabled');
-                            })
-                        }
-                        
-                        $('.reason').each(function()   {
-                            $(this).prop('disabled', !value.reason);
-                        })
-    
-                        $('#reasonTextSearch').prop('disabled', !value.reason);
-                        $('#reasonSearchClear').prop('disabled', !value.reason);
-                        $('#reasonText').prop('disabled', !value.reason);
-    
-                        app.disruptionFragment = value.fragment_id;
-                        app.disruptionDetailIds = value.detail_buttons;
-                        app.reason_position = value.reason;
-    
-                        app.updateDetailButtons(value.buttons); 
-                        app.updateDirectionButtons(value.buttons.direction);
-                        app.updateTicketList(value.buttons.ticket);
-                        app.updateMessagePanels();
+        if(app.disruptionData)
+        {
+            $.each(app.disruptionData, (key, value)=>{
+                if (butVal === value.button_text)
+                {    
+                    if (value.reason === ReasonStates.no_reason)
+                    {
+                        app.resetReasonButtons();
                     }
-                })
-            }
-        })
+                    else
+                    {
+                        if ($('#reasonSelectedList').contents().length === 0)
+                        {
+                            app.filterReasonsByType(FILTER_ALL, null);
+                        }
+
+                        $('.reason_item').each(function()   {
+                            $(this).removeClass('reason_disabled');
+                        })
+                    }
+                    
+                    $('.reason').each(function()   {
+                        $(this).prop('disabled', !value.reason);
+                    })
+
+                    $('#reasonTextSearch').prop('disabled', !value.reason);
+                    $('#reasonSearchClear').prop('disabled', !value.reason);
+                    $('#reasonText').prop('disabled', !value.reason);
+
+                    app.disruptionFragment = value.fragment_id;
+                    app.disruptionDetailIds = value.detail_buttons;
+                    app.reason_position = value.reason;
+
+                    app.updateDetailButtons(value.buttons); 
+                    app.updateDirectionButtons(value.buttons.direction);
+                    app.updateTicketList(value.buttons.ticket);
+                    app.updateMessagePanels();
+                }
+            })
+        }
     });
 
     $('.reason').click(function(evt){
@@ -123,23 +124,22 @@ $(document).ready(function(){
         $('#reasonSelectedList').empty();
         $('#reasonClear').prop('disabled', false);
         
-        $.getJSON('data/current/reason_data.json',(reasonData)=>{
-            if(reasonData){
-                $.each(reasonData, (key, value)=>{
-                    if (butVal === value.button_text)
+        if(app.reasonData)
+        {
+            $.each(app.reasonData, (key, value)=>{
+                if (butVal === value.button_text)
+                {
+                    app.filterReasonsByType(value.disruption_types, value.disruption_group);
+                    
+                    // Update Detail Buttons
+                    if (value.detail_buttons.length !== 0)
                     {
-                        app.filterReasonsByType(value.disruption_types, value.disruption_group);
-                        
-                        // Update Detail Buttons
-                        if (value.detail_buttons.length !== 0)
-                        {
-                            app.updateDetailButtons(value.detail_buttons);
-                            app.updateMessagePanels();
-                        }
-                    }           
-                })
-            }
-        });
+                        app.updateDetailButtons(value.detail_buttons);
+                        app.updateMessagePanels();
+                    }
+                }           
+            })
+        }
     });
 
     $('.detail').click(function(evt){
@@ -151,23 +151,22 @@ $(document).ready(function(){
 
         $('#detailClear').prop('disabled', false);
 
-        $.getJSON('data/current/detail_data.json',(detailData)=>{
-            if(detailData){
-                $.each(detailData, (key, value)=>{
-                    if (value.panel_id === DetailPanels.detail)
+        if(app.detailData)
+        {
+            $.each(app.detailData, (key, value)=>{
+                if (value.panel_id === DetailPanels.detail)
+                {
+                    for (b = 0; b < value.buttons.length; b++)
                     {
-                        for (b = 0; b < value.buttons.length; b++)
+                        if (butVal === value.buttons[b].button_text)
                         {
-                            if (butVal === value.buttons[b].button_text)
-                            {
-                                app.detailFragments[DetailIndex.detail] = value.buttons[b].fragments;
-                                app.map_display_state = value.buttons[b].display_map;
-                            }
+                            app.detailFragments[DetailIndex.detail] = value.buttons[b].fragments;
+                            app.map_display_state = value.buttons[b].display_map;
                         }
-                    } 
-                })
-            }
-        })
+                    }
+                } 
+            })
+        }
 
         if ($(evt.currentTarget).attr("data-target") && app.map_display_state)
         {
@@ -186,24 +185,23 @@ $(document).ready(function(){
 
         $('#detail_1_clear').prop('disabled', false);
 
-        $.getJSON('data/current/detail_data.json',(detailData)=>{
-            if(detailData){
-                $.each(detailData, (key, value)=>{
-                    if (value.panel_id === DetailPanels.detail_1)
+        if(app.detailData)
+        {
+            $.each(app.detailData, (key, value)=>{
+                if (value.panel_id === DetailPanels.detail_1)
+                {
+                    for (b = 0; b < value.buttons.length; b++)
                     {
-                        for (b = 0; b < value.buttons.length; b++)
+                        if (butVal === value.buttons[b].button_text)
                         {
-                            if (butVal === value.buttons[b].button_text)
-                            {
-                                app.detailFragments[DetailIndex.detail_1] = value.buttons[b].fragments;
-                                app.map_display_state = value.buttons[b].display_map;
-                            }
+                            app.detailFragments[DetailIndex.detail_1] = value.buttons[b].fragments;
+                            app.map_display_state = value.buttons[b].display_map;
                         }
                     }
-                    
-                })
-            }
-        })
+                }
+                
+            })
+        }
 
         if ($(evt.currentTarget).attr("data-target") && app.map_display_state)
         {
@@ -223,25 +221,24 @@ $(document).ready(function(){
 
         $('#additional_detail_clear').prop('disabled', false);
 
-        $.getJSON('data/current/detail_data.json',(detailData)=>{
-            if(detailData){
-                $.each(detailData, (key, value)=>{
-                    if (value.panel_id === DetailPanels.additional_detail)
+        if(app.detailData)
+        {
+            $.each(app.detailData, (key, value)=>{
+                if (value.panel_id === DetailPanels.additional_detail)
+                {
+                    for (b = 0; b < value.buttons.length; b++)
                     {
-                        for (b = 0; b < value.buttons.length; b++)
+                        if (butVal === value.buttons[b].button_text)
                         {
-                            if (butVal === value.buttons[b].button_text)
-                            {
-                                app.detailFragments[DetailIndex.additional_detail] = value.buttons[b].fragments;
-                                app.map_display_state = value.buttons[b].display_map;
-                            }
-                    
+                            app.detailFragments[DetailIndex.additional_detail] = value.buttons[b].fragments;
+                            app.map_display_state = value.buttons[b].display_map;
                         }
+                
                     }
-                    
-                })
-            }
-        })
+                }
+                
+            })
+        }
 
         if ($(evt.currentTarget).attr("data-target") && app.map_display_state)
         {
@@ -261,23 +258,22 @@ $(document).ready(function(){
 
         $('#rest_of_line_clear').prop('disabled', false);
 
-        $.getJSON('data/current/detail_data.json',(detailData)=>{
-            if(detailData){
-                $.each(detailData, (key, value)=>{
-                    if (value.panel_id === DetailPanels.rest_of_line)
+        if(app.detailData)
+        {
+            $.each(app.detailData, (key, value)=>{
+                if (value.panel_id === DetailPanels.rest_of_line)
+                {
+                    for (b = 0; b < value.buttons.length; b++)
                     {
-                        for (b = 0; b < value.buttons.length; b++)
+                        if (butVal === value.buttons[b].button_text)
                         {
-                            if (butVal === value.buttons[b].button_text)
-                            {
-                                app.detailFragments[DetailIndex.rest_of_line] = value.buttons[b].fragments;
-                            }
-                    
+                            app.detailFragments[DetailIndex.rest_of_line] = value.buttons[b].fragments;
                         }
+                
                     }
-                })
-            }
-        })
+                }
+            })
+        }
     
         app.updateMessagePanels();
     
@@ -292,19 +288,18 @@ $(document).ready(function(){
 
         $('#directionClear').prop('disabled', false);
     
-        $.getJSON('data/current/direction_data.json',(directionData)=>{
-            if(directionData){
-                $.each(directionData, (key, value)=>{
-                    if (butVal === value.id)
-                    {
-                        app.directionFragment = value.fragment_id;
-                        app.direction_position = value.text_position;
+        if(app.directionData)
+        {
+            $.each(app.directionData, (key, value)=>{
+                if (butVal === value.id)
+                {
+                    app.directionFragment = value.fragment_id;
+                    app.direction_position = value.text_position;
 
-                        app.updateMessagePanels();
-                    }
-                })
-            }
-        })
+                    app.updateMessagePanels();
+                }
+            })
+        }
     });
 
     $(document).on('keyup', '#fragmentText', function (e) {
@@ -328,7 +323,7 @@ $(document).ready(function(){
 
     $(document).on("click", "#textualSuggestions li", function(event) {
         app.correctSpelling($(this).text());
-      });
+    });
 
     $('#stationSelect').click(function(evt){
         app.updateMessagePanels();
@@ -361,43 +356,41 @@ $(document).ready(function(){
         app.updateMessageAssembler();
         app.updateTextualMessage();
     });
-}); //end Document ready
+
 
 $(document).on('click', '.lineSelection', (evt)=>{
     let butVal = $(evt.target).attr('value');
     let button_id = 0;
     let id = 0;
 
-    $.getJSON('data/current/line_data.json',(lineData)=>{
-        if(lineData){
-            $.each(lineData, (key, value)=>{
-                button_id = parseInt(app.lineButton.attr('value'));
-                if ( button_id=== value.id)
+    if(app.lineData){
+        $.each(app.lineData, (key, value)=>{
+            button_id = parseInt(app.lineButton.attr('value'));
+            if ( button_id=== value.id)
+            {
+                for(let l=0; l<value.lines.length; l++) 
                 {
-                    for(let l=0; l<value.lines.length; l++) 
+                    if (value.lines[l].line === butVal)
                     {
-                        if (value.lines[l].line === butVal)
-                        {
-                            app.lineButton.siblings().css('background-color', '#e9ecef');
-                            app.lineButton.siblings().css('color', 'black');
+                        app.lineButton.siblings().css('background-color', '#e9ecef');
+                        app.lineButton.siblings().css('color', 'black');
 
-                            app.lineButton.css('background-color', value.lines[l].background_colour);
-                            app.lineButton.css('color', value.lines[l].text_colour);
-                            app.lineButton.text(value.lines[l].line);
+                        app.lineButton.css('background-color', value.lines[l].background_colour);
+                        app.lineButton.css('color', value.lines[l].text_colour);
+                        app.lineButton.text(value.lines[l].line);
 
-                            id = value.lines[l].fragment;
-                            app.lineFragment = id;
-                            app.lineImage = value.lines[l].image;
-                            app.stations = value.lines[l].stations;
-                            app.station_image_scale =  value.lines[l].image_scale;
+                        id = value.lines[l].fragment;
+                        app.lineFragment = id;
+                        app.lineImage = value.lines[l].image;
+                        app.stations = value.lines[l].stations;
+                        app.station_image_scale =  value.lines[l].image_scale;
 
-                            app.resetInitialApplicationStates();
-                        }
+                        app.resetInitialApplicationStates();
                     }
                 }
-            })
-        }
-    })
+            }
+        })
+    }
 });
 
 $("#reasonSelectedList").on('click','li',function() {
@@ -500,7 +493,7 @@ $(document).on('click', '#reasonClear', (evt)=>{
     app.filterReasonsByType(FILTER_ALL, null);
 
     // Update Detail Buttons
-    if (app.disruptionDetailIds.length !== 0)
+    if (app.disruptionDetailIds && app.disruptionDetailIds.length !== 0)
     {
         app.updateDetailButtons(app.disruptionDetailIds);
     }
@@ -705,8 +698,10 @@ $(document).on('click', '#stationClear', (evt)=>{
     $('#selectedStationList').empty();
 });
 
+}); //end Document ready
+
 /**
- * Dunction called when a station is clicked
+ * Function called when a station is clicked
  *
  * @param {element} area - the area element
  */
@@ -747,7 +742,7 @@ function stationClicked(area)
         // Add stations to array
         for (e = 0; e < current_list.length; e++) 
         {
-             station_list.push( current_list[e].innerText);
+            station_list.push( current_list[e].innerText);
         }
         
         // Determine whether array already contains station
@@ -785,3 +780,5 @@ function stationClicked(area)
 
     app.updateMessagePanels();
 }
+
+
