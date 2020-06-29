@@ -9,6 +9,7 @@
  * @author Jason Caldwell
  */
 
+
 /*-----------------------------------------------------------------------------
   Global Constants
 -------------------------------------------------------------------------------*/
@@ -50,6 +51,7 @@ let app = {
     lineButton : '',
     lineFragment : 0,
     lineImage : 0,
+    loaded_state : false,
     map_display_state : 0,
     preambleFragment :0,
     previousStationFragmentList : [], 
@@ -240,6 +242,10 @@ let app = {
     },
 
 
+    /**
+     * Reset the active states of the direction buttons
+     *
+     */
     resetDirectionButtons: function ()
     {
     let buttons = document.querySelectorAll('.direction');
@@ -256,6 +262,10 @@ let app = {
         $('#directionClear').prop('disabled', true);
     },
 
+    /**
+     * Reset the active states of the ticket options
+     *
+     */
     resetTicketOptions: function ()
     {
         $('#ticketClear').prop('disabled', true);
@@ -269,6 +279,10 @@ let app = {
         app.ticketFragmentList = [];
     },
 
+    /**
+     * Reset the active states of the Line buttons
+     *
+     */
     resetLineButton: function ()
     {
         let button_name = '';

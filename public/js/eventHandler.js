@@ -361,7 +361,7 @@ $(document).ready(function(){
         app.updateMessageAssembler();
         app.updateTextualMessage();
     });
-});
+}); //end Document ready
 
 $(document).on('click', '.lineSelection', (evt)=>{
     let butVal = $(evt.target).attr('value');

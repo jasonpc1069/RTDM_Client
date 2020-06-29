@@ -1,23 +1,57 @@
+document.addEventListener('DOMContentLoaded', function () {
+	// This code won't run until the DOM content is loaded...
+	console.log('loaded!');
+}, false);
+
 $(document).ready(function(){
     
-    // Determine whether the document loading is complete
-    if( document.readyState !== 'complete') 
-    {
-        // Document loading not complete - wait for completion
-        let interval = setInterval(function() {
-            if(document.readyState === 'complete') {
-                clearInterval(interval);
-                loadData();
-                app.initialise();
-            }    
-        }, 10);
-    }
-    else
-    {
-        // Document load completed
-        loadData();
-        app.initialise();
-    }
+    loadData();
+    app.initialise();
+
+    // if (document.readyState === 'complete')
+    // {
+    //     if(!app.loaded_state)
+    //     {
+    //         loadData();
+    //         app.initialise();
+    //     }
+    // }
+
+    // document.onreadystatechange = function () {
+    //     console.log (document.readyState);
+    //     if (document.readyState === 'complete')
+    //     {
+    //         if (!app.loaded_state)
+    //         {
+    //             loadData();
+    //             app.initialise();
+    //         }
+    //     }
+    // }
+  
+    // // Determine whether the document loading is complete
+    // if( document.readyState !== 'complete') 
+    // {
+    //     console.log('not complete');
+    //     // Document loading not complete - wait for completion
+    //     let interval = setInterval(function() {
+    //         if(document.readyState === 'complete') {
+    //             clearInterval(interval);
+    //             console.log('now complete');
+    //             loadData();
+    //             app.initialise();
+    //         }    
+    //     }, 10);
+    // }'
+    // else
+    // {
+    //     // Document load completed
+    //     console.log('complete');
+    //     loadData();
+    //     app.initialise();
+    // }
+
+    
 })
 
 /**
@@ -26,6 +60,8 @@ $(document).ready(function(){
  */
 function loadData()
 {
+    app.loaded_state = true;
+
     $.ajaxSetup({
         async: false
     });
@@ -49,7 +85,6 @@ function loadData()
     });
 
     app.updateStatusBar();
-
 
     // Load Fragment Data
     $.getJSON('data/current/fragment_data.json',(fragmentData)=>{
@@ -218,7 +253,7 @@ function loadData()
         let str = '';
         let icon = '';
         let b = 0;
-        
+
         if(detailData){
             $.each(detailData, (key, value)=>{
                 let panel_id = value.panel_id;
