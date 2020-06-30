@@ -970,6 +970,153 @@ area
    
 }
 
+/* Library */
+.library_browser_panel
+{
+    margin-top: 5px;
+    margin-left: 10px;
+    height: 760px;
+    width: 760px;
+    padding: 0px;
+}
+
+.library_message_panel
+{
+    background-color: #e9ecef; 
+    color: black;
+    border: 1px solid #ced4da; 
+    height: 100px;
+    width: 760px;
+    overflow-y: auto;
+    cursor: not-allowed;
+}
+
+.library_message
+{
+    padding-left: 5px; 
+    padding-right: 5px; 
+    margin-top: 2px; 
+    line-height: 18px;
+    font-family: 'Helvetica'; 
+    font-size: 16px;
+}
+
+.library_type_panel {
+    background-color: #e9ecef; 
+    margin-top: 5px;
+    width: 250px;
+    line-height: 20px;
+    height: 600px;
+    padding: 1px;
+    border: 1px solid #ced4da; 
+    overflow-y: auto;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.library_type_list
+{
+    padding:0px; 
+    padding-left:5px; 
+    list-style-type: none;
+    cursor: pointer;
+}
+
+.library_message_list_panel {
+    background-color: #e9ecef; 
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 250px;
+    line-height: 20px;
+    height: 600px;
+    padding: 1px;
+    border: 1px solid #ced4da; 
+    overflow-y: auto;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.library_message_list
+{
+    padding:0px; 
+    padding-left:5px; 
+    list-style-type: none;
+    cursor: pointer;
+}
+
+.library_message_list_1_panel {
+    background-color: #e9ecef; 
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 250px;
+    line-height: 20px;
+    height: 600px;
+    padding: 1px;
+    border: 1px solid #ced4da; 
+    overflow-y: auto;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.library_message_list_1
+{
+    padding:0px; 
+    padding-left:5px; 
+    list-style-type: none;
+    cursor: pointer;
+}
+
+.library_playlist_panel
+{
+    margin-top: 5px;
+    margin-left: 10px;
+    height: 760px;
+    width: 750px;
+    padding: 0px;
+}
+
+.library_pl_message_panel
+{
+    background-color: #e9ecef; 
+    color: black;
+    border: 1px solid #ced4da; 
+    height: 100px;
+    width: 750px;
+    overflow-y: auto;
+    cursor: not-allowed;
+}
+
+.library_pl_message
+{
+    padding-left: 5px; 
+    padding-right: 5px; 
+    margin-top: 2px; 
+    line-height: 18px;
+    font-family: 'Helvetica'; 
+    font-size: 16px;
+}
+
+.library_playlist_table_panel {
+    background-color: #e9ecef; 
+    margin-top: 5px;
+    width: 750px;
+    line-height: 20px;
+    height: 600px;
+    padding: 1px;
+    border: 1px solid #ced4da; 
+    overflow-y: auto;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.library_playlist_table
+{
+    padding:0px; 
+    padding-left:5px; 
+    list-style-type: none;
+    cursor: pointer;
+}
+
 /* Navigation and Footer */
 
 .project-name {

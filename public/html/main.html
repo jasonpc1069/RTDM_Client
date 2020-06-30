@@ -29,7 +29,7 @@
                     <div class="status_bar_panel">
                         <div class="row">
                             <div class="col-2 status_bar_container" style="margin-right: 5px">
-                                <button type="button" class="btn btn-lg btn-primary btn-block status" id="createMessage"><i class="fas fa-microphone"></i> Create Message</button>
+                                <button type="button" class="btn btn-lg btn-primary btn-block status active" id="createMessage"><i class="fas fa-microphone"></i> Create Message</button>
                             </div>
                             <div class="col-2 status_bar_container" style="margin-right: 5px">
                                 <button type="button" class="btn btn-lg btn-primary btn-block status" id="playLibrary"><i class="fas fa-book"></i> Play List and Library</button>
@@ -46,121 +46,125 @@
                             </div>
                         </div>
                     </div>
-                    <div class="title_panel">
-                        <label class="title_font">1) Message Builder</label>
-                    </div> 
-                    <div class="message_builder_panel flex_container">
-                        <div class="line_panel card text-center">
-                            <div class="heading_font card-header">Line</div>
-                            <div class="line_btn-group card-body" id="lineList"></div>
+                    <div id="createMessagePanel">
+                        <div class="title_panel">
+                            <label class="title_font">1) Message Builder</label>
                         </div> 
-                        <div class="preamble_panel card text-center">
-                            <div class="heading_font card-header px-0">Preamble</div>
-                            <div class="preamble_btn-group card-body" data-toggle="buttons" id="preambleList"></div>
-                        </div> 
-                        <div class="disruption_panel card">
-                            <div class="heading_font card-header pr-0 pl-2">Disruption</div>
-                            <div class="disruption_btn-group card-body" data-toggle="buttons" id="disruptionList"></div>
-                        </div>
-                        <div class="reason_panel card">
-                            <div class="heading_font card-header pl-2">Reason</div>
-                            <div class="reason_btn-panel card-body">
-                                <div class="reason_btn-group" data-toggle="buttons" id="reasonList"></div>
-                                <button type="button" class="btn btn-lg btn-primary reason_clear" id="reasonClear" disabled>Clear</button>
-                                <div class="d-flex">
-                                    <div class="input-group reason_input_text">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-search"></i>
-                                            </span>
+                        <div class="message_builder_panel flex_container">
+                            <div class="line_panel card text-center">
+                                <div class="heading_font card-header">Line</div>
+                                <div class="line_btn-group card-body" id="lineList"></div>
+                            </div> 
+                            <div class="preamble_panel card text-center">
+                                <div class="heading_font card-header px-0">Preamble</div>
+                                <div class="preamble_btn-group card-body" data-toggle="buttons" id="preambleList"></div>
+                            </div> 
+                            <div class="disruption_panel card">
+                                <div class="heading_font card-header pr-0 pl-2">Disruption</div>
+                                <div class="disruption_btn-group card-body" data-toggle="buttons" id="disruptionList"></div>
+                            </div>
+                            <div class="reason_panel card">
+                                <div class="heading_font card-header pl-2">Reason</div>
+                                <div class="reason_btn-panel card-body">
+                                    <div class="reason_btn-group" data-toggle="buttons" id="reasonList"></div>
+                                    <button type="button" class="btn btn-lg btn-primary reason_clear" id="reasonClear" disabled>Clear</button>
+                                    <div class="d-flex">
+                                        <div class="input-group reason_input_text">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-search"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" id="reasonText" placeholder="Enter search text" class="reason_text form-control" disabled>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary button_text fas fa-times" id="reasonSearchClear" disabled></button>
+                                            </div>
                                         </div>
-                                        <input type="text" id="reasonText" placeholder="Enter search text" class="reason_text form-control" disabled>
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary button_text fas fa-times" id="reasonSearchClear" disabled></button>
-                                        </div>
+                                        <button class="btn btn-primary button_text reason_text_search" id="reasonTextSearch" disabled>Search</button>
                                     </div>
-                                    <button class="btn btn-primary button_text reason_text_search" id="reasonTextSearch" disabled>Search</button>
+                                    <div class="reason_search_text rounded" style="overflow: scroll">
+                                        <ol class="reasonItems reason_list" id="reasonSelectedList"></ol>
+                                    </div>
                                 </div>
-                                <div class="reason_search_text rounded" style="overflow: scroll">
-                                    <ol class="reasonItems reason_list" id="reasonSelectedList"></ol>
+                            </div>
+                            <div class="detail_panel card">
+                                <div class="heading_font card-header pl-2">Detail</div>
+                                <div class="card-body detail_body">
+                                    <div class="detail_btn-panel card-body">
+                                        <div class="detail_btn-group" data-toggle="buttons" id="detailList"></div>
+                                        <button type="button" class="btn btn-lg btn-primary detail_clear" id="detailClear" disabled>Clear</button>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="direction_panel card">
+                                <div class="heading_font card-header px-0 text-center">Direction</div>
+                                <div class="card-body direction_body">
+                                    <div class="direction_btn-panel card-body">
+                                        <div class="direction_btn-group" data-toggle="buttons" id="directionList"></div>
+                                        <button type="button" class="btn btn-primary direction_clear" id="directionClear" disabled>Clear</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="detail_1_panel card">
+                                <div class="heading_font card-header  px-0 text-center">Detail</div>
+                                <div class="card-body detail_1_body">
+                                    <div class="detail_1_btn-panel card-body">
+                                        <div class="detail_1_btn-group" data-toggle="buttons" id="detail_1_list"></div>
+                                        <button type="button" class="btn btn-primary detail_1_clear" id="detail_1_clear" disabled>Clear</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="additional_detail_panel card">
+                                <div class="heading_font card-header px-0 pt-0 pb-1 text-center">Additional Detail</div>
+                                <div class="card-body additional_detail_body">
+                                    <div class="additional_detail_btn-panel card-body">
+                                        <div class="additional_detail_btn-group" data-toggle="buttons" id="additional_detail_list"></div>
+                                        <button type="button" class="btn btn-primary additional_detail_clear" id="additional_detail_clear" disabled>Clear</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rest_of_line_panel card">
+                                <div class="heading_font card-header  px-0 pt-0 pb-1 text-center">Rest of Line</div>
+                                <div class="card-body rest_of_line_body">
+                                    <div class="rest_of_line_btn-panel card-body">
+                                        <div class="rest_of_line_btn-group" data-toggle="buttons" id="rest_of_line_list"></div>
+                                        <button type="button" class="btn btn-primary rest_of_line_clear" id="rest_of_line_clear" disabled>Clear</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ticket_panel card">
+                                <div class="heading_font card-header pl-2">Tickets Accepted On</div>
+                                <div class="ticket_body card-body">
+                                    <div class="ticket_list_panel rounded" style="overflow: scroll">
+                                        <ol class="ticketItems ticket_list" id="ticketSelectionList"></ol>
+                                    </div>
+                                    <button type="button" class="btn btn-lg btn-primary ticket_clear" id="ticketClear" disabled>Clear</button>
+                                </div>
+                            </div>
+                            <div class="builder_message_card card">
+                                <label class="heading_font card-header">Complete Message</label>
+                                <div class="builder_message_body card-body">
+                                    <div class="builder_message_panel rounded">
+                                        <div class="builder_complete_message" id="builderCompleteMessage"></div>
+                                    </div>
+                                    <div class="builder_message_btn_panel">
+                                        <button class="btn btn-outline-dark builder" id="builderClear" disabled><i class="fas fa-broom"></i><br>Clear</button>
+                                        <button class="btn btn-outline-dark builder ml-3 mr-auto" id="builderPreview" disabled><i class="fas fa-headphones"></i><br>Preview</button>
+                                        <button class="btn btn-outline-dark builder" id="builderSave" disabled><i class="fas fa-save"></i><br>Save</button>
+                                        <button class="btn btn-outline-dark builder" id="builderSchedule" disabled><i class="fas fa-calendar-alt"></i><br>Play Schedule</button>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
-                        <div class="detail_panel card">
-                            <div class="heading_font card-header pl-2">Detail</div>
-                            <div class="card-body detail_body">
-                                <div class="detail_btn-panel card-body">
-                                    <div class="detail_btn-group" data-toggle="buttons" id="detailList"></div>
-                                    <button type="button" class="btn btn-lg btn-primary detail_clear" id="detailClear" disabled>Clear</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="direction_panel card">
-                            <div class="heading_font card-header px-0 text-center">Direction</div>
-                            <div class="card-body direction_body">
-                                <div class="direction_btn-panel card-body">
-                                    <div class="direction_btn-group" data-toggle="buttons" id="directionList"></div>
-                                    <button type="button" class="btn btn-primary direction_clear" id="directionClear" disabled>Clear</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="detail_1_panel card">
-                            <div class="heading_font card-header  px-0 text-center">Detail</div>
-                            <div class="card-body detail_1_body">
-                                <div class="detail_1_btn-panel card-body">
-                                    <div class="detail_1_btn-group" data-toggle="buttons" id="detail_1_list"></div>
-                                    <button type="button" class="btn btn-primary detail_1_clear" id="detail_1_clear" disabled>Clear</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="additional_detail_panel card">
-                            <div class="heading_font card-header px-0 pt-0 pb-1 text-center">Additional Detail</div>
-                            <div class="card-body additional_detail_body">
-                                <div class="additional_detail_btn-panel card-body">
-                                    <div class="additional_detail_btn-group" data-toggle="buttons" id="additional_detail_list"></div>
-                                    <button type="button" class="btn btn-primary additional_detail_clear" id="additional_detail_clear" disabled>Clear</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="rest_of_line_panel card">
-                            <div class="heading_font card-header  px-0 pt-0 pb-1 text-center">Rest of Line</div>
-                            <div class="card-body rest_of_line_body">
-                                <div class="rest_of_line_btn-panel card-body">
-                                    <div class="rest_of_line_btn-group" data-toggle="buttons" id="rest_of_line_list"></div>
-                                    <button type="button" class="btn btn-primary rest_of_line_clear" id="rest_of_line_clear" disabled>Clear</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ticket_panel card">
-                            <div class="heading_font card-header pl-2">Tickets Accepted On</div>
-                            <div class="ticket_body card-body">
-                                <div class="ticket_list_panel rounded" style="overflow: scroll">
-                                    <ol class="ticketItems ticket_list" id="ticketSelectionList"></ol>
-                                </div>
-                                <button type="button" class="btn btn-lg btn-primary ticket_clear" id="ticketClear" disabled>Clear</button>
-                            </div>
-                        </div>
-                        <div class="builder_message_card card">
-                            <label class="heading_font card-header">Complete Message</label>
-                            <div class="builder_message_body card-body">
-                                <div class="builder_message_panel rounded">
-                                    <div class="builder_complete_message" id="builderCompleteMessage"></div>
-                                </div>
-                                <div class="builder_message_btn_panel">
-                                    <button class="btn btn-outline-dark builder" id="builderClear" disabled><i class="fas fa-broom"></i><br>Clear</button>
-                                    <button class="btn btn-outline-dark builder ml-3 mr-auto" id="builderPreview" disabled><i class="fas fa-headphones"></i><br>Preview</button>
-                                    <button class="btn btn-outline-dark builder" id="builderSave" disabled><i class="fas fa-save"></i><br>Save</button>
-                                    <button class="btn btn-outline-dark builder" id="builderSchedule" disabled><i class="fas fa-calendar-alt"></i><br>Play Schedule</button>
-                                </div>
-                            </div>
-                            
+                    
+                        <div class="break"></div>
+                        <div class="d-flex wrap">
+                            <div id="messageassemblypanel"></div>
+                            <div id="textonlypanel"></div>
                         </div>
                     </div>
-                    <div class="break"></div>
-                    <div class="d-flex wrap">
-                        <div id="messageassemblypanel"></div>
-                        <div id="textonlypanel"></div>
-                    </div>
+                    <div class="d-none" id="libraryPanel"></div>
                 </div>
             </div>
         </main>

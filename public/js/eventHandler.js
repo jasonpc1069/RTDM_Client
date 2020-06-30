@@ -1,7 +1,55 @@
+
+/* Placed outside of document.ready as document.readyState might already be complete when
+   document is ready and therefore will never be called 
+
+   Still get error - but also button events don't seem to fire */
+document.onreadystatechange = function() 
+{
+    if (document.readyState === 'interactive') {
+        console.log('document.readyState === interactive .... keep waiting');
+        return;
+    }
+    
+    if (document.readyState === 'complete') {
+        console.log('document.readyState === complete .... go go go!');
+        loadData();
+        app.initialiseApplication();
+     }
+}
+
+
 $(document).ready(function(){
+    
+    /* Original call - throws an occassional error but all works OK
     console.log(document.readyState);
     loadData();
-    app.initialiseApplication();
+    app.initialiseApplication();*/
+
+    /* Checks if complete before relying on ready state change - if state is
+       complete then all works, however if state is initially interactive then 
+       an error is thrown and button events don't fire
+    if (document.readyState === 'complete')
+    {
+        console.log('document.readyState === complete at start go go go!');
+        loadData();
+        app.initialiseApplication(); 
+    }
+    else
+    {
+        document.onreadystatechange = function() 
+        {
+            if (document.readyState === 'interactive') {
+                console.log('document.readyState === interactive .... keep waiting');
+                return;
+            }
+            
+            if (document.readyState === 'complete') {
+                console.log('document.readyState === complete after interactive go go go!');
+                loadData();
+                app.initialiseApplication();
+            }
+        }
+    }*/
 
     $('.line').click(function(evt){ 
         let butVal = $(evt.target).attr('value');
@@ -696,6 +744,42 @@ $(document).on('shown.bs.modal','#stationModal', function () {
 
 $(document).on('click', '#stationClear', (evt)=>{
     $('#selectedStationList').empty();
+});
+
+$(document).on('click', '#playLibrary', (evt)=>{
+    let buttons = document.querySelectorAll('.status');
+    let b = 0;
+
+    if ($('#libraryPanel').hasClass('d-none'))
+    {
+        for (b = 0; b < buttons.length; b++)
+        {
+            buttons[b].classList.remove('active');
+        }
+        
+        $('#createMessagePanel').addClass('d-none');
+        $('#libraryPanel').removeClass('d-none');
+        $(evt.target).addClass('active');
+    }
+});
+
+$(document).on('click', '#createMessage', (evt)=>{
+    let buttons = document.querySelectorAll('.status');
+    let b = 0;
+
+    
+
+    if ($('#createMessagePanel').hasClass('d-none'))
+    {
+        for (b = 0; b < buttons.length; b++)
+        {
+            buttons[b].classList.remove('active');
+        }
+        
+        $('#libraryPanel').addClass('d-none');
+        $('#createMessagePanel').removeClass('d-none');
+        $(evt.target).addClass('active');
+    }
 });
 
 }); //end Document ready

@@ -1812,6 +1812,11 @@ $('#textonlypanel').load('html/textonlypanel.html', function() {
 $('#messageassemblypanel').load('html/messageassemblypanel.html', function() {
     app.updateMessageAssembler();
 });
+$(function(){
+    $('#libraryPanel').load('html/library.html');
+});
+
+
 
 
 
