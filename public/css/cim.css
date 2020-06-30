@@ -1007,7 +1007,7 @@ area
     margin-top: 5px;
     margin-left: 10px;
     height: 760px;
-    width: 760px;
+    width: 1060px;
     padding: 0px;
 }
 
@@ -1017,7 +1017,7 @@ area
     color: black;
     border: 1px solid #ced4da; 
     height: 100px;
-    width: 760px;
+    width: 1060px;
     overflow-y: auto;
     cursor: not-allowed;
 }
@@ -1035,7 +1035,7 @@ area
 .library_type_panel {
     background-color: #e9ecef; 
     margin-top: 5px;
-    width: 250px;
+    width: 350px;
     line-height: 15px;
     height: 600px;
     padding: 1px;
@@ -1057,7 +1057,7 @@ area
     background-color: #e9ecef; 
     margin-top: 5px;
     margin-left: 5px;
-    width: 250px;
+    width: 350px;
     line-height: 15px;
     height: 600px;
     padding: 1px;
@@ -1069,6 +1069,7 @@ area
 
 .library_message_list
 {
+    width: 550px;
     padding:0px; 
     padding-left:5px; 
     list-style-type: none;
@@ -1079,7 +1080,7 @@ area
     background-color: #e9ecef; 
     margin-top: 5px;
     margin-left: 5px;
-    width: 250px;
+    width: 350px;
     line-height: 15px;
     height: 600px;
     padding: 1px;
@@ -1091,6 +1092,7 @@ area
 
 .library_message_list_1
 {
+    width: 425px;
     padding:0px; 
     padding-left:5px; 
     list-style-type: none;

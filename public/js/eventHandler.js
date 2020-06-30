@@ -772,8 +772,6 @@ $(document).ready(function(){
         let buttons = document.querySelectorAll('.status');
         let b = 0;
 
-        
-
         if ($('#createMessagePanel').hasClass('d-none'))
         {
             for (b = 0; b < buttons.length; b++)
@@ -797,6 +795,9 @@ $(document).ready(function(){
         $(this).css('background-color', 'green');
         $(this).css('color', 'white');
 
+        $('#libraryMessageList').empty();
+        $('#libraryMessageList1').empty();
+
         app.updatePlaylist(id, PL_Level.level_2);
     });
 
@@ -810,7 +811,19 @@ $(document).ready(function(){
         $(this).css('background-color', 'green');
         $(this).css('color', 'white');
 
+        $('#libraryMessageList1').empty();
+
         app.updatePlaylist(id, PL_Level.level_3);
+    });
+
+    $(document).on('click','#libraryMessageList1 li',function(){
+        let id = parseInt($(this).attr('id').split("_").pop());
+       
+        $(this).siblings().css('background-color', '#e9ecef');
+        $(this).siblings().css('color', 'black');
+    
+        $(this).css('background-color', 'green');
+        $(this).css('color', 'white');
     });
 
 }); //end Document ready

@@ -74,5 +74,10 @@ function loadData()
         app.playlistCategories= playlistCategoryData;
     })
 
+    // Load Playlist Messages Data
+    $.getJSON('data/current/playlist_messages.json',(playlistMessageData)=>{
+        app.playlistMessages= playlistMessageData;
+    })
+
     app.data_loaded_state = true;
 }

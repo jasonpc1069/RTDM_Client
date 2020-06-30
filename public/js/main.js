@@ -60,6 +60,7 @@ let app = {
     lineFragment : 0,
     lineImage : 0,
     map_display_state : 0,
+    playlistMessages: [],
     playlistCategories: [],
     preambleData : [],
     preambleFragment :0,
@@ -1826,6 +1827,7 @@ let app = {
         let panel = null;
         let categoryList = [];
         let category = '';
+        let messageList = [];
 
         // Determine which panel to display the list
         switch (level)
@@ -1853,6 +1855,14 @@ let app = {
             }
         }
 
+        for (message of app.playlistMessages)
+        {
+            if (parseInt(message.type_id) === parent)
+            {
+                messageList.push ({'id': message.message_id, 'icon': message.icon, 'name': message.message_name, 'description': message.message_description});
+            }
+        }
+
         // Sort the list of categories
         categoryList = categoryList.sort(app.comparePlaylistCategories);
 
@@ -1862,8 +1872,14 @@ let app = {
             panel.innerHTML = "";
             for (category of categoryList)
             {
-                panel.innerHTML += `<li class="list_font pl_item" style="margin-top:5px; margin-bottom: 5px" id="pl_${category.id}"><i class="far fa-${category.icon}" style="width: 25px"></i><b>${category.name}</b><br>
+                panel.innerHTML += `<li class="list_font pl_cat_item" style="margin-top:5px; margin-bottom: 5px" id="pl_${category.id}"><i class="far fa-${category.icon}" style="width: 25px"></i><b>${category.name}</b><br>
                         <span class="list_font_small" style="margin-left:25px">${category.description}</span></li>`;
+            }
+
+            for (message of messageList)
+            {
+                panel.innerHTML += `<li class="list_font pl_msg_item" style="margin-top:5px; margin-bottom: 5px" id="pl_${message.id}"><i class="far fa-${message.icon}" style="width: 25px"></i><b>${message.name}</b><br>
+                        <span class="list_font_small" style="margin-left:25px">${message.description}</span></li>`;
             }
         }
     }
