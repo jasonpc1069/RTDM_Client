@@ -21,6 +21,8 @@ const DisruptionTypes = Object.freeze({"duemiddle":1, "trainmiddle":2, "whilemid
 const FILTER_ALL = ["duemiddle", "whilemiddle", "trainmiddle"];
 const LINE_FRAGMENT = 7000;
 const MapDisplayStates = Object.freeze({"no_map": 0, "single_selection": 1, "multi_selection":2});
+const PL_PARENT_TYPE = 0;
+const PL_Level = Object.freeze({"level_1": 1, "level_2": 2, "level_3": 3});
 const ReasonStates = Object.freeze({"no_reason":0, "post":1, "pre":2});
 const SPELLING_INTERVAL = 2000;  //time in ms (2 seconds)
 const STATION_FRAGMENT = 7001;
@@ -58,6 +60,7 @@ let app = {
     lineFragment : 0,
     lineImage : 0,
     map_display_state : 0,
+    playlistCategories: [],
     preambleData : [],
     preambleFragment :0,
     previousStationFragmentList : [], 
@@ -87,8 +90,10 @@ let app = {
         app.initialiseElements();
         app.updateStatusBar();
         app.buildTicketList();
+        app.updatePlaylist(PL_PARENT_TYPE, PL_Level.level_1);
         app.readTextFile("/dictionaries/bannedwords.dic");
         app.resetInitialApplicationStates();
+       
     },
 
 
@@ -1269,6 +1274,27 @@ let app = {
         return 0;
     },
 
+
+    /**
+     * Compares the two elements in the Play List
+     *
+     * @param {string} a - element a
+     * @param {string} b - element a
+     * @returns {number} -1 if a < b; 1 if a > b; 0 if a= b
+     */
+    comparePlaylistCategories: function ( a, b ) {
+        // determine if a < b
+        if ( a.name < b.name ) {
+            return -1;
+        }
+        // determine if a > b
+        if ( a.name > b.name){
+            return 1;
+        }
+        // a= b
+        return 0;
+    },
+
     /**
      *  Updates the application status bar
      *
@@ -1787,6 +1813,59 @@ let app = {
                 }
             }
         }
+    },
+
+    /**
+     * Updates the Play List
+     *
+     * @param {number} parent - the play list parent
+     * @param {number} level - the play list panel
+     */
+    updatePlaylist: function (parent, level)
+    {
+        let panel = null;
+        let categoryList = [];
+        let category = '';
+
+        // Determine which panel to display the list
+        switch (level)
+        {
+            case PL_Level.level_1:
+                panel = document.getElementById('libraryTypeList');
+                break;
+            case PL_Level.level_2:
+                panel = document.getElementById('libraryMessageList');
+                break;
+            case PL_Level.level_3:
+                panel = document.getElementById('libraryMessageList1');
+                break;
+            default:
+                panel = null;
+                break;
+        }
+
+        // Get the categories for the parent
+        for (category of app.playlistCategories)
+        {
+            if (parseInt(category.parent_id) === parent)
+            {
+                categoryList.push ({'id': category.type_id, 'icon': category.icon, 'name': category.type_name, 'description': category.type_description});
+            }
+        }
+
+        // Sort the list of categories
+        categoryList = categoryList.sort(app.comparePlaylistCategories);
+
+        // Add the categories to the panel
+        if (panel)
+        {
+            panel.innerHTML = "";
+            for (category of categoryList)
+            {
+                panel.innerHTML += `<li class="list_font pl_item" style="margin-top:5px; margin-bottom: 5px" id="pl_${category.id}"><i class="far fa-${category.icon}" style="width: 25px"></i><b>${category.name}</b><br>
+                        <span class="list_font_small" style="margin-left:25px">${category.description}</span></li>`;
+            }
+        }
     }
 };
 
@@ -1812,8 +1891,13 @@ $('#textonlypanel').load('html/textonlypanel.html', function() {
 $('#messageassemblypanel').load('html/messageassemblypanel.html', function() {
     app.updateMessageAssembler();
 });
+
+$('#libraryPanel').load('html/library.html', function() {
+    app.updatePlaylist(PL_PARENT_TYPE, PL_Level.level_1);
+});
+
 $(function(){
-    $('#libraryPanel').load('html/library.html');
+    $('#quicklistpanel').load('html/quicklistpanel.html');
 });
 
 

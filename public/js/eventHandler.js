@@ -2,7 +2,7 @@
 /* Placed outside of document.ready as document.readyState might already be complete when
    document is ready and therefore will never be called 
 
-   Still get error - but also button events don't seem to fire */
+   Still get error - but also button events don't seem to fire
 document.onreadystatechange = function() 
 {
     if (document.readyState === 'interactive') {
@@ -15,15 +15,15 @@ document.onreadystatechange = function()
         loadData();
         app.initialiseApplication();
      }
-}
+}*/
 
 
 $(document).ready(function(){
     
-    /* Original call - throws an occassional error but all works OK
+    /* Original call - throws an occassional error but all works OK */
     console.log(document.readyState);
     loadData();
-    app.initialiseApplication();*/
+    app.initialiseApplication();
 
     /* Checks if complete before relying on ready state change - if state is
        complete then all works, however if state is initially interactive then 
@@ -111,6 +111,10 @@ $(document).ready(function(){
                 })
             }
         })
+    });
+
+    $('.library').click(function(evt){ 
+        alert ('clear off');
     });
 
     $('.disruption').click(function(evt){    
@@ -406,381 +410,408 @@ $(document).ready(function(){
     });
 
 
-$(document).on('click', '.lineSelection', (evt)=>{
-    let butVal = $(evt.target).attr('value');
-    let button_id = 0;
-    let id = 0;
+    $(document).on('click', '.lineSelection', (evt)=>{
+        let butVal = $(evt.target).attr('value');
+        let button_id = 0;
+        let id = 0;
 
-    if(app.lineData){
-        $.each(app.lineData, (key, value)=>{
-            button_id = parseInt(app.lineButton.attr('value'));
-            if ( button_id=== value.id)
-            {
-                for(let l=0; l<value.lines.length; l++) 
+        if(app.lineData){
+            $.each(app.lineData, (key, value)=>{
+                button_id = parseInt(app.lineButton.attr('value'));
+                if ( button_id=== value.id)
                 {
-                    if (value.lines[l].line === butVal)
+                    for(let l=0; l<value.lines.length; l++) 
                     {
-                        app.lineButton.siblings().css('background-color', '#e9ecef');
-                        app.lineButton.siblings().css('color', 'black');
+                        if (value.lines[l].line === butVal)
+                        {
+                            app.lineButton.siblings().css('background-color', '#e9ecef');
+                            app.lineButton.siblings().css('color', 'black');
 
-                        app.lineButton.css('background-color', value.lines[l].background_colour);
-                        app.lineButton.css('color', value.lines[l].text_colour);
-                        app.lineButton.text(value.lines[l].line);
+                            app.lineButton.css('background-color', value.lines[l].background_colour);
+                            app.lineButton.css('color', value.lines[l].text_colour);
+                            app.lineButton.text(value.lines[l].line);
 
-                        id = value.lines[l].fragment;
-                        app.lineFragment = id;
-                        app.lineImage = value.lines[l].image;
-                        app.stations = value.lines[l].stations;
-                        app.station_image_scale =  value.lines[l].image_scale;
+                            id = value.lines[l].fragment;
+                            app.lineFragment = id;
+                            app.lineImage = value.lines[l].image;
+                            app.stations = value.lines[l].stations;
+                            app.station_image_scale =  value.lines[l].image_scale;
 
-                        app.resetInitialApplicationStates();
+                            app.resetInitialApplicationStates();
+                        }
                     }
                 }
+            })
+        }
+    });
+
+    $("#reasonSelectedList").on('click','li',function() {
+
+        if (!$(this).hasClass ('reason_disabled'))
+        {
+            $(this).siblings().css('background-color', '#e9ecef');
+            $(this).siblings().css('color', 'black');
+            
+            $(this).css('background-color', 'green');
+            $(this).css('color', 'white');
+
+            let id = $(this).attr('id').split("_").pop();
+            
+            app.reasonFragment = id;
+            
+            app.updateMessagePanels();
+        }
+    });
+
+
+    $("#ticketSelectionList").on('click','li',function() {
+        let id = $(this).attr('id').split("_").pop();
+        let index = 0;
+
+        if (!$(this).hasClass ('ticket_disabled'))
+        {
+            if (app.ticketFragmentList.includes(id))
+            {
+                $(this).css('background-color', '#e9ecef');
+                $(this).css('color', 'black');
+
+                // Remove Ticket
+                index = app.ticketFragmentList.indexOf(id);
+                app.ticketFragmentList.splice(index,1);
             }
+            else
+            {
+                $(this).css('background-color', 'green');
+                $(this).css('color', 'white');
+                app.ticketFragmentList.push(id);
+            }
+
+            // Determine whether the ticket clear button should be enabled
+            if (app.ticketFragmentList.length > 0)
+            {
+                $('#ticketClear').prop('disabled', false);
+            }
+            else
+            {
+                $('#ticketClear').prop('disabled', true);
+            }
+            
+            app.updateMessagePanels();
+        }
+    });
+
+    $(document).on('click', '#reasonTextSearch', (evt)=>{
+        let text = document.getElementById('reasonText').value;
+        text = text.toLowerCase();
+                
+        $('#reasonSelectedList').empty();
+
+        $('.reason').each(function()   {
+            $(this).removeClass('active');
         })
-    }
-});
 
-$("#reasonSelectedList").on('click','li',function() {
+        app.filterReasonsByText(text);
 
-    if (!$(this).hasClass ('reason_disabled'))
-    {
+    });
+
+    $(document).on('click', '#fragmentSearch', (evt)=>{
+        let text = document.getElementById('fragmentText').value;
+        text = text.toLowerCase();
+                
+        app.filterFragmentData(text);
+    });
+
+    $(document).on('click', '#reasonSearchClear', (evt)=>{
+        document.getElementById('reasonText').value = "";
+        
+        $('.reason').each(function()   {
+            $(this).removeClass('active');
+        })
+
+        app.filterReasonsByType(FILTER_ALL, null);
+    });
+
+    $(document).on('click', '#reasonClear', (evt)=>{
+        $('#reasonClear').prop('disabled', true);
+
+        app.reasonFragment = 0;
+
+        $('#reasonSelectedList').empty();
+
+        $('.reason').each(function()   {
+            $(this).removeClass('active');
+        })
+
+        app.filterReasonsByType(FILTER_ALL, null);
+
+        // Update Detail Buttons
+        if (app.disruptionDetailIds && app.disruptionDetailIds.length !== 0)
+        {
+            app.updateDetailButtons(app.disruptionDetailIds);
+        }
+
+        app.updateMessagePanels();
+    });
+
+    $(document).on('click', '#detailClear', (evt)=>{
+        $('#detailClear').prop('disabled', true);
+
+        $('.detail').each(function()   {
+            $(this).removeClass('active');
+        })
+
+        app.detailFragments[DetailIndex.detail] = [];
+        app.stationFragmentList[DetailIndex.detail] = [];
+
+        app.updateMessagePanels();
+    });
+
+    $(document).on('click', '#detail_1_clear', (evt)=>{
+        $('#detail_1_clear').prop('disabled', true);
+
+        $('.detail_1').each(function()   {
+            $(this).removeClass('active');
+        })
+
+        app.detailFragments[DetailIndex.detail_1] = [];
+        app.stationFragmentList[DetailIndex.detail_1] = [];
+
+        app.updateMessagePanels();
+    });
+
+    $(document).on('click', '#additional_detail_clear', (evt)=>{
+        $('#additional_detail_clear').prop('disabled', true);
+
+        $('.additional_detail').each(function()   {
+            $(this).removeClass('active');
+        })
+
+        app.detailFragments[DetailIndex.additional_detail] = [];
+        app.stationFragmentList[DetailIndex.additional_detail] = [];
+
+        app.updateMessagePanels();
+    });
+
+    $(document).on('click', '#rest_of_line_clear', (evt)=>{
+        $('#rest_of_line_clear').prop('disabled', true);
+
+        $('.rest').each(function()   {
+            $(this).removeClass('active');
+        })
+
+        app.detailFragments[DetailIndex.rest_of_line] = [];
+        
+        app.updateMessagePanels();
+    });
+
+    $(document).on('click', '#ticketClear', (evt)=>{
+        $('#ticketClear').prop('disabled', true);
+
+        $('.ticket_item').each(function()   {
+            $(this).css('background-color', '#e9ecef');
+            $(this).css('color', 'black');
+        })
+
+        app.ticketFragmentList = [];
+        
+        app.updateMessagePanels();
+    });
+
+    $(document).on('click', '#directionClear', (evt)=>{
+        $('#directionClear').prop('disabled', true);
+
+        $('.direction').each(function()   {
+            $(this).removeClass('active');
+        })
+
+        app.directionFragment = 0;
+        
+        app.updateMessagePanels();
+    });
+
+    // Builder
+    $(document).on('click', '#builderClear', (evt)=>{
+        app.resetLineButton();
+    });
+
+    $(document).on('click', '#builderPreview', (evt)=>{
+        if ($('#builderCompleteMessage').contents().length > 0)
+        {
+            $(evt.target).prop('disabled',true);
+            $('#previewClick').prop('disabled',true);
+            
+            app.previewSound(app.builderFragments.fragments);
+        }
+    });
+
+    // Assembler Buttons
+    $(document).on('click', '#previewClick', (evt)=>{
+        if ($('#messageAssembly').contents().length > 0)
+        {
+            $(evt.target).prop('disabled',true);
+            $('#builderPreview').prop('disabled',true);
+
+            app.previewSound(app.assembledFragments.fragments);
+        }
+    });
+
+    $(document).on('click', '#assemblyClear', (evt)=>{
+        $('#messageAssembly').empty();
+        app.assembledFragments.selected = 0;
+        app.assembledFragments.fragments = [];
+
+        $('#assemblyNext').prop('disabled', true);
+        $('#assemblyDelete').prop('disabled', true);
+        $('#assemblyPrevious').prop('disabled', true);
+        $('#assemblyClear').prop('disabled', true);
+        $('#previewClick').prop('disabled', true);
+    });
+
+    $(document).on('click', '#assemblyNext', (evt)=>{
+        if (app.assembledFragments.selected < (app.assembledFragments.fragments.length))
+        {
+            app.assembledFragments.selected = app.assembledFragments.selected + 1;
+        }
+
+        app.updateMessageAssembler();
+    });
+
+    $(document).on('click', '#assemblyPrevious', (evt)=>{
+        if (app.assembledFragments.selected > 0)
+        {
+            app.assembledFragments.selected = app.assembledFragments.selected - 1;
+        }
+
+        app.updateMessageAssembler();
+    });
+
+    $(document).on('click', '#assemblyDelete', (evt)=>{
+        if (app.assembledFragments.selected < app.assembledFragments.fragments.length)
+        {
+            app.assembledFragments.fragments.splice(app.assembledFragments.selected,1);
+            app.textualFragments.fragments.splice(app.assembledFragments.selected,1)
+        }
+
+        if (app.assembledFragments.selected > (app.assembledFragments.fragments.length))
+        {
+            app.assembledFragments.selected = (app.assembledFragments.fragments.length);
+        }
+
+        app.updateMessageAssembler();
+        app.updateTextualMessage();
+    });
+
+    $(document).on('click', '#textualClear', (evt)=>{
+        $('#textualMessage').empty();
+        app.textualFragments.selected = 0;
+        app.textualFragments.error_count = 0;
+        app.textualFragments.errors = [];
+        app.textualFragments.fragments = [];
+
+        app.updateTextualMessageLength();
+
+        $('#textualNext').prop('disabled', true);
+        $('#textualPrevious').prop('disabled', true);
+        $('#textualClear').prop('disabled', true);
+
+        $('#textualSuggestions').empty();
+    });
+
+    $(document).on('click', '#textualNext', (evt)=>{
+        app.textualFragments.selected = app.textualFragments.selected + 1;
+
+        $('#textualNext').prop('disabled', 
+            !(app.textualFragments.selected < (app.textualFragments.error_count-1)));
+        $('#textualPrevious').prop('disabled', false);
+
+        app.spellCheckTextualMessage(false);
+    });
+
+    $(document).on('click', '#textualPrevious', (evt)=>{
+        app.textualFragments.selected = app.textualFragments.selected - 1;
+
+        $('#textualNext').prop('disabled', 
+            !(app.textualFragments.selected < (app.textualFragments.error_count-1)));
+        $('#textualPrevious').prop('disabled', !(app.textualFragments.selected > 0));
+
+        app.spellCheckTextualMessage(false);
+    });
+
+    $(document).on('shown.bs.modal','#stationModal', function () {
+        // $( '#station' ).each( function() {
+        //     let $img = $( this);
+        //     $img.width( $img.width() * (app.station_image_scale / 100) );
+        // });
+
+        // $('#stationModal').modal('handleUpdate')
+    })
+
+    $(document).on('click', '#stationClear', (evt)=>{
+        $('#selectedStationList').empty();
+    });
+
+    $(document).on('click', '#playLibrary', (evt)=>{
+        let buttons = document.querySelectorAll('.status');
+        let b = 0;
+
+        if ($('#libraryPanel').hasClass('d-none'))
+        {
+            for (b = 0; b < buttons.length; b++)
+            {
+                buttons[b].classList.remove('active');
+            }
+            
+            $('#createMessagePanel').addClass('d-none');
+            $('#libraryPanel').removeClass('d-none');
+            $(evt.target).addClass('active');
+
+        }
+    });
+
+    $(document).on('click', '#createMessage', (evt)=>{
+        let buttons = document.querySelectorAll('.status');
+        let b = 0;
+
+        
+
+        if ($('#createMessagePanel').hasClass('d-none'))
+        {
+            for (b = 0; b < buttons.length; b++)
+            {
+                buttons[b].classList.remove('active');
+            }
+            
+            $('#libraryPanel').addClass('d-none');
+            $('#createMessagePanel').removeClass('d-none');
+            $(evt.target).addClass('active');
+        }
+    });
+
+    $(document).on('click','#libraryTypeList li',function(){
+
+        let id = parseInt($(this).attr('id').split("_").pop());
+       
         $(this).siblings().css('background-color', '#e9ecef');
         $(this).siblings().css('color', 'black');
-        
+    
         $(this).css('background-color', 'green');
         $(this).css('color', 'white');
 
-        let id = $(this).attr('id').split("_").pop();
-        
-        app.reasonFragment = id;
-        
-        app.updateMessagePanels();
-    }
-});
-
-
-$("#ticketSelectionList").on('click','li',function() {
-    let id = $(this).attr('id').split("_").pop();
-    let index = 0;
-
-    if (!$(this).hasClass ('ticket_disabled'))
-    {
-        if (app.ticketFragmentList.includes(id))
-        {
-            $(this).css('background-color', '#e9ecef');
-            $(this).css('color', 'black');
-
-            // Remove Ticket
-            index = app.ticketFragmentList.indexOf(id);
-            app.ticketFragmentList.splice(index,1);
-        }
-        else
-        {
-            $(this).css('background-color', 'green');
-            $(this).css('color', 'white');
-            app.ticketFragmentList.push(id);
-        }
-
-        // Determine whether the ticket clear button should be enabled
-        if (app.ticketFragmentList.length > 0)
-        {
-            $('#ticketClear').prop('disabled', false);
-        }
-        else
-        {
-            $('#ticketClear').prop('disabled', true);
-        }
-        
-        app.updateMessagePanels();
-    }
-});
-
-$(document).on('click', '#reasonTextSearch', (evt)=>{
-    let text = document.getElementById('reasonText').value;
-    text = text.toLowerCase();
-            
-    $('#reasonSelectedList').empty();
-
-    $('.reason').each(function()   {
-        $(this).removeClass('active');
-    })
-
-    app.filterReasonsByText(text);
-
-});
-
-$(document).on('click', '#fragmentSearch', (evt)=>{
-    let text = document.getElementById('fragmentText').value;
-    text = text.toLowerCase();
-            
-    app.filterFragmentData(text);
-});
-
-$(document).on('click', '#reasonSearchClear', (evt)=>{
-    document.getElementById('reasonText').value = "";
-    
-    $('.reason').each(function()   {
-        $(this).removeClass('active');
-    })
-
-    app.filterReasonsByType(FILTER_ALL, null);
-});
-
-$(document).on('click', '#reasonClear', (evt)=>{
-    $('#reasonClear').prop('disabled', true);
-
-    app.reasonFragment = 0;
-
-    $('#reasonSelectedList').empty();
-
-    $('.reason').each(function()   {
-        $(this).removeClass('active');
-    })
-
-    app.filterReasonsByType(FILTER_ALL, null);
-
-    // Update Detail Buttons
-    if (app.disruptionDetailIds && app.disruptionDetailIds.length !== 0)
-    {
-        app.updateDetailButtons(app.disruptionDetailIds);
-    }
-
-    app.updateMessagePanels();
-});
-
-$(document).on('click', '#detailClear', (evt)=>{
-    $('#detailClear').prop('disabled', true);
-
-    $('.detail').each(function()   {
-        $(this).removeClass('active');
-    })
-
-    app.detailFragments[DetailIndex.detail] = [];
-    app.stationFragmentList[DetailIndex.detail] = [];
-
-    app.updateMessagePanels();
-});
-
-$(document).on('click', '#detail_1_clear', (evt)=>{
-    $('#detail_1_clear').prop('disabled', true);
-
-    $('.detail_1').each(function()   {
-        $(this).removeClass('active');
-    })
-
-    app.detailFragments[DetailIndex.detail_1] = [];
-    app.stationFragmentList[DetailIndex.detail_1] = [];
-
-    app.updateMessagePanels();
-});
-
-$(document).on('click', '#additional_detail_clear', (evt)=>{
-    $('#additional_detail_clear').prop('disabled', true);
-
-    $('.additional_detail').each(function()   {
-        $(this).removeClass('active');
-    })
-
-    app.detailFragments[DetailIndex.additional_detail] = [];
-    app.stationFragmentList[DetailIndex.additional_detail] = [];
-
-    app.updateMessagePanels();
-});
-
-$(document).on('click', '#rest_of_line_clear', (evt)=>{
-    $('#rest_of_line_clear').prop('disabled', true);
-
-    $('.rest').each(function()   {
-        $(this).removeClass('active');
-    })
-
-    app.detailFragments[DetailIndex.rest_of_line] = [];
-    
-    app.updateMessagePanels();
-});
-
-$(document).on('click', '#ticketClear', (evt)=>{
-    $('#ticketClear').prop('disabled', true);
-
-    $('.ticket_item').each(function()   {
-        $(this).css('background-color', '#e9ecef');
-        $(this).css('color', 'black');
-    })
-
-    app.ticketFragmentList = [];
-    
-    app.updateMessagePanels();
-});
-
-$(document).on('click', '#directionClear', (evt)=>{
-    $('#directionClear').prop('disabled', true);
-
-    $('.direction').each(function()   {
-        $(this).removeClass('active');
-    })
-
-    app.directionFragment = 0;
-    
-    app.updateMessagePanels();
-});
-
-// Builder
-$(document).on('click', '#builderClear', (evt)=>{
-    app.resetLineButton();
-});
-
-$(document).on('click', '#builderPreview', (evt)=>{
-    if ($('#builderCompleteMessage').contents().length > 0)
-    {
-        $(evt.target).prop('disabled',true);
-        $('#previewClick').prop('disabled',true);
-        
-        app.previewSound(app.builderFragments.fragments);
-    }
-});
-
-// Assembler Buttons
-$(document).on('click', '#previewClick', (evt)=>{
-    if ($('#messageAssembly').contents().length > 0)
-    {
-        $(evt.target).prop('disabled',true);
-        $('#builderPreview').prop('disabled',true);
-
-        app.previewSound(app.assembledFragments.fragments);
-    }
-});
-
-$(document).on('click', '#assemblyClear', (evt)=>{
-    $('#messageAssembly').empty();
-    app.assembledFragments.selected = 0;
-    app.assembledFragments.fragments = [];
-
-    $('#assemblyNext').prop('disabled', true);
-    $('#assemblyDelete').prop('disabled', true);
-    $('#assemblyPrevious').prop('disabled', true);
-    $('#assemblyClear').prop('disabled', true);
-    $('#previewClick').prop('disabled', true);
-});
-
-$(document).on('click', '#assemblyNext', (evt)=>{
-    if (app.assembledFragments.selected < (app.assembledFragments.fragments.length))
-    {
-        app.assembledFragments.selected = app.assembledFragments.selected + 1;
-    }
-
-    app.updateMessageAssembler();
-});
-
-$(document).on('click', '#assemblyPrevious', (evt)=>{
-    if (app.assembledFragments.selected > 0)
-    {
-        app.assembledFragments.selected = app.assembledFragments.selected - 1;
-    }
-
-    app.updateMessageAssembler();
-});
-
-$(document).on('click', '#assemblyDelete', (evt)=>{
-    if (app.assembledFragments.selected < app.assembledFragments.fragments.length)
-    {
-        app.assembledFragments.fragments.splice(app.assembledFragments.selected,1);
-        app.textualFragments.fragments.splice(app.assembledFragments.selected,1)
-    }
-
-    if (app.assembledFragments.selected > (app.assembledFragments.fragments.length))
-    {
-        app.assembledFragments.selected = (app.assembledFragments.fragments.length);
-    }
-
-    app.updateMessageAssembler();
-    app.updateTextualMessage();
-});
-
-$(document).on('click', '#textualClear', (evt)=>{
-    $('#textualMessage').empty();
-    app.textualFragments.selected = 0;
-    app.textualFragments.error_count = 0;
-    app.textualFragments.errors = [];
-    app.textualFragments.fragments = [];
-
-    app.updateTextualMessageLength();
-
-    $('#textualNext').prop('disabled', true);
-    $('#textualPrevious').prop('disabled', true);
-    $('#textualClear').prop('disabled', true);
-
-    $('#textualSuggestions').empty();
-});
-
-$(document).on('click', '#textualNext', (evt)=>{
-    app.textualFragments.selected = app.textualFragments.selected + 1;
-
-    $('#textualNext').prop('disabled', 
-        !(app.textualFragments.selected < (app.textualFragments.error_count-1)));
-    $('#textualPrevious').prop('disabled', false);
-
-    app.spellCheckTextualMessage(false);
-});
-
-$(document).on('click', '#textualPrevious', (evt)=>{
-    app.textualFragments.selected = app.textualFragments.selected - 1;
-
-    $('#textualNext').prop('disabled', 
-        !(app.textualFragments.selected < (app.textualFragments.error_count-1)));
-    $('#textualPrevious').prop('disabled', !(app.textualFragments.selected > 0));
-
-    app.spellCheckTextualMessage(false);
-});
-
-$(document).on('shown.bs.modal','#stationModal', function () {
-    // $( '#station' ).each( function() {
-    //     let $img = $( this);
-    //     $img.width( $img.width() * (app.station_image_scale / 100) );
-    // });
-
-    // $('#stationModal').modal('handleUpdate')
-})
-
-$(document).on('click', '#stationClear', (evt)=>{
-    $('#selectedStationList').empty();
-});
-
-$(document).on('click', '#playLibrary', (evt)=>{
-    let buttons = document.querySelectorAll('.status');
-    let b = 0;
-
-    if ($('#libraryPanel').hasClass('d-none'))
-    {
-        for (b = 0; b < buttons.length; b++)
-        {
-            buttons[b].classList.remove('active');
-        }
-        
-        $('#createMessagePanel').addClass('d-none');
-        $('#libraryPanel').removeClass('d-none');
-        $(evt.target).addClass('active');
-    }
-});
-
-$(document).on('click', '#createMessage', (evt)=>{
-    let buttons = document.querySelectorAll('.status');
-    let b = 0;
+        app.updatePlaylist(id, PL_Level.level_2);
+    });
 
     
+    $(document).on('click','#libraryMessageList li',function(){
+        let id = parseInt($(this).attr('id').split("_").pop());
+       
+        $(this).siblings().css('background-color', '#e9ecef');
+        $(this).siblings().css('color', 'black');
+    
+        $(this).css('background-color', 'green');
+        $(this).css('color', 'white');
 
-    if ($('#createMessagePanel').hasClass('d-none'))
-    {
-        for (b = 0; b < buttons.length; b++)
-        {
-            buttons[b].classList.remove('active');
-        }
-        
-        $('#libraryPanel').addClass('d-none');
-        $('#createMessagePanel').removeClass('d-none');
-        $(evt.target).addClass('active');
-    }
-});
+        app.updatePlaylist(id, PL_Level.level_3);
+    });
 
 }); //end Document ready
 

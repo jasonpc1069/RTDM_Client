@@ -970,6 +970,37 @@ area
    
 }
 
+/* Quick List */
+.quick_list_panel
+{
+    border: 2px solid white; 
+    height: 545px;
+    width: 400px;
+    background-color: #f0f0f0;
+    margin-left: 5px;
+}
+
+.quick_list_table_panel {
+    background-color: #e9ecef; 
+    margin-top: 5px;
+    width: 396px;
+    line-height: 20px;
+    height: 495px;
+    padding: 1px;
+    border: 1px solid #ced4da; 
+    overflow-y: auto;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.quick_list_table
+{
+    padding:0px; 
+    padding-left:5px; 
+    list-style-type: none;
+    cursor: pointer;
+}
+
 /* Library */
 .library_browser_panel
 {
@@ -1005,7 +1036,7 @@ area
     background-color: #e9ecef; 
     margin-top: 5px;
     width: 250px;
-    line-height: 20px;
+    line-height: 15px;
     height: 600px;
     padding: 1px;
     border: 1px solid #ced4da; 
@@ -1027,7 +1058,7 @@ area
     margin-top: 5px;
     margin-left: 5px;
     width: 250px;
-    line-height: 20px;
+    line-height: 15px;
     height: 600px;
     padding: 1px;
     border: 1px solid #ced4da; 
@@ -1049,7 +1080,7 @@ area
     margin-top: 5px;
     margin-left: 5px;
     width: 250px;
-    line-height: 20px;
+    line-height: 15px;
     height: 600px;
     padding: 1px;
     border: 1px solid #ced4da; 
@@ -1184,6 +1215,12 @@ area
 {
     font-family: 'Helvetica'; 
     font-size: 14px
+}
+
+.list_font_small
+{
+    font-family: 'Helvetica'; 
+    font-size: 12px
 }
 
 .fragment_list_font

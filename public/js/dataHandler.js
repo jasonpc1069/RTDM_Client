@@ -69,5 +69,10 @@ function loadData()
         app.ticketData = ticketData;
     })
 
+    // Load Playlist Categories Data
+    $.getJSON('data/current/playlist_categories.json',(playlistCategoryData)=>{
+        app.playlistCategories= playlistCategoryData;
+    })
+
     app.data_loaded_state = true;
 }
