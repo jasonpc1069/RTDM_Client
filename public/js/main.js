@@ -33,6 +33,14 @@ const TOTAL_MESSAGE_LENGTH = 254;
 /*-----------------------------------------------------------------------------
   Global Scope Object - contains all global variables and functions
 -------------------------------------------------------------------------------*/
+
+var appComponents = new Vue({
+    el: '#appComponents',
+    data: {
+      disruptionVueData: []
+    }
+  })
+
 let app = {
     //Global Variables
     appData : [],
@@ -40,6 +48,7 @@ let app = {
     assembledFragments : {fragments: [], selected: 0},
     banned_words : {fragments: []},
     builderFragments : [],
+    completeData: [],
     completeFragmentData : [],
     current_map_display : 0,
     data_loaded_state : false,
@@ -60,11 +69,12 @@ let app = {
     lineFragment : 0,
     lineImage : 0,
     map_display_state : 0,
-    playlistMessages: [],
+    playlistMessages: {messages: [], selected:0},
     playlistCategories: [],
     preambleData : [],
     preambleFragment :0,
     previousStationFragmentList : [], 
+    quickList : {id_list: [], selected_id: 0},
     reasonData: [],
     reasonFragment : 0, // The current selected reason fragment
     reason_position : 0,
@@ -212,7 +222,7 @@ let app = {
             }) 
         }
 
-        // Disruption Data
+        //Disruption Data
         if(app.disruptionData)
         {
             $.each(app.disruptionData, (key, value)=>{
@@ -1013,6 +1023,11 @@ let app = {
                     // No more files - enable preview button
                     $('#builderPreview').prop('disabled',false);
                     $('#previewClick').prop('disabled',false);
+
+                    if ($('#libraryMessage').contents().length > 0)
+                    { 
+                        $('#browserPreview').prop('disabled',false);
+                    }
                     
                 }
             }
@@ -1824,10 +1839,12 @@ let app = {
      */
     updatePlaylist: function (parent, level)
     {
-        let panel = null;
-        let categoryList = [];
         let category = '';
+        let categoryList = [];
+        let duration = 0;
+        let message = '';
         let messageList = [];
+        let panel = null;
 
         // Determine which panel to display the list
         switch (level)
@@ -1855,7 +1872,7 @@ let app = {
             }
         }
 
-        for (message of app.playlistMessages)
+        for (message of app.playlistMessages.messages)
         {
             if (parseInt(message.type_id) === parent)
             {
@@ -1878,10 +1895,107 @@ let app = {
 
             for (message of messageList)
             {
+                duration = app.getMessageDuration(parseInt(message.id));
+
                 panel.innerHTML += `<li class="list_font pl_msg_item" style="margin-top:5px; margin-bottom: 5px" id="pl_${message.id}"><i class="far fa-${message.icon}" style="width: 25px"></i><b>${message.name}</b><br>
-                        <span class="list_font_small" style="margin-left:25px">${message.description}</span></li>`;
+                        <span class="list_font_small" style="margin-left:25px">${message.description}</span><br>
+                        <span class="list_font_small" style="margin-left:25px">${duration} seconds</span></li>`;
             }
         }
+    },
+
+    /**
+     *  Updates the Library Browser Message
+     *
+     * @param {number} id - The message ID
+     */
+    updateLibraryBrowser: function (id)
+    {
+        let message = '';
+        
+        app.browserFragments = [id];
+        $('#libraryMessage').empty();
+
+        for (message of app.completeData)
+        {   
+            if (parseInt(message.message_id) === id)
+            {
+                $('#libraryMessage').append(`<span class="message_font">${message.detail}</span>`);
+                break;
+            }
+        }
+
+        $('#browserPreview').prop('disabled', false);
+        $('#browserSave').prop('disabled', false);
+        
+    },
+
+
+    /**
+     * Updates the Play List
+     *
+     */
+    updateQuicklist: function ()
+    {
+        let message = '';
+        let duration = 0;
+        
+        $('#quickListList').empty();
+
+        for (id of app.quickList.id_list)
+        {   
+            message = app.getPlaylistMessage(id);
+            duration = app.getMessageDuration(parseInt(message.message_id));
+
+            $('#quickListList').append(`<li class="list_font pl_msg_item" style="margin-top:5px; margin-bottom: 5px" id="pl_${message.message_id}"><i class="far fa-${message.icon}" style="width: 25px"></i><b>${message.message_name}</b><br>
+            <span class="list_font_small" style="margin-left:25px">${message.message_description}</span><br>
+            <span class="list_font_small" style="margin-left:25px">${duration} seconds</span></li>`);
+        }
+    },
+
+    /**
+     *  Gets the duration for the Message
+     *
+     * @param {number} id - The message ID
+     * @returns The message durarion
+     */
+    getMessageDuration: function (id)
+    {
+        let message = '';
+        let duration = 0;
+
+        for (message of app.completeData)
+        {   
+            if (parseInt(message.message_id) === id)
+            {
+                duration = parseInt(message.Duration);
+                break;
+            }
+        }
+
+        return duration;
+    },
+
+    /**
+     *  Gets the requested playlist message
+     *
+     * @param {number} id - The message ID
+     * @returns The complete message
+     */
+    getPlaylistMessage: function (id)
+    {
+        let playlistMessage = '';
+    
+        for (message of app.playlistMessages.messages)
+        {   
+            if (parseInt(message.message_id) === id)
+            {
+                playlistMessage = message;
+                break;
+            }
+        }
+
+        return playlistMessage;
     }
 };
 

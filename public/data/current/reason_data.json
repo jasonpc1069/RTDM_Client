@@ -93,7 +93,7 @@
     "disruption_types": ["duemiddle"],
     "disruption_group": "earlier",
     "fragmentId" : [],
-    "detail_buttons" :[1]
+    "detail_buttons" :[]
 },
 {
     "id": 13,

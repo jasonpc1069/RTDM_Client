@@ -61,7 +61,9 @@
                             </div> 
                             <div class="disruption_panel card">
                                 <div class="heading_font card-header pr-0 pl-2">Disruption</div>
-                                <div class="disruption_btn-group card-body" data-toggle="buttons" id="disruptionList"></div>
+                                <div class="disruption_btn-group card-body" data-toggle="buttons" id="disruptionList">
+                                    <!-- <button v-for="button in disruptionVueData" type="button" class="disruption btn btn-outline-dark" id="disruption_{{button.id}}" name="disruption" value="">{{button.button_text}}</button> -->
+                                </div>
                             </div>
                             <div class="reason_panel card">
                                 <div class="heading_font card-header pl-2">Reason</div>
@@ -197,6 +199,7 @@
         <script src="/dependencies/howler.core.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.0/howler.core.min.js" integrity="sha256-KVZnkPTU6/RYbD2Jxh9AOIoOmiYw4cIIr3uD2HVx8gY=" crossorigin="anonymous"></script>
         <script src="/dependencies/typo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
         <!-- Main Javascript-->
         <script src="/js/main.js"></script>

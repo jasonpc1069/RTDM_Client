@@ -26,6 +26,14 @@ function loadData()
         }
     });
 
+    // Load Complete Data
+    $.getJSON('data/current/complete_data.json',(completeData)=>{
+        if (completeData)
+        {
+            app.completeData = completeData;
+        }
+    });
+
     // Load Disruption Data
     $.getJSON('data/current/disruption_types.json',(typeData)=>{
         if(typeData){
@@ -46,6 +54,7 @@ function loadData()
     // Load Disruption Data
     $.getJSON('data/current/disruption_data.json',(disruptionData)=>{
         app.disruptionData = disruptionData;
+        appComponents.disruptionVueData = disruptionData;
     });
 
     // Load Reason Data
@@ -76,7 +85,7 @@ function loadData()
 
     // Load Playlist Messages Data
     $.getJSON('data/current/playlist_messages.json',(playlistMessageData)=>{
-        app.playlistMessages= playlistMessageData;
+        app.playlistMessages.messages = playlistMessageData;
     })
 
     app.data_loaded_state = true;

@@ -51,7 +51,8 @@ $(document).ready(function(){
         }
     }*/
 
-    $('.line').click(function(evt){ 
+    $(document).on('click','.line',function(evt){
+    //$('.line').click(function(evt){ 
         let butVal = $(evt.target).attr('value');
         app.lineButton = $(evt.target);
 
@@ -92,7 +93,7 @@ $(document).ready(function(){
         }
     });
 
-    $('.preamble').click(function(evt){ 
+    $(document).on('click','.preamble',function(evt){
         let butVal = $(evt.target).attr('value');
     
         evt.preventDefault();
@@ -117,7 +118,7 @@ $(document).ready(function(){
         alert ('clear off');
     });
 
-    $('.disruption').click(function(evt){    
+    $(document).on('click','.disruption',function(evt){  
         let butVal = $(evt.target).attr('value');
     
         evt.preventDefault();
@@ -166,7 +167,7 @@ $(document).ready(function(){
         }
     });
 
-    $('.reason').click(function(evt){
+    $(document).on('click','.reason',function(evt){
         let butVal = $(evt.target).attr('value');
                     
         evt.preventDefault();
@@ -194,7 +195,7 @@ $(document).ready(function(){
         }
     });
 
-    $('.detail').click(function(evt){
+    $(document).on('click','.detail',function(evt){
         let butVal = $(evt.target).attr('value');
         
         evt.preventDefault();
@@ -228,7 +229,7 @@ $(document).ready(function(){
         app.updateMessagePanels();
     });
 
-    $('.detail_1').click(function(evt){
+    $(document).on('click','.detail_1',function(evt){
         let butVal = $(evt.target).attr('value');
         
         evt.preventDefault();
@@ -264,7 +265,7 @@ $(document).ready(function(){
     
     });
 
-    $('.additional_detail').click(function(evt){
+    $(document).on('click','.additional_detail',function(evt){
         let butVal = $(evt.target).attr('value');
         
         evt.preventDefault();
@@ -301,7 +302,7 @@ $(document).ready(function(){
     
     });
 
-    $('.rest').click(function(evt){
+    $(document).on('click','.rest',function(evt){
         let butVal = $(evt.target).attr('value');
     
         evt.preventDefault();
@@ -331,7 +332,7 @@ $(document).ready(function(){
     
     });
     
-    $('.direction').click(function(evt){
+    $(document).on('click','.direction',function(evt){
         let butVal = parseInt($(evt.currentTarget).attr('value'));
     
         evt.preventDefault();
@@ -377,22 +378,22 @@ $(document).ready(function(){
         app.correctSpelling($(this).text());
     });
 
-    $('#stationSelect').click(function(evt){
+    $(document).on('click','#stationSelect',function(evt){
         app.updateMessagePanels();
     });
 
-    $('#stationClear').click(function(evt){
+    $(document).on('click','#stationClear',function(evt){
         $('#selectedStationList').empty();
         app.stationFragmentList[app.current_map_display] = [];
         app.updateMessagePanels();
     });
     
-    $('#stationCancel').click(function(evt){
+    $(document).on('click','#stationCancel',function(evt){
         app.stationFragmentList[app.current_map_display] = app.previousStationFragmentList;
         app.updateMessagePanels();
     });
 
-    $("#fragmentArea").on('click','li',function() {
+    $(document).on('click','#fragmentArea li',function(evt){
         let id = $(this).attr('id').split("_").pop();
         let index = app.assembledFragments.selected;
 
@@ -445,8 +446,7 @@ $(document).ready(function(){
         }
     });
 
-    $("#reasonSelectedList").on('click','li',function() {
-
+    $(document).on('click','#reasonSelectedList li',function(evt){
         if (!$(this).hasClass ('reason_disabled'))
         {
             $(this).siblings().css('background-color', '#e9ecef');
@@ -463,8 +463,7 @@ $(document).ready(function(){
         }
     });
 
-
-    $("#ticketSelectionList").on('click','li',function() {
+    $(document).on('click','#ticketSelectionList li',function(evt){
         let id = $(this).attr('id').split("_").pop();
         let index = 0;
 
@@ -512,6 +511,22 @@ $(document).ready(function(){
 
         app.filterReasonsByText(text);
 
+    });
+
+    $(document).on('keyup', '#reasonText', function (e) {
+        let text = ''
+        if (e.key === 'Enter')
+        {
+            text = document.getElementById('reasonText').value;
+
+            $('#reasonSelectedList').empty();
+
+            $('.reason').each(function()   {
+                $(this).removeClass('active');
+            })
+
+            app.filterReasonsByText(text);
+        }
     });
 
     $(document).on('click', '#fragmentSearch', (evt)=>{
@@ -813,7 +828,15 @@ $(document).ready(function(){
 
         $('#libraryMessageList1').empty();
 
-        app.updatePlaylist(id, PL_Level.level_3);
+        if ($(this).hasClass('pl_msg_item'))
+        {
+            app.playlistMessages.selected = id;
+            app.updateLibraryBrowser(id);
+        }
+        else
+        {
+            app.updatePlaylist(id, PL_Level.level_3);
+        }
     });
 
     $(document).on('click','#libraryMessageList1 li',function(){
@@ -824,6 +847,65 @@ $(document).ready(function(){
     
         $(this).css('background-color', 'green');
         $(this).css('color', 'white');
+
+        app.playlistMessages.selected = id;
+        app.updateLibraryBrowser(id);
+    });
+
+    $(document).on('click', '#browserPreview', (evt)=>{
+        if ($('#libraryMessage').contents().length > 0)
+        {
+            $(evt.target).prop('disabled',true);
+            
+            app.previewSound(app.browserFragments);
+        }
+    });
+
+    $(document).on('click', '#browserSave', (evt)=>{
+        if (app.playlistMessages.selected > 0 &&
+            !app.quickList.id_list.includes (app.playlistMessages.selected))
+        {
+            app.quickList.id_list.push(app.playlistMessages.selected);
+            app.updateQuicklist();
+        }
+    });
+
+    $(document).on('click','#quickListList li',function(){
+        let id = parseInt($(this).attr('id').split("_").pop());
+       
+        $(this).siblings().css('background-color', '#e9ecef');
+        $(this).siblings().css('color', 'black');
+    
+        $(this).css('background-color', 'green');
+        $(this).css('color', 'white');
+
+        app.quickList.selected_id = id;
+        $('#quicklistDelete').prop('disabled', false);
+    });
+
+    $(document).on('click', '#quicklistDelete', (evt)=>{
+        let index = 0;
+
+        if (app.quickList.selected_id > 0)
+        {
+            // Remove ID from list
+            index = app.quickList.id_list.indexOf(app.quickList.selected_id);
+            
+            if (index != -1)
+            {
+                app.quickList.id_list.splice(index,1);
+                
+                //Update the panel 
+                app.updateQuicklist();
+            }
+
+            app.quickList.selected_id = 0;
+
+            if (app.quickList.id_list.length === 0)
+            {
+                $('#quicklistDelete').prop('disabled', true);
+            }
+        }
     });
 
 }); //end Document ready

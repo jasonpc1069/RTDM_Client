@@ -329,6 +329,30 @@ area
     padding: 0px;
 }
 
+.playlist{ 
+    width: 60px; 
+    height: 60px; 
+    background-color: #e6e6e6; 
+    color: black;
+    font-family: 'Helvetica'; 
+    font-size: 12px;
+    margin-top: 4px;
+    margin-right: 4px;
+    padding: 0px;
+}
+
+.quicklist{ 
+    width: 60px; 
+    height: 60px; 
+    background-color: #e6e6e6; 
+    color: black;
+    font-family: 'Helvetica'; 
+    font-size: 12px;
+    margin-top: 4px;
+    margin-right: 4px;
+    padding: 0px;
+}
+
 .button_text
 {
     font-family: 'Helvetica'; 
@@ -984,8 +1008,8 @@ area
     background-color: #e9ecef; 
     margin-top: 5px;
     width: 396px;
-    line-height: 20px;
-    height: 495px;
+    line-height: 15px;
+    height: 425px;
     padding: 1px;
     border: 1px solid #ced4da; 
     overflow-y: auto;
@@ -1001,12 +1025,18 @@ area
     cursor: pointer;
 }
 
+.quick_list_btn_panel
+{
+    width: 396px;
+    display: flex;
+}
+
 /* Library */
 .library_browser_panel
 {
     margin-top: 5px;
     margin-left: 10px;
-    height: 760px;
+    height: 815px;
     width: 1060px;
     padding: 0px;
 }
@@ -1099,6 +1129,16 @@ area
     cursor: pointer;
 }
 
+.library_browser_btn_panel
+{
+    width: 1060px;
+    height: 68px;
+    display: flex;
+    margin-top: 5px;
+    background-color: #f0f0f0; 
+    padding-left: 5px;
+}
+
 .library_playlist_panel
 {
     margin-top: 5px;
@@ -1148,6 +1188,15 @@ area
     padding-left:5px; 
     list-style-type: none;
     cursor: pointer;
+}
+
+.library_playlist_btn_panel
+{
+    width: 750px;
+    height: 68px;
+    margin-top: 5px;
+    background-color: #f0f0f0; 
+    padding-left: 5px;
 }
 
 /* Navigation and Footer */
