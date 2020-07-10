@@ -43,3 +43,84 @@
       </div>
     </div>
 </div>
+
+<!-- Message Save -->
+<div class="modal fade" id="saveModal" tabindex="-1" role="dialog" data-backdrop="static">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Message Save</h5>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex flex-column">
+          <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text button_text" style="width: 100px; height: 30px">Title</span>
+              </div>
+              <input type="text" class="form-control save_title" id="saveTitle" placeholder="Enter Message Title">
+          </div>
+          <div class="input-group" style="margin-top: 5px">
+            <div class="input-group-prepend">
+              <span class="input-group-text button_text" style="width: 100px; height: 30px">Description</span>
+            </div>
+            <input type="text" class="form-control save_description" id ="saveDescription" placeholder="Enter Message Description">
+          </div>
+            
+          <label class="label_font" style="margin-top: 5px; margin-bottom:0px;">Message Folders</label>
+          <div class="d-flex">
+            <div class="save_folders rounded">
+              <ol class="save_folders_list" id="saveFolders"></ol>
+            </div>
+            <button class="btn btn-outline-dark savemessage" id="saveNewFolder"><i class="fas fa-2x fa-folder-plus"></i><br>New Folder</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-toggle="button" id="saveQuicklist"><i class="fas fa-list-alt"></i> Add to Quick List</button>
+        <button type="button" class="btn btn-primary" id="saveSave"><i class="fas fa-save"></i> Save</button>
+        <button type="button" class="btn btn-danger" id="saveCancel" data-dismiss="modal"><i class="fas fa-times"></i> Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Message Deletion -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Message Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="message_font" id="deleteText">Are you sure you wish to delete the Announcement</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="deleteConfirm" class="btn btn-success" data-dismiss="modal">Yes</button>
+        <button type="button" id="deleteCancel"  class="btn btn-danger" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Message Information -->
+<div class="modal" id="infoModal" tabindex="-1" role="dialog" data-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Information Message</h5>
+      </div>
+      <div class="modal-body">
+        <p class="message_font" id="infoText"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="infoOK" class="btn btn-primary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

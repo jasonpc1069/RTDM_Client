@@ -302,6 +302,7 @@ area
     margin-top: 4px;
     margin-right: 4px;
     padding: 0px;
+    line-height: 16px;
 }
 
 .assembler 
@@ -315,6 +316,7 @@ area
     margin-top: 4px;
     margin-right: 4px;
     padding: 0px;
+    line-height: 16px;
 }
 
 .textual 
@@ -327,6 +329,7 @@ area
     font-size: 13px;
     margin-right: 4px;
     padding: 0px;
+    line-height: 16px;
 }
 
 .playlist{ 
@@ -339,6 +342,7 @@ area
     margin-top: 4px;
     margin-right: 4px;
     padding: 0px;
+    line-height: 16px;
 }
 
 .quicklist{ 
@@ -351,6 +355,19 @@ area
     margin-top: 4px;
     margin-right: 4px;
     padding: 0px;
+    line-height: 16px;
+}
+
+.savemessage { 
+    width: 70px; 
+    height: 70px; 
+    background-color: #e6e6e6; 
+    color: black;
+    font-family: 'Helvetica'; 
+    font-size: 14px;
+    margin-Left: 10px;
+    padding: 0px;
+    line-height: 15px;
 }
 
 .button_text
@@ -1008,7 +1025,7 @@ area
     background-color: #e9ecef; 
     margin-top: 5px;
     width: 396px;
-    line-height: 15px;
+    line-height: 12px;
     height: 425px;
     padding: 1px;
     border: 1px solid #ced4da; 
@@ -1036,8 +1053,8 @@ area
 {
     margin-top: 5px;
     margin-left: 10px;
-    height: 815px;
-    width: 1060px;
+    height: 840px;
+    width: 1090px;
     padding: 0px;
 }
 
@@ -1046,8 +1063,8 @@ area
     background-color: #e9ecef; 
     color: black;
     border: 1px solid #ced4da; 
-    height: 100px;
-    width: 1060px;
+    height: 75px;
+    width: 1090px;
     overflow-y: auto;
     cursor: not-allowed;
 }
@@ -1065,9 +1082,9 @@ area
 .library_type_panel {
     background-color: #e9ecef; 
     margin-top: 5px;
-    width: 350px;
-    line-height: 15px;
-    height: 600px;
+    width: 360px;
+    line-height: 13px;
+    height: 650px;
     padding: 1px;
     border: 1px solid #ced4da; 
     overflow-y: auto;
@@ -1087,9 +1104,9 @@ area
     background-color: #e9ecef; 
     margin-top: 5px;
     margin-left: 5px;
-    width: 350px;
-    line-height: 15px;
-    height: 600px;
+    width: 360px;
+    line-height: 12px;
+    height: 650px;
     padding: 1px;
     border: 1px solid #ced4da; 
     overflow-y: auto;
@@ -1099,7 +1116,7 @@ area
 
 .library_message_list
 {
-    width: 550px;
+    width: 575px;
     padding:0px; 
     padding-left:5px; 
     list-style-type: none;
@@ -1110,9 +1127,9 @@ area
     background-color: #e9ecef; 
     margin-top: 5px;
     margin-left: 5px;
-    width: 350px;
-    line-height: 15px;
-    height: 600px;
+    width: 360px;
+    line-height: 12px;
+    height: 650px;
     padding: 1px;
     border: 1px solid #ced4da; 
     overflow-y: auto;
@@ -1122,7 +1139,7 @@ area
 
 .library_message_list_1
 {
-    width: 425px;
+    width: 450px;
     padding:0px; 
     padding-left:5px; 
     list-style-type: none;
@@ -1131,7 +1148,7 @@ area
 
 .library_browser_btn_panel
 {
-    width: 1060px;
+    width: 1090px;
     height: 68px;
     display: flex;
     margin-top: 5px;
@@ -1143,8 +1160,8 @@ area
 {
     margin-top: 5px;
     margin-left: 10px;
-    height: 760px;
-    width: 750px;
+    height: 840px;
+    width: 715px;
     padding: 0px;
 }
 
@@ -1153,8 +1170,8 @@ area
     background-color: #e9ecef; 
     color: black;
     border: 1px solid #ced4da; 
-    height: 100px;
-    width: 750px;
+    height: 75px;
+    width: 715px;
     overflow-y: auto;
     cursor: not-allowed;
 }
@@ -1172,9 +1189,9 @@ area
 .library_playlist_table_panel {
     background-color: #e9ecef; 
     margin-top: 5px;
-    width: 750px;
+    width: 715px;
     line-height: 20px;
-    height: 600px;
+    height: 650px;
     padding: 1px;
     border: 1px solid #ced4da; 
     overflow-y: auto;
@@ -1192,11 +1209,39 @@ area
 
 .library_playlist_btn_panel
 {
-    width: 750px;
+    width: 715px;
     height: 68px;
     margin-top: 5px;
     background-color: #f0f0f0; 
     padding-left: 5px;
+}
+
+/* Save Modal */
+.save_title
+{
+    height: 30px; 
+}
+
+.save_description
+{
+    height: 30px; 
+}
+
+.save_folders
+{
+    margin-top: 0px;
+    height: 300px; 
+    width: 685px;
+    border: 1px solid #ced4da; 
+    background-color: #e9ecef;
+}
+
+.save_folders_list
+{
+    padding:0px; 
+    padding-left:5px; 
+    list-style-type: none;
+    cursor: pointer;
 }
 
 /* Navigation and Footer */

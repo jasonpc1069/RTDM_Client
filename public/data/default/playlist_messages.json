@@ -1,4 +1,4 @@
-[
+﻿[
     {
         "message_name": "All lines",
         "message_description": "Good service",
@@ -1718,95 +1718,5 @@
         "message_id": "1106",
         "user": "",
         "type_id": "30"
-    },
-    {
-        "message_name": "Bridge Strike",
-        "message_description": "Minor delays due to bridge strike",
-        "icon": "microphone-alt",
-        "classifier": "COMPOSED",
-        "parent_id": -1,
-        "message_id": "10001",
-        "user": "jasoncaldwell",
-        "type_id": 11
-    },
-    {
-        "message_name": "Westbound Weather",
-        "message_description": "Suspension due to weather on the westbound",
-        "icon": "microphone-alt",
-        "classifier": "COMPOSED",
-        "parent_id": -1,
-        "message_id": "10002",
-        "user": "jasoncaldwell",
-        "type_id": 11
-    },
-    {
-        "message_name": "Security Eastbound",
-        "message_description": "Trains held  eastbound due to security alert",
-        "icon": "microphone-alt",
-        "classifier": "COMPOSED",
-        "parent_id": -1,
-        "message_id": 10003,
-        "user": "jasoncaldwell",
-        "type_id": 11
-    },
-    {
-        "message_name": "Special Service",
-        "message_description": "Running a special service due to a derailment",
-        "icon": "microphone-alt",
-        "classifier": "COMPOSED",
-        "parent_id": -1,
-        "message_id": 10005,
-        "user": "jasoncaldwell",
-        "type_id": 1015
-    },
-    {
-        "message_name": "Part Suspended",
-        "message_description": "Part Suspended due to network rail",
-        "icon": "microphone-alt",
-        "classifier": "COMPOSED",
-        "parent_id": -1,
-        "message_id": 10007,
-        "user": "jasoncaldwell",
-        "type_id": 1006
-    },
-    {
-        "message_name": "Part Suspended (Text)",
-        "message_description": "Part Suspended due to network rail",
-        "icon": "file-alt",
-        "classifier": "MRA",
-        "parent_id": -1,
-        "message_id": 10008,
-        "user": "jasoncaldwell",
-        "type_id": 1006
-    },
-    {
-        "message_name": "Gaps",
-        "message_description": "Gaps due to network rail",
-        "icon": "microphone-alt",
-        "classifier": "COMPOSED",
-        "parent_id": -1,
-        "message_id": 10009,
-        "user": "jasoncaldwell",
-        "type_id": 1006
-    },
-    {
-        "message_name": "Special Service Derailment",
-        "message_description": "There is a special service due to a derailment",
-        "icon": "microphone-alt",
-        "classifier": "COMPOSED",
-        "parent_id": -1,
-        "message_id": 10010,
-        "user": "jasoncaldwell",
-        "type_id": 11
-    },
-    {
-        "message_name": "Station Closed",
-        "message_description": "The station is closed because of a bus",
-        "icon": "microphone-alt",
-        "classifier": "COMPOSED",
-        "parent_id": -1,
-        "message_id": 10012,
-        "user": "jasoncaldwell",
-        "type_id": 11
     }
 ]

@@ -457,7 +457,7 @@ $(document).ready(function(){
 
             let id = $(this).attr('id').split("_").pop();
             
-            app.reasonFragment = id;
+            app.reasonFragment = parseInt(id);
             
             app.updateMessagePanels();
         }
@@ -671,15 +671,7 @@ $(document).ready(function(){
     });
 
     $(document).on('click', '#assemblyClear', (evt)=>{
-        $('#messageAssembly').empty();
-        app.assembledFragments.selected = 0;
-        app.assembledFragments.fragments = [];
-
-        $('#assemblyNext').prop('disabled', true);
-        $('#assemblyDelete').prop('disabled', true);
-        $('#assemblyPrevious').prop('disabled', true);
-        $('#assemblyClear').prop('disabled', true);
-        $('#previewClick').prop('disabled', true);
+        app.clearMessageAssemblyPanel();
     });
 
     $(document).on('click', '#assemblyNext', (evt)=>{
@@ -717,19 +709,7 @@ $(document).ready(function(){
     });
 
     $(document).on('click', '#textualClear', (evt)=>{
-        $('#textualMessage').empty();
-        app.textualFragments.selected = 0;
-        app.textualFragments.error_count = 0;
-        app.textualFragments.errors = [];
-        app.textualFragments.fragments = [];
-
-        app.updateTextualMessageLength();
-
-        $('#textualNext').prop('disabled', true);
-        $('#textualPrevious').prop('disabled', true);
-        $('#textualClear').prop('disabled', true);
-
-        $('#textualSuggestions').empty();
+        app.clearTextOnlyMessagePanel();
     });
 
     $(document).on('click', '#textualNext', (evt)=>{
@@ -862,12 +842,21 @@ $(document).ready(function(){
     });
 
     $(document).on('click', '#browserSave', (evt)=>{
-        if (app.playlistMessages.selected > 0 &&
-            !app.quickList.id_list.includes (app.playlistMessages.selected))
+        if (app.playlistMessages.selected > 0)
         {
-            app.quickList.id_list.push(app.playlistMessages.selected);
+            addQuicklistMessage(app.playlistMessages.selected);
             app.updateQuicklist();
         }
+    });
+
+    $(document).on('click', '#browserDelete', (evt)=>{
+        let id = app.playlistMessages.selected;
+        let message = app.getPlaylistMessage(id);
+        let name = message.message_name;
+        let text = `Are you sure you wish to delete the Announcement?<br><b>${name}<b>`;
+
+        document.getElementById('deleteText').innerHTML = text;
+
     });
 
     $(document).on('click','#quickListList li',function(){
@@ -888,24 +877,167 @@ $(document).ready(function(){
 
         if (app.quickList.selected_id > 0)
         {
-            // Remove ID from list
-            index = app.quickList.id_list.indexOf(app.quickList.selected_id);
+            deleteQuicklistMessage(app.quickList.selected_id);
             
-            if (index != -1)
+            //Update the panel 
+            app.updateQuicklist();
+        }
+    });
+
+    $(document).on('click','#saveFolders li',function(){
+        let id = parseInt($(this).attr('id').split("_").pop());
+       
+        $(this).siblings().css('background-color', '#e9ecef');
+        $(this).siblings().css('color', 'black');
+    
+        $(this).css('background-color', 'green');
+        $(this).css('color', 'white');
+
+        app.selected_save_type = id;
+    });
+
+    $(document).on('click','#assemblySave',function(evt){
+        document.getElementById('saveModal').setAttribute('name', MessageSource.Assembly);
+        app.resetSaveModal();   
+    });
+
+    $(document).on('click','#textualSave',function(evt){
+        document.getElementById('saveModal').setAttribute('name', MessageSource.Textual);
+        app.resetSaveModal(); 
+    });
+
+    $(document).on('click','#builderSave',function(evt){
+        document.getElementById('saveModal').setAttribute('name', MessageSource.Builder);
+        app.resetSaveModal(); 
+    });
+
+    $(document).on('click', '#saveSave', (evt)=>{
+        let title = $('#saveTitle').val();
+        let description = $('#saveDescription').val();
+        let quicklist_flag = $('#saveQuicklist').hasClass('active');
+        let detail = '';
+        let duration = 0;
+        let type = document.getElementById('saveModal').getAttribute('name');
+        let icon = '';
+        let fragments = [];
+        let classifier = '';
+
+        if (title && title.length > 0)
+        {
+            $('#saveModal').modal('hide');
+
+            switch (type)
             {
-                app.quickList.id_list.splice(index,1);
-                
-                //Update the panel 
+                case MessageSource.Assembly:
+                    icon = EAR_TEXT_ICON;
+                    classifier = USER_MULTIPART_CLASSIFIER;
+                    detail = app.assembledFragments.text;
+                    duration = app.assembledFragments.duration;
+                    fragments = app.assembledFragments.fragments;
+                    break;
+                case MessageSource.Textual:
+                    icon = TEXT_ICON;
+                    classifier = USER_MRA_CLASSIFIER;
+                    // Get Text from message panel
+                    detail = document.getElementById('textualMessage').innerText;
+                    if (detail.endsWith('.'))
+                    {
+                        // remove fullstop
+                        detail = detail.substring(0,detail.length-1);
+                    }
+                    break;
+                case MessageSource.Builder:
+                    icon = TEXT_ICON;
+                    classifier = USER_MULTIPART_CLASSIFIER;
+                    detail = app.builderFragments.text;
+                    duration = app.builderFragments.duration;
+                    fragments = app.builderFragments.fragments;
+                    break;
+                default:
+                    icon = EAR_TEXT_ICON;
+                    break;
+            }
+            
+            addUserPlaylistMessage(title, description, classifier,icon);
+
+            // Determine which message is being created
+            if (type !== MessageSource.Textual)
+            {
+                addUserMultipartMessage(title, description, detail, duration, fragments, icon);
+            }
+            else
+            {
+                addUserMraMessage(title, description, detail, icon);
+            }
+
+
+            // Determine whether the message should be added to the quick list
+            if (quicklist_flag)
+            {
+                addQuicklistMessage(app.userMessageId);
                 app.updateQuicklist();
             }
 
-            app.quickList.selected_id = 0;
-
-            if (app.quickList.id_list.length === 0)
+            // Clear the message from panel
+            if (type === MessageSource.Assembly)
             {
-                $('#quicklistDelete').prop('disabled', true);
+                app.clearMessageAssemblyPanel();
             }
+
+            if (type !== MessageSource.Builder)
+            {
+                app.clearTextOnlyMessagePanel();
+            }
+
+            if (type === MessageSource.Builder)
+            {
+                app.resetLineButton();
+            }
+
+            // Increment User ID
+            app.userMessageId++;
+            
+            app.resetLibraryBrowser();
         }
+        else
+        {
+            document.getElementById('infoText').innerHTML = 
+                "Please enter an announcement Title";
+        
+            $('#infoModal').modal({show: true});
+        }
+    });
+
+    $(document).on('click', '#deleteConfirm', (evt)=>{
+        let id = app.playlistMessages.selected;
+        let classifier = app.getPlaylistClassifier(id);
+        let index = -1;
+        let typeId = app.getPlaylistTypeID(id);
+       
+        deletePlaylistMessage(id);
+
+        if (classifier === USER_MULTIPART_CLASSIFIER)
+        {
+            deleteMultipartMessage(id);
+        }
+        else if (classifier === USER_MRA_CLASSIFIER)
+        {
+            deleteMraMessage(id);
+        }
+
+        // Determine which window to update
+        if (app.getCategoryParentID(typeId) !== 0)
+        {
+            app.updatePlaylist(typeId, PL_Level.level_3);  
+        }
+        else
+        {
+            app.updatePlaylist(typeId, PL_Level.level_2);  
+        }
+
+        deleteQuicklistMessage(id);
+        app.updateQuicklist();
+
     });
 
 }); //end Document ready
@@ -920,7 +1052,7 @@ function stationClicked(area)
     let id = area.getAttribute("id");
     let index = area.getAttribute("id").indexOf('_');
     let fragment = id.substring(index+1);
-    let fragment_text = app.fragmentText.text[fragment];
+    let fragment_text = app.getFragmentText(fragment);
     let station_list = [];
     let station_fragment_list = [];
     let current_list = [];

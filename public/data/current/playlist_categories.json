@@ -3,6 +3,7 @@
         "type_id": "0",
         "type_name": "No Filter",
         "icon": "",
+        "icon_style": "",
         "parent_id": "-1",
         "type_description": "No Filter"
     },
@@ -10,6 +11,7 @@
         "type_id": "1",
         "type_name": "Good Service",
         "icon": "thumbs-up",
+        "icon_style": "regular",
         "parent_id": "0",
         "type_description": "Good Service"
     },
@@ -17,6 +19,7 @@
         "type_id": "2",
         "type_name": "Disruption",
         "icon": "bolt",
+        "icon_style": "solid",
         "parent_id": "0",
         "type_description": "Service Disruption"
     },
@@ -24,6 +27,7 @@
         "type_id": "3",
         "type_name": "Emergency",
         "icon": "exclamation",
+        "icon_style": "solid",
         "parent_id": "0",
         "type_description": "Emergency"
     },
@@ -31,6 +35,7 @@
         "type_id": "4",
         "type_name": "Lift & Esc",
         "icon": "arrows-alt-v",
+        "icon_style": "solid",
         "parent_id": "0",
         "type_description": "Lift & Esc"
     },
@@ -38,6 +43,7 @@
         "type_id": "5",
         "type_name": "Closure",
         "icon": "lock",
+        "icon_style": "solid",
         "parent_id": "0",
         "type_description": "Closure"
     },
@@ -45,6 +51,7 @@
         "type_id": "6",
         "type_name": "Crowding",
         "icon": "users",
+        "icon_style": "solid",
         "parent_id": "0",
         "type_description": "Crowding"
     },
@@ -52,6 +59,7 @@
         "type_id": "7",
         "type_name": "Service Info",
         "icon": "exclamation-circle",
+        "icon_style": "solid",
         "parent_id": "0",
         "type_description": "Service Info"
     },
@@ -59,6 +67,7 @@
         "type_id": "8",
         "type_name": "General Info",
         "icon": "info",
+        "icon_style": "solid",
         "parent_id": "0",
         "type_description": "General Info"
     },
@@ -66,13 +75,15 @@
         "type_id": "9",
         "type_name": "Staff",
         "icon": "volume-down",
+        "icon_style": "solid",
         "parent_id": "0",
         "type_description": "Staff"
     },
     {
         "type_id": "10",
         "type_name": "Train Arrival",
-        "icon": "folder",
+        "icon": "folder-open",
+        "icon_style": "regular",
         "parent_id": "7",
         "type_description": "Train Arrival"
     },
@@ -80,48 +91,55 @@
         "type_id": "11",
         "type_name": "User Created",
         "icon": "user-plus",
+        "icon_style": "solid",
         "parent_id": "0",
         "type_description": ""
     },
     {
         "type_id": "12",
         "type_name": "Caused by Events",
-        "icon": "folder",
+        "icon": "folder-open",
+        "icon_style": "regular",
         "parent_id": "2",
         "type_description": ""
     },
     {
         "type_id": "13",
         "type_name": "Minor Delays",
-        "icon": "folder",
+        "icon": "folder-open",
+        "icon_style": "regular",
         "parent_id": "2",
         "type_description": ""
     },
     {
         "type_id": "14",
         "type_name": "Major Delays",
-        "icon": "folder",
+        "icon": "folder-open",
+        "icon_style": "regular",
         "parent_id": "2",
         "type_description": ""
     },
     {
         "type_id": "15",
         "type_name": "National Rail",
-        "icon": "folder",
+        "icon": "folder-open",
+        "icon_style": "regular",
         "parent_id": "2",
         "type_description": ""
     },
     {
         "type_id": "16",
         "type_name": "Suspensions",
-        "icon": "folder",
+        "icon": "folder-open",
+        "icon_style": "regular",
         "parent_id": "2",
         "type_description": "Service Suspended"
     },
     {
         "type_id": "17",
         "type_name": "Misc.",
-        "icon": "folder",
+        "icon": "folder-open",
+        "icon_style": "regular",
         "parent_id": "2",
         "type_description": ""
     },
@@ -129,27 +147,31 @@
         "type_id": "18",
         "type_name": "Temporary",
         "icon": "",
+        "icon_style": "",
         "parent_id": "-1",
         "type_description": "Not visible on the UI"
     },
     {
         "type_id": "26",
         "type_name": "Misc.",
-        "icon": "folder",
+        "icon": "folder-open",
+        "icon_style": "regular",
         "parent_id": "7",
         "type_description": ""
     },
     {
         "type_id": "27",
         "type_name": "Auto Announcements",
-        "icon": "folder",
+        "icon": "folder-open",
+        "icon_style": "regular",
         "parent_id": "7",
         "type_description": "Auto Announcements"
     },
     {
         "type_id": "29",
         "type_name": "Manual Service Update",
-        "icon": "folder",
+        "icon": "folder-open",
+        "icon_style": "regular",
         "parent_id": "7",
         "type_description": "Manual Service Update"
     },
@@ -157,6 +179,7 @@
         "type_id": "30",
         "type_name": "Test Messages",
         "icon": "cog",
+        "icon_style": "solid",
         "parent_id": "0",
         "type_description": "Test Messages"
     },
@@ -164,6 +187,7 @@
         "type_id": "104",
         "type_name": "Conjunctions",
         "icon": "icon",
+        "icon_style": "solid",
         "parent_id": "-1",
         "type_description": "Conjunctions"
     },
@@ -171,6 +195,7 @@
         "type_id": "105",
         "type_name": "Lines",
         "icon": "icon",
+        "icon_style": "solid",
         "parent_id": "-1",
         "type_description": "Lines"
     },
@@ -178,6 +203,7 @@
         "type_id": "106",
         "type_name": "Directions",
         "icon": "icon",
+        "icon_style": "solid",
         "parent_id": "-1",
         "type_description": "Directions"
     },
@@ -185,6 +211,7 @@
         "type_id": "131",
         "type_name": "Numbers (N)",
         "icon": "icon",
+        "icon_style": "solid",
         "parent_id": "-1",
         "type_description": "Numbers"
     },
@@ -192,6 +219,7 @@
         "type_id": "132",
         "type_name": "Date",
         "icon": "icon",
+        "icon_style": "solid",
         "parent_id": "-1",
         "type_description": "Date"
     },
@@ -199,6 +227,7 @@
         "type_id": "133",
         "type_name": "Date/January",
         "icon": "icon",
+        "icon_style": "solid",
         "parent_id": "-1",
         "type_description": "Date/January"
     },
@@ -206,6 +235,7 @@
         "type_id": "134",
         "type_name": "Phrases",
         "icon": "icon",
+        "icon_style": "solid",
         "parent_id": "-1",
         "type_description": "Phrases"
     },
@@ -213,6 +243,7 @@
         "type_id": "135",
         "type_name": "Calendar",
         "icon": "icon",
+        "icon_style": "solid",
         "parent_id": "-1",
         "type_description": "Calendar"
     },
@@ -220,6 +251,7 @@
         "type_id": "136",
         "type_name": "Numbers",
         "icon": "icon",
+        "icon_style": "solid",
         "parent_id": "-1",
         "type_description": "Numbers"
     },
@@ -227,6 +259,7 @@
         "type_id": "137",
         "type_name": "Destinations",
         "icon": "icon",
+        "icon_style": "solid",
         "parent_id": "-1",
         "type_description": "Destinations"
     },
@@ -234,6 +267,7 @@
         "type_id": "1001",
         "type_name": "Reason",
         "icon": "icon",
+        "icon_style": "solid",
         "parent_id": "-1",
         "type_description": "Reason"
     },
@@ -241,6 +275,7 @@
         "type_id": "1002",
         "type_name": "Technical",
         "icon": "icon",
+        "icon_style": "solid",
         "parent_id": "1001",
         "type_description": "Technical"
     },
@@ -248,6 +283,7 @@
         "type_id": "1003",
         "type_name": "Train",
         "icon": "icon",
+        "icon_style": "solid",
         "parent_id": "1002",
         "type_description": "Train"
     },
@@ -255,6 +291,7 @@
         "type_id": "1004",
         "type_name": "Track",
         "icon": "icon",
+        "icon_style": "solid",
         "parent_id": "1002",
         "type_description": "Track"
     },
@@ -262,41 +299,47 @@
         "type_id": "1005",
         "type_name": "Misc",
         "icon": "icon",
+        "icon_style": "solid",
         "parent_id": "1002",
         "type_description": "Misc"
     },
     {
         "type_id": "1006",
         "type_name": "Test",
-        "icon": "folder",
+        "icon": "folder-open",
+        "icon_style": "regular",
         "parent_id": "11",
         "type_description": ""
     },
     {
         "type_id": "1014",
         "type_name": "LIS Generic",
-        "icon": "folder",
+        "icon": "folder-open",
+        "icon_style": "regular",
         "parent_id": "11",
         "type_description": ""
     },
     {
         "type_id": "1015",
         "type_name": "Service Held",
-        "icon": "folder",
+        "icon": "folder-open",
+        "icon_style": "regular",
         "parent_id": "11",
         "type_description": ""
     },
     {
         "type_id": "1016",
         "type_name": "Step-Free",
-        "icon": "folder",
+        "icon": "folder-open",
+        "icon_style": "regular",
         "parent_id": "11",
         "type_description": ""
     },
     {
         "type_id": "1017",
         "type_name": "Gaps",
-        "icon": "folder",
+        "icon": "folder-open",
+        "icon_style": "regular",
         "parent_id": "11",
         "type_description": ""
     }

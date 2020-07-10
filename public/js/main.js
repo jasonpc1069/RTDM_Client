@@ -18,17 +18,26 @@ const DetailIndex = Object.freeze({"detail": 0, "detail_1": 1, "additional_detai
 const DetailPanels = Object.freeze({"detail": 1, "detail_1": 2, "additional_detail":3, "rest_of_line": 4});
 const DirectionTextPosition = Object.freeze({"pre":1, "post":2});
 const DisruptionTypes = Object.freeze({"duemiddle":1, "trainmiddle":2, "whilemiddle":3,"tickets":4});
+const EAR_TEXT_ICON = "microphone-alt";
 const FILTER_ALL = ["duemiddle", "whilemiddle", "trainmiddle"];
+const FOLDER_ICON = "folder-open";
 const LINE_FRAGMENT = 7000;
 const MapDisplayStates = Object.freeze({"no_map": 0, "single_selection": 1, "multi_selection":2});
+const MessageSource = Object.freeze({"Assembly": "Assembly Message", "Textual": "Text Only Message", "Builder": "Complete Message"});
+const MessageTypes = Object.freeze({"voice_text": 1, "voice": 2, "text":3});
 const PL_PARENT_TYPE = 0;
 const PL_Level = Object.freeze({"level_1": 1, "level_2": 2, "level_3": 3});
 const ReasonStates = Object.freeze({"no_reason":0, "post":1, "pre":2});
 const SPELLING_INTERVAL = 2000;  //time in ms (2 seconds)
 const STATION_FRAGMENT = 7001;
 const STATION_FRAGMENT_LIST = 7002;
+const TEXT_ICON = "file-alt";
 const TICKET_FRAGMENT_LIST = 7003;
 const TOTAL_MESSAGE_LENGTH = 254;
+const USER_MRA_CLASSIFIER = "MRA";
+const USER_MULTIPART_CLASSIFIER = "COMPOSED";
+const USER_ID_START = 10000;
+const USER_TYPE_ID = 11;
 
 /*-----------------------------------------------------------------------------
   Global Scope Object - contains all global variables and functions
@@ -45,9 +54,9 @@ let app = {
     //Global Variables
     appData : [],
     applicationName :'',
-    assembledFragments : {fragments: [], selected: 0},
+    assembledFragments : {fragments: [], text: '', duration: 0, selected: 0},
     banned_words : {fragments: []},
-    builderFragments : [],
+    builderFragments : {fragments: [], text: '', duration: 0},
     completeData: [],
     completeFragmentData : [],
     current_map_display : 0,
@@ -62,22 +71,24 @@ let app = {
     disruptionDetailIds : [],
     disruptionFragment : [],
     disruptionTypeData : [],
-    fragmentText : {section:[], text:[]},
     initialLine : 0,
     lineButton : '',
     lineData : [],
     lineFragment : 0,
     lineImage : 0,
     map_display_state : 0,
+    mraMessages: [],
+    multipartMessages: [],
     playlistMessages: {messages: [], selected:0},
     playlistCategories: [],
     preambleData : [],
     preambleFragment :0,
     previousStationFragmentList : [], 
-    quickList : {id_list: [], selected_id: 0},
+    quickList : {messages: [], selected_id: 0},
     reasonData: [],
     reasonFragment : 0, // The current selected reason fragment
     reason_position : 0,
+    selected_save_type: 0,
     spellingTimer : 0,   //timer identifier
     start_disruption_fragments : [],
     start_disruption_id : 0,
@@ -86,11 +97,14 @@ let app = {
     stationFragmentList : [[],[],[]], 
     station_image_scale : 0,
     stations : [],  // Array of Line Stations
-    textualFragments : {fragments: [], selected: 0, error_count: 0, errors: []},
+    textualFragments : {fragments: [], text: '', selected: 0, error_count: 0, errors: []},
     ticketData: [],
     ticketFragments : [],
     ticketGroup : '',
     ticketFragmentList : [],
+    userMessageId :0,
+    user_name: '',
+    user_role: '',
     version : '',
 
     /**
@@ -102,9 +116,10 @@ let app = {
         app.updateStatusBar();
         app.buildTicketList();
         app.updatePlaylist(PL_PARENT_TYPE, PL_Level.level_1);
+        app.updateQuicklist();
         app.readTextFile("/dictionaries/bannedwords.dic");
         app.resetInitialApplicationStates();
-       
+        app.calculateUserIDStart();
     },
 
 
@@ -119,7 +134,7 @@ let app = {
         let splitstr = '';
         let icon = '';
         let b = 0;
-
+    
         // Header
         if(app.appData)
         {
@@ -148,6 +163,7 @@ let app = {
                 let str = "Other";
                 let id =  value.id;
                 let fragment_id = 0;
+                let category = '';
 
                 // Determine whether the line only has 1 line
                 if (value.lines.length === 1)
@@ -283,12 +299,12 @@ let app = {
                         if (value.buttons[b].display_map !== MapDisplayStates.no_map)
                         {
                             $('#detailList')
-                                .append(`<button type="button" class="detail btn btn-outline-dark" id="detail_${id}" name="detail" data-toggle="modal" data-target="#stationModal" data-dismiss="modal" value="${str}" disabled><i class="fas fa-${icon}"></i><br>${str}</button>`);
+                                .append(`<button type="button" class="detail btn btn-outline-dark" id="detail_${id}" name="detail" data-toggle="modal" data-target="#stationModal" data-dismiss="modal" value="${str}" disabled><i class="fas fa-lg fa-${icon}"></i><br>${str}</button>`);
                         }
                         else
                         {
                             $('#detailList')
-                                .append(`<button type="button" class="detail btn btn-outline-dark" id="detail_${id}" name="detail" value="${str}" disabled><i class="fas fa-${icon}"></i><br>${str}</button>`);
+                                .append(`<button type="button" class="detail btn btn-outline-dark" id="detail_${id}" name="detail" value="${str}" disabled><i class="fas fa-lg fa-${icon}"></i><br>${str}</button>`);
                         }
                     }
 
@@ -596,7 +612,7 @@ let app = {
             app.reasonFragment !== 0)
         {
             fragments.fragments.push(app.reasonFragment);
-            reason_text = app.fragmentText.text[app.reasonFragment];
+            reason_text = app.getFragmentText(app.reasonFragment);
         }
 
         // Disruption
@@ -704,7 +720,7 @@ let app = {
             app.reasonFragment !== 0)
         {
             fragments.fragments.push(app.reasonFragment);
-            reason_text = app.fragmentText.text[app.reasonFragment];
+            reason_text = app.getFragmentText(app.reasonFragment);
 
             //Split reason text into tokens
             token_arr = reason_text.split(' ');
@@ -725,7 +741,7 @@ let app = {
                 }
                 else
                 {
-                    if (app.fragmentText.text[app.detailFragments[f]] !== last_token)
+                    if (app.getFragmentText(app.detailFragments[f]) !== last_token)
                     {
                         fragments.fragments.push(app.detailFragments[DetailIndex.detail][f]);
                     }
@@ -778,6 +794,11 @@ let app = {
     updateMessageAssembler: function ()
     {
         let id = 0;
+        let fragment_text = '';
+
+        // Reset Duration
+        app.assembledFragments.duration = 0;
+        app.assembledFragments.text = '';
 
         $('#messageAssembly')
                         .html(`<span class="message_font">`);
@@ -785,18 +806,27 @@ let app = {
         for (let f=0; f < app.assembledFragments.fragments.length; f++)
         {
             id = app.assembledFragments.fragments[f];
+            fragment_text = app.getFragmentText(id);
+
             if (f === app.assembledFragments.selected)
             {
                 $('#messageAssembly')
-                        .append(`<u>${app.fragmentText.text[id]}</u> | `);
+                        .append(`<u>${fragment_text}</u> | `);
             }
             else
             {
                 $('#messageAssembly')
-                        .append(`${app.fragmentText.text[id]} | `);
+                        .append(`${fragment_text} | `);
             }
+
+            // Add fragment duration
+            app.assembledFragments.duration += app.getFragmentDuration(id);
+            app.assembledFragments.text += fragment_text + ' ';
+            
         }
 
+        app.assembledFragments.text = app.assembledFragments.text.trim();
+        
         if (app.assembledFragments.selected >= app.assembledFragments.fragments.length)
         {
             $('#messageAssembly')
@@ -816,13 +846,14 @@ let app = {
     {
         let id = 0;
         let message = '';
-
+       
         $('#textualMessage').empty();
         
         for (let f=0; f < app.textualFragments.fragments.length; f++)
         {
             id = app.textualFragments.fragments[f];
-            message = message + app.fragmentText.text[id] + ' ';
+            fragment_text = app.getFragmentText(id);
+            message = message + app.getFragmentText(id) + ' ';
         }
 
         $('#textualMessage').html(`<span class="message_font">${message.trim()}.</span>`);
@@ -835,7 +866,6 @@ let app = {
 
         // Empty the suggestions list
         $('#textualSuggestions').empty();
-
     },
 
     /**
@@ -886,14 +916,26 @@ let app = {
     {
         let id = 0;
         let message = '';
+        let fragment_text = '';
+
+        // Reset Duration
+        app.builderFragments.duration = 0;
+        app.builderFragments.text = '';
 
         $('#builderCompleteMessage').empty();
         
         for (let f=0; f < app.builderFragments.fragments.length; f++)
         {
             id = app.builderFragments.fragments[f];
-            message = message + app.fragmentText.text[id] + ' ';
+            fragment_text = app.getFragmentText(id);
+            message = message + app.getFragmentText(id) + ' ';
+
+            // Add fragment duration
+            app.builderFragments.duration += app.getFragmentDuration(id);
+            app.builderFragments.text += fragment_text + ' ';
         }
+
+        app.builderFragments.text = app.builderFragments.text.trim();
 
         $('#builderCompleteMessage').html(`<span class="builder_message_font">${message.trim()}.</span>`);      
         
@@ -927,6 +969,7 @@ let app = {
             }
             $('#assemblyClear').prop('disabled', false);
             $('#previewClick').prop('disabled', false);
+            $('#assemblySave').prop('disabled', false);
         }
         else
         {
@@ -936,6 +979,7 @@ let app = {
             $('#assemblyPrevious').prop('disabled', true);
             $('#assemblyClear').prop('disabled', true);
             $('#previewClick').prop('disabled', true);
+            $('#assemblySave').prop('disabled', true);
         }
     },
 
@@ -947,8 +991,9 @@ let app = {
         // Determine whether a message is being displayed
         if  (app.textualFragments.fragments.length > 0)
         {
-            // Enable clear button
+            // Enable buttons
             $('#textualClear').prop('disabled', false);
+            $('#textualSave').prop('disabled', false);
         }
         else
         {
@@ -956,6 +1001,7 @@ let app = {
             $('#textualNext').prop('disabled', true);
             $('#textualPrevious').prop('disabled', true);
             $('#textualClear').prop('disabled', true);
+            $('#textualSave').prop('disabled', true);
         }
     },
 
@@ -970,12 +1016,37 @@ let app = {
             // Enable control buttons
             $('#builderClear').prop('disabled', false);
             $('#builderPreview').prop('disabled', false);
+            $('#builderSave').prop('disabled', false);
         }
         else
         {
             // No message - disable all buttons
             $('#builderClear').prop('disabled', true);
-            $('#builder').prop('disabled', true);
+            $('#builderPreview').prop('disabled', true);
+            $('#builderSave').prop('disabled', false);
+        }
+    },
+
+    /**
+     * Calculates the next User Message ID
+     *
+     */
+    calculateUserIDStart: function ()
+    {
+        // Get Array of current message ids
+        let arr = $.map(app.playlistMessages.messages, function(message) { return message.message_id});
+        
+        // Get the highest message ID
+        let highest = Math.max.apply(this, arr);
+        
+        // Determine whether a USER ID has been set
+        if (highest < USER_ID_START)
+        {
+            app.userMessageId = USER_ID_START;
+        }
+        else
+        {
+            app.userMessageId = highest + 1; // Next number
         }
     },
 
@@ -1063,7 +1134,7 @@ let app = {
             else
             {
                 // add fragment text
-                text = text + app.fragmentText.text[fragmentElements[f]];
+                text = text + app.getFragmentText(fragmentElements[f]);
             }
         }
 
@@ -1090,16 +1161,16 @@ let app = {
                 (group === null)))
             {
                 id = app.disruptionTypeData [f].section_id;
-                if (app.fragmentText.text[id])
+                if (app.getFragmentText(id))
                 {
-                    if (app.fragmentText.section[id] ==='M')
+                    if (app.getFragmentSectionPosition(id) ==='M')
                     {
-                        filterArray.push({id: `${id}`, text: `${app.fragmentText.text[id].trim()}`});
+                        filterArray.push({id: `${id}`, text: `${app.getFragmentText(id)}`});
                     }
                 }
                 else
                 {
-                    console.log('ID: ', id);
+                    //console.log('ID: ', id);
                 }
             }
         }
@@ -1142,17 +1213,17 @@ let app = {
         {  
             id = app.disruptionTypeData [f].section_id;
 
-            if (app.fragmentText.text[id])
+            if (app.getFragmentText(id))
             {
-                if (app.fragmentText.text[id].toLowerCase().includes(searchText) ||
-                    app.fragmentText.text[id].toLowerCase().match(searchText))
+                if (app.getFragmentText(id).toLowerCase().includes(searchText) ||
+                    app.getFragmentText(id).toLowerCase().match(searchText))
                 {
-                    filterArray.push({id: `${id}`, text: `${app.fragmentText.text[id].trim()}`});
+                    filterArray.push({id: `${id}`, text: `${app.getFragmentText(id)}`});
                 }
             }
             else
             {
-                console.log('ID: ', id);
+                //console.log('ID: ', id);
             }
         }
 
@@ -1230,9 +1301,9 @@ let app = {
             {
                 id = app.disruptionTypeData [f].section_id;
                 
-                if (app.fragmentText.text[id])
+                if (app.getFragmentText(id))
                 {
-                    filterArray.push({id: `${id}`, text: `${app.fragmentText.text[id].trim()}`});
+                    filterArray.push({id: `${id}`, text: `${app.getFragmentText(id)}`});
                 }
             }
         }
@@ -1300,11 +1371,11 @@ let app = {
      */
     comparePlaylistCategories: function ( a, b ) {
         // determine if a < b
-        if ( a.name < b.name ) {
+        if ( a.type_name < b.type_name ) {
             return -1;
         }
         // determine if a > b
-        if ( a.name > b.name){
+        if ( a.type_name > b.type_name){
             return 1;
         }
         // a= b
@@ -1319,6 +1390,10 @@ let app = {
     {
         app.updateStatusApplicationData();
         app.getDateAndTime();
+
+        //Set Username and Role
+        app.user_name = $('#userName').text();
+        app.user_role = $('#userRole').text();
         
     },
 
@@ -1770,7 +1845,7 @@ let app = {
                 id = station_list[s];
 
                 $('#selectedStationList')
-                    .append(`<li>${app.fragmentText.text[id]}</li>`);
+                    .append(`<li>${app.getFragmentText(id)}</li>`);
             }
 
             $('#selectedStationList')
@@ -1832,6 +1907,26 @@ let app = {
     },
 
     /**
+     * Resets the Library Browser Panels
+     *
+     */
+    resetLibraryBrowser: function()
+    {
+        // Disable browser buttons
+        $('#browserDelete').prop('disabled', true);
+        $('#browserSave').prop('disabled', true);
+        $('#browserPreview').prop('disabled', true);
+        $('#libraryMessage').empty();
+
+        $('#libraryMessageList').empty();
+        $('#libraryMessageList1').empty();
+
+        app.playlistMessages.selected = 0;
+
+        app.updatePlaylist(PL_PARENT_TYPE, PL_Level.level_1);
+    },
+
+    /**
      * Updates the Play List
      *
      * @param {number} parent - the play list parent
@@ -1844,7 +1939,15 @@ let app = {
         let duration = 0;
         let message = '';
         let messageList = [];
+        let messageText = '';
         let panel = null;
+        let icon_style = 'fas';
+
+        // Disable browser buttons
+        $('#browserDelete').prop('disabled', true);
+        $('#browserSave').prop('disabled', true);
+        $('#browserPreview').prop('disabled', true);
+        $('#libraryMessage').empty();
 
         // Determine which panel to display the list
         switch (level)
@@ -1868,7 +1971,7 @@ let app = {
         {
             if (parseInt(category.parent_id) === parent)
             {
-                categoryList.push ({'id': category.type_id, 'icon': category.icon, 'name': category.type_name, 'description': category.type_description});
+                categoryList.push (category);
             }
         }
 
@@ -1876,7 +1979,7 @@ let app = {
         {
             if (parseInt(message.type_id) === parent)
             {
-                messageList.push ({'id': message.message_id, 'icon': message.icon, 'name': message.message_name, 'description': message.message_description});
+                messageList.push (message);
             }
         }
 
@@ -1889,17 +1992,50 @@ let app = {
             panel.innerHTML = "";
             for (category of categoryList)
             {
-                panel.innerHTML += `<li class="list_font pl_cat_item" style="margin-top:5px; margin-bottom: 5px" id="pl_${category.id}"><i class="far fa-${category.icon}" style="width: 25px"></i><b>${category.name}</b><br>
-                        <span class="list_font_small" style="margin-left:25px">${category.description}</span></li>`;
+                // Set the Icon Style
+                icon_style = 'fas';
+
+                if (category.icon_style === 'regular')
+                {
+                    icon_style = 'far';
+                }
+                
+                panel.innerHTML += 
+                       `<li class="d-flex align-items-start list_font pl_cat_item" style="margin-top:10px; margin-bottom: 10px" id="pl_${category.type_id}">
+                            <i class="${icon_style} fa-fw fa-2x fa-${category.icon}"></i>
+                            <div>
+                                <span class="list_font" style="margin-left:5px"><b>${category.type_name}</b></span><br>
+                                <span class="list_font_small" style="margin-left:5px">${category.type_description}</span>
+                            </div>
+                        </li>`;
             }
 
             for (message of messageList)
             {
-                duration = app.getMessageDuration(parseInt(message.id));
+                duration = app.getMessageDuration(message.classifier, parseInt(message.message_id));
 
-                panel.innerHTML += `<li class="list_font pl_msg_item" style="margin-top:5px; margin-bottom: 5px" id="pl_${message.id}"><i class="far fa-${message.icon}" style="width: 25px"></i><b>${message.name}</b><br>
-                        <span class="list_font_small" style="margin-left:25px">${message.description}</span><br>
-                        <span class="list_font_small" style="margin-left:25px">${duration} seconds</span></li>`;
+                // Set the Icon Style
+                icon_style = 'fas';
+
+                if (message.icon_style === 'regular')
+                {
+                    icon_style = 'far';
+                }
+
+                message_text = `<li class="d-flex align-items-start list_font pl_msg_item" style="margin-top:5px; margin-bottom: 7px" id="pl_${message.message_id}">
+                                    <i class="${icon_style} fa-fw fa-2x fa-${message.icon}"></i>
+                                    <div>
+                                        <span class="list_font_small" style="margin-left:5px"><b>${message.message_name}</b></span><br>
+                                        <span class="list_font_small" style="margin-left:5px">${message.message_description}</span><br>`;
+                // Determine whether the duration should be added
+                if (message.icon !== TEXT_ICON)
+                {
+                    message_text += `<span class="list_font_small" style="margin-left:5px">${duration} seconds</span>`;
+                }
+
+                message_text += `</div></li>`
+
+                panel.innerHTML += message_text;                  
             }
         }
     },
@@ -1912,22 +2048,136 @@ let app = {
     updateLibraryBrowser: function (id)
     {
         let message = '';
-        
-        app.browserFragments = [id];
-        $('#libraryMessage').empty();
+        let classifier = '';
+        let data = [];
+        let icon = '';
+        let type = 0;
 
-        for (message of app.completeData)
+        classifier = app.getPlaylistClassifier(id);
+        app.browserFragments = [];
+        $('#browserPreview').prop('disabled', false); 
+
+        // Set the data to search
+        if (classifier === USER_MULTIPART_CLASSIFIER)
+        {
+            data = app.multipartMessages;            
+        }
+        else if (classifier === USER_MRA_CLASSIFIER)
+        {
+            data = app.mraMessages;
+            $('#browserPreview').prop('disabled', true);  
+        }
+        else
+        {
+            data = app.completeData;
+            app.browserFragments = [id];
+        }
+        
+        
+        $('#libraryMessage').empty();
+        for (message of data)
         {   
             if (parseInt(message.message_id) === id)
             {
                 $('#libraryMessage').append(`<span class="message_font">${message.detail}</span>`);
+
+                // Determine if the message is user created
+                if (classifier === USER_MULTIPART_CLASSIFIER)
+                {
+                    // Get Fragments
+                    app.browserFragments = message.fragments;
+                }
+
+                icon = message.icon;
+                type = parseInt(message.type_id);
                 break;
             }
         }
 
-        $('#browserPreview').prop('disabled', false);
+        // Determine whether the message can be deleted
+        if (type === USER_TYPE_ID ||
+            app.getCategoryParentID(type) === USER_TYPE_ID)
+        {
+            $('#browserDelete').prop('disabled', false);
+        }
+        else
+        {
+            $('#browserDelete').prop('disabled', true);   
+        }
+
         $('#browserSave').prop('disabled', false);
         
+    },
+
+    /**
+     *  Gets the classifier of the playlist message
+     *
+     * @param {number} id - The message ID
+     * @returns The message classifier
+     */
+    getPlaylistClassifier: function (id)
+    {
+        let classifier = '';
+        let message = '';
+
+        // Search Data
+        for (message of app.playlistMessages.messages)
+        {   
+            if (parseInt(message.message_id) === id)
+            {
+                classifier = message.classifier;
+                break;
+            }
+        }
+
+        return classifier;
+    },
+
+    /**
+     * Gets the Type ID for the playist message
+     *
+     * @param {number} id - The category ID
+     * @returns The message Type ID
+     */
+    getPlaylistTypeID: function (id)
+    {
+        let typeId = 0;
+        let message = '';
+
+        // Search Data
+        for (message of app.playlistMessages.messages)
+        {   
+            if (parseInt(message.message_id) === id)
+            {
+                typeId = parseInt(message.type_id);
+                break;
+            }
+        }
+
+        return typeId;
+    },
+
+    /**
+     * Gets the Parent ID for the category type
+     *
+     * @param {number} id - The category ID
+     * @returns The category Parent ID
+     */
+    getCategoryParentID: function (id)
+    {
+        let parent_id = -1;
+        let category = '';
+
+        for (category of app.playlistCategories)
+        {
+            if (parseInt(category.type_id) === id)
+            {
+                parent_id = parseInt(category.parent_id);
+                break;
+            }
+        }
+
+        return parent_id;
     },
 
 
@@ -1938,33 +2188,81 @@ let app = {
     updateQuicklist: function ()
     {
         let message = '';
+        let entry = '';
         let duration = 0;
-        
+        let icon_style = 'fas';
+        let message_text = '';
+
         $('#quickListList').empty();
 
-        for (id of app.quickList.id_list)
-        {   
-            message = app.getPlaylistMessage(id);
-            duration = app.getMessageDuration(parseInt(message.message_id));
+        if (app.quickList.messages.length !=0)
+        {
+            for (entry of app.quickList.messages)
+            {  
+                message = app.getPlaylistMessage(entry.message_id);
+                duration = app.getMessageDuration(message.classifier, parseInt(message.message_id));
 
-            $('#quickListList').append(`<li class="list_font pl_msg_item" style="margin-top:5px; margin-bottom: 5px" id="pl_${message.message_id}"><i class="far fa-${message.icon}" style="width: 25px"></i><b>${message.message_name}</b><br>
-            <span class="list_font_small" style="margin-left:25px">${message.message_description}</span><br>
-            <span class="list_font_small" style="margin-left:25px">${duration} seconds</span></li>`);
+                // Set the Icon Style
+                icon_style = 'fas';
+
+                if (message.icon_style === 'regular')
+                {
+                    icon_style = 'far';
+                }
+
+                message_text = `<li class="d-flex align-items-start list_font pl_msg_item" style="margin-top:5px; margin-bottom: 7px" id="pl_${message.message_id}">
+                                    <i class="${icon_style} fa-fw fa-2x fa-${message.icon}"></i>
+                                    <div>
+                                        <span class="list_font_small" style="margin-left:5px"><b>${message.message_name}</b></span><br>
+                                        <span class="list_font_small" style="margin-left:5px">${message.message_description}</span><br>`;
+                // Determine whether the duration should be added
+                if (message.icon !== TEXT_ICON)
+                {
+                    message_text += `<span class="list_font_small" style="margin-left:5px">${duration} seconds</span>`;
+                }
+
+                message_text += `</div></li>`
+
+                $('#quickListList').append(message_text);
+            }
         }
+
+
+        app.quickList.selected_id = 0;
+        $('#quicklistDelete').prop('disabled', true);
+        $('#quicklistEdit').prop('disabled', true);
+        $('#quicklistSchedule').prop('disabled', true);
     },
 
     /**
      *  Gets the duration for the Message
      *
+     * @param {string} classifer - The message classifer
      * @param {number} id - The message ID
      * @returns The message durarion
      */
-    getMessageDuration: function (id)
+    getMessageDuration: function (classifier, id)
     {
         let message = '';
         let duration = 0;
+        let data = [];
 
-        for (message of app.completeData)
+        // Set the data to search
+        if (classifier === USER_MULTIPART_CLASSIFIER)
+        {
+            data = app.multipartMessages
+        }
+        else if (classifier === USER_MRA_CLASSIFIER)
+        {
+            data = app.mraMessages
+        }
+        else
+        {
+            data = app.completeData;
+        }
+
+        // Search Data
+        for (message of data)
         {   
             if (parseInt(message.message_id) === id)
             {
@@ -1996,6 +2294,254 @@ let app = {
         }
 
         return playlistMessage;
+    },
+
+    /**
+     *  Gets the requested playlist message index
+     *
+     * @param {number} id - The message ID
+     * @returns The message index
+     */
+    getPlaylistMessageIndex: function (id)
+    {
+        let index = -1;
+        let m = 0;
+    
+        for (m = 0; m < app.playlistMessages.messages.length; m++)
+        {   
+            if (parseInt(app.playlistMessages.messages[m].message_id) === id)
+            {
+                index = m;
+                break;
+            }
+        }
+
+        return index;
+    },
+
+    /**
+     *  Gets the requested multipart message index
+     *
+     * @param {number} id - The message ID
+     * @returns The message index
+     */
+    getMultiPartMessageIndex: function (id)
+    {
+        let index = -1;
+        let m = 0;
+    
+        for (m = 0; m < app.multipartMessages.length; m++)
+        {   
+            if (parseInt(app.multipartMessages[m].message_id) === id)
+            {
+                index = m;
+                break;
+            }
+        }
+
+        return index;
+    },
+
+    /**
+     *  Gets the requested MRA message index
+     *
+     * @param {number} id - The message ID
+     * @returns The message index
+     */
+    getMraMessageIndex: function (id)
+    {
+        let index = -1;
+        let m = 0;
+    
+        for (m = 0; m < app.mraMessages.length; m++)
+        {   
+            if (parseInt(app.mraMessages[m].message_id) === id)
+            {
+                index = m;
+                break;
+            }
+        }
+
+        return index;
+    },
+
+    /**
+     *  Gets the requested Quicklist message index
+     *
+     * @param {number} id - The message ID
+     * @returns The message index
+     */
+    getQuicklistMessageIndex: function (id)
+    {
+        let index = -1;
+        let m = 0;
+    
+        for (m = 0; m < app.quickList.messages.length; m++)
+        {   
+            if (parseInt(app.quickList.messages[m].message_id) === id)
+            {
+                index = m;
+                break;
+            }
+        }
+
+        return index;
+    },
+
+    /**
+     *  Gets the fragment text
+     *
+     * @param {number} id - the fragment id
+     * @returns The fragment text
+     */
+    getFragmentText: function(id)
+    {
+        let text = '';
+        let message = '';
+       
+        for (message of app.completeFragmentData)
+        {
+            if (parseInt(message.section_id) === parseInt(id))
+            {
+                text = message.message_name.trim();
+                break;
+            }
+        }
+
+        return text;
+    },
+
+    /**
+     *  Gets the fragment section position
+     *
+     * @param {number} id - the fragment id
+     * @returns The fragment section position
+     */
+    getFragmentSectionPosition: function(id)
+    {
+        let section = '';
+        let message = '';
+       
+        for (message of app.completeFragmentData)
+        {
+            if (parseInt(message.section_id) === parseInt(id))
+            {
+                section = message.section_position.toUpperCase();
+                break;
+            }
+        }
+
+        return section;
+    },
+
+
+    /**
+     *  Gets the fragment duration
+     *
+     * @param {number} id - the fragment id
+     * @returns The fragment duration
+     */
+    getFragmentDuration: function(id)
+    {
+        let duration = 0;
+        let message= '';
+       
+        for (message of app.completeFragmentData)
+        {
+            if (parseInt(message.section_id) === parseInt(id))
+            {
+                duration = parseInt(message.Duration);
+                break;
+            }
+        }
+
+        return duration;
+    },
+
+    /**
+     *  Clears the Message Assembly Panel
+     *
+     */
+    clearMessageAssemblyPanel: function()
+    {
+        $('#messageAssembly').empty();
+
+        // Clear Assembled Data
+        app.assembledFragments.selected = 0;
+        app.assembledFragments.fragments = [];
+        app.assembledFragments.duration = 0;
+        app.assembledFragments.text = ''
+
+        $('#assemblyNext').prop('disabled', true);
+        $('#assemblyDelete').prop('disabled', true);
+        $('#assemblyPrevious').prop('disabled', true);
+        $('#assemblyClear').prop('disabled', true);
+        $('#previewClick').prop('disabled', true);
+    },
+
+    /**
+     *  Clears the Text Only Message Panel
+     *
+     */
+    clearTextOnlyMessagePanel: function()
+    {
+        $('#textualMessage').empty();
+        app.textualFragments.selected = 0;
+        app.textualFragments.error_count = 0;
+        app.textualFragments.errors = [];
+        app.textualFragments.fragments = [];
+
+        app.updateTextualMessageLength();
+
+        $('#textualNext').prop('disabled', true);
+        $('#textualPrevious').prop('disabled', true);
+        $('#textualClear').prop('disabled', true);
+        $('#textualSave').prop('disabled', true);
+
+        $('#textualSuggestions').empty();
+    },
+
+
+    /**
+     * Update the save folders on the panel
+     *
+     */
+    updateSaveFolderList: function()
+    {
+        let category = '';
+
+        app.selected_save_type = 0;
+
+        $('#saveFolders').empty();
+
+        // Update Save Modal Folder List
+        for (category of app.playlistCategories)
+        {
+            if (parseInt(category.parent_id) === USER_TYPE_ID &&
+                category.icon === FOLDER_ICON)
+            {
+                $('#saveFolders').append( 
+                       `<li class="d-flex align-items-start list_font pl_cat_item" style="margin-top:10px; margin-bottom: 10px" id="pl_${category.type_id}">
+                            <i class="far fa-fw fa-2x fa-${category.icon}"></i>
+                            <div>
+                                <span class="list_font" style="margin-left:5px">${category.type_name}</span><br>
+                                <span class="list_font_small" style="margin-left:5px">${category.type_description}</span>
+                            </div>
+                        </li>`);
+            }
+        }
+    },
+
+    /**
+     * Resets the form controls of the save modal
+     *
+     */
+    resetSaveModal: function()
+    {
+        $('#saveQuicklist').removeClass('active');
+        $('#saveTitle').val("");
+        $('#saveDescription').val("");
+        app.updateSaveFolderList();
     }
 };
 
@@ -2026,10 +2572,9 @@ $('#libraryPanel').load('html/library.html', function() {
     app.updatePlaylist(PL_PARENT_TYPE, PL_Level.level_1);
 });
 
-$(function(){
-    $('#quicklistpanel').load('html/quicklistpanel.html');
+$('#quicklistpanel').load('html/quicklistpanel.html', function() {
+    app.updateQuicklist();
 });
-
 
 
 

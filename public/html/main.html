@@ -37,8 +37,8 @@
                             <div class="col-2 status_bar_container" id="applicationDetails" style="margin-right: 5px">
                             </div>
                             <div class="col status_bar_container" id="userDetails" style="margin-right: 5px">
-                                <span class="status_font"><%= current_user.username %><br><span>
-                                <span class="status_font"><%= current_user.role %><span>
+                                <span class="status_font" id="userName"><%= current_user.username %><br></span>
+                                <span class="status_font" id="userRole"><%= current_user.role %></span>
                             </div>
                             <div class="col-2 status_bar_container">
                                 <span class="status_font" id="currentdate"></span>
@@ -150,10 +150,10 @@
                                         <div class="builder_complete_message" id="builderCompleteMessage"></div>
                                     </div>
                                     <div class="builder_message_btn_panel">
-                                        <button class="btn btn-outline-dark builder" id="builderClear" disabled><i class="fas fa-broom"></i><br>Clear</button>
-                                        <button class="btn btn-outline-dark builder ml-3 mr-auto" id="builderPreview" disabled><i class="fas fa-headphones"></i><br>Preview</button>
-                                        <button class="btn btn-outline-dark builder" id="builderSave" disabled><i class="fas fa-save"></i><br>Save</button>
-                                        <button class="btn btn-outline-dark builder" id="builderSchedule" disabled><i class="fas fa-calendar-alt"></i><br>Play Schedule</button>
+                                        <button class="btn btn-outline-dark builder" id="builderClear" disabled><i class="fas fa-lg fa-broom"></i><br>Clear</button>
+                                        <button class="btn btn-outline-dark builder ml-3 mr-auto" id="builderPreview" disabled><i class="fas fa-lg fa-headphones"></i><br>Preview</button>
+                                        <button class="btn btn-outline-dark builder" data-toggle="modal" data-target="#saveModal" id="builderSave" disabled><i class="fas fa-lg fa-save"></i><br>Save</button>
+                                        <button class="btn btn-outline-dark builder" id="builderSchedule" disabled><i class="fas fa-lg fa-calendar-alt"></i><br>Play Schedule</button>
                                     </div>
                                 </div>
                                 
